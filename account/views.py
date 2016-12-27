@@ -7,7 +7,7 @@ from rest_framework import serializers
 from rest_framework.renderers import JSONRenderer
 
 from account.models import User
-from account.serializers import FacebookConnectSerializer, UserInfoSerializer
+from account.serializers import FacebookConnectSerializer, UserInfoSerializer, UserLoginSerializer
 
 import urllib, urllib2, json, simplejson
 
@@ -39,6 +39,42 @@ from django.template import RequestContext
 from datetime import datetime, timedelta
 from django.db.models import Q
 import pytz
+
+class UserLoginView(generics.GenericAPIView):
+    serializer_class = UserLoginSerializer
+    permission_classes = (AllowAny, )
+
+    def post(self, request, format=None):
+        """
+        建立 網站 帳號或是登入
+        """
+        serializer = self.serializer_class(data=request.DATA)
+        if serializer.is_valid():
+            username = serializer.data.get('username')
+            password = serializer.data.get('password')
+
+            try:
+                try:
+                    User.objects.get(username=username)
+                    user = authenticate(username=username, password=password)
+                    if user is not None:
+                        if user.is_active:
+                            login(request, user)
+                    else:
+                        return Response("401")
+                        return Response("Bad username or password.", status=status.HTTP_401_UNAUTHORIZED)
+                except User.DoesNotExist:
+                    user = User.objects.create_user(username=username, password=password, email=username)
+                    user = authenticate(username=username, password=password)
+                    login(request, user)
+
+                serializer = UserInfoSerializer(request.user, context={'request': request})
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            except requests.RequestException as e:
+                return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class FacebookConnectView(generics.GenericAPIView):
     serializer_class = FacebookConnectSerializer
