@@ -1,0 +1,16 @@
+*.pyc
+*.pyo
+*.db
+*.log
+*.rdb
+
+.DS_Store
+.coverage
+local_settings.py
+
+static/
+media/
+!*/static
+!*/**/static
+!*/media
+!*/**/media
