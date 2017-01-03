@@ -7,7 +7,7 @@ from rest_framework import serializers
 from rest_framework.renderers import JSONRenderer
 
 from account.models import User
-from account.serializers import FacebookConnectSerializer, UserInfoSerializer, UserLoginSerializer
+from account.serializers import FacebookConnectSerializer, UserInfoSerializer, UserLoginSerializer, UserRegisterSerializer
 
 import urllib, urllib2, json, simplejson
 
@@ -46,7 +46,7 @@ class UserLoginView(generics.GenericAPIView):
 
     def post(self, request, format=None):
         """
-        建立 網站 帳號或是登入
+        建立 網站 帳號或是登入帳號為email格式
         """
         serializer = self.serializer_class(data=request.DATA)
         if serializer.is_valid():
@@ -69,6 +69,60 @@ class UserLoginView(generics.GenericAPIView):
                     login(request, user)
 
                 serializer = UserInfoSerializer(request.user, context={'request': request})
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            except requests.RequestException as e:
+                return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class UserRegisterView(generics.GenericAPIView):
+    serializer_class = UserRegisterSerializer
+    permission_classes = (AllowAny, )
+
+    def post(self, request, format=None):
+        """
+        註冊網站帳號或修改帳號資訊
+        """
+        serializer = self.serializer_class(data=request.DATA)
+        if serializer.is_valid():
+
+            username = serializer.data.get('username')
+            password = serializer.data.get('password')
+            re_password = serializer.data.get('re_password')
+            phone_number = serializer.data.get('phone_number')
+            year = serializer.data.get('year')
+            sex = serializer.data.get('sex')
+            email = serializer.data.get('email')
+            address = serializer.data.get('address')
+            birthday = serializer.data.get('birthday')
+
+            try:
+                try:
+                    user = User.objects.get(username=username)
+                    user.password = password
+                    user.phone_number = phone_number
+                    user.year = year
+                    user.sex = sex
+                    user.email = email
+                    user.address = address
+                    user.birthday = birthday
+                    user.save()
+                except User.DoesNotExist:
+                    user = User(
+                            username=username,
+                            password=password,
+                            phone_number=phone_number,
+                            year=year,
+                            sex=sex,
+                            email=email,
+                            address=address,
+                            birthday=birthday
+                        )
+                    user.save()
+                    user.backend = 'mezzanine.core.auth_backends.MezzanineBackend'
+                    login(request, user)
+
+                serializer = UserInfoSerializer(user)
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             except requests.RequestException as e:
                 return Response(str(e), status=status.HTTP_400_BAD_REQUEST)

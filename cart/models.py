@@ -65,3 +65,8 @@ class PayMentRecord(models.Model):
     date = models.DateTimeField(_(u"建立時間"), auto_now=True)
     invoice = models.OneToOneField(PayMentInvoice,  related_name='payment_record_invoice', null=True, blank=True)
 
+
+class FavoriteItem(models.Model):
+    user = models.ForeignKey(User, related_name='user_favorite_item')
+    product = models.ForeignKey(ProductInfo,  related_name='user_favorite_product')
+
