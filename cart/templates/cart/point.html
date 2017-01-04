@@ -1,0 +1,23 @@
+{% load i18n mezzanine_tags %}
+
+
+{% block extra_js %}
+
+{% endblock %}
+{{payment}}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<form id="__ecpayForm" method="post" target="{{target}}" action="{{ServiceURL}}">
+ {% for key, values in url_data.items %}
+<input type="hidden" name="{{key}}" value='{{values}}' />;
+{% endfor%}
+<input type="hidden" name="CheckMacValue" value="{{CheckMacValue}}" />
+</form>
+<script type="text/javascript">document.getElementById("__ecpayForm").submit()
+</script>
+</body>
+</html>

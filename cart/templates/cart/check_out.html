@@ -1,0 +1,50 @@
+{% load i18n mezzanine_tags staticfiles %}
+
+
+{% block extra_js %}
+
+{% endblock %}
+{{payment}}
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="{% static "js/bootstrap.js" %}"></script>
+	<link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
+    <link rel="stylesheet" href="{% static "css/bootstrap-responsive.css" %}">
+    <script src="{% static "js/bootstrap-extras.js" %}"></script>
+
+	<meta charset="utf-8">
+</head>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+	 	$("button").click(function(){
+	 		/*
+			var item_id = this.name.replace("item_","");
+			var choose_payment = $("#choose_"+item_id).val();
+
+
+			$.post("/account/create_order/", {'product_id':item_id, "choose_payment":choose_payment},
+				function(data){
+					window.location.href = "/account/receive_order?CheckMacValue="+data["CheckMacValue"]+"&url_data="+JSON.stringify(data["url_data"]);
+				});
+			*/
+			$.get("/cart/cart_check_out/",
+				function(data){
+					var link = "/cart/receive_order?CheckMacValue="+data["CheckMacValue"]+"&url_data="+JSON.stringify(data["url_data"]);
+
+					window.location.href = link;
+				});
+    	});
+    });
+
+</script>
+<body>
+<table class="table">
+
+	  	<button type="button" id="" name="" class="btn btn-lg btn-primary">結帳</button>
+</table>
+
+</body>
+</html>

@@ -58,7 +58,7 @@ cd /var/www/django/
 
 git clone https://github.com/johnnyliao/the_parent.git
 
-cd japanese/
+cd the_parent/
 chmod 777 -R *
 pip install -r requirements/project.txt
 python manage.py collectstatic --noinput

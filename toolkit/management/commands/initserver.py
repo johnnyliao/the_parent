@@ -4,7 +4,7 @@ from django.core.management.base import BaseCommand
 from django.db import connection, transaction
 from django.core.management import call_command
 import settings
-import random
+import random, datetime
 
 from mezzanine.utils.models import get_user_model
 User = get_user_model()
@@ -33,8 +33,10 @@ class Command(BaseCommand):
             pass
 
         call_command("createdb", interactive=False)
+        print "\n\n\n\n"
+        print settings.DEBUG
         if not settings.DEBUG:
-            User.objects.create_superuser('admin', 'example@example.com.tw', '123456')
+            User.objects.create_superuser(username='admin', email='example@example.com.tw',password='123456', sex="man", nickname="admin", year=30, birthday=datetime.datetime.now(), address="abcdefg")
             print "Creating default account (username: admin / password: 123456) ..."
 
         print "Start loading default datas ..."
