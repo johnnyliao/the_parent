@@ -150,12 +150,6 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
-# AWS keys
-AWS_SECRET_ACCESS_KEY = "2yFlqQfkSEJjRfL2gSvWGNLqDbWpCjUHc+vpE/Mh"
-AWS_ACCESS_KEY_ID = "AKIAJNW4TP2E4H4PTZJA"
-AWS_STORAGE_BUCKET_NAME = "supermedianicokim"
-
-
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
