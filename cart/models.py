@@ -14,15 +14,26 @@ from django.contrib.contenttypes import generic
 from django.core.exceptions import ObjectDoesNotExist
 
 from django.contrib.sites.models import Site
-
 import urlparse, settings
+
+class ProductImage(models.Model):
+    photo = models.ImageField(_(u"商品照片"), upload_to='cart/productinfo')
+
+    def image_tag(self):
+        return '<img style="width:100px;height:100px" src="' + self.photo.url + '" />'
+
+    image_tag.allow_tags = True
 
 class ProductInfo(models.Model):
     total_amount = models.IntegerField(_(u"金額"))
     trade_desc = models.CharField(_(u"商品描述"), max_length=30)
     item_name = models.CharField(_(u"商品名稱"), max_length=30)
     date = models.DateTimeField(_(u"建立時間"), auto_now=True)
-    photo = models.CharField(_(u"商品圖片"), max_length=50)
+    photo = models.ManyToManyField("ProductImage", verbose_name=_(u"商品照片"), related_name='product_images')
+    #photo = models.CharField(_(u"商品圖片"), max_length=50)
+    video_link = models.CharField(_(u"商品影片連結"), max_length=50)
+    def __unicode__(self):
+        return "商品"
 
 class CartItem(models.Model):
     user = models.ForeignKey(User, related_name='user_cart_item')

@@ -95,7 +95,8 @@ class UserRegisterView(generics.GenericAPIView):
             email = serializer.data.get('email')
             address = serializer.data.get('address')
             birthday = serializer.data.get('birthday')
-
+            if password != re_password:
+                return Response("password wrong", status=status.HTTP_200_OK)
             try:
                 try:
                     user = User.objects.get(username=username)

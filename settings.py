@@ -24,7 +24,7 @@ from django.utils.translation import ugettext_lazy as _
 ADMIN_MENU_ORDER = (
     ("Site", ("sites.Site", "redirects.Redirect", "conf.Setting")),
     (_(u"使用者設定"), ("account.User")),
-    (_(u"購物車設定"), ("cart.ProductInfo", "cart.CartItem")),
+    (_(u"購物車設定"), ("cart.ProductInfo", "cart.CartItem", "main.S3Data", "cart.ProductImage")),
 )
 
 
@@ -150,6 +150,12 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
+# AWS keys
+AWS_SECRET_ACCESS_KEY = "2yFlqQfkSEJjRfL2gSvWGNLqDbWpCjUHc+vpE/Mh"
+AWS_ACCESS_KEY_ID = "AKIAJNW4TP2E4H4PTZJA"
+AWS_STORAGE_BUCKET_NAME = "supermedianicokim"
+
+
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
@@ -157,6 +163,7 @@ STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
+
 
 # The numeric mode to set newly-uploaded files to. The value should be
 # a mode you'd pass directly to os.chmod.
@@ -221,9 +228,9 @@ TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, "templates"),)
 INSTALLED_APPS = (
     "account",
     "cart",
+    "main",
     "rest_framework",
     "rest_framework_swagger",
-
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
