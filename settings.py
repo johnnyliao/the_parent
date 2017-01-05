@@ -27,6 +27,7 @@ ADMIN_MENU_ORDER = (
     (_(u"購物車設定"), ("cart.ProductInfo", "cart.CartItem" )),
     (_(u"活動設定"), ("action.Comment")),
     (_(u"S3設定"), ("cart.ProductImage")),
+    (_(u"影片設定"), ("movie.Movie")),
 )
 
 
@@ -225,6 +226,7 @@ INSTALLED_APPS = (
     "account",
     "cart",
     "main",
+    "movie",
     "action",
     "rest_framework",
     "rest_framework_swagger",
