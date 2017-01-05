@@ -33,7 +33,7 @@ class ProductInfo(models.Model):
     #photo = models.CharField(_(u"商品圖片"), max_length=50)
     video_link = models.CharField(_(u"商品影片連結"), max_length=50)
     def __unicode__(self):
-        return "商品"
+        return self.item_name
 
 class CartItem(models.Model):
     user = models.ForeignKey(User, related_name='user_cart_item')
