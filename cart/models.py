@@ -32,6 +32,10 @@ class ProductInfo(models.Model):
     photo = models.ManyToManyField("ProductImage", verbose_name=_(u"商品照片"), related_name='product_images')
     #photo = models.CharField(_(u"商品圖片"), max_length=50)
     video_link = models.CharField(_(u"商品影片連結"), max_length=50)
+    class Meta:
+        verbose_name = _(u"商品資訊")
+        verbose_name_plural = _(u"商品列表")
+
     def __unicode__(self):
         return self.item_name
 

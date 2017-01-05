@@ -24,7 +24,9 @@ from django.utils.translation import ugettext_lazy as _
 ADMIN_MENU_ORDER = (
     ("Site", ("sites.Site", "redirects.Redirect", "conf.Setting")),
     (_(u"使用者設定"), ("account.User")),
-    (_(u"購物車設定"), ("cart.ProductInfo", "cart.CartItem", "main.S3Data", "cart.ProductImage")),
+    (_(u"購物車設定"), ("cart.ProductInfo", "cart.CartItem" )),
+    (_(u"活動設定"), ("action.Comment")),
+    (_(u"S3設定"), ("cart.ProductImage")),
 )
 
 
@@ -223,6 +225,7 @@ INSTALLED_APPS = (
     "account",
     "cart",
     "main",
+    "action",
     "rest_framework",
     "rest_framework_swagger",
     "django.contrib.admin",
