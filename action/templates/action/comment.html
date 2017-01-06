@@ -12,11 +12,11 @@
   <meta property="fb:admins" content="1484677847" />
   <meta property="fb:app_id" content="738631256291664" />
   <!-- /pilipress::fb_admins -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="URL" />
-  <meta property="og:title" content="TITLE" />
-  <meta property="og:description" content="DESC" />
-  <meta property="og:image" content="IMG" />
+  <meta property="og:url" content="nicokim.cc/action/comment" />
+  <meta property="og:title" content="Replace with Page Title" />
+  <meta property="og:type" content="Website" />
+  <meta property="og:description" content="Add Some description" />
+  <meta property="og:image" content="Replace with some image 200px 200px" />
 	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script src="{% static "js/bootstrap.js" %}"></script>
 	<link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
@@ -30,26 +30,27 @@
 
 <script type="text/javascript">
 
-	window.fbAsyncInit = function() {
+
+</script>
+
+<body>
+	<script>
+  window.fbAsyncInit = function() {
     FB.init({
       appId      : '738631256291664',
       xfbml      : true,
-      version    : 'v2.8'
+      version    : 'v2.4'
     });
-    FB.AppEvents.logPageView();
   };
 
   (function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];
      if (d.getElementById(id)) {return;}
      js = d.createElement(s); js.id = id;
-
      js.src = "//connect.facebook.net/zh_TW/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 </script>
-
-<body>
-	<div class="fb-comments" data-href="http://nicokim.cc/actoin/comment" data-width="100%" data-numposts="5"></div>
+<div class="fb-comments" data-href="http://nicokim.cc/action/comment" data-width="100%" data-numposts="15"></div>
 </body>
 </html>
