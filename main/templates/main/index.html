@@ -1,0 +1,760 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+  <title>Product Details | Unify - Responsive Website Template</title>
+  <!-- Meta -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="favicon.ico">
+  <!-- Web Fonts -->·
+  <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+  <!-- CSS Global Compulsory -->
+  <link rel="stylesheet" href="{% static "assets/plugins/bootstrap/css/bootstrap.min.css"%}">
+  <link rel="stylesheet" href="{% static "assets/css/shop.style.css"%}">
+  <!-- CSS Header and Footer -->
+  <link rel="stylesheet" href="{% static "assets/css/footers/footer-v4.css"%}">
+  <!-- CSS Implementing Plugins -->
+  <link rel="stylesheet" href="{% static "assets/plugins/animate.css"%}">
+  <link rel="stylesheet" href="{% static "assets/plugins/line-icons/line-icons.css"%}">
+  <link rel="stylesheet" href="{% static "assets/plugins/font-awesome/css/font-awesome.min.css"%}">
+  <link rel="stylesheet" href="{% static "assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css"%}">
+  <link rel="stylesheet" href="{% static "assets/plugins/owl-carousel/owl-carousel/owl.carousel.css"%}">
+  <link rel="stylesheet" href="{% static "assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css"%}">
+  <link rel="stylesheet" href="{% static "assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css"%}">
+  <link rel="stylesheet" href="{% static "assets/plugins/master-slider/masterslider/style/masterslider.css"%}">
+  <link rel="stylesheet" href="{% static "assets/plugins/master-slider/masterslider/skins/default/style.css"%}">
+  <link rel="stylesheet" href="{% static "assets/plugins/login-signup-modal-window/css/style.css"%}">
+  <!-- Style Switcher -->
+  <link rel="stylesheet" href="{% static "assets/css/plugins/style-switcher.css"%}">
+  <!-- CSS Theme -->
+  <link rel="stylesheet" href="{% static "assets/css/theme-colors/default.css" id="style_color"%}">
+  <!-- CSS Customization -->
+  <link rel="stylesheet" href="{% static "assets/css/custom.css"%}">
+  <style type="text/css">
+  .ms-basic-view{
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+  }
+  </style>
+</head>
+<body class="header-fixed">
+  <div class="wrapper">
+    <!--=== Header v5 ===-->
+    <header id="header" class="headroom headroom--pinned header--fixed headroom--top headroom--not-bottom">
+      <nav class="navbar navbar-default navbar_style ">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <a href="index.html"><img style="margin:0 auto;display: block;" class="top_logo" src="{% static "img/main/thecouple_webpage_logo.png" %}"></a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="nav-right" style="clear: none;">
+
+          </div>
+          <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+      </nav>
+
+    </header>
+    <div style="padding-top: 50px; padding-bottom: 0px;" class="blog-ms-v1 blog-ms-v1-extend">
+      <div class="master-slider ms-skin-default" id="masterslider" style="margin-left: 0px;margin-right: 0px;">
+        <div class="ms-slide blog-slider">
+          <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img9.jpg" alt="lorem ipsum dolor sit"/>
+
+          <div class="ms-info"></div>
+
+        </div>
+        <div class="ms-slide blog-slider">
+          <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img52.jpg" alt="lorem ipsum dolor sit"/>
+
+          <div class="ms-info"></div>
+        </div>
+        <div class="ms-slide blog-slider">
+          <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img5.jpg" alt="lorem ipsum dolor sit"/>
+
+          <div class="ms-info"></div>
+        </div>
+        <div class="ms-slide blog-slider">
+          <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img16.jpg" alt="lorem ipsum dolor sit"/>
+
+          <div class="ms-info"></div>
+        </div>
+        <div class="ms-slide blog-slider">
+          <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img35.jpg" alt="lorem ipsum dolor sit"/>
+          <a href="http://player.vimeo.com/video/53914149" data-type="video"> vimeo video </a>
+          <div class="ms-info"></div>
+        </div>
+      </div>
+      <div class="ms-slide blog-slider">
+        <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img41.jpg" alt="lorem ipsum dolor sit"/>
+
+        <div class="ms-info"></div>
+      </div>
+
+    </div>
+  <div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
+  <div class="cd-user-modal-container"> <!-- this is the container wrapper -->
+   <ul class="cd-switcher">
+    <li><a href="javascript:void(0);">Login</a></li>
+    <li><a href="javascript:void(0);">Register</a></li>
+  </ul>
+  <div id="cd-login"> <!-- log in form -->
+  <form class="cd-form">
+    <p class="social-login" style="text-align: center;">
+      <span class="social-login-facebook"><a style="color: #fff" href="#"><i style="float: none"  class="fa fa-facebook"></i> Facebook</a></span>
+    </p>
+    <div class="lined-text"><span>購物滿額1000元即贈送紅包</span><hr></div>
+    <p class="fieldset">
+      <label class="image-replace cd-email" for="signin-email">E-mail</label>
+      <input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
+      <span class="cd-error-message">Error message here!</span>
+    </p>
+    <p class="fieldset">
+      <label class="image-replace cd-password" for="signin-password">Password</label>
+      <input class="full-width has-padding has-border" id="signin-password" type="text"  placeholder="Password">
+      <a href="javascript:void(0);" class="hide-password">Hide</a>
+      <span class="cd-error-message">Error message here!</span>
+    </p>
+    <p class="fieldset">
+      <input type="checkbox" id="remember-me" checked>
+      <label for="remember-me">Remember me</label>
+    </p>
+    <p class="fieldset">
+      <input class="full-width" type="submit" value="Login">
+    </p>
+  </form>
+  <p class="cd-form-bottom-message"><a href="javascript:void(0);">Forgot your password?</a></p>
+  <!-- <a href="javascript:void(0);" class="cd-close-form">Close</a> -->
+  </div> <!-- cd-login -->
+  <div id="cd-signup"> <!-- sign up form -->
+  <form class="cd-form">
+    <p class="social-login"  style="text-align: center;">
+      <span class="social-login-facebook"><a style="color: #fff" href="#"><i style="float: none" class="fa fa-facebook"></i> Facebook</a></span>
+    </p>
+    <div class="lined-text"><span>註冊你就會被拿走資料囉ㄏ</span><hr></div>
+    <p class="fieldset">
+      <label class="image-replace cd-username" for="signup-username">Username</label>
+      <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
+      <span class="cd-error-message">Error message here!</span>
+    </p>
+    <p class="fieldset">
+      <label class="image-replace cd-email" for="signup-email">E-mail</label>
+      <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
+      <span class="cd-error-message">Error message here!</span>
+    </p>
+    <p class="fieldset">
+      <label class="image-replace cd-password" for="signup-password">Password</label>
+      <input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Password">
+      <a href="javascript:void(0);" class="hide-password">Hide</a>
+      <span class="cd-error-message">Error message here!</span>
+    </p>
+    <p class="fieldset">
+      <input type="checkbox" id="accept-terms">
+      <label for="accept-terms">I agree to the <a href="page_terms.html">Terms</a></label>
+    </p>
+    <p class="fieldset">
+      <input class="full-width has-padding" type="submit" value="Create account">
+    </p>
+  </form>
+  <!-- <a href="javascript:void(0);" class="cd-close-form">Close</a> -->
+  </div> <!-- cd-signup -->
+  <div id="cd-reset-password"> <!-- reset password form -->
+  <p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
+  <form class="cd-form">
+    <p class="fieldset">
+      <label class="image-replace cd-email" for="reset-email">E-mail</label>
+      <input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
+      <span class="cd-error-message">Error message here!</span>
+    </p>
+    <p class="fieldset">
+      <input class="full-width has-padding" type="submit" value="Reset password">
+    </p>
+  </form>
+  <p class="cd-form-bottom-message"><a href="javascript:void(0);">Back to log-in</a></p>
+  </div> <!-- cd-reset-password -->
+  <a href="javascript:void(0);" class="cd-close-form">Close</a>
+  </div> <!-- cd-user-modal-container -->
+  </div> <!-- cd-user-modal -->
+  <!-- End Navbar -->
+  <section class="mod_box" >
+    <div class="mod_hd">
+      <h2 class="mod_title"><a href="javascript:;" title="那天看了網路一個影片就想說來問老公:你....喜歡我哪一點!!其實我印象中好像沒有問過他這個問題,">那對夫妻</a></h2>
+    </div>
+    <div class="mod_figure_highlight">
+      <a href="video.html" _hot="index.module.0.focus" class="figure">
+        <span class="figure_pic">
+          <img lz_src="http://puui.qpic.cn/tv/0/6167543_1080607/0" src="https://scontent-tpe1-1.xx.fbcdn.net/v/t15.0-10/cp0/e15/q65/s320x320/15644013_1682616968431114_7884244772045455360_n.jpg?efg=eyJpIjoidCJ9&amp;oh=8087a47e1fc413328b72172b2925ef34&amp;oe=58EDC490" alt="放弃我抓紧我·“唯一CP”街头热吻" style="visibility: visible;">
+          <span class="figure_mask"><em class="mask_txt">更新至22集</em></span>
+        </span>
+        <div class="figure_titles"><span class="figure_title figure_title_multirow">那天看了網路一個影片就想說來問老公:</span><p class="figure_desc">你....喜歡我哪一點!!其實我印象中好像沒有問過他這個問題,</p></div>
+      </a>
+    </div>
+
+    <div class="mod_figures mod_figures_h">
+      <ul class="mod_figure">
+        <li class="item">
+          <a href="video.html" _hot="index.module.0.item" class="figure">
+            <span class="figure_pic">
+              <img lz_src="http://puui.qpic.cn/tv/0/6172953_1080607/0" src="https://scontent-tpe1-1.xx.fbcdn.net/v/t15.0-10/cp0/e15/q65/s320x320/15644013_1682616968431114_7884244772045455360_n.jpg?efg=eyJpIjoidCJ9&amp;oh=8087a47e1fc413328b72172b2925ef34&amp;oe=58EDC490" alt="视频标题" style="visibility: visible;"><span class="mark_custom"><em class="mark_inner">獨家</em></span>
+              <span class="figure_mask"><em class="mask_txt">更新至09集</em></span>
+            </span>
+            <div class="figure_titles"><span class="figure_title figure_title_multirow">青云志2·火热更新！VIP独享3集</span><p class="figure_desc">十年再重逢！鬼厉雪琪刀剑相向</p></div>
+          </a>
+        </li>
+        <li class="item">
+          <a href="video.html" _hot="index.module.0.item" class="figure">
+            <span class="figure_pic">
+              <img lz_src="http://puui.qpic.cn/tv/0/6169424_1080607/0" src="https://scontent-tpe1-1.xx.fbcdn.net/v/t15.0-10/cp0/e15/q65/s320x320/15643842_1677675048925306_5314589671622180864_n.jpg?efg=eyJpIjoidCJ9&amp;oh=778d4c59e76482d4e670440a81c49851&amp;oe=58D84083" alt="视频标题" style="visibility: visible;"><sup class="mark_vip_coupon">会员用券</sup>
+            </span>
+            <div class="figure_titles"><span class="figure_title figure_title_multirow">夜行动物·致命惊悚片！</span><p class="figure_desc">豆瓣评分8.4！前夫的黑暗真相浮出水面</p></div>
+          </a>
+        </li>
+        <li class="item">
+          <a href="video.html" _hot="index.module.0.item" class="figure">
+            <span class="figure_pic">
+              <img lz_src="http://puui.qpic.cn/tv/0/6166364_1080607/0" src="https://scontent-tpe1-1.xx.fbcdn.net/v/t15.0-10/cp0/e15/q65/s320x320/15643605_1673724042653740_9132073740950044672_n.jpg?efg=eyJpIjoidCJ9&amp;oh=dbfcc20efc86bb702a2480c8146b217a&amp;oe=58E6E89A" alt="视频标题" style="visibility: visible;"><span class="mark_custom"><em class="mark_inner">獨家</em></span>
+            </span>
+            <div class="figure_titles"><span class="figure_title figure_title_multirow">王菲幻乐一场演唱会·30日见！</span><p class="figure_desc">纪录片最终篇！梁朝伟刘嘉玲那英陈奕迅谈王菲</p></div>
+          </a>
+        </li>
+        <li class="item">
+          <a href="video.html" _hot="index.module.0.item" class="figure">
+            <span class="figure_pic">
+              <img lz_src="http://puui.qpic.cn/tv/0/6167547_1080607/0" src="https://scontent-tpe1-1.xx.fbcdn.net/v/t15.0-10/cp0/e15/q65/s320x320/15644013_1682616968431114_7884244772045455360_n.jpg?efg=eyJpIjoidCJ9&amp;oh=8087a47e1fc413328b72172b2925ef34&amp;oe=58EDC490" alt="视频标题" style="visibility: visible;">
+              <span class="figure_mask"><em class="mask_txt">更新至23集</em></span>
+            </span>
+            <div class="figure_titles"><span class="figure_title figure_title_multirow">北上广依然相信爱情·陈妍希快看</span><p class="figure_desc">朱亚文遭自恋女强行表白 当场翻脸发飙</p></div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section class="mod_box" >
+    <div class="mod_hd">
+      <h2 class="mod_title"><a href="javascript:;" title="那天看了網路一個影片就想說來問老公:你....喜歡我哪一點!!其實我印象中好像沒有問過他這個問題,">那對夫妻</a></h2>
+    </div>
+    <div class="mod_figure_highlight">
+      <a href="video.html" _hot="index.module.0.focus" class="figure">
+        <span class="figure_pic">
+          <img lz_src="http://puui.qpic.cn/tv/0/6167543_1080607/0" src="https://scontent-tpe1-1.xx.fbcdn.net/v/t15.0-10/cp0/e15/q65/s320x320/15644013_1682616968431114_7884244772045455360_n.jpg?efg=eyJpIjoidCJ9&amp;oh=8087a47e1fc413328b72172b2925ef34&amp;oe=58EDC490" alt="放弃我抓紧我·“唯一CP”街头热吻" style="visibility: visible;">
+          <span class="figure_mask"><em class="mask_txt">更新至22集</em></span>
+        </span>
+        <div class="figure_titles"><span class="figure_title figure_title_multirow">那天看了網路一個影片就想說來問老公:</span><p class="figure_desc">你....喜歡我哪一點!!其實我印象中好像沒有問過他這個問題,</p></div>
+      </a>
+    </div>
+
+    <div class="mod_figures mod_figures_h">
+      <ul class="mod_figure">
+        <li class="item">
+          <a href="video.html" _hot="index.module.0.item" class="figure">
+            <span class="figure_pic">
+              <img lz_src="http://puui.qpic.cn/tv/0/6172953_1080607/0" src="https://scontent-tpe1-1.xx.fbcdn.net/v/t15.0-10/cp0/e15/q65/s320x320/15644013_1682616968431114_7884244772045455360_n.jpg?efg=eyJpIjoidCJ9&amp;oh=8087a47e1fc413328b72172b2925ef34&amp;oe=58EDC490" alt="视频标题" style="visibility: visible;"><span class="mark_custom"><em class="mark_inner">獨家</em></span>
+              <span class="figure_mask"><em class="mask_txt">更新至09集</em></span>
+            </span>
+            <div class="figure_titles"><span class="figure_title figure_title_multirow">青云志2·火热更新！VIP独享3集</span><p class="figure_desc">十年再重逢！鬼厉雪琪刀剑相向</p></div>
+          </a>
+        </li>
+        <li class="item">
+          <a href="video.html" _hot="index.module.0.item" class="figure">
+            <span class="figure_pic">
+              <img lz_src="http://puui.qpic.cn/tv/0/6169424_1080607/0" src="https://scontent-tpe1-1.xx.fbcdn.net/v/t15.0-10/cp0/e15/q65/s320x320/15643842_1677675048925306_5314589671622180864_n.jpg?efg=eyJpIjoidCJ9&amp;oh=778d4c59e76482d4e670440a81c49851&amp;oe=58D84083" alt="视频标题" style="visibility: visible;"><sup class="mark_vip_coupon">会员用券</sup>
+            </span>
+            <div class="figure_titles"><span class="figure_title figure_title_multirow">夜行动物·致命惊悚片！</span><p class="figure_desc">豆瓣评分8.4！前夫的黑暗真相浮出水面</p></div>
+          </a>
+        </li>
+        <li class="item">
+          <a href="video.html" _hot="index.module.0.item" class="figure">
+            <span class="figure_pic">
+              <img lz_src="http://puui.qpic.cn/tv/0/6166364_1080607/0" src="https://scontent-tpe1-1.xx.fbcdn.net/v/t15.0-10/cp0/e15/q65/s320x320/15643605_1673724042653740_9132073740950044672_n.jpg?efg=eyJpIjoidCJ9&amp;oh=dbfcc20efc86bb702a2480c8146b217a&amp;oe=58E6E89A" alt="视频标题" style="visibility: visible;"><span class="mark_custom"><em class="mark_inner">獨家</em></span>
+            </span>
+            <div class="figure_titles"><span class="figure_title figure_title_multirow">王菲幻乐一场演唱会·30日见！</span><p class="figure_desc">纪录片最终篇！梁朝伟刘嘉玲那英陈奕迅谈王菲</p></div>
+          </a>
+        </li>
+        <li class="item">
+          <a href="video.html" _hot="index.module.0.item" class="figure">
+            <span class="figure_pic">
+              <img lz_src="http://puui.qpic.cn/tv/0/6167547_1080607/0" src="https://scontent-tpe1-1.xx.fbcdn.net/v/t15.0-10/cp0/e15/q65/s320x320/15644013_1682616968431114_7884244772045455360_n.jpg?efg=eyJpIjoidCJ9&amp;oh=8087a47e1fc413328b72172b2925ef34&amp;oe=58EDC490" alt="视频标题" style="visibility: visible;">
+              <span class="figure_mask"><em class="mask_txt">更新至23集</em></span>
+            </span>
+            <div class="figure_titles"><span class="figure_title figure_title_multirow">北上广依然相信爱情·陈妍希快看</span><p class="figure_desc">朱亚文遭自恋女强行表白 当场翻脸发飙</p></div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+   <section class="mod_box" >
+    <div class="mod_hd">
+      <h2 class="mod_title"><a href="javascript:;" title="那天看了網路一個影片就想說來問老公:你....喜歡我哪一點!!其實我印象中好像沒有問過他這個問題,">那對夫妻</a></h2>
+    </div>
+    <div class="mod_figure_highlight">
+      <a href="video.html" _hot="index.module.0.focus" class="figure">
+        <span class="figure_pic">
+          <img lz_src="http://puui.qpic.cn/tv/0/6167543_1080607/0" src="https://scontent-tpe1-1.xx.fbcdn.net/v/t15.0-10/cp0/e15/q65/s320x320/15644013_1682616968431114_7884244772045455360_n.jpg?efg=eyJpIjoidCJ9&amp;oh=8087a47e1fc413328b72172b2925ef34&amp;oe=58EDC490" alt="放弃我抓紧我·“唯一CP”街头热吻" style="visibility: visible;">
+          <span class="figure_mask"><em class="mask_txt">更新至22集</em></span>
+        </span>
+        <div class="figure_titles"><span class="figure_title figure_title_multirow">那天看了網路一個影片就想說來問老公:</span><p class="figure_desc">你....喜歡我哪一點!!其實我印象中好像沒有問過他這個問題,</p></div>
+      </a>
+    </div>
+
+    <div class="mod_figures mod_figures_h">
+      <ul class="mod_figure">
+        <li class="item">
+          <a href="video.html" _hot="index.module.0.item" class="figure">
+            <span class="figure_pic">
+              <img lz_src="http://puui.qpic.cn/tv/0/6172953_1080607/0" src="https://scontent-tpe1-1.xx.fbcdn.net/v/t15.0-10/cp0/e15/q65/s320x320/15644013_1682616968431114_7884244772045455360_n.jpg?efg=eyJpIjoidCJ9&amp;oh=8087a47e1fc413328b72172b2925ef34&amp;oe=58EDC490" alt="视频标题" style="visibility: visible;"><span class="mark_custom"><em class="mark_inner">獨家</em></span>
+              <span class="figure_mask"><em class="mask_txt">更新至09集</em></span>
+            </span>
+            <div class="figure_titles"><span class="figure_title figure_title_multirow">青云志2·火热更新！VIP独享3集</span><p class="figure_desc">十年再重逢！鬼厉雪琪刀剑相向</p></div>
+          </a>
+        </li>
+        <li class="item">
+          <a href="video.html" _hot="index.module.0.item" class="figure">
+            <span class="figure_pic">
+              <img lz_src="http://puui.qpic.cn/tv/0/6169424_1080607/0" src="https://scontent-tpe1-1.xx.fbcdn.net/v/t15.0-10/cp0/e15/q65/s320x320/15643842_1677675048925306_5314589671622180864_n.jpg?efg=eyJpIjoidCJ9&amp;oh=778d4c59e76482d4e670440a81c49851&amp;oe=58D84083" alt="视频标题" style="visibility: visible;"><sup class="mark_vip_coupon">会员用券</sup>
+            </span>
+            <div class="figure_titles"><span class="figure_title figure_title_multirow">夜行动物·致命惊悚片！</span><p class="figure_desc">豆瓣评分8.4！前夫的黑暗真相浮出水面</p></div>
+          </a>
+        </li>
+        <li class="item">
+          <a href="video.html" _hot="index.module.0.item" class="figure">
+            <span class="figure_pic">
+              <img lz_src="http://puui.qpic.cn/tv/0/6166364_1080607/0" src="https://scontent-tpe1-1.xx.fbcdn.net/v/t15.0-10/cp0/e15/q65/s320x320/15643605_1673724042653740_9132073740950044672_n.jpg?efg=eyJpIjoidCJ9&amp;oh=dbfcc20efc86bb702a2480c8146b217a&amp;oe=58E6E89A" alt="视频标题" style="visibility: visible;"><span class="mark_custom"><em class="mark_inner">獨家</em></span>
+            </span>
+            <div class="figure_titles"><span class="figure_title figure_title_multirow">王菲幻乐一场演唱会·30日见！</span><p class="figure_desc">纪录片最终篇！梁朝伟刘嘉玲那英陈奕迅谈王菲</p></div>
+          </a>
+        </li>
+        <li class="item">
+          <a href="video.html" _hot="index.module.0.item" class="figure">
+            <span class="figure_pic">
+              <img lz_src="http://puui.qpic.cn/tv/0/6167547_1080607/0" src="https://scontent-tpe1-1.xx.fbcdn.net/v/t15.0-10/cp0/e15/q65/s320x320/15644013_1682616968431114_7884244772045455360_n.jpg?efg=eyJpIjoidCJ9&amp;oh=8087a47e1fc413328b72172b2925ef34&amp;oe=58EDC490" alt="视频标题" style="visibility: visible;">
+              <span class="figure_mask"><em class="mask_txt">更新至23集</em></span>
+            </span>
+            <div class="figure_titles"><span class="figure_title figure_title_multirow">北上广依然相信爱情·陈妍希快看</span><p class="figure_desc">朱亚文遭自恋女强行表白 当场翻脸发飙</p></div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <!-- 视频模块 结束 -->
+</div>
+  <div class="container">
+      <div class="heading heading-v1 margin-bottom-20">
+        <h2 style="font-size: 30px;">夫妻嚴選</h2>
+        <p>滿額送紅包</p>
+      </div>
+      <div class="illustration-v2">
+        <div class="customNavigation margin-bottom-25">
+          <a class="owl-btn prev rounded-x"><i class="fa fa-angle-left"></i></a>
+          <a class="owl-btn next rounded-x"><i class="fa fa-angle-right"></i></a>
+        </div>
+        <ul class="list-inline owl-slider-v4">
+          <li class="item">
+            <a href="shop-ui-inner.html"><img class="img-responsive" src="assets/img/酸蛋白保濕滋養霜1012.png" alt=""></a>
+            <div class="product-description-v2">
+              <div class="margin-bottom-5">
+                <h4 class="title-price"><a href="shop-ui-inner.html">酸蛋白保濕滋養霜1012</a></h4>
+                <span class="title-price">$95.00</span>
+              </div>
+              <ul class="list-inline product-ratings">
+                <li><i class="rating-selected fa fa-star"></i></li>
+                <li><i class="rating-selected fa fa-star"></i></li>
+                <li><i class="rating-selected fa fa-star"></i></li>
+                <li><i class="rating fa fa-star"></i></li>
+                <li><i class="rating fa fa-star"></i></li>
+              </ul>
+            </div>
+          </li>
+          <li class="item">
+            <a href="shop-ui-inner.html"><img class="img-responsive" src="assets/img/左粉鑽香香沐浴乳+右水分子洗.png" alt=""></a>
+            <div class="product-description-v2">
+              <div class="margin-bottom-5">
+                <h4 class="title-price"><a href="shop-ui-inner.html">左粉鑽香香沐浴乳+右水分子洗</a></h4>
+                <span class="title-price">$60.00</span>
+                <span class="title-price line-through">$95.00</span>
+              </div>
+              <ul class="list-inline product-ratings">
+                <li><i class="rating-selected fa fa-star"></i></li>
+                <li><i class="rating-selected fa fa-star"></i></li>
+                <li><i class="rating-selected fa fa-star"></i></li>
+                <li><i class="rating fa fa-star"></i></li>
+                <li><i class="rating fa fa-star"></i></li>
+              </ul>
+            </div>
+          </li>
+          <li class="item">
+            <a href="shop-ui-inner.html"><img class="img-responsive" src="assets/img/馬卡龍_香嫩身體乳1.png" alt=""></a>
+            <div class="product-description-v2">
+              <div class="margin-bottom-5">
+                <h4 class="title-price"><a href="shop-ui-inner.html">馬卡龍_香嫩身體乳</a></h4>
+                <span class="title-price">$95.00</span>
+              </div>
+              <ul class="list-inline product-ratings">
+                <li><i class="rating-selected fa fa-star"></i></li>
+                <li><i class="rating-selected fa fa-star"></i></li>
+                <li><i class="rating-selected fa fa-star"></i></li>
+                <li><i class="rating fa fa-star"></i></li>
+                <li><i class="rating fa fa-star"></i></li>
+              </ul>
+            </div>
+          </li>
+          <li class="item">
+            <a href="shop-ui-inner.html"><img class="img-responsive" src="assets/img/紫鑽蝶戀沐浴乳.png" alt=""></a>
+            <div class="product-description-v2">
+              <div class="margin-bottom-5">
+                <h4 class="title-price"><a href="shop-ui-inner.html">紫鑽蝶戀沐浴乳</a></h4>
+                <span class="title-price">$95.00</span>
+              </div>
+              <ul class="list-inline product-ratings">
+                <li><i class="rating-selected fa fa-star"></i></li>
+                <li><i class="rating-selected fa fa-star"></i></li>
+                <li><i class="rating-selected fa fa-star"></i></li>
+                <li><i class="rating fa fa-star"></i></li>
+                <li><i class="rating fa fa-star"></i></li>
+              </ul>
+            </div>
+          </li>
+          <li class="item">
+            <a href="#"><img class="img-responsive" src="assets/img/毛囊活化洗髮精-銀鑽.png" alt=""></a>
+            <div class="product-description-v2">
+              <div class="margin-bottom-5">
+                <h4 class="title-price"><a href="shop-ui-inner.html">毛囊活化洗髮精-銀鑽</a></h4>
+                <span class="title-price">$95.00</span>
+              </div>
+              <ul class="list-inline product-ratings">
+                <li><i class="rating-selected fa fa-star"></i></li>
+                <li><i class="rating-selected fa fa-star"></i></li>
+                <li><i class="rating-selected fa fa-star"></i></li>
+                <li><i class="rating fa fa-star"></i></li>
+                <li><i class="rating fa fa-star"></i></li>
+              </ul>
+            </div>
+          </li>
+          <li class="item">
+            <a href="#"><img class="img-responsive" src="assets/img/thumb/03.jpg" alt=""></a>
+            <div class="product-description-v2">
+              <div class="margin-bottom-5">
+                <h4 class="title-price"><a href="shop-ui-inner.html">Double-breasted</a></h4>
+                <span class="title-price">$95.00</span>
+              </div>
+              <ul class="list-inline product-ratings">
+                <li><i class="rating-selected fa fa-star"></i></li>
+                <li><i class="rating-selected fa fa-star"></i></li>
+                <li><i class="rating-selected fa fa-star"></i></li>
+                <li><i class="rating fa fa-star"></i></li>
+                <li><i class="rating fa fa-star"></i></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+<div class="collection-banner margin-bottom-60">
+  <div class="container">
+    <div class="col-md-7 md-margin-bottom-50">
+      <h2>Makeup collection</h2>
+      <p>Duis in posuere risus. Vivamus sed dignissim tellus. In vehicula justo tempor commodo. <br> Nunc lobortis dapibus neque quis lacinia</p><br>
+      <a href="#" class="btn-u btn-brd btn-brd-hover btn-u-light">Shop Now</a>
+    </div>
+    <div class="col-md-5">
+      <div class="overflow-h">
+        <span class="percent-numb">50</span>
+        <div class="percent-off">
+          <span class="discount-percent">%</span>
+          <span class="discount-off">off</span>
+        </div>
+        <div class="new-offers shop-bg-green rounded-x">
+          <p>new</p>
+          <span>Products</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container ">
+  <!--=== Illustration v1 ===-->
+  <div class=" margin-bottom-60">
+    <div class="col-md-6 md-margin-bottom-30">
+      <div class="overflow-h">
+        <div class="illustration-v1 illustration-img1">
+          <div class="illustration-bg">
+            <div class="illustration-ads ad-details-v1">
+              <h3>NEW YEAR <strong>SALE</strong> 30% - 60% <strong>off</strong></h3>
+              <a class="btn-u btn-brd btn-brd-hover btn-u-light" href="#">Shop Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="overflow-h">
+        <a class="illustration-v1 illustration-img2" href="#">
+          <span class="illustration-bg">
+            <span class="illustration-ads ad-details-v2">
+              <span class="item-time">Spring 2014</span>
+              <span class="item-name">Lacoste</span>
+            </span>
+          </span>
+        </a>
+      </div>
+    </div>
+    </div><!--/end row-->
+    <!--=== End Illustration v1 ===-->
+
+
+
+    <!--=== End Illustration v2 ===-->
+    <!--=== Illustration v3 ===-->
+    <!--=== End Illustration v3 ===-->
+  </div>
+  <!--=== Collection Banner ===-->
+  <!--=== End Collection Banner ===-->
+  <!--=== Sponsors ===-->
+  <div class="container content">
+    <div class="heading heading-v1 margin-bottom-40">
+      <h2>贊助廠商</h2>
+    </div>
+    <ul class="list-inline owl-slider-v2">
+      <li class="item first-child">
+        <img src="assets/img/clients/07.png" alt="">
+      </li>
+      <li class="item">
+        <img src="assets/img/clients/08.png" alt="">
+      </li>
+      <li class="item">
+        <img src="assets/img/clients/09.png" alt="">
+      </li>
+      <li class="item">
+        <img src="assets/img/clients/10.png" alt="">
+      </li>
+      <li class="item">
+        <img src="assets/img/clients/11.png" alt="">
+      </li>
+      <li class="item">
+        <img src="assets/img/clients/12.png" alt="">
+      </li>
+
+
+      </ul><!--/end owl-carousel-->
+    </div>
+    <div class="owl-controls">
+      <div class="owl-pagination">
+        <div class="owl-page active">
+          <span class=""></span>
+        </div>
+        <div class="owl-page">
+          <span class=""></span>
+        </div>
+        <div class="owl-page">
+          <span class=""></span>
+        </div>
+        <div class="owl-page">
+          <span class=""></span>
+        </div><div class="owl-page">
+        <span class=""></span>
+      </div>
+      <div class="owl-page"><span class="">
+
+      </span>
+    </div>
+    <div class="owl-page">
+      <span class=""></span>
+    </div>
+    <div class="owl-page">
+      <span class=""></span>
+    </div>
+    <div class="owl-page">
+      <span class=""></span>
+    </div>
+    <div class="owl-page">
+      <span class=""></span>
+    </div>
+    <div class="owl-page">
+      <span class=""></span>
+    </div><div class="owl-page">
+    <span class=""></span>
+  </div>
+</div>
+</div>
+</ul><!--/end owl-carousel-->
+</div>
+<div class="under-nav">
+    <a href="index.html" aria-hidden="true" class="inner-nav  icon-home"></a
+    ><a href="shop-ui-filter-list.html" class="inner-nav  icon-basket"></a
+    ><a aria-hidden="true" href="video-list.html" class="inner-nav icon-social-youtube"></a
+    ><a href="index_inner.html" aria-hidden="true" class="inner-nav icon-feed"></a
+    ><a href="#fucking1" aria-hidden="true" class="inner-nav icon-list"></a
+>
+</div>
+
+<div id="fucking1" class="overlay overlay1">
+<div class="fuck_box">
+    <li class="li_frist" style="border-top:0px;">
+      <a href="">
+        <div class="img_box">
+          <span style="margin-left: 7px;margin-top: 5px;height: 35px;width: auto;float: left;" class="img">
+            <img style="width: 35px;height: 35px;" src="thecouple_webpage_logo.png" alt="">
+            </span>
+          <span class="text-box" style="    flex: 1 1 auto;float: left;margin-left: 7px;margin-top: 12px;">
+            <p class="fuck-text">個人資料</p>
+          </span>
+        </div>
+      </a>
+    <div class="fuck_new">超過100則消息<span class="_55fk"></span></div>
+    </li>
+    <li class="li_frist" style="border-top:0px;">
+      <a href="">
+        <div class="img_box">
+          <span style="margin-left: 7px;margin-top: 5px;height: 35px;width: auto;float: left;" class="img">
+            <img style="width: 35px;height: 35px;" src="thecouple_webpage_logo.png" alt="">
+            </span>
+          <span class="text-box" style="    flex: 1 1 auto;float: left;margin-left: 7px;margin-top: 12px;">
+            <p class="fuck-text">購物清單</p>
+          </span>
+        </div>
+      </a>
+    <div class="fuck_new">超過100則消息<span class="_55fk"></span></div>
+    </li>
+    <li class="li_frist" style="">
+      <a href="">
+        <div class="img_box">
+          <i class="fa fa-home" style="margin-left: 7px;margin-top: 5px;font-size: 35px; height: 35px;width: auto;float: left;" class="img">
+
+          </i>
+          <span class="text-box" style="    flex: 1 1 auto;float: left;margin-left: 7px;margin-top: 12px;">
+           <p class="fuck-text">瀏覽紀錄</p>
+          </span>
+        </div>
+      </a>
+      <div class="fuck_new">超過100則消息<span class="_55fk"></span></div>
+    </li>
+     <li class="li_frist" style="">
+      <a href="">
+        <div class="img_box">
+          <span style="margin-left: 7px;margin-top: 5px;height: 35px;width: auto;float: left;" class="img">
+            <img style="width: 35px;height: 35px;" src="thecouple_webpage_logo.png" alt="">
+          </span>
+          <span class="text-box" style="    flex: 1 1 auto;float: left;margin-left: 7px;margin-top: 12px;">
+           <p class="fuck-text">收藏影片</p>
+          </span>
+        </div>
+      </a>
+      <div class="fuck_new">超過100則消息<span class="_55fk"></span></div>
+    </li>
+
+   <li style="background-color: #f6f7f8;height: 24px;">
+      <span class="text-box" style="   flex: 1 1 auto;float: left;margin-left: 7px;margin-top: 3px;">
+      <p class="fuck-text">設定</p>
+      </span>
+   </li>
+    <li class="li_frist" style="">
+      <a href="">
+        <div class="img_box">
+
+          <span class="text-box" style="flex: 1 1 auto;float: left;margin-left: 7px;margin-top: 12px;">
+            <p style="border:2px;" class="fuck-text">登入</p>
+          </span>
+          <span class="text-box" style=" flex: 1 1 auto;float: right;margin-left: 7px;margin-top: 12px;">
+            <p class="fuck-text">登出</p>
+          </span>
+        </div>
+      </a>
+
+    </li>
+
+
+</div>
+</div>
+<!--=== End Sponsors ===-->
+<!--=== Shop Suvbscribe ===-->
+<div class="shop-subscribe md-margin-bottom-40">
+<div class="container">
+<div class="">
+<div class="col-md-8 md-margin-bottom-20">
+<h2>subscribe to our weekly <strong>newsletter</strong></h2>
+</div>
+<div class="col-md-4">
+<div class="input-group">
+<input type="text" class="form-control" placeholder="Email your email...">
+<span class="input-group-btn">
+<button class="btn" type="button"><i class="fa fa-envelope-o"></i></button>
+</span>
+</div>
+</div>
+</div>
+</div><!--/end container-->
+</div>
+<!--=== End Shop Suvbscribe ===-->
+<!--=== Footer v4 ===-->
+<!--=== End Footer v4 ===-->
+<!--/wrapper-->
+<!-- Wait Block -->
+<div class="g-popup-wrapper">
+<div class="g-popup g-popup--discount2">
+<div class="g-popup--discount2-message">
+<h3>Want 10% Off?</h3>
+<h4>You Are Fabulous!</h4>
+<p>Get 10% Off Your Next Purchase! Just Type Email Below!</p>
+<form action="#" class="sky-form">
+<label class="input">
+<input type="email" placeholder="Email" class="form-control">
+</label>
+<label class="input">
+<button class="btn btn-default" type="button">Subscribe</button>
+</label>
+</form>
+</div>
+<img src="assets/img/blog/26.jpg" alt="ALT" width="270">
+<a href="javascript:void(0);" class="g-popup__close g-popup--discount2__close"><span class="icon-close" aria-hidden="true"></span></a>
+</div>
+</div>
+<!-- End Wait Block -->
+<!-- JS Global Compulsory -->
+<script src="{% static "assets/plugins/jquery/jquery.min.js" %}"></script>
+<script src="{% static "assets/plugins/jquery/jquery-migrate.min.js" %}"></script>
+<script src="{% static "assets/plugins/bootstrap/js/bootstrap.min.js" %}"></script>
+<!-- JS Implementing Plugins -->
+<script src="{% static "assets/plugins/back-to-top.js" %}"></script>
+<script src="{% static "assets/plugins/smoothScroll.js" %}"></script>
+<script src="{% static "assets/plugins/owl-carousel/owl-carousel/owl.carousel.js" %}"></script>
+<script src="{% static "assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js" %}"></script>
+<script src="{% static "assets/plugins/master-slider/masterslider/masterslider.js" %}"></script>
+<script src="{% static "assets/plugins/master-slider/masterslider/jquery.easing.min.js" %}"></script>
+<!-- Master Slider -->
+<!-- JS Customization -->
+<script src="{% static "assets/js/custom.js" %}"></script>
+<!-- JS Page Level -->
+<script src="{% static "assets/js/shop.app.js" %}"></script>
+<script src="{% static "assets/js/plugins/owl-carousel.js" %}"></script>
+<script src="{% static "assets/js/plugins/master-slider.js" %}"></script>
+<script src="{% static "assets/js/forms/product-quantity.js" %}"></script>
+<script src="{% static "assets/js/plugins/style-switcher.js" %}"></script>
+<script src="{% static "assets/js/plugins/master-slider-showcase2.js" %}"></script>
+<script src="{% static "assets/js/jQuery.headroom.js" %}"></script>
+<script src="{% static "assets/js/headroom.min.js" %}"></script>
+<script>
+jQuery(document).ready(function() {
+App.init();
+App.initScrollBar();
+OwlCarousel.initOwlCarousel();
+StyleSwitcher.initStyleSwitcher();
+MasterSliderShowcase2.initMasterSliderShowcase2();
+$("header").headroom();
+});
+</script>
+<!--[if lt IE 9]>
+<script src="assets/plugins/respond.js"></script>
+<script src="assets/plugins/html5shiv.js"></script>
+<script src="assets/js/plugins/placeholder-IE-fixes.js"></script>
+<![endif]-->
+</body>
+</html>

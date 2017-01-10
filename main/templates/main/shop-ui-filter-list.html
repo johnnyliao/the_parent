@@ -1,0 +1,800 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+	<title>Product List | Unify - Responsive Website Template</title>
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- Web Fonts -->
+	<link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+	<!-- CSS Global Compulsory -->
+	<link rel="stylesheet" href="{% static "assets/plugins/bootstrap/css/bootstrap.min.css"%}">
+	<link rel="stylesheet" href="{% static "assets/css/shop.style.css"%}">
+	<!-- CSS Header and Footer -->
+	<link rel="stylesheet" href="{% static "assets/css/headers/header-v5.css"%}">
+	<link rel="stylesheet" href="{% static "assets/css/footers/footer-v4.css"%}">
+	<!-- CSS Implementing Plugins -->
+	<link rel="stylesheet" href="{% static "assets/plugins/animate.css"%}">
+	<link rel="stylesheet" href="{% static "assets/plugins/line-icons/line-icons.css"%}">
+	<link rel="stylesheet" href="{% static "assets/plugins/font-awesome/css/font-awesome.min.css"%}">
+	<link rel="stylesheet" href="{% static "assets/plugins/noUiSlider/jquery.nouislider.min.css"%}">
+	<link rel="stylesheet" href="{% static "assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css"%}">
+  <link rel="stylesheet" href="{% static "assets/plugins/master-slider/masterslider/style/masterslider.css"%}">
+  <link rel="stylesheet" href="{% static "assets/plugins/master-slider/masterslider/skins/default/style.css"%}">
+	<!-- Style Switcher -->
+	<link rel="stylesheet" href="{% static "assets/css/plugins/style-switcher.css"%}">
+	<!-- CSS Theme -->
+	<link rel="stylesheet" href="{% static "assets/css/theme-colors/default.css" id="style_color"%}">
+	<!-- CSS Customization -->
+	<link rel="stylesheet" href="{% static "assets/css/custom.css"%}">
+</head>
+<body class="header-fixed">
+	<div class="wrapper">
+		<div class="header-v5 header-static">
+
+			<div class="shop-badge badge-icons pull-right">
+				<a href="shop-ui-add-to-cart.html"><i class="fa fa-shopping-cart"></i></a>
+				<span class="badge badge-sea rounded-x">3</span>
+				<div class="badge-open">
+					<ul class="list-unstyled mCustomScrollbar" data-mcs-theme="minimal-dark">
+						<li>
+							<img src="assets/img/thumb/05.jpg" alt="">
+							<button type="button" class="close">×</button>
+							<div class="overflow-h">
+								<span>Black Glasses</span>
+								<small>1 x $400.00</small>
+							</div>
+						</li>
+						<li>
+							<img src="assets/img/thumb/02.jpg" alt="">
+							<button type="button" class="close">×</button>
+							<div class="overflow-h">
+								<span>Black Glasses</span>
+								<small>1 x $400.00</small>
+							</div>
+						</li>
+						<li>
+							<img src="assets/img/thumb/03.jpg" alt="">
+							<button type="button" class="close">×</button>
+							<div class="overflow-h">
+								<span>Black Glasses</span>
+								<small>1 x $400.00</small>
+							</div>
+						</li>
+					</ul>
+					<div class="subtotal">
+						<div class="overflow-h margin-bottom-10">
+							<span>Subtotal</span>
+							<span class="pull-right subtotal-cost">$1200.00</span>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">
+								<a href="shop-ui-inner.html" class="btn-u btn-brd btn-brd-hover btn-u-sea-shop btn-block">View Cart</a>
+							</div>
+							<div class="col-xs-6">
+								<a href="shop-ui-add-to-cart.html" class="btn-u btn-u-sea-shop btn-block">Checkout</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End Navbar -->
+		</div>
+		<!--=== Header v5 ===-->
+		<header id="header" class="headroom headroom--pinned header--fixed headroom--top headroom--not-bottom">
+			<nav class="navbar navbar-default navbar_style ">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+
+						<a href="index.html"><img style="margin:0 auto;display: block;" class="top_logo" src="thecouple_webpage_logo.png"></a>
+					</div>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="nav-right" style="clear: none;">
+						<iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2F1006nk%2F%3Ffref%3Dts&amp;width=96&amp;layout=button_count&amp;action=like&amp;size=large&amp;show_faces=true&amp;share=false&amp;height=21&amp;appId=606864316151555" width="96" height="30" style="border:none;overflow:hidden;float: right;position: relative;bottom: 40px;line-height: 80px; display: block;" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
+					</div>
+					<!-- /.navbar-collapse -->
+				</div>
+				<!-- /.container-fluid -->
+				  <div class="tabs fixed show-tab dark" fixed-tabs="#tv-tabs" ng-class="{'show-tab' : showTabs}">
+        <a href="/service1" target="_self" class="tab active">類別類別</a>
+        <a href="/service2" target="_self" class="tab">類別類別類別</a>
+        <a href="/service3" target="_self" class="tab">類別</a>
+        <a href="/service3" target="_self" class="tab">類別類別類別類別</a>
+    </div>
+			</nav>
+		</header>
+
+		<!--=== End Header v5 ===-->
+		 <div style="padding-top: 110px; padding-bottom: 0px;" class="blog-ms-v1 blog-ms-v1-extend">
+      <div class="master-slider ms-skin-default" id="masterslider" style="margin-left: 0px;margin-right: 0px;">
+        <div class="ms-slide blog-slider">
+          <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img9.jpg" alt="lorem ipsum dolor sit"/>
+
+          <div class="ms-info"></div>
+
+        </div>
+        <div class="ms-slide blog-slider">
+          <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img52.jpg" alt="lorem ipsum dolor sit"/>
+
+          <div class="ms-info"></div>
+        </div>
+        <div class="ms-slide blog-slider">
+          <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img5.jpg" alt="lorem ipsum dolor sit"/>
+
+          <div class="ms-info"></div>
+        </div>
+        <div class="ms-slide blog-slider">
+          <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img16.jpg" alt="lorem ipsum dolor sit"/>
+
+          <div class="ms-info"></div>
+        </div>
+        <div class="ms-slide blog-slider">
+          <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img35.jpg" alt="lorem ipsum dolor sit"/>
+          <a href="http://player.vimeo.com/video/53914149" data-type="video"> vimeo video </a>
+          <div class="ms-info"></div>
+        </div>
+      </div>
+      <div class="ms-slide blog-slider">
+        <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img41.jpg" alt="lorem ipsum dolor sit"/>
+
+        <div class="ms-info"></div>
+      </div>
+
+    </div>
+		<!--=== Breadcrumbs v4 ===-->
+		<!-- <div class="breadcrumbs-v4">
+			<div class="container">
+				<span class="page-name">Product Filter Page</span>
+				<h1>Maecenas <span class="shop-green">enim</span> sapien</h1>
+				<ul class="breadcrumb-v4-in">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="">Product</a></li>
+					<li class="active">Product Filter Page</li>
+				</ul>
+				</div>
+			</div> -->
+			<!--=== End Breadcrumbs v4 ===-->
+			<!--=== Content Part ===-->
+			<div class="content container" >
+				<div class="row">
+					<!-- <div class="col-md-3 filter-by-block md-margin-bottom-60">
+						<h1>Filter By</h1>
+						<div class="panel-group" id="accordion">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h2 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+										Brands
+										<i class="fa fa-angle-down"></i>
+									</a>
+									</h2>
+								</div>
+								<div id="collapseOne" class="panel-collapse collapse in">
+									<div class="panel-body">
+										<ul class="list-unstyled checkbox-list">
+											<li>
+												<label class="checkbox">
+													<input type="checkbox" name="checkbox" checked />
+													<i></i>
+													Calvin Klein
+													<small><a href="#">(23)</a></small>
+												</label>
+											</li>
+											<li>
+												<label class="checkbox">
+													<input type="checkbox" name="checkbox" checked />
+													<i></i>
+													Gucci
+													<small><a href="#">(4)</a></small>
+												</label>
+											</li>
+											<li>
+												<label class="checkbox">
+													<input type="checkbox" name="checkbox" />
+													<i></i>
+													Adidas
+													<small><a href="#">(11)</a></small>
+												</label>
+											</li>
+											<li>
+												<label class="checkbox">
+													<input type="checkbox" name="checkbox" />
+													<i></i>
+													Puma
+													<small><a href="#">(3)</a></small>
+												</label>
+											</li>
+											<li>
+												<label class="checkbox">
+													<input type="checkbox" name="checkbox" />
+													<i></i>
+													Zara
+													<small><a href="#">(87)</a></small>
+												</label>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							</div> -->
+							<!-- <div class="panel-group" id="accordion-v2">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h2 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion-v2" href="#collapseTwo">
+											Categories
+											<i class="fa fa-angle-down"></i>
+										</a>
+										</h2>
+									</div>
+									<div id="collapseTwo" class="panel-collapse collapse in">
+										<div class="panel-body">
+											<ul class="list-unstyled checkbox-list">
+												<li>
+													<label class="checkbox">
+														<input type="checkbox" name="checkbox" checked />
+														<i></i>
+														Clothes
+														<small><a href="#">(23)</a></small>
+													</label>
+												</li>
+												<li>
+													<label class="checkbox">
+														<input type="checkbox" name="checkbox" checked />
+														<i></i>
+														Glasses
+														<small><a href="#">(4)</a></small>
+													</label>
+												</li>
+												<li>
+													<label class="checkbox">
+														<input type="checkbox" name="checkbox" />
+														<i></i>
+														Shoes
+														<small><a href="#">(11)</a></small>
+													</label>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								</div> -->
+								<!-- <div class="panel-group" id="accordion-v3">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h2 class="panel-title">
+											<a data-toggle="collapse" data-parent="#accordion-v3" href="#collapseThree">
+												Size
+												<i class="fa fa-angle-down"></i>
+											</a>
+											</h2>
+										</div>
+										<div id="collapseThree" class="panel-collapse collapse in">
+											<div class="panel-body">
+												<ul class="list-unstyled checkbox-list">
+													<li>
+														<label class="checkbox">
+															<input type="checkbox" name="checkbox" />
+															<i></i>
+															S
+															<small><a href="#">(23)</a></small>
+														</label>
+													</li>
+													<li>
+														<label class="checkbox">
+															<input type="checkbox" name="checkbox" checked />
+															<i></i>
+															M
+															<small><a href="#">(4)</a></small>
+														</label>
+													</li>
+													<li>
+														<label class="checkbox">
+															<input type="checkbox" name="checkbox" />
+															<i></i>
+															L
+															<small><a href="#">(11)</a></small>
+														</label>
+													</li>
+													<li>
+														<label class="checkbox">
+															<input type="checkbox" name="checkbox" />
+															<i></i>
+															XL
+															<small><a href="#">(3)</a></small>
+														</label>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									</div> -->
+									<!-- <div class="panel-group" id="accordion-v4">
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h2 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion-v4" href="#collapseFour">
+													Price
+													<i class="fa fa-angle-down"></i>
+												</a>
+												</h2>
+											</div>
+											<div id="collapseFour" class="panel-collapse collapse in">
+												<div class="panel-body">
+													<div class="slider-snap"></div>
+													<p class="slider-snap-text">
+														<span class="slider-snap-value-lower"></span>
+														<span class="slider-snap-value-upper"></span>
+													</p>
+												</div>
+											</div>
+										</div>
+										</div>
+										<div class="panel-group" id="accordion-v5">
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<h2 class="panel-title">
+													<a data-toggle="collapse" data-parent="#accordion-v5" href="#collapseFive">
+														Color
+														<i class="fa fa-angle-down"></i>
+													</a>
+													</h2>
+												</div>
+												<div id="collapseFive" class="panel-collapse collapse in">
+													<div class="panel-body">
+														<ul class="list-inline product-color-list">
+															<li><a href="#"><img src="assets/img/colors/01.jpg" alt=""></a></li>
+															<li><a href="#"><img src="assets/img/colors/02.jpg" alt=""></a></li>
+															<li><a href="#"><img src="assets/img/colors/03.jpg" alt=""></a></li>
+															<li><a href="#"><img src="assets/img/colors/04.jpg" alt=""></a></li>
+															<li><a href="#"><img src="assets/img/colors/05.jpg" alt=""></a></li>
+															<li><a href="#"><img src="assets/img/colors/06.jpg" alt=""></a></li>
+															<li><a href="#"><img src="assets/img/colors/07.jpg" alt=""></a></li>
+														</ul>
+													</div>
+												</div>
+											</div>
+											</div> -->
+											<!-- <div class="panel-group margin-bottom-30" id="accordion-v6">
+												<div class="panel panel-default">
+													<div class="panel-heading">
+														<h2 class="panel-title">
+														<a data-toggle="collapse" data-parent="#accordion-v6" href="#collapseSix">
+															Rating
+															<i class="fa fa-angle-down"></i>
+														</a>
+														</h2>
+													</div>
+													<div id="collapseSix" class="panel-collapse collapse in">
+														<div class="panel-body">
+															<div class="stars-ratings stars-ratings-label">
+																<input type="radio" name="stars-rating" id="stars-rating-5">
+																<label for="stars-rating-5"><i class="fa fa-star"></i></label>
+																<input type="radio" name="stars-rating" id="stars-rating-4">
+																<label for="stars-rating-4"><i class="fa fa-star"></i></label>
+																<input type="radio" name="stars-rating" id="stars-rating-3">
+																<label for="stars-rating-3"><i class="fa fa-star"></i></label>
+																<input type="radio" name="stars-rating" id="stars-rating-2">
+																<label for="stars-rating-2"><i class="fa fa-star"></i></label>
+																<input type="radio" name="stars-rating" id="stars-rating-1">
+																<label for="stars-rating-1"><i class="fa fa-star"></i></label>
+															</div>
+														</div>
+													</div>
+												</div>
+												</div>  -->
+												<!-- <button type="button" class="btn-u btn-brd btn-brd-hover btn-u-lg btn-u-sea-shop btn-block">Reset</button> -->
+											<!-- </div>   -->
+											<div class="col-md-12">
+												<div class="row margin-bottom-5">
+													<div class="col-sm-4 col-xs-9 result-category">
+														<h2>那對夫妻</h2>
+														<small class="shop-bg-red badge-results">45 件商品</small>
+													</div>
+													<div class="col-sm-8 col-xs-3">
+														<ul class="list-inline clear-both">
+															<li class="grid-list-icons">
+																<a href="shop-ui-filter-list.html"><i class="fa fa-th-list"></i></a>
+															</li>
+
+														</ul>
+													</div>
+													</div><!--/end result category-->
+													<div class="filter-results">
+														<div class="list-product-description product-description-brd margin-bottom-30">
+															<div class="row">
+																<div class="col-sm-4 col-xs-6">
+																	<a href="shop-ui-inner.html"><img class="img-responsive sm-margin-bottom-20" src="assets/img/紫鑽蝶戀沐浴乳.png" alt=""></a>
+																</div>
+																<div class="col-sm-8 product-description">
+																	<div class="overflow-h margin-bottom-5">
+																		<ul class="list-inline overflow-h">
+																			<li><h4 class="title-price"><a href="shop-ui-inner.html">紫鑽蝶戀沐浴乳</a></h4></li>
+																			<li><span class="gender text-uppercase">山本富也</span></li>
+																			<li class="pull-right">
+																				<ul class="list-inline product-ratings">
+																					<li><i class="rating-selected fa fa-star"></i></li>
+																					<li><i class="rating-selected fa fa-star"></i></li>
+																					<li><i class="rating-selected fa fa-star"></i></li>
+																					<li><i class="rating fa fa-star"></i></li>
+																					<li><i class="rating fa fa-star"></i></li>
+																				</ul>
+																			</li>
+																		</ul>
+																		<div class="margin-bottom-10">
+																			<span class="title-price margin-right-10">$60.00</span>
+																			<span class="title-price line-through">$95.00</span>
+																		</div>
+																		<p class="margin-bottom-20">商品描述</p>
+
+																		<button type="button" class="btn-u btn-u-sea-shop">加到購物車</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="list-product-description product-description-brd margin-bottom-30">
+															<div class="row">
+																<div class="col-sm-4 col-xs-6">
+																	<a href="shop-ui-inner.html"><img class="img-responsive sm-margin-bottom-20" src="assets/img/馬卡龍_香嫩身體乳1.png" alt=""></a>
+																</div>
+																<div class="col-sm-8 product-description">
+																	<div class="overflow-h margin-bottom-5">
+																		<ul class="list-inline overflow-h">
+																			<li><h4 class="title-price"><a href="shop-ui-inner.html">馬卡龍香嫩身體乳</a></h4></li>
+																			<li><span class="gender text-uppercase">馬卡龍</span></li>
+																			<li class="pull-right">
+																				<ul class="list-inline product-ratings">
+																					<li><i class="rating-selected fa fa-star"></i></li>
+																					<li><i class="rating-selected fa fa-star"></i></li>
+																					<li><i class="rating-selected fa fa-star"></i></li>
+																					<li><i class="rating fa fa-star"></i></li>
+																					<li><i class="rating fa fa-star"></i></li>
+																				</ul>
+																			</li>
+																		</ul>
+																		<div class="margin-bottom-10">
+																			<span class="title-price margin-right-10">$60.00</span>
+																			<span class="title-price line-through">$95.00</span>
+																		</div>
+																		<p class="margin-bottom-20">商品描述</p>
+
+																		<button type="button" class="btn-u btn-u-sea-shop">加到購物車</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="list-product-description product-description-brd margin-bottom-30">
+															<div class="row">
+																<div class="col-sm-4 col-xs-6">
+																	<a href="shop-ui-inner.html"><img class="img-responsive sm-margin-bottom-20" src="assets/img/酸蛋白保濕洗髮精1012.png" alt=""></a>
+																</div>
+																<div class="col-sm-8 product-description">
+																	<div class="overflow-h margin-bottom-5">
+																		<ul class="list-inline overflow-h">
+																			<li><h4 class="title-price"><a href="shop-ui-inner.html">酸蛋白保濕洗髮精</a></h4></li>
+																			<li><span class="gender text-uppercase">Men</span></li>
+																			<li class="pull-right">
+																				<ul class="list-inline product-ratings">
+																					<li><i class="rating-selected fa fa-star"></i></li>
+																					<li><i class="rating-selected fa fa-star"></i></li>
+																					<li><i class="rating-selected fa fa-star"></i></li>
+																					<li><i class="rating fa fa-star"></i></li>
+																					<li><i class="rating fa fa-star"></i></li>
+																				</ul>
+																			</li>
+																		</ul>
+																		<div class="margin-bottom-10">
+																			<span class="title-price margin-right-10">$60.00</span>
+																			<span class="title-price line-through">$95.00</span>
+																		</div>
+																		<p class="margin-bottom-20">商品描述</p>
+
+																		<button type="button" class="btn-u btn-u-sea-shop">加到購物車</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="list-product-description product-description-brd margin-bottom-30">
+															<div class="row">
+																<div class="col-sm-4 col-xs-6">
+																	<a href="shop-ui-inner.html"><img class="img-responsive sm-margin-bottom-20" src="assets/img/毛囊活化洗髮精-銀鑽.png" alt=""></a>
+																</div>
+																<div class="col-sm-8 product-description">
+																	<div class="overflow-h margin-bottom-5">
+																		<ul class="list-inline overflow-h">
+																			<li><h4 class="title-price"><a href="shop-ui-inner.html">毛囊活化洗髮精-銀鑽</a></h4></li>
+																			<li><span class="gender text-uppercase">山本富也</span></li>
+																			<li class="pull-right">
+																				<ul class="list-inline product-ratings">
+																					<li><i class="rating-selected fa fa-star"></i></li>
+																					<li><i class="rating-selected fa fa-star"></i></li>
+																					<li><i class="rating-selected fa fa-star"></i></li>
+																					<li><i class="rating fa fa-star"></i></li>
+																					<li><i class="rating fa fa-star"></i></li>
+																				</ul>
+																			</li>
+																		</ul>
+																		<div class="margin-bottom-10">
+																			<span class="title-price margin-right-10">$60.00</span>
+																			<span class="title-price line-through">$95.00</span>
+																		</div>
+																		<p class="margin-bottom-20">商品描述</p>
+
+																		<button type="button" class="btn-u btn-u-sea-shop">加到購物車</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="list-product-description product-description-brd margin-bottom-30">
+															<div class="row">
+																<div class="col-sm-4 col-xs-6">
+																	<a href="shop-ui-inner.html"><img class="img-responsive sm-margin-bottom-20" src="assets/img/左粉鑽香香沐浴乳+右水分子洗.png" alt=""></a>
+																</div>
+																<div class="col-sm-8 product-description">
+																	<div class="overflow-h margin-bottom-5">
+																		<ul class="list-inline overflow-h">
+																			<li><h4 class="title-price"><a href="shop-ui-inner.html">左粉鑽香香沐浴乳</a></h4></li>
+																			<li><span class="gender text-uppercase">Men</span></li>
+																			<li class="pull-right">
+																				<ul class="list-inline product-ratings">
+																					<li><i class="rating-selected fa fa-star"></i></li>
+																					<li><i class="rating-selected fa fa-star"></i></li>
+																					<li><i class="rating-selected fa fa-star"></i></li>
+																					<li><i class="rating fa fa-star"></i></li>
+																					<li><i class="rating fa fa-star"></i></li>
+																				</ul>
+																			</li>
+																		</ul>
+																		<div class="margin-bottom-10">
+																			<span class="title-price margin-right-10">$60.00</span>
+																			<span class="title-price line-through">$95.00</span>
+																		</div>
+																		<p class="margin-bottom-20">商品描述</p>
+
+																		<button type="button" class="btn-u btn-u-sea-shop">加到購物車</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+														</div><!--/end filter resilts-->
+														<div class="text-center">
+															<ul class="pagination pagination-v2">
+																<li><a href="#"><i class="fa fa-angle-left"></i></a></li>
+																<li><a href="#">1</a></li>
+																<li class="active"><a style="z-index: 0;" href="#">2</a></li>
+																<li><a href="#">3</a></li>
+																<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+															</ul>
+															</div><!--/end pagination-->
+														</div>
+														</div><!--/end row-->
+														</div><!--/end container-->
+														<!--=== End Content Part ===-->
+														<!--=== Shop Suvbscribe ===-->
+														<div class="shop-subscribe margin-bottom-40">
+															<div class="container">
+																<div class="row">
+																	<div class="col-md-8 md-margin-bottom-20">
+																		<h2>subscribe to our weekly <strong>newsletter</strong></h2>
+																	</div>
+																	<div class="col-md-4">
+																		<div class="input-group">
+																			<input type="text" class="form-control" placeholder="Email your email...">
+																			<span class="input-group-btn">
+																				<button class="btn" type="button"><i class="fa fa-envelope-o"></i></button>
+																			</span>
+																		</div>
+																	</div>
+																</div>
+																</div><!--/end container-->
+															</div>
+
+																			<!--=== End Footer v4 ===-->
+
+																			<div class="under-nav">
+																				<a href="index.html" class="inner-nav">
+																					<i style="font-size: 24px;" class="fa fa-home"></i>
+																				</a
+																				><a href="shop-ui-filter-list.html" class="inner-nav">
+																					<i style="font-size: 21px;" class="fa fa-shopping-cart"></i>
+																				</a
+																				><a href="video-list.html" class="inner-nav">
+																					<i class="fa fa-video-camera"></i>
+																				</a
+																				><a href="#fucking2" class="inner-nav">
+																					<i class="fa fa-bookmark"></i>
+																				</a
+																				><a href="#fucking1" class="inner-nav">
+																					<i class="fa fa-bars"></i>
+																				</a>
+																			</div>
+																			<div id="fucking2" class="overlay overlay2">
+																				<div class="sharekim">
+																					<div id="buttons">
+																						<div class="facebook button">
+																							<i class="icon">
+																							<i class="fa fa-facebook">
+																							</i>
+																							</i>
+																							<div class="slide">
+																								<p>
+																									facebook
+																								</p>
+																							</div>
+																							<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Freference%2Fplugins%2Flike&amp;send=false&amp;layout=button_count&amp;width=80&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=20&amp;appId=568581339861351" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:20px;" allowtransparency="true">
+																							</iframe>
+																						</div>
+																						<div class="twitter button">
+																							<i class="icon">
+																							<i class="fa fa-twitter">
+																							</i>
+																							</i>
+																							<div class="slide">
+																								<p>
+																									twitter
+																								</p>
+																							</div>
+																							<iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" title="Twitter Tweet Button" src="https://platform.twitter.com/widgets/tweet_button.3748f7cda49448f6c6f7854238570ba0.en.html#dnt=false&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=file%3A%2F%2F%2FUsers%2Fsyuemingyu%2FDocuments%2Fwork%2F%25E8%25B6%2585%25E4%25BA%25BA%25E6%25B0%25A3%25E5%25A8%259B%25E6%25A8%2582%2F%25E9%259B%25BB%25E5%2595%2586%2FE-Commerce%2Findex.html%23fucking&amp;size=m&amp;text=Shop%20UI%20%7C%20Unify%20-%20Responsive%20Website%20Template&amp;time=1483268037182&amp;type=share&amp;url=file%3A%2F%2F%2FUsers%2Fsyuemingyu%2FDocuments%2Fwork%2F%25E8%25B6%2585%25E4%25BA%25BA%25E6%25B0%25A3%25E5%25A8%259B%25E6%25A8%2582%2F%25E9%259B%25BB%25E5%2595%2586%2FE-Commerce%2Findex.html%23fucking&amp;via=mariuCSS" style="position: static; visibility: visible; width: 63px; height: 20px;"></iframe>
+																							<script>
+																							!function(d,s,id){
+																							var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+																							if(!d.getElementById(id)){
+																							js=d.createElement(s);
+																							js.id=id;
+																							js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+																							</script>
+																						</div>
+																						<div class="google button">
+																							<i class="icon">
+																							<i class="fa fa-google-plus">
+																							</i>
+																							</i>
+																							<div class="slide">
+																								<p>
+																									google+
+																								</p>
+																							</div>
+																							<!-- Place this tag where you want the +1 button to render. -->
+																							<div id="___plusone_0" style="position: absolute; width: 450px; left: -10000px;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position:absolute;top:-10000px;width:450px;margin:0px;border-style:none" tabindex="0" vspace="0" width="100%" id="I0_1483268036447" name="I0_1483268036447" src="https://apis.google.com/u/0/se/0/_/+1/fastbutton?usegapi=1&amp;size=medium&amp;origin=file%3A%2F%2F&amp;url=file%3A%2F%2F%2FUsers%2Fsyuemingyu%2FDocuments%2Fwork%2F%25E8%25B6%2585%25E4%25BA%25BA%25E6%25B0%25A3%25E5%25A8%259B%25E6%25A8%2582%2F%25E9%259B%25BB%25E5%2595%2586%2FE-Commerce%2Findex.html%23fucking&amp;gsrc=3p&amp;ic=1&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.zh_TW.61esn17xjog.O%2Fm%3D__features__%2Fam%3DAQ%2Frt%3Dj%2Fd%3D1%2Frs%3DAGLTcCN-wuQp05MiFMaP6TG-I3xKy9qWHQ#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Cdrefresh%2Cerefresh%2Conload&amp;id=I0_1483268036447&amp;parent=file%3A%2F%2F&amp;pfname=&amp;rpctoken=28164264" data-gapiattached="true"></iframe></div><div class="g-plusone" data-size="medium" data-gapiscan="true" data-onload="true" data-gapistub="true">
+																						</div>
+																						<!-- Place this tag after the last +1 button tag. -->
+																						<script type="text/javascript">
+																						(function() {
+																						var po = document.createElement('script');
+																						po.type = 'text/javascript';
+																						po.async = true;
+																						po.src = 'https://apis.google.com/js/plusone.js';
+																						var s = document.getElementsByTagName('script')[0];
+																						s.parentNode.insertBefore(po, s);
+																						}
+																						)();
+																						</script>
+																					</div>
+																					<div class="linkedin button">
+																						<i class="icon">
+																						<i class="fa fa-linkedin">
+																						</i>
+																						</i>
+																						<div class="slide">
+																							<p>
+																								linkedin
+																							</p>
+																						</div>
+																						<script type="IN/Share" data-counter="right">
+																						</script>
+																						<script src="//platform.linkedin.com/in.js" type="text/javascript">
+																						lang: en_US
+																						</script>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																		<div id="fucking1" class="overlay overlay1">
+																			<div class="fuck_box">
+																				<li class="li_frist" style="border-top:0px;">
+																					<a href="">
+																						<div class="img_box">
+																							<span style="margin-left: 7px;margin-top: 5px;height: 35px;width: auto;float: left;" class="img">
+																								<img style="width: 35px;height: 35px;" src="thecouple_webpage_logo.png" alt="">
+																							</span>
+																							<span class="text-box" style="    flex: 1 1 auto;float: left;margin-left: 7px;margin-top: 12px;">
+																								<p class="fuck-text">那對夫妻</p>
+																							</span>
+																						</div>
+																					</a>
+																					<div class="fuck_new">超過100則消息<span class="_55fk"></span></div>
+																				</li>
+																				<li style="background-color: #f6f7f8;height: 24px;">
+																					<span class="text-box" style="    flex: 1 1 auto;float: left;margin-left: 7px;margin-top: 3px;">
+																						<p class="fuck-text">設定</p>
+																					</span>
+																				</li>
+																				<li>
+																					<a href="">
+																						<div class="img_box"></div>
+																					</a>
+																				</li>
+																				<li>
+																					<a href="">
+																						<div class="img_box"></div>
+																					</a>
+																				</li>
+																			</div>
+																		</div>
+																		<!-- Wait Block -->
+																		<div class="g-popup-wrapper">
+																			<div class="g-popup g-popup--subscribe2">
+																				<div class="g-popup--subscribe2-message">
+																					<span class="icon-envelope-letter icon" aria-hidden="true"></span>
+																					<h3>Subscribe To Our Newsletter</h3>
+																					<p>Join our mailing list to receive the latest news &amp;&nbsp;updates from our team.</p>
+																				</div>
+																				<form action="#" class="sky-form">
+																					<div class="row">
+																						<section class="col-sm-9">
+																							<label class="input">
+																								<input type="email" placeholder="Email" class="form-control">
+																							</label>
+																						</section>
+																						<section class="col-sm-3">
+																							<label class="input">
+																								<button class="btn btn-default" type="button">Subscribe</button>
+																							</label>
+																						</section>
+																					</div>
+																				</form>
+																				<a href="javascript:void(0);" class="g-popup__close g-popup--subscribe2__close"><span class="icon-close" aria-hidden="true"></span></a>
+																			</div>
+																		</div>
+																		</div><!--/wrapper-->
+																		<!-- End Wait Block -->
+																		<!-- JS Global Compulsory -->
+																		<script src="assets/plugins/jquery/jquery.min.js"></script>
+																		<script src="assets/plugins/jquery/jquery-migrate.min.js"></script>
+																		<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+																		<!-- JS Implementing Plugins -->
+																		<script src="assets/plugins/back-to-top.js"></script>
+																		<script src="assets/plugins/smoothScroll.js"></script>
+																		<script src="assets/plugins/noUiSlider/jquery.nouislider.all.min.js"></script>
+																		<script src="assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/plugins/master-slider/masterslider/masterslider.js"></script>
+<script src="assets/plugins/master-slider/masterslider/jquery.easing.min.js"></script>
+
+<script src="assets/js/plugins/master-slider-showcase2.js"></script>
+																		<!-- JS Customization -->
+																		<script src="assets/js/custom.js"></script>
+																		<!-- JS Page Level -->
+																		<script src="assets/js/shop.app.js"></script>
+																		<script src="assets/js/plugins/mouse-wheel.js"></script>
+																		<script src="assets/js/plugins/style-switcher.js"></script>
+																		<script src="assets/js/jQuery.headroom.js"></script>
+																		<script src="assets/js/headroom.min.js"></script>
+																		<script>
+																			jQuery(document).ready(function() {
+																				$("header").headroom();
+																				App.init();
+																				App.initScrollBar();
+																				MouseWheel.initMouseWheel();
+																				StyleSwitcher.initStyleSwitcher();
+
+MasterSliderShowcase2.initMasterSliderShowcase2();
+																			});
+																		</script>
+																		<!--[if lt IE 9]>
+																		<script src="assets/plugins/respond.js"></script>
+																		<script src="assets/plugins/html5shiv.js"></script>
+																		<script src="assets/js/plugins/placeholder-IE-fixes.js"></script>
+																		<![endif]-->
+																		<!--[if lt IE 10]>
+																		<script src="assets/plugins/sky-forms-pro/skyforms/js/jquery.placeholder.min.js"></script>
+																		<![endif]-->
+																	</body>
+																</html>

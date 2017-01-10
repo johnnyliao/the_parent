@@ -40,3 +40,36 @@ import pytz
 
 def home(request):
 	return render_to_response("main/page_coming_soon2.html", locals(), context_instance=RequestContext(request))
+
+def index(request):
+	return render_to_response("main/index.html", locals(), context_instance=RequestContext(request))
+
+def index1(request):
+	return render_to_response("main/index1.html", locals(), context_instance=RequestContext(request))
+
+def login(request):
+	return render_to_response("main/shop-ui-login.html", locals(), context_instance=RequestContext(request))
+
+def album(request):
+	return render_to_response("main/index_album.html", locals(), context_instance=RequestContext(request))
+
+def inner(request):
+	return render_to_response("main/index_inner.html", locals(), context_instance=RequestContext(request))
+
+def photo(request):
+	return render_to_response("main/index_photo.html", locals(), context_instance=RequestContext(request))
+
+def video(request):
+	return render_to_response("main/index_video.html", locals(), context_instance=RequestContext(request))
+
+def add_to_cart(request):
+	return render_to_response("main/shop-ui-add-to-cart.html", locals(), context_instance=RequestContext(request))
+
+def filter_list(request):
+	return render_to_response("main/shop-ui-filter-list.html", locals(), context_instance=RequestContext(request))
+
+def ui_inner(request):
+	return render_to_response("main/shop-ui-inner.html", locals(), context_instance=RequestContext(request))
+
+def register(request):
+	return render_to_response("main/shop-ui-register.html", locals(), context_instance=RequestContext(request))

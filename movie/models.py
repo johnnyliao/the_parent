@@ -6,7 +6,7 @@ from django.contrib.contenttypes import generic
 
 from account.models import User
 from django.contrib.auth.models import AbstractUser
-
+from mezzanine.core.fields import RichTextField
 from django.utils import timezone
 
 from django.contrib.contenttypes import generic
@@ -29,7 +29,7 @@ TYPE_CHOICES = (
 class Movie(models.Model):
     link = models.CharField(_(u"youtube連結"), max_length=100)
     title = models.CharField(_(u"標題"), max_length=100)
-    description = models.CharField(_(u"簡介"), max_length=2000)
+    description = RichTextField(_(u"簡介"), max_length=2000)
     movie_type = models.CharField(_(u"分類"), max_length=100, choices=TYPE_CHOICES)
 
     class Meta:
