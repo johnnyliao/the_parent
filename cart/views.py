@@ -364,6 +364,12 @@ def create_invoice(order_id):
     receiveCheckMacValue = rtn_data['CheckMacValue']
     del rtn_data['CheckMacValue']
     verifyCheckMacValue = get_invoice_check_value(rtn_data)
+    print "verifyCheckMacValue"
+    print verifyCheckMacValue
+    print "get_invoice_check_value"
+    print get_invoice_check_value
+    print "rtn_data['RtnCode'"
+    print rtn_data['RtnCode']
 
     if verifyCheckMacValue == receiveCheckMacValue and rtn_data['RtnCode'] == '1':
         payment_invoice[0].relate_number = url_data['RelateNumber']
