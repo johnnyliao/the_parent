@@ -374,8 +374,10 @@ def create_invoice(order_id):
         payment_invoice[0].invoice_number = rtn_data['InvoiceNumber']
         payment_invoice[0].invoice_rtn_msg = rtn_data['RtnMsg']
         payment_invoice[0].save()
+        print "create invoice success"
         return "create invoice success"
 
+    print "create invoice fail"
     return "create invoice fail"
 
 def get_invoice_check_value(url_data):

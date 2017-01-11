@@ -21,6 +21,19 @@ class ProductInfoAdmin(SalmonellaMixin, admin.ModelAdmin):
     list_display = ["item_name", "total_amount", "trade_desc", "date"]
     salmonella_fields  = ["photo"]
 
+class PayMentInvoiceAdmin(SalmonellaMixin, admin.ModelAdmin):
+    list_display = ["relate_number", "invoice_number", "invoice_type", "invoice_kind", "print_type", "love_code", "carruer_type", "carruer_num", "invoice_rtn_msg", "invoice_date", "invalid_reason", "invalid_rtn_msg", "invalid_time"]
+
+class PayMentInvoiceInline(admin.StackedInline):
+    model = PayMentInvoice
+
+class PayMentRecordAdmin(admin.ModelAdmin):
+    inlines = (PayMentInvoiceInline,)
+    list_display = ["product", "cart", "total_amount", "user", "is_checked", "date"]
+
+
 admin.site.register(CartItem, CartItemAdmin)
 admin.site.register(ProductInfo, ProductInfoAdmin)
 admin.site.register(ProductImage, ProductImageAdmin)
+admin.site.register(PayMentInvoice, PayMentInvoiceAdmin)
+admin.site.register(PayMentRecord, PayMentRecordAdmin)
