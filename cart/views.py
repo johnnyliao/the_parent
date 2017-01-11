@@ -377,7 +377,13 @@ def get_invoice_check_value(url_data):
 
     check_value = 'HashKey=' + hashkey
     for k in sorted(url_data):
-        check_value += '&' + k + '=' + url_data[k]
+        try:
+            check_value += '&' + k + '='
+            check_value += url_data[k]
+        except TypeError:
+            #數字需要轉換型態
+            #import pdb;pdb.set_trace()
+            check_value += str(url_data[k])
 
     check_value += '&HashIV=' + HashIV
 
