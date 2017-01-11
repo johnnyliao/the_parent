@@ -371,7 +371,24 @@ def create_invoice(order_id):
 
     return "create invoice fail"
 
+def get_invoice_check_value(url_data):
+    hashkey = "ejCk326UnaZWKisg"
+    HashIV = "q9jcZX8Ib9LM8wYk"
 
+    check_value = 'HashKey=' + hashkey
+    for k in sorted(url_data):
+        check_value += '&' + k + '=' + url_data[k]
+
+    check_value += '&HashIV=' + HashIV
+
+    check_value = check_value.replace("+",' ')
+    url_encode = urllib.quote_plus(check_value)
+    url_encode = url_encode.lower()
+
+    m = hashlib.md5(url_encode)
+    md5 = m.hexdigest()
+    check =  md5.upper()
+    return check
 
 def get_check_value(url_data):
     hashkey = "5294y06JbISpM5x9"
