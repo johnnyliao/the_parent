@@ -305,17 +305,17 @@ def create_invoice(order_id):
         customer_identifier = ""
     sales_amount = 0
 
-    item_name = []
-    item_word = []
-    item_price = []
+    item_name_arr = list()
+    item_word_arr = list()
+    item_price_arr = list()
     for cart in payment_record[0].cart.all():
-    	item_name.append(cart.product.item_name)
-    	item_name.append(cart.amount)
-    	item_price.append(cart.product.total_amount)
+    	item_name_arr.append(cart.product.item_name)
+    	item_word_arr.append(cart.amount)
+    	item_price_arr.append(cart.product.total_amount)
 
-	item_name = "|".join('%s' % string for string in item_name)
-	item_word = "|".join('%s' % string for string in item_word)
-	item_price = "|".join('%s' % string for string in item_price)
+	item_name = "|".join('%s' % string for string in item_name_arr)
+	item_word = "|".join('%s' % string for string in item_word_arr)
+	item_price = "|".join('%s' % string for string in item_price_arr)
 
     url_data = {
         'TimeStamp': str(time.time()).split('.')[0],
