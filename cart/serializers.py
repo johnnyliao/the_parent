@@ -26,4 +26,14 @@ class FavoriteSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = FavoriteItem
 
-
+class CreateOrderSerializer(serializers.Serializer):
+    invoice_type = serializers.CharField()
+    invoice_kind = serializers.CharField()
+    carruer_type = serializers.CharField(blank=True)
+    carruer_num = serializers.CharField(blank=True)
+    love_code = serializers.CharField(blank=True)
+    customer_identifier = serializers.CharField(blank=True)
+    customer_name = serializers.CharField(blank=True)
+    customer_addr = serializers.CharField(blank=True)
+    customer_phone = serializers.CharField()
+    customer_email = serializers.CharField()

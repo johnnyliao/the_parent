@@ -16,6 +16,43 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.sites.models import Site
 import urlparse, settings
 
+INVOICE_TYPE_CHOICES = (
+    ("1", _(u'捐贈')),
+    ("2", _(u'二聯式')),
+    ("3", _(u'三聯式')),
+)
+
+INVOICE_KIND_CHOICES = (
+    (0, _(u'無')),
+    (1, _(u'電子')),
+    (2, _(u'紙本')),
+)
+
+CARRUER_TYPE_CHOICES = (
+    ("", _(u'沒有載具')),
+    ("2", _(u'自然人憑證')),
+    ("3", _(u'手機條碼')),
+)
+
+PRINT_TYPE_CHOICES = (
+    ("0", _(u'否')),
+    ("1", _(u'是')),
+)
+
+DONATION_CHOICES = (
+    ("1", _(u'捐贈')),
+    ("2", _(u'不捐贈')),
+)
+
+class UserInvoice(models.Model):
+    customer_identifier = models.CharField(_(u"統一編號"), max_length=8, null=True, blank=True)
+    customer_name = models.CharField(_(u"客戶名稱"), max_length=20, null=True, blank=True)
+    customer_addr = models.CharField(_(u"客戶地址"), max_length=100, null=True, blank=True)
+    customer_phone = models.CharField(_(u"客戶手機號碼"), max_length=20, null=True, blank=True)
+    customer_email = models.CharField(_(u"客戶電子信箱"), max_length=80, null=True, blank=True)
+    user = models.OneToOneField(User,  related_name='user_invoice')
+
+
 class ProductImage(models.Model):
     photo = models.ImageField(_(u"商品照片"), upload_to='cart/productinfo')
 
@@ -32,6 +69,8 @@ class ProductInfo(models.Model):
     photo = models.ManyToManyField("ProductImage", verbose_name=_(u"商品照片"), related_name='product_images')
     #photo = models.CharField(_(u"商品圖片"), max_length=50)
     video_link = models.CharField(_(u"商品影片連結"), max_length=50)
+    size = models.CharField(_(u"size"), max_length=10, null=True, blank=True)
+
     class Meta:
         verbose_name = _(u"商品資訊")
         verbose_name_plural = _(u"商品列表")
@@ -55,12 +94,21 @@ class CartItem(models.Model):
     def __unicode__(self):
         return u'%d units of %s' % (self.amount, self.product.__class__.__name__)
 
+class PayMentRecord(models.Model):
+    product = models.ManyToManyField(ProductInfo,  related_name='record_product')
+    user = models.ForeignKey(User,  related_name='user_payment_record')
+    date = models.DateTimeField(_(u"建立時間"), auto_now=True)
+    order_id = models.CharField(_(u"訂單編號"), max_length=30)
+    #invoice = models.OneToOneField(PayMentInvoice,  related_name='payment_record_invoice', null=True, blank=True)
+
 class PayMentInvoice(models.Model):
-    relate_number = models.CharField(_(u"付款方式"), max_length=30, null=True, blank=True)
-    print_type = models.CharField(_(u"列印"), max_length=1, null=True, blank=True)
-    donation = models.CharField(_(u"捐贈"), max_length=1, null=True, blank=True)
+    relate_number = models.CharField(_(u"自訂編號"), max_length=30, null=True, blank=True)
+    invoice_type = models.IntegerField(_(u"發票方式"), choices=INVOICE_TYPE_CHOICES)
+    invoice_kind = models.IntegerField(_(u"發票類型"), choices=INVOICE_KIND_CHOICES)
+    print_type = models.CharField(_(u"索取紙本"), choices=PRINT_TYPE_CHOICES, max_length=1, null=True, blank=True)
+    donation = models.CharField(_(u"捐贈"), choices=DONATION_CHOICES, max_length=1, null=True, blank=True)
     love_code = models.CharField(_(u"愛心碼"), max_length=7, null=True, blank=True)
-    carruer_type = models.CharField(_(u"載具類別"), max_length=1, null=True, blank=True)
+    carruer_type = models.CharField(_(u"載具類別"), choices=CARRUER_TYPE_CHOICES, max_length=1, null=True, blank=True)
     carruer_num = models.CharField(_(u"載具編號"), max_length=64 , null=True, blank=True)
     tax_type = models.CharField(_(u"課稅類別"), max_length=1 , null=True, blank=True)
     inv_type = models.CharField(_(u"字軌類別"), max_length=2 , null=True, blank=True)
@@ -72,13 +120,10 @@ class PayMentInvoice(models.Model):
     invalid_rtn_msg = models.CharField(_(u"作廢回應訊息"), max_length=200 , null=True, blank=True)
     invalid_time = models.DateTimeField(_(u"作廢時間"), null=True, blank=True)
     invoice_number = models.CharField(_(u"發票號碼"), max_length=10, null=True, blank=True)
+    record = models.OneToOneField(PayMentRecord,  related_name='payment_record_', null=True, blank=True)
+    def __unicode__(self):
+        return self.invoice_number
 
-
-class PayMentRecord(models.Model):
-    product = models.ForeignKey(ProductInfo,  related_name='record_product')
-    user = models.ForeignKey(User,  related_name='user_payment_record')
-    date = models.DateTimeField(_(u"建立時間"), auto_now=True)
-    invoice = models.OneToOneField(PayMentInvoice,  related_name='payment_record_invoice', null=True, blank=True)
 
 
 class FavoriteItem(models.Model):

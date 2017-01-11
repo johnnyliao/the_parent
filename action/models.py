@@ -26,4 +26,11 @@ class Comment(models.Model):
         verbose_name = _(u'留言')
         verbose_name_plural = _(u'留言列表')
 
+class ReComment(models.Model):
+    user = models.ForeignKey(User, related_name='user_re_comment')
+    content = models.CharField(_(u"留言內容"), max_length=100)
+    date = models.DateTimeField(_(u"留言時間"), auto_now=True)
+    re_comment = models.ForeignKey(Comment, related_name='re_comment')
+
+
 

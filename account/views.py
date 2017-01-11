@@ -52,10 +52,8 @@ class UserLoginView(generics.GenericAPIView):
         if serializer.is_valid():
             username = serializer.data.get('username')
             password = serializer.data.get('password')
-            print 000000000
             try:
                 try:
-                    print 11111
                     User.objects.get(username=username)
                     print username
                     print password
@@ -67,16 +65,13 @@ class UserLoginView(generics.GenericAPIView):
                         return Response("401")
                         return Response("Bad username or password.", status=status.HTTP_401_UNAUTHORIZED)
                 except User.DoesNotExist:
-                    print 2222222
                     user = User.objects.create_user(username=username, password=password, email=username)
                     user = authenticate(username=username, password=password)
                     login(request, user)
 
                 serializer = UserInfoSerializer(request.user, context={'request': request})
-                print serializer.data
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             except requests.RequestException as e:
-                print 3333
                 return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

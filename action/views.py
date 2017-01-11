@@ -12,7 +12,7 @@ import urllib, urllib2, json, simplejson
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils import timezone
 from django.middleware.csrf import get_token
-
+from action.serializers import CommentSerializer, ReCommentSerializer
 import requests
 from allauth.socialaccount import providers
 from allauth.socialaccount.providers.facebook.provider import FacebookProvider
@@ -40,3 +40,37 @@ import pytz
 
 def comment(request):
 	return render_to_response("action/comment.html", locals(), context_instance=RequestContext(request))
+
+class CommentPostView(generics.GenericAPIView):
+    serializer_class = CommentSerializer
+    permission_classes = (AllowAny, )
+
+    def post(self, request, format=None):
+        """
+        留言
+        """
+        serializer = self.serializer_class(data=request.DATA)
+        if serializer.is_valid():
+            serializer.save()
+            #import pdb;pdb.set_trace()
+            #serializer = self.serializer_class(serializer)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class ReCommentPostView(generics.GenericAPIView):
+    serializer_class = ReCommentSerializer
+    permission_classes = (AllowAny, )
+
+    def post(self, request, format=None):
+        """
+        回復留言
+        """
+        serializer = self.serializer_class(data=request.DATA)
+        if serializer.is_valid():
+            serializer.save()
+            #import pdb;pdb.set_trace()
+            #serializer = self.serializer_class(serializer)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

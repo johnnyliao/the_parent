@@ -1,11 +1,11 @@
 #-*- encoding: utf-8 -*-
 from .cart import Cart
-from .models import ProductInfo, FavoriteItem
+from .models import ProductInfo, FavoriteItem, PayMentRecord, PayMentInvoice, UserInvoice
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly, IsAuthenticated
 import requests
-from .serializers import CartItemSerializer, FavoriteSerializer
+from .serializers import CartItemSerializer, FavoriteSerializer, CreateOrderSerializer
 from rest_framework import generics, status
 import json, requests, urllib, urllib2, re, base64, os, datetime
 import urlparse, time, cookielib, hashlib, time
@@ -129,60 +129,234 @@ class get_favorite(APIView):
 			return Response({})
 
 class cart_check_out(APIView):
-	#serializer_class = PasswordResetSerializer
+	serializer_class = CreateOrderSerializer
 	permission_classes = (IsAuthenticated, )
 
-	def get(self, request, format=None):
+	def post(self, request, format=None):
 		"""
 		結帳購物車內容
 		"""
-		item_arr = list()
-		total_amount = 0
-		for name in request.user.user_cart_item.all():
-			#import pdb;pdb.set_trace()
-			item_arr.append(name.product.item_name)
-			total_amount += (name.product.total_amount * name.amount)
-			item_name = ",".join(item_arr)
-			item_name_arr = "#".join(item_arr)
+		serializer = self.serializer_class(data=request.DATA)
+		if serializer.is_valid():
+			item_arr = list()
+			total_amount = 0
+			item_name_arr = ""
+			for name in request.user.user_cart_item.all():
+				#import pdb;pdb.set_trace()
+				item_arr.append(name.product.item_name)
+				total_amount += (name.product.total_amount * name.amount)
+				item_name = ",".join(item_arr)
+				item_name_arr = "#".join(item_arr)
 
-		target = "_self"
-		ServiceURL = "https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V2"
-		url_data = {
-			'ChoosePayment':"ALL",
-			'ChooseSubPayment':'',
-			'ClientBackURL':'http://www.dodohouse.com.tw/',
-			'CreditInstallment':'0',
-			'DeviceSource':'',
-			'EncryptType':'0',
-			'ExecTimes':'',
-			'Frequency':'',
-			'InstallmentAmount':'0',
-			'InvoiceMark':'',
-			'ItemName':item_name_arr,
-			'ItemURL':'dedwed ',
-			'Language':'',
-			'MerchantID':'2000132',
-			'MerchantTradeDate':datetime.datetime.fromtimestamp(time.time()).strftime('%Y/%m/%d %H:%M:%S'),
-			'MerchantTradeNo':"Test"+  str(time.time()).replace(".",''),
-			'NeedExtraPaidInfo':'N',
-			'OrderResultURL':'',
-			'PaymentType':'aio',
-			'PeriodAmount':'',
-			'PeriodReturnURL':'',
-			'PeriodType':'',
-			'Redeem':'',
-			'Remark':'',
-			'ReturnURL':'http://app.i-each.com.tw/account/allpay_recevive/',
-			'TotalAmount':total_amount,
-			'TradeDesc':"111",
-			'UnionPay':''
-		}
+			target = "_self"
+			ServiceURL = "https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V2"
+			url_data = {
+				'ChoosePayment':"ALL",
+				'ChooseSubPayment':'',
+				'ClientBackURL':'http://www.dodohouse.com.tw/',
+				'CreditInstallment':'0',
+				'DeviceSource':'',
+				'EncryptType':'0',
+				'ExecTimes':'',
+				'Frequency':'',
+				'InstallmentAmount':'0',
+				'InvoiceMark':'',
+				'ItemName':item_name_arr,
+				'ItemURL':'dedwed ',
+				'Language':'',
+				'MerchantID':'2000132',
+				'MerchantTradeDate':datetime.datetime.fromtimestamp(time.time()).strftime('%Y/%m/%d %H:%M:%S'),
+				'MerchantTradeNo':"Test"+  str(time.time()).replace(".",''),
+				'NeedExtraPaidInfo':'N',
+				'OrderResultURL':'',
+				'PaymentType':'aio',
+				'PeriodAmount':'',
+				'PeriodReturnURL':'',
+				'PeriodType':'',
+				'Redeem':'',
+				'Remark':'',
+				'ReturnURL':'http://nicokim.cc/cart/allpay_recevive/',
+				'TotalAmount':total_amount,
+				'TradeDesc':"111",
+				'UnionPay':''
+			}
 
-		szCheckMacValue = get_check_value(url_data)
+			record = PayMentRecord(
+				#product=request.user.user_cart_item.all(),
+				order_id=url_data["MerchantTradeNo"],
+				user=request.user
+			)
 
-		url_data["ItemName"] = item_name
+			record.save()
+			for item in request.user.user_cart_item.all():
+				#import pdb;pdb.set_trace()
+				record.product.add(item.product)
 
-		return Response({"CheckMacValue": szCheckMacValue, "url_data":url_data, "target":target})
+			record.save()
+
+			szCheckMacValue = get_check_value(url_data)
+
+			url_data["ItemName"] = item_name
+
+			save_invoice_info(serializer.data, request.user, record)
+
+			return Response({"CheckMacValue": szCheckMacValue, "url_data":url_data, "target":target})
+		else:
+			return Response(serializer.errors)
+
+def save_invoice_info(invoice_data, user_id, record):
+    user_invoice = UserInvoice.objects.filter(user=user_id)
+
+    if user_invoice:
+        user_invoice[0].customer_name = invoice_data["customer_name"]
+        user_invoice[0].customer_addr = invoice_data["customer_addr"]
+        user_invoice[0].customer_phone = invoice_data["customer_phone"]
+        user_invoice[0].customer_email = invoice_data["customer_email"]
+
+        # 非三聯式發票，就把統一編號清空
+        if invoice_data["invoice_type"] == "3":
+            user_invoice[0].customer_identifier=invoice_data["customer_identifier"]
+        else:
+            user_invoice[0].customer_identifier=""
+
+        user_invoice[0].save()
+    else:
+        user_invoice = UserInvoice(
+            customer_name=invoice_data["customer_name"],
+            customer_addr=invoice_data["customer_addr"],
+            customer_phone=invoice_data["customer_phone"],
+            customer_email=invoice_data["customer_email"],
+            user=user_id
+        )
+
+        if invoice_data["invoice_type"] == "3":
+            user_invoice.customer_identifier = invoice_data["customer_identifier"]
+        else:
+            user_invoice.customer_identifier = ""
+
+        user_invoice.save()
+
+    # 捐贈才紀錄愛心碼
+    if invoice_data["invoice_type"] == "1":
+        donation = "1"
+        love_code = invoice_data["love_code"]
+    else:
+        donation = "2"
+        love_code = ""
+
+    # 三聯式或二聯式紙本發票，要列印
+    if invoice_data["invoice_type"] == "3" or (invoice_data["invoice_type"] == "2" and invoice_data["invoice_kind"] == "2"):
+        print_type = "1"
+    else:
+        print_type = "0"
+
+    # 沒有載具，載具資訊必須為空字串
+    if invoice_data["carruer_type"] == "0" or invoice_data["carruer_type"] == "1":
+        carruer_type = ""
+        carruer_num = ""
+    else:
+        carruer_type = invoice_data["carruer_type"]
+        carruer_num = invoice_data["carruer_num"]
+
+    # 三聯式發票，一定是紙本
+    if invoice_data["invoice_type"] == "3":
+        invoice_kind = "2"
+    else:
+        invoice_kind = invoice_data["invoice_kind"]
+    invoice = PayMentInvoice(
+        invoice_type=invoice_data["invoice_type"],
+        invoice_kind=invoice_kind,
+        print_type=print_type,
+        donation=donation,
+        love_code=love_code,
+        carruer_type=carruer_type,
+        carruer_num=carruer_num,
+        record=record,
+    )
+
+    invoice.save()
+    print "save invoice"
+    return "save invoice"
+
+def create_invoice(order_id):
+    payment_record = PayMentRecord.objects.filter(order_id=order_id)
+    if not payment_record:
+        return "can't find payment record"
+
+    user_invoice = UserInvoice.objects.filter(user=payment_record[0].user_id)
+    if not user_invoice:
+        return "can't find user invoice"
+
+    payment_invoice = PayMentInvoice.objects.filter(record_id=payment_record[0].id)
+    if not payment_invoice:
+        return "can't find payment invoice"
+
+    if payment_invoice[0].donation == "1":
+        love_code = payment_invoice[0].love_code
+        print_type = "0"
+    else:
+        love_code = ""
+        print_type = payment_invoice[0].print_type
+
+    if print_type == "1":
+        customer_identifier = user_invoice[0].customer_identifier
+    else:
+        customer_identifier = ""
+
+    url_data = {
+        'TimeStamp': str(time.time()).split('.')[0],
+        'RelateNumber': "ieachInvoice"+str(time.time()).replace(".",''),
+        'MerchantID': "2000132",
+        'CustomerID': "",
+        'CustomerIdentifier': customer_identifier,
+        'CustomerName': urllib.quote_plus(user_invoice[0].customer_name.encode("utf-8")),
+        'CustomerAddr': urllib.quote_plus(user_invoice[0].customer_addr.encode("utf-8")),
+        'CustomerPhone': "",
+        'CustomerEmail': urllib.quote_plus(user_invoice[0].customer_email),
+        'ClearanceMark': "",
+        'Print': print_type,
+        'Donation': payment_invoice[0].donation,
+        'LoveCode': love_code,
+        'CarruerType': payment_invoice[0].carruer_type,
+        'CarruerNum': payment_invoice[0].carruer_num,
+        'TaxType': "1",
+        'SalesAmount': payment_record[0].total_amount,
+        'ItemCount': "1",
+        'ItemPrice': payment_record[0].total_amount,
+        'ItemAmount': payment_record[0].total_amount,
+        'InvType': "07",
+    }
+
+    url_data['CheckMacValue'] = get_invoice_check_value(url_data)
+    url_data['ItemName'] = urllib.quote_plus(payment_record[0].item_name.encode("utf-8"))
+    url_data['ItemWord'] = urllib.quote_plus(payment_record[0].trade_desc.encode("utf-8"))
+
+    url_values = ''
+    for k in sorted(url_data):
+        url_values += '&' + k + '=' + url_data[k]
+
+    req = urllib2.Request('https://einvoice-stage.ecpay.com.tw/Invoice/Issue', url_values)
+    response = urllib2.urlopen(req)
+    the_page = response.read()
+    rtn_data = dict(urlparse.parse_qsl(the_page, 1))
+
+    receiveCheckMacValue = rtn_data['CheckMacValue']
+    del rtn_data['CheckMacValue']
+    verifyCheckMacValue = get_invoice_check_value(rtn_data)
+
+    if verifyCheckMacValue == receiveCheckMacValue and rtn_data['RtnCode'] == '1':
+        payment_invoice[0].relate_number = url_data['RelateNumber']
+        payment_invoice[0].tax_type = url_data['TaxType']
+        payment_invoice[0].inv_type = url_data['InvType']
+        payment_invoice[0].random_number = rtn_data['RandomNumber']
+        payment_invoice[0].invoice_date = rtn_data['InvoiceDate']
+        payment_invoice[0].invoice_number = rtn_data['InvoiceNumber']
+        payment_invoice[0].invoice_rtn_msg = rtn_data['RtnMsg']
+        payment_invoice[0].save()
+        return "create invoice success"
+
+    return "create invoice fail"
+
 
 
 def get_check_value(url_data):
@@ -212,7 +386,7 @@ def get_check_value(url_data):
     return check
 
 class allpay_recevive(APIView):
-    #serializer_class = PasswordResetSerializer
+    serializer_class = PasswordResetSerializer
     permission_classes = (AllowAny, )
 
     def post(self, request, format=None):
@@ -240,6 +414,11 @@ class allpay_recevive(APIView):
 
         else:
             print "check mac value OK"
+            #try:
+            record = PayMentRecord.objects.filter(order_id=post_data['MerchantTradeNo'])
+            print "\n\n\n\n"
+            print record
+            create_invoice(post_data['MerchantTradeNo'])
             return Response("OK")
 
 def order_create(request):
