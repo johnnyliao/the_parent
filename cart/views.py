@@ -313,9 +313,9 @@ def create_invoice(order_id):
     	item_name.append(cart.amount)
     	item_price.append(cart.product.total_amount)
 
-    item_name = "|".join(item_name)
-    item_word = "|".join(item_word)
-    item_price = "|".join(item_price)
+    item_name = "|".join('%s' % string for string in item_name))
+    item_word = "|".join('%s' % string for string in item_word))
+    item_price = "|".join('%s' % string for string in item_price))
 
     url_data = {
         'TimeStamp': str(time.time()).split('.')[0],
