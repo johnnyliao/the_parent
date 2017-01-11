@@ -182,7 +182,7 @@ class cart_check_out(APIView):
 			}
 
 			record = PayMentRecord(
-				#product=request.user.user_cart_item.all(),
+				total_amount=total_amount,
 				order_id=url_data["MerchantTradeNo"],
 				user=request.user
 			)
@@ -191,6 +191,7 @@ class cart_check_out(APIView):
 			for item in request.user.user_cart_item.all():
 				#import pdb;pdb.set_trace()
 				record.product.add(item.product)
+				record.cart.add(item)
 
 			record.save()
 
@@ -302,6 +303,19 @@ def create_invoice(order_id):
         customer_identifier = user_invoice[0].customer_identifier
     else:
         customer_identifier = ""
+    sales_amount = 0
+
+    item_name = []
+    item_word = []
+    item_price = []
+    for cart in payment_record[0].cart.all():
+    	item_name.append(cart.product.item_name)
+    	item_name.append(cart.amount)
+    	item_price.append(cart.product.total_amount)
+
+    item_name = "|".join(item_name)
+    item_word = "|".join(item_word)
+    item_price = "|".join(item_price)
 
     url_data = {
         'TimeStamp': str(time.time()).split('.')[0],
@@ -322,14 +336,14 @@ def create_invoice(order_id):
         'TaxType': "1",
         'SalesAmount': payment_record[0].total_amount,
         'ItemCount': "1",
-        'ItemPrice': payment_record[0].total_amount,
+        'ItemPrice': item_price,
         'ItemAmount': payment_record[0].total_amount,
         'InvType': "07",
     }
 
     url_data['CheckMacValue'] = get_invoice_check_value(url_data)
-    url_data['ItemName'] = urllib.quote_plus(payment_record[0].item_name.encode("utf-8"))
-    url_data['ItemWord'] = urllib.quote_plus(payment_record[0].trade_desc.encode("utf-8"))
+    url_data['ItemName'] = urllib.quote_plus(item_name.encode("utf-8"))
+    url_data['ItemWord'] = urllib.quote_plus(item_word.encode("utf-8"))
 
     url_values = ''
     for k in sorted(url_data):

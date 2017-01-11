@@ -96,9 +96,13 @@ class CartItem(models.Model):
 
 class PayMentRecord(models.Model):
     product = models.ManyToManyField(ProductInfo,  related_name='record_product')
+    cart = models.ManyToManyField(CartItem,  related_name='record_cart_item')
     user = models.ForeignKey(User,  related_name='user_payment_record')
+    total_amount = models.IntegerField(_(u"總金額"))
     date = models.DateTimeField(_(u"建立時間"), auto_now=True)
     order_id = models.CharField(_(u"訂單編號"), max_length=30)
+    is_checked = models.BooleanField(_(u"是否已付款"), default=False)
+    checked_time = models.DateTimeField(_(u"付款時間"), null=True, blank=True)
     #invoice = models.OneToOneField(PayMentInvoice,  related_name='payment_record_invoice', null=True, blank=True)
 
 class PayMentInvoice(models.Model):
