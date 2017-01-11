@@ -366,8 +366,8 @@ def create_invoice(order_id):
     verifyCheckMacValue = get_invoice_check_value(rtn_data)
     print "verifyCheckMacValue"
     print verifyCheckMacValue
-    print "get_invoice_check_value"
-    print get_invoice_check_value
+    print "receiveCheckMacValue"
+    print receiveCheckMacValue
     print "rtn_data['RtnCode'"
     print rtn_data['RtnCode']
 
