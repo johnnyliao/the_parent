@@ -306,15 +306,15 @@ def create_invoice(order_id):
     sales_amount = 0
 
     item_name_arr = list()
-    item_word_arr = list()
+    item_count_arr = list()
     item_price_arr = list()
     for cart in payment_record[0].cart.all():
     	item_name_arr.append(cart.product.item_name)
-    	item_word_arr.append(cart.amount)
+    	item_count_arr.append(cart.amount)
     	item_price_arr.append(cart.product.total_amount)
 
 	item_name = "|".join('%s' % string for string in item_name_arr)
-	item_word = "|".join('%s' % string for string in item_word_arr)
+	item_count = "|".join('%s' % string for string in item_count_arr)
 	item_price = "|".join('%s' % string for string in item_price_arr)
 
     url_data = {
@@ -335,7 +335,7 @@ def create_invoice(order_id):
         'CarruerNum': payment_invoice[0].carruer_num,
         'TaxType': "1",
         'SalesAmount': payment_record[0].total_amount,
-        'ItemCount': "1",
+        'ItemCount': item_count,
         'ItemPrice': item_price,
         'ItemAmount': payment_record[0].total_amount,
         'InvType': "07",
@@ -343,7 +343,7 @@ def create_invoice(order_id):
 
     url_data['CheckMacValue'] = get_invoice_check_value(url_data)
     url_data['ItemName'] = urllib.quote_plus(item_name.encode("utf-8"))
-    url_data['ItemWord'] = urllib.quote_plus(item_word.encode("utf-8"))
+    url_data['ItemWord'] = urllib.quote_plus(u"元".encode("utf-8"))
 
     url_values = ''
     for k in sorted(url_data):
