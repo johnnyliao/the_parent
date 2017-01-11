@@ -386,7 +386,7 @@ def get_check_value(url_data):
     return check
 
 class allpay_recevive(APIView):
-    serializer_class = PasswordResetSerializer
+    #serializer_class = PasswordResetSerializer
     permission_classes = (AllowAny, )
 
     def post(self, request, format=None):
