@@ -347,7 +347,14 @@ def create_invoice(order_id):
 
     url_values = ''
     for k in sorted(url_data):
-        url_values += '&' + k + '=' + url_data[k]
+        #url_values += '&' + k + '=' + url_data[k]
+        try:
+            url_values += '&' + k + '='
+            url_values += url_data[k]
+        except TypeError:
+            #數字需要轉換型態
+            #import pdb;pdb.set_trace()
+            url_values += str(url_data[k])
 
     req = urllib2.Request('https://einvoice-stage.ecpay.com.tw/Invoice/Issue', url_values)
     response = urllib2.urlopen(req)
