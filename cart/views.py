@@ -335,18 +335,17 @@ def create_invoice(order_id):
         'CarruerNum': payment_invoice[0].carruer_num,
         'TaxType': "1",
         'SalesAmount': payment_record[0].total_amount,
-        'ItemCount': item_count,
-        'ItemPrice': item_price,
+        'ItemCount': "1",
+        'ItemPrice': payment_record[0].total_amount,
         'ItemAmount': payment_record[0].total_amount,
         'InvType': "07",
     }
 
     url_data['CheckMacValue'] = get_invoice_check_value(url_data)
-    url_data['ItemName'] = urllib.quote_plus(item_name.encode("utf-8"))
-    url_data['ItemWord'] = urllib.quote_plus(u"元|元".encode("utf-8"))
+    url_data['ItemName'] = urllib.quote_plus(u"名稱1|名稱2|名稱3".encode("utf-8"))
+    url_data['ItemWord'] = urllib.quote_plus(payment_record[0].product.all()[0].trade_desc.encode("utf-8"))
 
     print url_data
-
 
     url_values = ''
     for k in sorted(url_data):
@@ -373,7 +372,9 @@ def create_invoice(order_id):
     print receiveCheckMacValue
     print "rtn_data['RtnCode'"
     print rtn_data['RtnCode']
-
+    print "rtn_data['RtnMsg']"
+    print rtn_data['RtnMsg']
+    import pdb;pdb.set_trace()
     if verifyCheckMacValue == receiveCheckMacValue and rtn_data['RtnCode'] == '1':
         payment_invoice[0].relate_number = url_data['RelateNumber']
         payment_invoice[0].tax_type = url_data['TaxType']
@@ -383,7 +384,8 @@ def create_invoice(order_id):
         payment_invoice[0].invoice_number = rtn_data['InvoiceNumber']
         payment_invoice[0].invoice_rtn_msg = rtn_data['RtnMsg']
         payment_invoice[0].save()
-        print "create invoice success"
+
+        print rtn_data['RtnMsg'].encdoe("utf-8")
         return "create invoice success"
 
     print "create invoice fail"

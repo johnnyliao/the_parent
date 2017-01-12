@@ -6,7 +6,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly, IsAu
 from rest_framework import serializers
 from rest_framework.renderers import JSONRenderer
 
-from account.models import User
+from account.models import User, UserVerify
 from account.serializers import FacebookConnectSerializer, UserInfoSerializer, UserLoginSerializer, UserRegisterSerializer
 
 import urllib, urllib2, json, simplejson
@@ -123,6 +123,7 @@ class UserRegisterView(generics.GenericAPIView):
                     user.save()
                     user.backend = 'mezzanine.core.auth_backends.MezzanineBackend'
                     login(request, user)
+                    UserVerify.objects.create(user=user)
 
                 serializer = UserInfoSerializer(user)
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -174,3 +175,35 @@ def complete_login(request, login, app, token):
     ret = complete_social_login(request, login)
     if not ret:
         ret = render_authentication_error(request)
+
+class UserVerifyCheckView(APIView):
+    #serializer_class = PasswordResetSerializer
+    permission_classes = (IsAuthenticated, )
+
+    def get(self, request, format=None):
+        """
+        確認使用者email認證狀態
+
+        """
+
+        return Response(request.user.is_verified())
+
+def UserVerifyView(request):
+    #serializer_class = PasswordResetSerializer
+    #permission_classes = (IsAuthenticated, )
+
+    #def get(self, request, format=None):
+    """
+    認證使用者email
+    code -- code
+    """
+    #import pdb;pdb.set_trace()
+    code = request.GET.get('code')
+    if request.user and code:
+        try:
+            verify_valid = request.user.verify.is_verify_code_valid(code)
+            print verify_valid
+        except:
+            verify_valid = "over_date"
+
+        return render_to_response("account/verify.html", locals(), context_instance=RequestContext(request))
