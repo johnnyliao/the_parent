@@ -475,12 +475,14 @@ class allpay_recevive(APIView):
             print "check mac value OK"
             #try:
             record = PayMentRecord.objects.filter(order_id=post_data['MerchantTradeNo'])
-            record[0].is_checked = True
-            record[0].save()
-            print "\n\n\n\n"
-            print record
-            create_invoice(post_data['MerchantTradeNo'])
-            return Response("OK")
+            if record:
+                print "have record"
+                record = record[0]
+                record.is_checked = True
+                record.save()
+
+                create_invoice(post_data['MerchantTradeNo'])
+                return Response("1|OK")
 
 def order_create(request):
     product_info = ProductInfo.objects.all()
