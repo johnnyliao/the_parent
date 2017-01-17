@@ -358,7 +358,7 @@ def create_invoice(order_id):
             #import pdb;pdb.set_trace()
             url_values += str(url_data[k])
 
-    print url_values
+    #print url_values
 
     req = urllib2.Request('https://einvoice-stage.ecpay.com.tw/Invoice/Issue', url_values)
     response = urllib2.urlopen(req)
@@ -374,9 +374,7 @@ def create_invoice(order_id):
     print receiveCheckMacValue
     print "rtn_data['RtnCode'"
     print rtn_data['RtnCode']
-    print "rtn_data['RtnMsg']"
-    print rtn_data['RtnMsg']
-    import pdb;pdb.set_trace()
+
     if verifyCheckMacValue == receiveCheckMacValue and rtn_data['RtnCode'] == '1':
         payment_invoice[0].relate_number = url_data['RelateNumber']
         payment_invoice[0].tax_type = url_data['TaxType']
@@ -475,6 +473,8 @@ class allpay_recevive(APIView):
             print "check mac value OK"
             #try:
             record = PayMentRecord.objects.filter(order_id=post_data['MerchantTradeNo'])
+            record.is_checked
+            record.save()
             print "\n\n\n\n"
             print record
             create_invoice(post_data['MerchantTradeNo'])
