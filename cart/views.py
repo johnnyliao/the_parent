@@ -345,7 +345,7 @@ def create_invoice(order_id):
     url_data['ItemName'] = urllib.quote_plus(u"名稱1|名稱2|名稱3".encode("utf-8"))
     url_data['ItemWord'] = urllib.quote_plus(payment_record[0].product.all()[0].trade_desc.encode("utf-8"))
 
-    print url_data
+
 
     url_values = ''
     for k in sorted(url_data):
@@ -357,6 +357,8 @@ def create_invoice(order_id):
             #數字需要轉換型態
             #import pdb;pdb.set_trace()
             url_values += str(url_data[k])
+
+    print url_values
 
     req = urllib2.Request('https://einvoice-stage.ecpay.com.tw/Invoice/Issue', url_values)
     response = urllib2.urlopen(req)

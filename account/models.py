@@ -113,11 +113,11 @@ class UserVerify(models.Model):
 		try:
 			smtp_obj = smtplib.SMTP('smtp.gmail.com', 587)
 			smtp_obj.starttls()
-			smtp_obj.login("epyonss@gmail.com","Liaom4m4760525")
+			smtp_obj.login("bebehouse168@gmail.com","54361016")
 
 			domain_name = Site.objects.get_current().domain
 
-			html_text = "請點以下連結進行iEach官方帳號email認證<br/><br/><a href="+domain_name.encode('utf-8')+"account/user_verify/?code="+str(verify_code)+">認證email信箱</a><br/><br/>請於10分鐘內進行認證，時間過後此次認證將失效，謝謝"
+			html_text = "請點以下連結進行iEach帳號email認證<br/><br/><a href="+domain_name.encode('utf-8')+"account/user_verify/?code="+str(verify_code)+">認證email信箱</a><br/><br/>請於10分鐘內進行認證，時間過後此次認證將失效，謝謝"
 
 			msg = MIMEText(html_text,_subtype='html',_charset='utf8')
 			msg['Subject'] = 'iEach官方帳號認證'
