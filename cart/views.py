@@ -482,6 +482,7 @@ class allpay_recevive(APIView):
                 record.save()
 
                 create_invoice(post_data['MerchantTradeNo'])
+                print "1|OK"
                 return Response("1|OK")
 
 def order_create(request):
