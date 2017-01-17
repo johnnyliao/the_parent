@@ -30,7 +30,7 @@ class PayMentInvoiceInline(admin.StackedInline):
 class PayMentRecordAdmin(admin.ModelAdmin):
     inlines = (PayMentInvoiceInline,)
     list_display = ["total_amount", "user", "is_checked", "date"]
-
+    salmonella_fields  = ["product", "cart", "user"]
 
 admin.site.register(CartItem, CartItemAdmin)
 admin.site.register(ProductInfo, ProductInfoAdmin)
