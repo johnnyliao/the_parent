@@ -335,15 +335,15 @@ def create_invoice(order_id):
         'CarruerNum': payment_invoice[0].carruer_num,
         'TaxType': "1",
         'SalesAmount': payment_record[0].total_amount,
-        'ItemCount': "1",
-        'ItemPrice': payment_record[0].total_amount,
+        'ItemCount': item_count,
+        'ItemPrice': item_price,
         'ItemAmount': payment_record[0].total_amount,
         'InvType': "07",
     }
 
     url_data['CheckMacValue'] = get_invoice_check_value(url_data)
     url_data['ItemName'] = urllib.quote_plus(u"名稱1|名稱2|名稱3".encode("utf-8"))
-    url_data['ItemWord'] = urllib.quote_plus(payment_record[0].product.all()[0].trade_desc.encode("utf-8"))
+    url_data['ItemWord'] = urllib.quote_plus(u"件|件|件".encode("utf-8"))
 
 
 
@@ -473,7 +473,7 @@ class allpay_recevive(APIView):
             print "check mac value OK"
             #try:
             record = PayMentRecord.objects.filter(order_id=post_data['MerchantTradeNo'])
-            record[0].is_checked
+            record[0].is_checked = True
             record[0].save()
             print "\n\n\n\n"
             print record
