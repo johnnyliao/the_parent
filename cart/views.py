@@ -347,7 +347,7 @@ def create_invoice(order_id):
     url_data['ItemName'] = urllib.quote_plus(item_name.encode("utf-8"))
     url_data['ItemWord'] = urllib.quote_plus(u"件|件|件".encode("utf-8"))
 
-
+    print url_data
 
     url_values = ''
     for k in sorted(url_data):
