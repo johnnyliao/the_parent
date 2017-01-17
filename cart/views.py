@@ -316,6 +316,8 @@ def create_invoice(order_id):
 	item_name = "|".join('%s' % string for string in item_name_arr)
 	item_count = "|".join('%s' % string for string in item_count_arr)
 	item_price = "|".join('%s' % string for string in item_price_arr)
+    print item_count
+    print item_price
 
     url_data = {
         'TimeStamp': str(time.time()).split('.')[0],
@@ -335,14 +337,14 @@ def create_invoice(order_id):
         'CarruerNum': payment_invoice[0].carruer_num,
         'TaxType': "1",
         'SalesAmount': payment_record[0].total_amount,
-        'ItemCount': urllib.quote_plus(item_count),
-        'ItemPrice': urllib.quote_plus(item_price),
+        'ItemCount': urllib.quote_plus("1|1|1"),
+        'ItemPrice': urllib.quote_plus("2000|2000|1000"),
         'ItemAmount': payment_record[0].total_amount,
         'InvType': "07",
     }
 
     url_data['CheckMacValue'] = get_invoice_check_value(url_data)
-    url_data['ItemName'] = urllib.quote_plus(u"名稱1|名稱2|名稱3".encode("utf-8"))
+    url_data['ItemName'] = urllib.quote_plus(item_name.encode("utf-8"))
     url_data['ItemWord'] = urllib.quote_plus(u"件|件|件".encode("utf-8"))
 
 
