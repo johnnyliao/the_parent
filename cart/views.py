@@ -313,9 +313,9 @@ def create_invoice(order_id):
     	item_count_arr.append(cart.amount)
     	item_price_arr.append(cart.product.total_amount)
 
-	item_name = "|".join('%s' % string for string in item_name_arr)
-	item_count = "|".join('%s' % string for string in item_count_arr)
-	item_price = "|".join('%s' % string for string in item_price_arr)
+	item_name = "| ".join('%s' % string for string in item_name_arr)
+	item_count = "| ".join('%s' % string for string in item_count_arr)
+	item_price = "| ".join('%s' % string for string in item_price_arr)
     print item_count
     print item_price
 
@@ -345,7 +345,7 @@ def create_invoice(order_id):
 
     url_data['CheckMacValue'] = get_invoice_check_value(url_data)
     url_data['ItemName'] = urllib.quote_plus(item_name.encode("utf-8"))
-    url_data['ItemWord'] = urllib.quote_plus(u"件|件|件".encode("utf-8"))
+    url_data['ItemWord'] = urllib.quote_plus(u"件 |件 | 件".encode("utf-8"))
 
     print url_data
 
