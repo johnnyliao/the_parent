@@ -308,16 +308,17 @@ def create_invoice(order_id):
     item_name_arr = list()
     item_count_arr = list()
     item_price_arr = list()
+    item_amount_arr = list()
     for cart in payment_record[0].cart.all():
     	item_name_arr.append(cart.product.item_name)
     	item_count_arr.append(cart.amount)
-    	item_price_arr.append(cart.product.total_amount * cart.amount)
+        item_price_arr.append(cart.product.total_amount * cart.amount)
+    	item_amount_arr.append(cart.product.total_amount * cart.amount)
 
 	item_name = "| ".join('%s' % string for string in item_name_arr)
 	item_count = "| ".join('%s' % string for string in item_count_arr)
-	item_price = "| ".join('%s' % string for string in item_price_arr)
-    print item_count
-    print item_price
+    item_price = "| ".join('%s' % string for string in item_price_arr)
+	item_amount = "| ".join('%s' % string for string in item_amount_arr)
 
     url_data = {
         'TimeStamp': str(time.time()).split('.')[0],
@@ -339,7 +340,7 @@ def create_invoice(order_id):
         'SalesAmount': payment_record[0].total_amount,
         'ItemCount': item_count,
         'ItemPrice': item_price,
-        'ItemAmount': item_price,
+        'ItemAmount': item_amount,
         'InvType': "07",
         'ItemTaxType':"1|1|1",
     }

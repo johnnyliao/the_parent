@@ -145,9 +145,9 @@ class UserChangePasswordView(generics.GenericAPIView):
         if serializer.is_valid():
             old_password = serializer.data.get('old_password')
             new_password = serializer.data.get('new_password')
-            conform_password = serializer.data.get('conform_password')
+            confirm_password = serializer.data.get('confirm_password')
             if request.user.check_password(old_password):
-                if new_password == conform_password:
+                if new_password == confirm_password:
                     request.user.set_password(new_password)
                     return Response("OK", status=status.HTTP_200_OK)
                 else:
