@@ -453,6 +453,7 @@ class allpay_recevive(APIView):
 
     def post(self, request, format=None):
         post_data = request.POST.copy()
+        return Response("1|OK")
         CheckMacValue = post_data["CheckMacValue"]
         del post_data['CheckMacValue']
         HashKey = "5294y06JbISpM5x9"
@@ -472,7 +473,7 @@ class allpay_recevive(APIView):
         if CheckMacValue != check:
             print "\n\n\n\n"
             print "check mac value error"
-            return Response("OK")
+            return Response("0|check mac value error")
 
         else:
             print "check mac value OK"
