@@ -7,7 +7,7 @@ from rest_framework import serializers
 from rest_framework.renderers import JSONRenderer
 
 from account.models import User, UserVerify
-from account.serializers import FacebookConnectSerializer, UserInfoSerializer, UserLoginSerializer, UserRegisterSerializer
+from account.serializers import FacebookConnectSerializer, UserInfoSerializer, UserLoginSerializer, UserRegisterSerializer, UserChangePasswordSerializer
 
 import urllib, urllib2, json, simplejson
 
@@ -133,6 +133,30 @@ class UserRegisterView(generics.GenericAPIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class UserChangePasswordView(generics.GenericAPIView):
+    serializer_class = UserChangePasswordSerializer
+    permission_classes = (AllowAny, )
+
+    def post(self, request, format=None):
+        """
+        使用者修改密碼
+        """
+        serializer = self.serializer_class(data=request.DATA)
+        if serializer.is_valid():
+            old_password = serializer.data.get('old_password')
+            new_password = serializer.data.get('new_password')
+            conform_password = serializer.data.get('conform_password')
+            if request.user.check_password(old_password):
+                if new_password == conform_password:
+                    request.user.set_password(new_password)
+                    return Response("OK", status=status.HTTP_200_OK)
+                else:
+                    return Response("passord not match", status=status.HTTP_200_OK)
+            else:
+                return Response("old password wrong", status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 class FacebookConnectView(generics.GenericAPIView):
     serializer_class = FacebookConnectSerializer
     permission_classes = (AllowAny, )
@@ -207,3 +231,4 @@ def UserVerifyView(request):
             verify_valid = "over_date"
 
         return render_to_response("account/verify.html", locals(), context_instance=RequestContext(request))
+
