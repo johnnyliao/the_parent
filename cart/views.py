@@ -311,10 +311,10 @@ def create_invoice(order_id):
     for cart in payment_record[0].cart.all():
     	item_name_arr.append(cart.product.item_name)
     	item_count_arr.append(cart.amount)
-    	item_price_arr.append(cart.product.total_amount)
+    	item_price_arr.append(cart.product.total_amount * cart.amount)
 
 	item_name = "| ".join('%s' % string for string in item_name_arr)
-	item_count = "| ".join('%s' % string for string in item_count_arr)
+	item_count = "| ".join('%s' % for string in item_count_arr)
 	item_price = "| ".join('%s' % string for string in item_price_arr)
     print item_count
     print item_price
