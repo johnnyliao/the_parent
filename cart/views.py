@@ -337,15 +337,15 @@ def create_invoice(order_id):
         'CarruerNum': payment_invoice[0].carruer_num,
         'TaxType': "1",
         'SalesAmount': payment_record[0].total_amount,
-        'ItemCount': "1| 1| 1",
+        'ItemCount': "1|1|1",
         'ItemPrice': "2000| 2000| 1000",
-        'ItemAmount': payment_record[0].total_amount,
+        'ItemAmount': "1|1|1",
         'InvType': "07",
     }
 
     url_data['CheckMacValue'] = get_invoice_check_value(url_data)
     url_data['ItemName'] = urllib.quote_plus(item_name.encode("utf-8"))
-    url_data['ItemWord'] = urllib.quote_plus(u"件 |件 | 件".encode("utf-8"))
+    url_data['ItemWord'] = urllib.quote_plus(u"件|件|件".encode("utf-8"))
 
     print url_data
 
