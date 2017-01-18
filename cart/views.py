@@ -341,6 +341,7 @@ def create_invoice(order_id):
         'ItemPrice': "2000| 2000| 1000",
         'ItemAmount': "1|1|1",
         'InvType': "07",
+        'ItemTaxType':"1|1|1",
     }
 
     url_data['CheckMacValue'] = get_invoice_check_value(url_data)
