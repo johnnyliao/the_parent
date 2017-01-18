@@ -317,8 +317,9 @@ def create_invoice(order_id):
 
 	item_name = "| ".join('%s' % string for string in item_name_arr)
 	item_count = "| ".join('%s' % string for string in item_count_arr)
+    item_amount = "| ".join('%s' % string for string in item_amount_arr)
     item_price = "| ".join('%s' % string for string in item_price_arr)
-	item_amount = "| ".join('%s' % string for string in item_amount_arr)
+
 
     url_data = {
         'TimeStamp': str(time.time()).split('.')[0],
