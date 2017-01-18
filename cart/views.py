@@ -337,8 +337,8 @@ def create_invoice(order_id):
         'CarruerNum': payment_invoice[0].carruer_num,
         'TaxType': "1",
         'SalesAmount': payment_record[0].total_amount,
-        'ItemCount': urllib.quote_plus("1|1|1"),
-        'ItemPrice': urllib.quote_plus("2000|2000|1000"),
+        'ItemCount': urllib.quote_plus("1| 1| 1"),
+        'ItemPrice': urllib.quote_plus("2000| 2000| 1000"),
         'ItemAmount': payment_record[0].total_amount,
         'InvType': "07",
     }
