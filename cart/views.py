@@ -389,7 +389,6 @@ def create_invoice(order_id):
         payment_invoice[0].invoice_rtn_msg = rtn_data['RtnMsg']
         payment_invoice[0].save()
 
-        print rtn_data['RtnMsg'].decdoe("utf-8")
         return "create invoice success"
 
     print "create invoice fail"
