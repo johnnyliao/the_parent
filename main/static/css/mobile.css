@@ -1,0 +1,23 @@
+﻿@charset "utf-8";	
+/* 載入 */
+@media screen and (max-width:440px){
+.container .memberBox .sky-form .col-sm-6 section input{
+    width: 80%;
+    margin-left: 3%;
+}
+.container .memberBox .sky-form .select .form-control{
+    width: 80%;
+    margin-left: 3%;
+}
+.addressBox{
+    width:80%;
+    margin-left: 2%
+}
+#twzipcode, .addressText{
+    margin-left: 1%;
+}
+.container .memberBox .sky-form .brithday{
+    width: 80%;
+    margin-left: 3%;
+}
+}

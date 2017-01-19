@@ -1,0 +1,49 @@
+@charset "utf-8";	
+/* 載入 */
+* {
+	margin:0;
+	padding:0;
+	word-wrap:break-word; /*自動換行*/
+	word-break: normal;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+	
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code, del, dfn, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,  
+fieldset, form, label, legend,
+caption, tbody, tfoot, thead,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0 none;
+  font: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 { font-weight: bold; }
+strong, th { font-weight: bold; }
+em { font-style: normal; }
+ul, li, img { border: 0 none; list-style-type:none; }
+
+a {	text-decoration:none; /*無底線*/	outline:none; /*隱藏連結虛線*/ }
+a:hover, a:active { background-color:transparent; }
+
+img, input, select { vertical-align:middle; }	/*讓圖片跟文字垂直置中對齊*/
+input[type="radio"] { vertical-align: baseline; }
+input[type="checkbox"] { vertical-align: middle; }
+.ie7 input[type="checkbox"] { vertical-align: baseline; }
+.ie6 input { vertical-align: text-bottom; }
+
+label, input[type="button"], input[type="submit"], input[type="image"], button { cursor: pointer; }
+
+textarea { overflow-x: hidden; overflow-y: auto; }
+button { width: auto; overflow: visible; }
+.ie7 img { -ms-interpolation-mode: bicubic; }
+
+div, p, a, ul, li {	zoom: 1; }
+table, th, td {	zoom: 1; }

@@ -19,15 +19,26 @@ class UserInfoSerializer(serializers.ModelSerializer):
 
 class UserRegisterSerializer(serializers.Serializer):
 	username = serializers.CharField()
+	nickname = serializers.CharField()
 	password = serializers.CharField()
-	re_password = serializers.CharField()
+	city = serializers.CharField()
+	district = serializers.CharField()
 	phone_number = serializers.CharField()
 	year = serializers.DecimalField()
 	sex = serializers.CharField()
-	email = serializers.CharField()
 	address = serializers.CharField()
 	birthday = serializers.DateTimeField()
 
+class UserModifySerializer(serializers.Serializer):
+	username = serializers.CharField()
+	nickname = serializers.CharField()
+	city = serializers.CharField()
+	district = serializers.CharField()
+	phone_number = serializers.CharField()
+	year = serializers.DecimalField()
+	sex = serializers.CharField()
+	address = serializers.CharField()
+	birthday = serializers.DateTimeField()
 
 class UserLoginSerializer(serializers.Serializer):
     username = serializers.CharField()

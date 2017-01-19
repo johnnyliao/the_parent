@@ -453,7 +453,7 @@ class allpay_recevive(APIView):
 
     def post(self, request, format=None):
         post_data = request.POST.copy()
-        return Response("1|OK")
+
         CheckMacValue = post_data["CheckMacValue"]
         del post_data['CheckMacValue']
         HashKey = "5294y06JbISpM5x9"
@@ -482,12 +482,17 @@ class allpay_recevive(APIView):
             if record:
                 print "have record"
                 record = record[0]
-                record.is_checked = True
-                record.save()
+                if record.is_checked:
+                    return Response("0|record was checked")
+                else:
+                    record.is_checked = True
+                    record.save()
 
-                create_invoice(post_data['MerchantTradeNo'])
-                print "1|OK"
-                return Response("1|OK")
+                    create_invoice(post_data['MerchantTradeNo'])
+                    print "1|OK"
+                    return Response("1|OK")
+            else:
+                return Response("0|no record")
 
 def order_create(request):
     product_info = ProductInfo.objects.all()

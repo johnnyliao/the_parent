@@ -1,0 +1,165 @@
+{% load staticfiles %}
+
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>roduct Details | Unify - Responsive Website Template</title>
+<meta name="Keywords" content="那對夫妻">
+<meta name="Description" content="那對夫妻">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, maximum-scale=1.0" />
+<!--匯入JSJQ -->
+	<script src="{% static "js/jquery-1.8.2.min.js"%}"></script>
+    <script src="{% static "js/jquery.min.js"%}"></script>
+    <script src="{% static "js/modernizr.js"%}"></script>
+    <script src="{% static "js/headroom.js"%}"></script>
+    <script src="{% static "js/main.js"%}"></script>
+    <script src="{% static "js/jquery.menu-aim.js"%}"></script>
+<!--匯入css -->
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css"%}">
+    <link rel="shortcut icon" href="images/favicon.ico"/>
+<!--header隱藏css js-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.3/headroom.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.3/jQuery.headroom.js"></script>
+    <style type="text/css">
+		.headroom {position: fixed;top: 0;left: 0;right: 0;transition: all .2s ease-in-out;}
+		.headroom--unpinned {top: -100px;transform: translateY(-100%);}
+		.headroom--pinned {transform: translateY(0%);z-index: 1;}
+    }
+	</style>
+	<script type="text/javascript">
+      	$("document").ready(function(){
+     		$("#header").headroom();
+
+     		$( "#login" ).click(function() {
+			  	login();
+			});
+       	 });
+
+      	function login() {
+			var email = $("#email").val();
+			var password = $("#password").val();
+			$.ajax({
+			  type: 'POST',
+			  url: "/account/user_login/",
+			  data: JSON.stringify({"username":email, "password":password}),
+			  success: function(data) {
+			    if(!data["status"]) {
+			    	alert(data["msg"]);
+			    }
+			  },
+			  dataType: "json",
+			  contentType: "application/json"
+			});
+		}
+    </script>
+<!--header隱藏css js End-->
+</head>
+
+<body>
+	<header class="header">
+		<article class="topnav">
+			<div class="cd-dropdown-wrapper">
+				<a class="cd-dropdown-trigger top" href="#0">
+					<span></span>
+				</a>
+			</div>
+			<div class="logo">
+				<a href="/index.html">
+					<img class="top_logo" src="{% static "img/thecouple_webpage_logo.png"%}">
+				</a>
+			</div>
+		</article>
+	</header>
+	<!--nav start-->
+	<div class="cd-dropdown-wrapper">
+		<!--<a class="cd-dropdown-trigger" href="#0">Dropdown</a>-->
+		<nav class="cd-dropdown">
+			<h2>那對夫妻</h2>
+			<a href="#0" class="cd-close">Close</a>
+			<ul class="cd-dropdown-content">
+				<li>
+					<form class="cd-search" method="get">
+						<input type="search" placeholder="Search..." class="searchlnput_text">
+						<input class="searchlnput_bnt" name="" type="submit" value="">
+					</form>
+				</li>
+				<li>
+					<a href="#">登入</a>
+				</li>
+				<li>
+					<a href="#">註冊</a>
+				</li>
+				<li class="has-children">
+					<a href="#">會員專區</a>
+					<ul class="cd-secondary-dropdown is-hidden">
+						<li class="go-back"><a href="#0">Menu</a></li>
+						<li>
+							<a href="#">會員資料</a>
+						</li>
+						<li>
+							<a href="#">修改密碼</a>
+						</li>
+					</ul> <!-- .cd-secondary-dropdown -->
+				</li> <!-- .has-children -->
+			</ul> <!-- .cd-dropdown-content -->
+		</nav> <!-- .cd-dropdown -->
+	</div> <!-- .cd-dropdown-wrapper -->
+	<!--nav End-->
+
+	<div class="container">
+		<div class="memberBox">
+			<form id="sky-form4" class="log-reg-block sky-form" novalidate="novalidate">
+				<h2>會員登入</h2>
+				<div class="login-input reg-input">
+					<div class="row">
+						<div class="col-sm-6">
+							<section>
+								<label class="input">
+									<input type="email" id="email" placeholder="請輸入email帳號" class="form-control">
+								</label>
+							</section>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<section>
+								<label class="input">
+									<input type="password" id="password" placeholder="請輸入密碼6~12位數" class="form-control">
+								</label>
+							</section>
+						</div>
+					</div>
+					<div class="col-xs-6 rememberBox">
+						<label class="checkbox">
+							<input type="checkbox" name="checkbox">
+							<i></i>
+							記住帳號
+						</label>
+					</div>
+					<span class="divider">|</span>
+					<div class="col-xs-6 forgetBox">
+						<label class="checkbox">
+							<i></i>
+							<a href="#">忘記密碼？</a>
+						</label>
+					</div>
+				</div>
+				<button class="loginBtn" id="login">登入</button>
+				<div class="border-wings">
+					<span>or</span>
+				</div>
+				<div class="col-lg-6 margin-bottom-10">
+					<button type="button" class="btn-u btn-u-md btn-u-fb btn-block"><i class="fa fa-facebook"></i> Facebook Log In</button>
+				</div>
+				<span class="gotoReg">還沒有帳號？<a href="register.html">前往註冊</a></span>
+			</form>
+		</div>
+	</div>
+	<div class="under-nav">
+	    <a href="#" class="inner-nav  icon-basket"></a>
+	    <a aria-hidden="true" href="#" class="inner-nav icon-social-youtube"></a><a href="#" aria-hidden="true" class="inner-nav icon-feed"></a>
+	    <a href="#fucking1" aria-hidden="true" class="inner-nav icon-list"></a>
+	</div>
+</body>

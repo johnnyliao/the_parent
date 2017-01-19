@@ -1,0 +1,277 @@
+{% load staticfiles %}
+
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>roduct Details | Unify - Responsive Website Template</title>
+<meta name="Keywords" content="那對夫妻">
+<meta name="Description" content="那對夫妻">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, maximum-scale=1.0" />
+<!--匯入JSJQ -->
+	<script src="{% static "js/jquery-1.8.2.min.js"%}"></script>
+    <script src="{% static "js/jquery.min.js"%}"></script>
+    <script src="{% static "js/main.js"%}"></script>
+    <script src="{% static "js/modernizr.js"%}"></script>
+    <script src="{% static "js/headroom.js"%}"></script>
+    <script src="{% static "js/jquery.menu-aim.js"%}"></script>
+    <script src="{% static "js/jquery.twzipcode.js"%}"></script>
+	<script src="{% static "js/jquery.twzipcode.min.js"%}"></script><
+<!--匯入css -->
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css"%}">
+    <link rel="shortcut icon" href="images/favicon.ico"/>
+<!--header隱藏css js-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.3/headroom.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.3/jQuery.headroom.js"></script>
+    <style type="text/css">
+		.headroom {position: fixed;top: 0;left: 0;right: 0;transition: all .2s ease-in-out;}
+		.headroom--unpinned {top: -100px;transform: translateY(-100%);}
+		.headroom--pinned {transform: translateY(0%);z-index: 1;}
+    }
+	</style>
+	<script type="text/javascript">
+      	$("document").ready(function(){
+     		 $("#header").headroom();
+       	 });
+    </script>
+<!--header隱藏css js End-->
+
+<!--地址欄位使用 start-->
+	<script>
+		var fields = ["email", "password", "nickname", "sex", "birthday", "phone_number", "year", "address"]
+
+		var tw_fields = ["帳號", "密碼", "姓名", "性別", "生日", "手機", "年齡", "地址"]
+
+		$("document").ready(function(){
+			$("#twzipcode").twzipcode();
+			$( "#clean" ).click(function() {
+			  	for(item in fields) {
+			  		$("#" + fields[item]).val("");
+			  	}
+			});
+			$( "#send" ).click(function() {
+			  	for(item in fields) {
+			  		if(!$("#" + fields[item]).val()) {
+				  		alert("請輸入"+tw_fields[item]);
+				  		$("#"+fields[item]).focus();
+				  		return;
+			  		}
+			  		if($( "select[name*='county']" ).val() == "") {
+			  			alert("請輸入地址縣市");
+				  		$( "select[name*='county']" ).focus();
+				  		return;
+			  		}
+			  		if($( "select[name*='district']" ).val() == "") {
+			  			alert("請輸入地址鄉鎮市區");
+				  		$( "select[name*='district']" ).focus();
+				  		return;
+			  		}
+			  		if($( "checkbox[name*='checkbox']" ).val() == "") {
+			  			alert("請勾選我同意那對夫妻客戶服務條款及客戶隱私權政策");
+				  		$( "checkbox[name*='checkbox']" ).focus();
+				  		return;
+			  		}
+
+			  	}
+			  	var regExp = /^[^@^\s]+@[^\.@^\s]+(\.[^\.@^\s]+)+$/;
+				if (!$("#email").val().match(regExp)) {
+					$("#email").focus();
+					alert("帳號格式錯誤請使用email格式！");
+					return false;
+				}
+
+			  	var regExp = /^09[0-9]{8}$/;
+			  	if (!$("#phone_number").val().match(regExp)) {
+					$("#phone_number").focus();
+					alert("手機號碼格式錯誤！");
+					return false;
+				}
+				var username = $("#email").val();
+				var password = $("#password").val();
+				var nickname = $("#nickname").val();
+				var sex = $("#sex").val();
+				var phone_number = $("#phone_number").val();
+				var year = $("#year").val();
+				var city = $( "select[name*='county']" ).val();
+				var district = $( "select[name*='district']" ).val();
+				var address =  $("#address").val();
+
+				var birthday = $("#birthday").val() + "T00:00:00Z";
+				$.ajax({
+				  type: 'POST',
+				  url: "/account/user_register/",
+				  data: JSON.stringify({"username":username, "password":password, "nickname":nickname, "sex":sex, "phone_number":phone_number, "year":year, "address":address, "birthday":birthday, 'city':city, "district":district}),
+				  success: function(data) {
+				    if(!data["status"]) {
+				    	alert(data["msg"]);
+				    } else {
+				    	alert("註冊成功");
+				    }
+				  },
+				  dataType: "json",
+				  contentType: "application/json"
+				});
+			});
+
+		});
+
+
+	</script>
+<!--地址欄位使用 End-->
+</head>
+
+<body>
+	<header class="header">
+		<article class="topnav">
+			<div class="cd-dropdown-wrapper">
+				<a class="cd-dropdown-trigger top" href="#0">
+					<span></span>
+				</a>
+			</div>
+			<div class="logo">
+				<a href="/index.html">
+					<img class="top_logo" src="{% static "img/thecouple_webpage_logo.png"%}">
+				</a>
+			</div>
+		</article>
+	</header>
+	<!--nav start-->
+	<div class="cd-dropdown-wrapper">
+		<!--<a class="cd-dropdown-trigger" href="#0">Dropdown</a>-->
+		<nav class="cd-dropdown">
+			<h2>那對夫妻</h2>
+			<a href="#0" class="cd-close">Close</a>
+			<ul class="cd-dropdown-content">
+				<li>
+					<form class="cd-search" method="get">
+						<input type="search" placeholder="Search..." class="searchlnput_text">
+						<input class="searchlnput_bnt" name="" type="submit" value="">
+					</form>
+				</li>
+				<li>
+					<a href="/main/login/">登入</a>
+				</li>
+				<li>
+					<a href="/main/register/">註冊</a>
+				</li>
+				<li class="has-children">
+					<a href="#">會員專區</a>
+					<ul class="cd-secondary-dropdown is-hidden">
+						<li class="go-back"><a href="#0">Menu</a></li>
+						<li>
+							<a href="#">會員資料</a>
+						</li>
+						<li>
+							<a href="#">修改密碼</a>
+						</li>
+					</ul> <!-- .cd-secondary-dropdown -->
+				</li> <!-- .has-children -->
+			</ul> <!-- .cd-dropdown-content -->
+		</nav> <!-- .cd-dropdown -->
+	</div> <!-- .cd-dropdown-wrapper -->
+	<!--nav End-->
+
+	<div class="container">
+		<div class="memberBox">
+			<div id="sky-form4" class="log-reg-block sky-form" novalidate="novalidate">
+				<h2>會員註冊</h2>
+				<div class="login-input reg-input">
+					<div class="row">
+						<div class="col-sm-6">
+							<section>
+								<span class="inputW">帳號</span><label class="input">
+									<input type="email" id="email" placeholder="請輸入Email" class="form-control">
+								</label>
+							</section>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<section>
+								<span class="inputW">密碼</span><label class="input">
+									<input type="password" id="password" placeholder="請輸入密碼6~12位數" class="form-control">
+								</label>
+							</section>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<section>
+								<label class="input">
+									<span class="inputW">姓名</span><input type="text" id="nickname" placeholder="請輸入姓名" class="form-control">
+								</label>
+							</section>
+						</div>
+					</div>
+					<label class="select margin-bottom-15">
+						<span class="inputW">性別</span>
+						<select id="sex" class="form-control">
+							<option value="0" selected="" disabled="">請選擇性別</option>
+							<option value="man">男性</option>
+							<option value="women">女性</option>
+						</select>
+					</label>
+					<div class="row margin-bottom-10">
+						<div class="col-xs-3">
+							<span class="inputW">生日</span>
+							<input type="date" id="birthday" placeholder="請輸入生日" class="form-control brithday">
+						</div>
+					</div>
+					<!--<div class="row">
+						<div class="col-sm-6">
+							<section>
+								<label class="input">
+									<span class="inputW">電話</span><input type="text" name="phone" placeholder="請輸入電話" class="form-control">
+								</label>
+							</section>
+						</div>
+					</div>-->
+					<div class="row">
+						<div class="col-sm-6">
+							<section>
+								<label class="input">
+									<span class="inputW">手機</span>
+									<input type="text" id="phone_number" placeholder="請輸入手機" class="form-control" maxlength="10">
+								</label>
+							</section>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<section>
+								<label class="input">
+									<span class="inputW">年齡</span>
+									<input type="number" id="year" placeholder="請輸入年齡" class="form-control">
+								</label>
+							</section>
+						</div>
+					</div>
+					<div class="address">
+						<section>
+							<span class="inputW">地址</span>
+							<div class="addressBox">
+								<div id="twzipcode"></div>
+								<input type="text" id="address" placeholder="請輸入地址" class="addressText" />
+							</div>
+						</section>
+					</div>
+				</div>
+
+				<div class="ruleBox">
+					<label class="checkbox margin-bottom-10">
+						<input type="checkbox" name="checkbox" class="ruleCheckbox">
+						<div class="ruleText">我同意那對夫妻<a href="#">客戶服務條款</a>與<a href="#">客戶隱私權政策</a></div>
+					</label>
+				</div>
+				<button class="clearBtn" id="clean">清空</button>
+				<button class="submitBtn" id="send">送出</button>
+			</div>
+		</div>
+	</div>
+	<div class="under-nav">
+	    <a href="#" class="inner-nav  icon-basket"></a>
+	    <a aria-hidden="true" href="#" class="inner-nav icon-social-youtube"></a><a href="#" aria-hidden="true" class="inner-nav icon-feed"></a>
+	    <a href="#fucking1" aria-hidden="true" class="inner-nav icon-list"></a>
+	</div>
+</body>

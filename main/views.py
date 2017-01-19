@@ -27,10 +27,10 @@ from allauth.socialaccount.models import (SocialLogin, SocialToken, SocialAccoun
 from allauth.socialaccount.helpers import complete_social_login, render_authentication_error
 
 from django.contrib.auth import get_user_model
-
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 import settings, random
-
+from account.models import User
 from rest_framework.views import APIView
 from django.shortcuts import render_to_response, redirect, render, get_object_or_404
 from django.template import RequestContext
@@ -41,35 +41,15 @@ import pytz
 def home(request):
 	return render_to_response("main/page_coming_soon2.html", locals(), context_instance=RequestContext(request))
 
-def index(request):
-	return render_to_response("main/index.html", locals(), context_instance=RequestContext(request))
-
-def index1(request):
-	return render_to_response("main/index1.html", locals(), context_instance=RequestContext(request))
-
 def login(request):
-	return render_to_response("main/shop-ui-login.html", locals(), context_instance=RequestContext(request))
-
-def album(request):
-	return render_to_response("main/index_album.html", locals(), context_instance=RequestContext(request))
-
-def inner(request):
-	return render_to_response("main/index_inner.html", locals(), context_instance=RequestContext(request))
-
-def photo(request):
-	return render_to_response("main/index_photo.html", locals(), context_instance=RequestContext(request))
-
-def video(request):
-	return render_to_response("main/index_video.html", locals(), context_instance=RequestContext(request))
-
-def add_to_cart(request):
-	return render_to_response("main/shop-ui-add-to-cart.html", locals(), context_instance=RequestContext(request))
-
-def filter_list(request):
-	return render_to_response("main/shop-ui-filter-list.html", locals(), context_instance=RequestContext(request))
-
-def ui_inner(request):
-	return render_to_response("main/shop-ui-inner.html", locals(), context_instance=RequestContext(request))
+	return render_to_response("main/login.html", locals(), context_instance=RequestContext(request))
 
 def register(request):
-	return render_to_response("main/shop-ui-register.html", locals(), context_instance=RequestContext(request))
+	return render_to_response("main/register.html", locals(), context_instance=RequestContext(request))
+
+@login_required
+def member(request):
+	user = request.user
+	birthday = str(user.birthday).split(' ')[0]
+	return render_to_response("main/member.html", locals(), context_instance=RequestContext(request))
+

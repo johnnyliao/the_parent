@@ -1,0 +1,230 @@
+{% load staticfiles %}
+
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>roduct Details | Unify - Responsive Website Template</title>
+<meta name="Keywords" content="那對夫妻">
+<meta name="Description" content="那對夫妻">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, maximum-scale=1.0" />
+<!--匯入JSJQ -->
+	<script src="{% static "js/jquery-1.8.2.min.js"%}"></script>
+    <script src="{% static "js/jquery.min.js"%}"></script>
+    <script src="{% static "js/main.js"%}"></script>
+    <script src="{% static "js/modernizr.js"%}"></script>
+    <script src="{% static "js/headroom.js"%}"></script>
+    <script src="{% static "js/jquery.twzipcode.js"%}"></script>
+	<script src="{% static "js/jquery.twzipcode.min.js"%}"></script>
+	<script src="{% static "js/jquery.menu-aim.js"%}"></script>
+<!--匯入css -->
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css"%}">
+    <link rel="shortcut icon" href="images/favicon.ico"/>
+<!--header隱藏css js-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.3/headroom.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.3/jQuery.headroom.js"></script>
+    <style type="text/css">
+		.headroom {position: fixed;top: 0;left: 0;right: 0;transition: all .2s ease-in-out;}
+		.headroom--unpinned {top: -100px;transform: translateY(-100%);}
+		.headroom--pinned {transform: translateY(0%);z-index: 1;}
+    }
+	</style>
+	<script type="text/javascript">
+		var fields = ["nickname", "sex", "birthday", "phone_number", "year", "address"]
+
+		var tw_fields = ["姓名", "性別", "生日", "手機", "年齡", "地址"]
+
+      	$("document").ready(function(){
+     		 $("#header").headroom();
+
+     		 $( "#save" ).click(function() {
+			  	for(item in fields) {
+			  		if(!$("#" + fields[item]).val()) {
+				  		alert("請輸入"+tw_fields[item]);
+				  		$("#"+fields[item]).focus();
+				  		return;
+			  		}
+			  		if($( "select[name*='county']" ).val() == "") {
+			  			alert("請輸入地址縣市");
+				  		$( "select[name*='county']" ).focus();
+				  		return;
+			  		}
+			  		if($( "select[name*='district']" ).val() == "") {
+			  			alert("請輸入地址鄉鎮市區");
+				  		$( "select[name*='district']" ).focus();
+				  		return;
+			  		}
+			  	}
+
+			  	var regExp = /^09[0-9]{8}$/;
+			  	if (!$("#phone_number").val().match(regExp)) {
+					$("#phone_number").focus();
+					alert("手機號碼格式錯誤！");
+					return false;
+				}
+				var username = "{{user.username}}";
+				var nickname = $("#nickname").val();
+				var sex = $("#sex").val();
+				var phone_number = $("#phone_number").val();
+				var year = $("#year").val();
+				var city = $( "select[name*='county']" ).val();
+				var district = $( "select[name*='district']" ).val();
+				var address =  $("#address").val();
+
+				var birthday = $("#birthday").val() + "T00:00:00Z";
+				$.ajax({
+				  type: 'POST',
+				  url: "/account/user_modify/",
+				  data: JSON.stringify({"username":username, "nickname":nickname, "sex":sex, "phone_number":phone_number, "year":year, "address":address, "birthday":birthday, 'city':city, "district":district}),
+				  success: function(data) {
+				    if(!data["status"]) {
+				    	alert(data["msg"]);
+				    } else {
+				    	alert("儲存成功");
+				    	location.reload();
+				    }
+				  },
+				  dataType: "json",
+				  contentType: "application/json"
+				});
+			});
+       	 });
+    </script>
+<!--header隱藏css js End-->
+
+<!--地址欄位使用 start-->
+	<script>
+		$("document").ready(function(){
+			$("#twzipcode").twzipcode({"countySel":"{{user.city}}", "districtSel":"{{user.district}}"});
+		});
+	</script>
+<!--地址欄位使用 End-->
+</head>
+
+<body>
+	<header class="header">
+		<article class="topnav">
+			<div class="cd-dropdown-wrapper">
+				<a class="cd-dropdown-trigger top" href="#0">
+					<span></span>
+				</a>
+			</div>
+			<div class="logo">
+				<a href="/index.html">
+					<img class="top_logo" src="{% static "img/thecouple_webpage_logo.png"%}">
+				</a>
+			</div>
+		</article>
+	</header>
+	<!--nav start-->
+	<div class="cd-dropdown-wrapper">
+		<!--<a class="cd-dropdown-trigger" href="#0">Dropdown</a>-->
+		<nav class="cd-dropdown">
+			<h2>那對夫妻</h2>
+			<a href="#0" class="cd-close">Close</a>
+			<ul class="cd-dropdown-content">
+				<li>
+					<form class="cd-search" method="get">
+						<input type="search" placeholder="Search..." class="searchlnput_text">
+						<input class="searchlnput_bnt" name="" type="submit" value="">
+					</form>
+				</li>
+				<li>
+					<a href="/main/login">登入</a>
+				</li>
+				<li>
+					<a href="/main/register">註冊</a>
+				</li>
+				<li class="has-children">
+					<a href="#">會員專區</a>
+					<ul class="cd-secondary-dropdown is-hidden">
+						<li class="go-back"><a href="#0">Menu</a></li>
+						<li>
+							<a href="#">會員資料</a>
+						</li>
+						<li>
+							<a href="#">修改密碼</a>
+						</li>
+					</ul> <!-- .cd-secondary-dropdown -->
+				</li> <!-- .has-children -->
+			</ul> <!-- .cd-dropdown-content -->
+		</nav> <!-- .cd-dropdown -->
+	</div> <!-- .cd-dropdown-wrapper -->
+	<!--nav End-->
+
+	<div class="container">
+		<div class="memberBox">
+			<div id="sky-form4" class="log-reg-block sky-form" novalidate="novalidate">
+				<h2>會員資料</h2>
+
+				<div class="login-input reg-input">
+					<div class="row">
+						<div class="col-sm-6">
+							<section>
+								<label class="input">
+									<span class="inputW">姓名</span><input type="text" id="nickname" placeholder="請輸入姓名" class="form-control" value="{{user.nickname}}">
+								</label>
+							</section>
+						</div>
+					</div>
+					<label class="select margin-bottom-15">
+						<span class="inputW">性別</span><select id="sex" class="form-control">
+							<option value="0" selected="" disabled="">請選擇性別</option>
+							<option {% if user.sex == "man" %}selected{% endif %} value="man">男性</option>
+							<option {% if user.sex == "women" %}selected{% endif %} value="women">女性</option>
+						</select>
+					</label>
+					<div class="row margin-bottom-10">
+						<div class="col-xs-3">
+							<span class="inputW">生日</span>
+							<input type="date" id="birthday" placeholder="請輸入生日" class="form-control brithday" value="{{birthday}}">
+						</div>
+					</div>
+					<!--<div class="row">
+						<div class="col-sm-6">
+							<section>
+								<label class="input">
+									<span class="inputW">電話</span><input type="text" name="phone" placeholder="請輸入電話" class="form-control">
+								</label>
+							</section>
+						</div>
+					</div>-->
+					<div class="row">
+						<div class="col-sm-6">
+							<section>
+								<label class="input">
+									<span class="inputW">手機</span><input type="text" id="phone_number" placeholder="請輸入手機" class="form-control" value="{{user.phone_number}}">
+								</label>
+							</section>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<section>
+								<label class="input">
+									<span class="inputW">年齡</span><input type="number" id="year" placeholder="請輸入年齡" class="form-control" value="{{user.year}}">
+								</label>
+							</section>
+						</div>
+					</div>
+					<div class="address">
+						<span class="inputW">地址</span>
+						<div class="addressBox">
+							<div id="twzipcode"></div>
+							<input type="text" id="address" placeholder="請輸入地址" class="addressText" value="{{user.address}}">
+						</div>
+					</div>
+				</div>
+
+				<button class="memberSave" id="save">儲存</button>
+			</div>
+		</div>
+	</div>
+	<div class="under-nav">
+	    <a href="#" class="inner-nav  icon-basket"></a>
+	    <a aria-hidden="true" href="#" class="inner-nav icon-social-youtube"></a><a href="#" aria-hidden="true" class="inner-nav icon-feed"></a>
+	    <a href="#fucking1" aria-hidden="true" class="inner-nav icon-list"></a>
+	</div>
+
+</body>
