@@ -278,7 +278,7 @@ def UserVerifyView(request):
             msg = u"認證失敗！認證碼已過期，請重新認證！"
             return render_to_response("main/verSuccess.html", locals(), context_instance=RequestContext(request))
 
-        return render_to_response("main/verSuccess.html", locals(), context_instance=RequestContext(request))
+        return render_to_response("main/VerSuccess.html", locals(), context_instance=RequestContext(request))
 
 def ReSendVerifyView(request):
     #serializer_class = PasswordResetSerializer
