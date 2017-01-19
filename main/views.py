@@ -30,13 +30,14 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 import settings, random
-from account.models import User
+from account.models import User, UserVerify
 from rest_framework.views import APIView
 from django.shortcuts import render_to_response, redirect, render, get_object_or_404
 from django.template import RequestContext
 from datetime import datetime, timedelta
 from django.db.models import Q
 import pytz
+
 
 def home(request):
 	return render_to_response("main/page_coming_soon2.html", locals(), context_instance=RequestContext(request))
@@ -52,4 +53,22 @@ def member(request):
 	user = request.user
 	birthday = str(user.birthday).split(' ')[0]
 	return render_to_response("main/member.html", locals(), context_instance=RequestContext(request))
+
+@login_required
+def register_success(request):
+	user = request.user
+	if user.is_verified():
+		return render_to_response("main/member.html", locals(), context_instance=RequestContext(request))
+	else:
+		try:
+			UserVerify.objects.get(user=request.user)
+			print "user verify resend_verify_code"
+			request.user.verify.resend_verify_code()
+
+			return render_to_response("main/regSuccess.html", locals(), context_instance=RequestContext(request))
+		except:
+			user_verify = UserVerify.objects.create(user=request.user)
+			print "user verify create"
+		print "veiw end!!!!"
+		return render_to_response("main/regSuccess.html", locals(), context_instance=RequestContext(request))
 

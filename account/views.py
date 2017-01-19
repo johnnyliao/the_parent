@@ -32,13 +32,25 @@ from django.contrib.auth import get_user_model
 
 from django.contrib.auth import authenticate, login, logout
 import settings, random
-
+from django.contrib import auth
 from rest_framework.views import APIView
 from django.shortcuts import render_to_response, redirect, render, get_object_or_404
 from django.template import RequestContext
 from datetime import datetime, timedelta
 from django.db.models import Q
 import pytz
+
+class UserLogoutView(generics.GenericAPIView):
+    #serializer_class = UserLoginSerializer
+    permission_classes = (AllowAny, )
+
+    def get(self, request, format=None):
+        """
+        登出會員
+        """
+        auth.logout(request)
+        return Response({"status":True}, status=status.HTTP_200_OK)
+
 
 class UserLoginView(generics.GenericAPIView):
     serializer_class = UserLoginSerializer

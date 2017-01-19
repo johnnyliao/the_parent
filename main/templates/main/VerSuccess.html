@@ -1,5 +1,3 @@
-{% load staticfiles %}
-
 <!doctype html>
 <html>
 <head>
@@ -9,16 +7,15 @@
 <meta name="Description" content="那對夫妻">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, maximum-scale=1.0" />
-<!--匯入JSJQ -->
-	<script src="{% static "js/jquery-1.8.2.min.js"%}"></script>
-    <script src="{% static "js/jquery.min.js"%}"></script>
-    <script src="{% static "js/modernizr.js"%}"></script>
-    <script src="{% static "js/headroom.js"%}"></script>
-    <script src="{% static "js/main.js"%}"></script>
-    <script src="{% static "js/jquery.menu-aim.js"%}"></script>
+<!--匯入JSJQ --> 
+	<script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/public.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/modernizr.js"></script>
+    <script src="js/headroom.js"></script>
 <!--匯入css -->
-    <link rel="stylesheet" type="text/css" href="{% static "css/style.css"%}">
-    <link rel="shortcut icon" href="images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 <!--header隱藏css js-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.3/headroom.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.3/jQuery.headroom.js"></script>
@@ -30,32 +27,8 @@
 	</style>
 	<script type="text/javascript">
       	$("document").ready(function(){
-     		$("#header").headroom();
-
-     		$( "#login" ).click(function() {
-			  	login();
-			});
-       	 });
-
-      	function login() {
-			var email = $("#email").val();
-			var password = $("#password").val();
-			$.ajax({
-			  type: 'POST',
-			  url: "/account/user_login/",
-			  data: JSON.stringify({"username":email, "password":password}),
-			  success: function(data) {
-			    if(!data["status"]) {
-			    	alert(data["msg"]);
-			    } else {
-			    	alert("登入成功！");
-			    	window.location.assign('/main/register_success/');
-			    }
-			  },
-			  dataType: "json",
-			  contentType: "application/json"
-			});
-		}
+     		 $("#header").headroom(); 
+       	 });  
     </script>
 <!--header隱藏css js End-->
 </head>
@@ -70,7 +43,7 @@
 			</div>
 			<div class="logo">
 				<a href="/index.html">
-					<img class="top_logo" src="{% static "img/thecouple_webpage_logo.png"%}">
+					<img class="top_logo" src="img/thecouple_webpage_logo.png">
 				</a>
 			</div>
 		</article>
@@ -113,56 +86,21 @@
 
 	<div class="container">
 		<div class="memberBox">
-			<div id="sky-form4" class="log-reg-block sky-form" novalidate="novalidate">
-				<h2>會員登入</h2>
+			<form id="sky-form4" class="log-reg-block sky-form" novalidate="novalidate">
 				<div class="login-input reg-input">
-					<div class="row">
-						<div class="col-sm-6">
-							<section>
-								<label class="input">
-									<input type="email" id="email" placeholder="請輸入email帳號" class="form-control">
-								</label>
-							</section>
-						</div>
+					<div class="enabledSuc">
+						<i class="fa fa-check" aria-hidden="true"></i>
+						<h3>帳戶啟用成功</h3>
 					</div>
-					<div class="row">
-						<div class="col-sm-6">
-							<section>
-								<label class="input">
-									<input type="password" id="password" placeholder="請輸入密碼6~12位數" class="form-control">
-								</label>
-							</section>
-						</div>
-					</div>
-					<div class="col-xs-6 rememberBox">
-						<label class="checkbox">
-							<input type="checkbox" name="checkbox">
-							<i></i>
-							記住帳號
-						</label>
-					</div>
-					<span class="divider">|</span>
-					<div class="col-xs-6 forgetBox">
-						<label class="checkbox">
-							<i></i>
-							<a href="#">忘記密碼？</a>
-						</label>
-					</div>
+					<a class="goHome" type="submit" href="index.html"><i class="fa fa-chevron-right" aria-hidden="true"></i>前往首頁</a>
 				</div>
-				<button class="loginBtn" id="login">登入</button>
-				<div class="border-wings">
-					<span>or</span>
-				</div>
-				<div class="col-lg-6 margin-bottom-10">
-					<button type="button" class="btn-u btn-u-md btn-u-fb btn-block"><i class="fa fa-facebook"></i> Facebook Log In</button>
-				</div>
-				<span class="gotoReg">還沒有帳號？<a href="register.html">前往註冊</a></span>
-			</div>
+			</form>
 		</div>
 	</div>
 	<div class="under-nav">
 	    <a href="#" class="inner-nav  icon-basket"></a>
 	    <a aria-hidden="true" href="#" class="inner-nav icon-social-youtube"></a><a href="#" aria-hidden="true" class="inner-nav icon-feed"></a>
-	    <a href="#fucking1" aria-hidden="true" class="inner-nav icon-list"></a>
+	    <a href="#" aria-hidden="true" class="inner-nav icon-list"></a>
 	</div>
+	<script src="js/jquery.menu-aim.js"></script>    
 </body>

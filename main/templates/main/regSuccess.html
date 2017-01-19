@@ -1,5 +1,4 @@
 {% load staticfiles %}
-
 <!doctype html>
 <html>
 <head>
@@ -12,13 +11,12 @@
 <!--匯入JSJQ -->
 	<script src="{% static "js/jquery-1.8.2.min.js"%}"></script>
     <script src="{% static "js/jquery.min.js"%}"></script>
+    <script src="{% static "js/main.js"%}"></script>
     <script src="{% static "js/modernizr.js"%}"></script>
     <script src="{% static "js/headroom.js"%}"></script>
-    <script src="{% static "js/main.js"%}"></script>
     <script src="{% static "js/jquery.menu-aim.js"%}"></script>
 <!--匯入css -->
     <link rel="stylesheet" type="text/css" href="{% static "css/style.css"%}">
-    <link rel="shortcut icon" href="images/favicon.ico"/>
 <!--header隱藏css js-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.3/headroom.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.3/jQuery.headroom.js"></script>
@@ -26,38 +24,59 @@
 		.headroom {position: fixed;top: 0;left: 0;right: 0;transition: all .2s ease-in-out;}
 		.headroom--unpinned {top: -100px;transform: translateY(-100%);}
 		.headroom--pinned {transform: translateY(0%);z-index: 1;}
+		.sky-form .reg-input .reSend{
+		    height: 45px;
+		    padding: 6px 20px;
+		    background: #65b6d0;
+		    border: 0px;
+		    color: #FFF;
+		    text-align: center;
+		    font-size: 14px;
+		    width: 200px;
+		 }
+		.sky-form .reg-input #setTime2{
+		    display: none;
+		    height: 45px;
+		    padding: 6px 20px;
+		    background: #e8e8e8;
+		    border: 0px;
+		    color: #FFF;
+		    text-align: center;
+		    font-size: 14px;
+		    width: 200px;
+		 }
     }
 	</style>
 	<script type="text/javascript">
       	$("document").ready(function(){
-     		$("#header").headroom();
-
-     		$( "#login" ).click(function() {
-			  	login();
-			});
+     		 $("#header").headroom();
        	 });
-
-      	function login() {
-			var email = $("#email").val();
-			var password = $("#password").val();
-			$.ajax({
-			  type: 'POST',
-			  url: "/account/user_login/",
-			  data: JSON.stringify({"username":email, "password":password}),
-			  success: function(data) {
-			    if(!data["status"]) {
-			    	alert(data["msg"]);
-			    } else {
-			    	alert("登入成功！");
-			    	window.location.assign('/main/register_success/');
-			    }
-			  },
-			  dataType: "json",
-			  contentType: "application/json"
-			});
-		}
     </script>
 <!--header隱藏css js End-->
+<!--倒數計時-->
+	<script type="text/javascript">
+		var countdownnumber=599;
+		var countdownid,x;
+		function initial(){
+			x=document.getElementById("countdown");
+			x.innerHTML=countdownnumber;
+			countdownnumber--;
+			countdownid=window.setInterval(countdownfunc,1000);
+			$("#setTime1").hide();
+			$("#setTime2").show();
+		}
+		function countdownfunc(){
+			x.innerHTML=countdownnumber;
+			if (countdownnumber==0){
+				countdownnumber=600;
+				clearInterval(countdownid);
+				$("#setTime2").hide();
+				$("#setTime1").show();
+			 }
+			countdownnumber--;
+		}
+
+	</script>
 </head>
 
 <body>
@@ -113,56 +132,24 @@
 
 	<div class="container">
 		<div class="memberBox">
-			<div id="sky-form4" class="log-reg-block sky-form" novalidate="novalidate">
-				<h2>會員登入</h2>
+			<form id="sky-form4" class="log-reg-block sky-form" novalidate="novalidate">
+				<h2>註冊成功</h2>
 				<div class="login-input reg-input">
-					<div class="row">
-						<div class="col-sm-6">
-							<section>
-								<label class="input">
-									<input type="email" id="email" placeholder="請輸入email帳號" class="form-control">
-								</label>
-							</section>
-						</div>
+					<div class="regSuccess">
+						<i class="fa fa-info-circle fa-3x" aria-hidden="true"></i>
+						<h3>恭喜您註冊成功，已發送驗證信至您所填寫的Email信箱</h3>
+						<p>請點擊信件中提供連結，完成帳號啟用！</p>
 					</div>
-					<div class="row">
-						<div class="col-sm-6">
-							<section>
-								<label class="input">
-									<input type="password" id="password" placeholder="請輸入密碼6~12位數" class="form-control">
-								</label>
-							</section>
-						</div>
-					</div>
-					<div class="col-xs-6 rememberBox">
-						<label class="checkbox">
-							<input type="checkbox" name="checkbox">
-							<i></i>
-							記住帳號
-						</label>
-					</div>
-					<span class="divider">|</span>
-					<div class="col-xs-6 forgetBox">
-						<label class="checkbox">
-							<i></i>
-							<a href="#">忘記密碼？</a>
-						</label>
-					</div>
+					<button class="reSend" type="button" id="setTime1" onclick="initial();"><i class="fa fa-refresh" aria-hidden="true"></i>重新發送驗證信</button>
+					<button class="reSend" id="setTime2" type="submit" disabled="disabled"><span id="countdown"></span>秒後，重發驗證信</button>
 				</div>
-				<button class="loginBtn" id="login">登入</button>
-				<div class="border-wings">
-					<span>or</span>
-				</div>
-				<div class="col-lg-6 margin-bottom-10">
-					<button type="button" class="btn-u btn-u-md btn-u-fb btn-block"><i class="fa fa-facebook"></i> Facebook Log In</button>
-				</div>
-				<span class="gotoReg">還沒有帳號？<a href="register.html">前往註冊</a></span>
-			</div>
+			</form>
 		</div>
 	</div>
 	<div class="under-nav">
 	    <a href="#" class="inner-nav  icon-basket"></a>
 	    <a aria-hidden="true" href="#" class="inner-nav icon-social-youtube"></a><a href="#" aria-hidden="true" class="inner-nav icon-feed"></a>
-	    <a href="#fucking1" aria-hidden="true" class="inner-nav icon-list"></a>
+	    <a href="#" aria-hidden="true" class="inner-nav icon-list"></a>
 	</div>
+
 </body>

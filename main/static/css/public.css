@@ -223,17 +223,43 @@ input[name="zipcode"]{
 }
 .sky-form .reg-input .regSuccess h3{
     display: inline-block;
-    width: 80%;
-    text-align: left;
+    text-align: center;
     margin-left: 1%;
     color: #0aa737;
     margin-bottom: 15px;
+    vertical-align: bottom;
+    line-height: 24px;
 }
 .sky-form .reg-input .regSuccess p{
     line-height: 20px;
     font-size: 14px;
     color: #666666;
-} 
+}
+ .sky-form .reg-input .reSend{
+    height: 45px;
+    padding: 6px 20px;
+    background: #65b6d0;
+    border: 0px;
+    color: #FFF;
+    text-align: center;
+    font-size: 14px;
+    width: 200px;
+ }
+.sky-form .reg-input #setTime2{
+    display: none;
+    height: 45px;
+    padding: 6px 20px;
+    background: #e8e8e8;
+    border: 0px;
+    color: #FFF;
+    text-align: center;
+    font-size: 14px;
+    width: 200px;
+ }
+
+.sky-form .reg-input .reSend .fa-refresh{
+    margin-right: 5%;
+}
 /*會員登入*/
 .loginBtn{
     background: #E18293;
@@ -300,3 +326,34 @@ input[name="zipcode"]{
 .gotoReg{
     line-height: 40px;
 }
+/*帳戶啟用成功*/
+.fa-check{
+    color: #0aa737;
+}
+.sky-form .reg-input .enabledSuc{
+    margin-bottom: 15px;
+    margin-top: 20px;
+}
+.sky-form .reg-input .enabledSuc h3{
+    display: inline-block;
+    text-align: center;
+    margin-left: 1%;
+    color: #0aa737;
+    margin-bottom: 15px;
+    line-height: 24px;
+}
+.sky-form .reg-input .goHome{
+    height: 45px;
+    padding: 6px 20px;
+    background: #E18293;
+    border: 0px;
+    color: #FFF;
+    text-align: center;
+    font-size: 14px;
+    min-width: 200px;
+    display: inline-block;
+    line-height: 35px;
+}
+.sky-form .reg-input .goHome .fa-chevron-right{
+    margin-right: 1%;
+ }

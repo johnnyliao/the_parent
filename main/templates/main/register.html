@@ -67,7 +67,7 @@
 				  		$( "select[name*='district']" ).focus();
 				  		return;
 			  		}
-			  		if($("#checkbox").prop("checked")) {
+			  		if(!$("#checkbox").prop("checked")) {
 			  			alert("請勾選我同意那對夫妻客戶服務條款及客戶隱私權政策");
 				  		$( "checkbox[name*='checkbox']" ).focus();
 				  		return;
@@ -107,6 +107,7 @@
 				    	alert(data["msg"]);
 				    } else {
 				    	alert("註冊成功");
+				    	window.location.assign('/main/register_success/');
 				    }
 				  },
 				  dataType: "json",
