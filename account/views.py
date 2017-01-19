@@ -8,7 +8,7 @@ from rest_framework.renderers import JSONRenderer
 from django.contrib.auth.decorators import login_required
 from account.models import User, UserVerify
 from account.serializers import FacebookConnectSerializer, UserInfoSerializer, UserLoginSerializer, UserRegisterSerializer, UserChangePasswordSerializer, UserModifySerializer
-
+from django.http import HttpResponse
 import urllib, urllib2, json, simplejson
 
 from django.core.exceptions import ObjectDoesNotExist
@@ -251,7 +251,6 @@ class UserVerifyCheckView(APIView):
 
         return Response(request.user.is_verified())
 
-@login_required
 def UserVerifyView(request):
     #serializer_class = PasswordResetSerializer
     #permission_classes = (IsAuthenticated, )
@@ -263,12 +262,35 @@ def UserVerifyView(request):
     """
     #import pdb;pdb.set_trace()
     code = request.GET.get('code')
-    if request.user and code:
+    account = request.GET.get('account')
+    if account and code:
         try:
-            verify_valid = request.user.verify.is_verify_code_valid(code)
+            user = User.objects.get(username=account)
+        except:
+            msg = u"查無使用者帳號！"
+            return render_to_response("main/verSuccess.html", locals(), context_instance=RequestContext(request))
+
+        try:
+            verify_valid = user.verify.is_verify_code_valid(code)
             print verify_valid
         except:
             verify_valid = "over_date"
+            msg = u"認證失敗！認證碼已過期，請重新認證！"
+            return render_to_response("main/verSuccess.html", locals(), context_instance=RequestContext(request))
 
-        return render_to_response("account/verify.html", locals(), context_instance=RequestContext(request))
+        return render_to_response("main/verSuccess.html", locals(), context_instance=RequestContext(request))
+
+def ReSendVerifyView(request):
+    #serializer_class = PasswordResetSerializer
+    #permission_classes = (IsAuthenticated, )
+
+    #def get(self, request, format=None):
+    """
+    重發認證使用者email
+    """
+    #import pdb;pdb.set_trace()
+    request.user.verify.resend_verify_code()
+
+    return HttpResponse("ok", status=status.HTTP_200_OK)
+
 

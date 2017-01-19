@@ -111,31 +111,32 @@ class UserVerify(models.Model):
 	def send_verification_code(self):
 		verify_code = self.generate_verification_code()
 		print "email verify_code is "+ verify_code
-		try:
-			smtp_obj = smtplib.SMTP('smtp.gmail.com', 587)
-			smtp_obj.starttls()
-			smtp_obj.login("web@supermedia.cool","ttshow321")
+		#try:
+		smtp_obj = smtplib.SMTP('smtp.gmail.com', 587)
+		smtp_obj.starttls()
+		smtp_obj.login("web@supermedia.cool","ttshow321")
+		print 222222222
+		#import pdb;pdb.set_trace()
+		domain_name = Site.objects.get_current().domain
+		print 3333333333
+		html_text = u"請點以下連結進行那對夫妻網站帳號email認證<br/><br/><a href="+domain_name.encode('utf-8')+"account/user_verify/?account="+self.user.username+"&code="+str(verify_code)+u">認證email信箱</a><br/><br/>請於10分鐘內進行認證，時間過後此次認證將失效，謝謝"
+		print 4444444
+		msg = MIMEText(html_text,_subtype='html',_charset='utf8')
+		msg['Subject'] = '那對夫妻帳號認證'
+		me = '超人氣娛樂<web@supermedia.cool>'
+		msg['From'] = me
+		msg['To'] = self.user.email
+		print 5555555
+		smtp_obj.sendmail(me,self.user.email,msg.as_string())
+		print 6666666
+		print "send verify email "
 
-			domain_name = Site.objects.get_current().domain
+		smtp_obj.close()
 
-			html_text = "請點以下連結進行那對夫妻網站帳號email認證<br/><br/><a href="+domain_name.encode('utf-8')+"account/user_verify/?code="+str(verify_code)+">認證email信箱</a><br/><br/>請於10分鐘內進行認證，時間過後此次認證將失效，謝謝"
-
-			msg = MIMEText(html_text,_subtype='html',_charset='utf8')
-			msg['Subject'] = '那對夫妻帳號認證'
-			me = '超人氣娛樂<web@supermedia.cool>'
-			msg['From'] = me
-			msg['To'] = self.user.email
-
-			smtp_obj.sendmail(me,self.user.email,msg.as_string())
-
-			print "send verify email "
-
-			smtp_obj.close()
-
-			self.is_send = True
-		except Exception, e:
-			self.is_send = False
-			self.errors = e.args
+		self.is_send = True
+		#except Exception, e:
+		#	self.is_send = False
+		#	self.errors = e.args
 
 		self.save()
 		print "end"

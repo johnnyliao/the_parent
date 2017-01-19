@@ -24,7 +24,27 @@
 		.headroom {position: fixed;top: 0;left: 0;right: 0;transition: all .2s ease-in-out;}
 		.headroom--unpinned {top: -100px;transform: translateY(-100%);}
 		.headroom--pinned {transform: translateY(0%);z-index: 1;}
-
+		.sky-form .reg-input .reSend{
+		    height: 45px;
+		    padding: 6px 20px;
+		    background: #65b6d0;
+		    border: 0px;
+		    color: #FFF;
+		    text-align: center;
+		    font-size: 14px;
+		    width: 200px;
+		 }
+		.sky-form .reg-input #setTime2{
+		    display: none;
+		    height: 45px;
+		    padding: 6px 20px;
+		    background: #e8e8e8;
+		    border: 0px;
+		    color: #FFF;
+		    text-align: center;
+		    font-size: 14px;
+		    width: 200px;
+		 }
     }
 	</style>
 	<script type="text/javascript">
@@ -35,6 +55,21 @@
 <!--header隱藏css js End-->
 <!--倒數計時-->
 	<script type="text/javascript">
+		$("document").ready(function(){
+     		$( "#setTime1" ).click(function() {
+     			$.ajax({
+				  type: 'GET',
+				  url: "/account/re_send_verify/",
+				  success: function(data) {
+				    if(data == "ok") {
+				    	alert("重發認證信成功！");
+				    } else{
+				    	alert("重發認證信失敗！");
+				    }
+				  }
+				});
+     		});
+     	});
 		var countdownnumber=599;
 		var countdownid,x;
 		function initial(){
@@ -112,7 +147,7 @@
 
 	<div class="container">
 		<div class="memberBox">
-			<form id="sky-form4" class="log-reg-block sky-form" novalidate="novalidate">
+			<div id="sky-form4" class="log-reg-block sky-form" novalidate="novalidate">
 				<h2>註冊成功</h2>
 				<div class="login-input reg-input">
 					<div class="regSuccess">
@@ -121,9 +156,9 @@
 						<p>請點擊信件中提供連結，完成帳號啟用！</p>
 					</div>
 					<button class="reSend" type="button" id="setTime1" onclick="initial();"><i class="fa fa-refresh" aria-hidden="true"></i>重新發送驗證信</button>
-					<button class="reSend" id="setTime2" type="submit" disabled="disabled"><span id="countdown"></span>秒後，重發驗證信</button>
+					<button class="reSend" id="setTime2" disabled="disabled"><span id="countdown"></span>秒後，重發驗證信</button>
 				</div>
-			</form>
+			</div>
 		</div>
 	</div>
 	<div class="under-nav">

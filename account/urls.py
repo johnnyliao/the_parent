@@ -14,6 +14,7 @@ urlpatterns = format_suffix_patterns(patterns('',
 	(r'^', include('allauth.urls')),
 	#url("^user_verify/$", UserVerifyView.as_view()),
 	url("^user_verify/$", UserVerifyView),
+	url("^re_send_verify/$", ReSendVerifyView),
 	url("^check_user_verify/$", UserVerifyCheckView.as_view()),
 	url("^user_change_password/$", UserChangePasswordView.as_view()),
 ))
