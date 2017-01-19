@@ -5,9 +5,9 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly, IsAuthenticated
 from rest_framework import serializers
 from rest_framework.renderers import JSONRenderer
-
+from django.contrib.auth.decorators import login_required
 from account.models import User, UserVerify
-from account.serializers import FacebookConnectSerializer, UserInfoSerializer, UserLoginSerializer, UserRegisterSerializer, UserChangePasswordSerializer
+from account.serializers import FacebookConnectSerializer, UserInfoSerializer, UserLoginSerializer, UserRegisterSerializer, UserChangePasswordSerializer, UserModifySerializer
 
 import urllib, urllib2, json, simplejson
 
@@ -53,26 +53,20 @@ class UserLoginView(generics.GenericAPIView):
             username = serializer.data.get('username')
             password = serializer.data.get('password')
             try:
-                try:
-                    User.objects.get(username=username)
-                    print username
-                    print password
-                    user = authenticate(username=username, password=password)
-                    if user is not None:
-                        if user.is_active:
-                            login(request, user)
-                    else:
-                        return Response("401")
-                        return Response("Bad username or password.", status=status.HTTP_401_UNAUTHORIZED)
-                except User.DoesNotExist:
-                    user = User.objects.create_user(username=username, password=password, email=username)
-                    user = authenticate(username=username, password=password)
-                    login(request, user)
+                User.objects.get(username=username)
+                print username
+                print password
+                user = authenticate(username=username, password=password)
+                if user is not None:
+                    if user.is_active:
+                        login(request, user)
+                else:
+                    return Response({"status":False, "msg":u"錯誤的帳號或密碼"}, status=status.HTTP_200_OK)
+            except User.DoesNotExist:
+                return Response({"status":False, "msg":u"使用者帳號錯誤"}, status=status.HTTP_200_OK)
 
-                serializer = UserInfoSerializer(request.user, context={'request': request})
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
-            except requests.RequestException as e:
-                return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
+            serializer = UserInfoSerializer(request.user, context={'request': request})
+            return Response({"status":True}, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -88,49 +82,82 @@ class UserRegisterView(generics.GenericAPIView):
         if serializer.is_valid():
 
             username = serializer.data.get('username')
+            nickname = serializer.data.get('nickname')
             password = serializer.data.get('password')
-            re_password = serializer.data.get('re_password')
+            #re_password = serializer.data.get('re_password')
             phone_number = serializer.data.get('phone_number')
             year = serializer.data.get('year')
             sex = serializer.data.get('sex')
-            email = serializer.data.get('email')
             address = serializer.data.get('address')
             birthday = serializer.data.get('birthday')
-            if password != re_password:
-                return Response("password wrong", status=status.HTTP_200_OK)
+            city = serializer.data.get('city')
+            district = serializer.data.get('district')
             try:
-                try:
-                    user = User.objects.get(username=username)
-                    user.password = password
-                    user.phone_number = phone_number
-                    user.year = year
-                    user.sex = sex
-                    user.email = email
-                    user.address = address
-                    user.birthday = birthday
-                    user.save()
-                except User.DoesNotExist:
-                    user = User(
-                            username=username,
-                            password=password,
-                            phone_number=phone_number,
-                            year=year,
-                            sex=sex,
-                            email=email,
-                            address=address,
-                            birthday=birthday
-                        )
-                    user.save()
-                    user.backend = 'mezzanine.core.auth_backends.MezzanineBackend'
-                    login(request, user)
-                    UserVerify.objects.create(user=user)
-
-                serializer = UserInfoSerializer(user)
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
-            except requests.RequestException as e:
-                return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
+                user = User.objects.get(username=username)
+                return Response({"status":False, "msg":u"此帳號以註冊過！"}, status=status.HTTP_200_OK)
+            except User.DoesNotExist:
+                user = User.objects.create(
+                        username=username,
+                        password=password,
+                        nickname=nickname,
+                        phone_number=phone_number,
+                        year=year,
+                        sex=sex,
+                        email=username,
+                        address=address,
+                        birthday=birthday,
+                        city=city,
+                        district=district,
+                    )
+                user.set_password(password)
+                user.save()
+                user.backend = 'mezzanine.core.auth_backends.MezzanineBackend'
+                login(request, user)
+                #UserVerify.objects.create(user=user)
+            serializer = UserInfoSerializer(user)
+            return Response({"status":True}, status=status.HTTP_201_CREATED)
         else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"status":False, "msg":serializer.errors}, status=status.HTTP_200_OK)
+
+class UserModifyView(generics.GenericAPIView):
+    serializer_class = UserModifySerializer
+    permission_classes = (AllowAny, )
+
+    def post(self, request, format=None):
+        """
+        註冊網站帳號或修改帳號資訊
+        """
+        serializer = self.serializer_class(data=request.DATA)
+        if serializer.is_valid():
+
+            username = serializer.data.get('username')
+            nickname = serializer.data.get('nickname')
+            phone_number = serializer.data.get('phone_number')
+            year = serializer.data.get('year')
+            sex = serializer.data.get('sex')
+            address = serializer.data.get('address')
+            birthday = serializer.data.get('birthday')
+            city = serializer.data.get('city')
+            district = serializer.data.get('district')
+            try:
+                user = User.objects.get(username=username)
+                user.nickname = nickname
+                user.phone_number = phone_number
+                user.year = year
+                user.sex = sex
+                user.city = city
+                user.district = district
+                user.email = username
+                user.address = address
+                user.birthday = birthday
+                user.save()
+            except User.DoesNotExist:
+                return Response({"status":False, "msg":u"使用者帳號錯誤"}, status=status.HTTP_200_OK)
+
+            serializer = UserInfoSerializer(user)
+            return Response({"status":True}, status=status.HTTP_201_CREATED)
+        else:
+            return Response({"status":False, "msg":serializer.errors}, status=status.HTTP_200_OK)
 
 
 class UserChangePasswordView(generics.GenericAPIView):
@@ -212,6 +239,7 @@ class UserVerifyCheckView(APIView):
 
         return Response(request.user.is_verified())
 
+@login_required
 def UserVerifyView(request):
     #serializer_class = PasswordResetSerializer
     #permission_classes = (IsAuthenticated, )
