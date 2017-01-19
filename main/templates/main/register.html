@@ -67,7 +67,7 @@
 				  		$( "select[name*='district']" ).focus();
 				  		return;
 			  		}
-			  		if($( "checkbox[name*='checkbox']" ).val() == "") {
+			  		if($("#checkbox").prop("checked")) {
 			  			alert("請勾選我同意那對夫妻客戶服務條款及客戶隱私權政策");
 				  		$( "checkbox[name*='checkbox']" ).focus();
 				  		return;
@@ -260,7 +260,7 @@
 
 				<div class="ruleBox">
 					<label class="checkbox margin-bottom-10">
-						<input type="checkbox" name="checkbox" class="ruleCheckbox">
+						<input type="checkbox" name="checkbox" id="checkbox" class="ruleCheckbox">
 						<div class="ruleText">我同意那對夫妻<a href="#">客戶服務條款</a>與<a href="#">客戶隱私權政策</a></div>
 					</label>
 				</div>
