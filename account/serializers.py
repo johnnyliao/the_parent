@@ -48,3 +48,6 @@ class UserChangePasswordSerializer(serializers.Serializer):
 	old_password = serializers.CharField()
 	new_password = serializers.CharField()
 	confirm_password = serializers.CharField()
+
+class UserForgetPasswordSerializer(serializers.Serializer):
+	username = serializers.CharField()

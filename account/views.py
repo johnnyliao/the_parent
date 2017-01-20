@@ -7,14 +7,15 @@ from rest_framework import serializers
 from rest_framework.renderers import JSONRenderer
 from django.contrib.auth.decorators import login_required
 from account.models import User, UserVerify
-from account.serializers import FacebookConnectSerializer, UserInfoSerializer, UserLoginSerializer, UserRegisterSerializer, UserChangePasswordSerializer, UserModifySerializer
+from account.serializers import FacebookConnectSerializer, UserInfoSerializer, UserLoginSerializer, UserRegisterSerializer, UserChangePasswordSerializer, UserModifySerializer, UserForgetPasswordSerializer
 from django.http import HttpResponse
 import urllib, urllib2, json, simplejson
 
+from django.contrib.sites.models import Site
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils import timezone
 from django.middleware.csrf import get_token
-
+from account import sms
 import requests
 from allauth.socialaccount import providers
 from allauth.socialaccount.providers.facebook.provider import FacebookProvider
@@ -22,7 +23,8 @@ from allauth.socialaccount.providers.facebook.views import fb_complete_login
 
 from allauth.socialaccount.providers.twitter.provider import TwitterProvider
 from allauth.socialaccount.providers.twitter.views import TwitterAPI
-
+import smtplib
+from email.mime.text import MIMEText
 from allauth.socialaccount.providers.weibo.provider import WeiboProvider
 
 from allauth.socialaccount.models import (SocialLogin, SocialToken, SocialAccount)
@@ -65,6 +67,7 @@ class UserLoginView(generics.GenericAPIView):
             username = serializer.data.get('username')
             password = serializer.data.get('password')
             try:
+                #import pdb;pdb.set_trace()
                 User.objects.get(username=username)
                 print username
                 print password
@@ -187,14 +190,58 @@ class UserChangePasswordView(generics.GenericAPIView):
             confirm_password = serializer.data.get('confirm_password')
             if request.user.check_password(old_password):
                 if new_password == confirm_password:
-                    request.user.set_password(new_password)
-                    return Response("OK", status=status.HTTP_200_OK)
+                    request.user.set_password(confirm_password)
+                    request.user.save()
+                    return Response({"status":True}, status=status.HTTP_200_OK)
                 else:
-                    return Response("passord not match", status=status.HTTP_200_OK)
+                    return Response({"status":False, "msg":u"密碼輸入不相同！"}, status=status.HTTP_200_OK)
             else:
-                return Response("old password wrong", status=status.HTTP_200_OK)
+                return Response({"status":False, "msg":u"密碼錯誤！"}, status=status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class UserForgetPasswordView(generics.GenericAPIView):
+    serializer_class = UserForgetPasswordSerializer
+    permission_classes = (AllowAny, )
+
+    def post(self, request, format=None):
+        """
+        使用者忘記密碼
+        """
+        serializer = self.serializer_class(data=request.DATA)
+        if serializer.is_valid():
+            username = serializer.data.get('username')
+            try:
+                user = User.objects.get(username=username)
+                verify_code = sms.generate_verify_code()
+                new_password = "nicokim" + str(verify_code)
+                user.set_password(new_password)
+                user.save()
+                try:
+                    smtp_obj = smtplib.SMTP('smtp.gmail.com', 587)
+                    smtp_obj.starttls()
+                    smtp_obj.login("web@supermedia.cool","ttshow321")
+                    domain_name = Site.objects.get_current().domain
+                    html_text = u"請使用新密碼登入後再修改密碼！<br/><br/>新密碼為"+new_password+u"<br/><br/<a href="+domain_name.encode('utf-8')+u"main/login/>登入那對夫妻</a><br/><br/>"
+                    msg = MIMEText(html_text,_subtype='html',_charset='utf8')
+                    msg['Subject'] = '那對夫妻忘記密碼'
+                    me = '超人氣娛樂<web@supermedia.cool>'
+                    msg['From'] = me
+                    msg['To'] = user.email
+                    smtp_obj.sendmail(me,user.email,msg.as_string())
+                    print "send verify email "
+
+                    smtp_obj.close()
+
+                    return Response({"status":True}, status=status.HTTP_200_OK)
+
+                except Exception, e:
+                    self.is_send = False
+                    self.errors = e.args
+                    return Response({"status":False, "msg":u"寄送忘記密碼失敗！"}, status=status.HTTP_200_OK)
+
+            except:
+                return Response({"status":False, "msg":u"錯誤的使用者名稱！"}, status=status.HTTP_200_OK)
 
 class FacebookConnectView(generics.GenericAPIView):
     serializer_class = FacebookConnectSerializer
@@ -268,7 +315,7 @@ def UserVerifyView(request):
             user = User.objects.get(username=account)
         except:
             msg = u"查無使用者帳號！"
-            return render_to_response("main/verSuccess.html", locals(), context_instance=RequestContext(request))
+            return render_to_response("main/VerFailure.html", locals(), context_instance=RequestContext(request))
 
         try:
             verify_valid = user.verify.is_verify_code_valid(code)
@@ -276,10 +323,10 @@ def UserVerifyView(request):
         except:
             verify_valid = "over_date"
             msg = u"認證失敗！認證碼已過期，請重新認證！"
-            return render_to_response("main/verSuccess.html", locals(), context_instance=RequestContext(request))
-
+            return render_to_response("main/VerFailure.html", locals(), context_instance=RequestContext(request))
         return render_to_response("main/VerSuccess.html", locals(), context_instance=RequestContext(request))
 
+@login_required
 def ReSendVerifyView(request):
     #serializer_class = PasswordResetSerializer
     #permission_classes = (IsAuthenticated, )

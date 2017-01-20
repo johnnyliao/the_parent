@@ -37,7 +37,7 @@ from django.template import RequestContext
 from datetime import datetime, timedelta
 from django.db.models import Q
 import pytz
-
+from allauth.socialaccount.models import *
 
 def home(request):
 	return render_to_response("main/page_coming_soon2.html", locals(), context_instance=RequestContext(request))
@@ -48,6 +48,13 @@ def login(request):
 def register(request):
 	return render_to_response("main/register.html", locals(), context_instance=RequestContext(request))
 
+def forget_password(request):
+	if is_social_account(request.user):
+		social_account = "yes"
+	else:
+		social_account = "no"
+	return render_to_response("main/forgetPassword.html", locals(), context_instance=RequestContext(request))
+
 @login_required
 def member(request):
 	user = request.user
@@ -55,9 +62,20 @@ def member(request):
 	return render_to_response("main/member.html", locals(), context_instance=RequestContext(request))
 
 @login_required
+def change_password(request):
+	if is_social_account(request.user):
+		social_account = "yes"
+	else:
+		social_account = "no"
+
+	return render_to_response("main/changePassword.html", locals(), context_instance=RequestContext(request))
+
+@login_required
 def register_success(request):
 	user = request.user
 	if user.is_verified():
+		user = request.user
+		birthday = str(user.birthday).split(' ')[0]
 		return render_to_response("main/member.html", locals(), context_instance=RequestContext(request))
 	else:
 		try:
@@ -72,3 +90,10 @@ def register_success(request):
 		print "veiw end!!!!"
 		return render_to_response("main/regSuccess.html", locals(), context_instance=RequestContext(request))
 
+
+def is_social_account(user):
+	try:
+		user = SocialAccount.objects.get(user_id=user.id)
+		return True
+	except:
+		return False

@@ -176,6 +176,7 @@ input[name="zipcode"]{
     display: inline-block;
     text-align: left;
     margin-left: 2%;
+    vertical-align: middle;
 }
 /*會員註冊*/
 .ruleBox{
@@ -260,6 +261,7 @@ input[name="zipcode"]{
 .sky-form .reg-input .reSend .fa-refresh{
     margin-right: 5%;
 }
+
 /*會員登入*/
 .loginBtn{
     background: #E18293;
@@ -356,4 +358,45 @@ input[name="zipcode"]{
 }
 .sky-form .reg-input .goHome .fa-chevron-right{
     margin-right: 1%;
+ }
+ /*驗證失敗*/
+.sky-form .reg-input .enabledSuc p{
+    line-height: 20px;
+    font-size: 14px;
+    color: #666666;
+}
+.sky-form .reg-input .enabledSuc .failure{
+    color:#a70a0a;
+}
+.sky-form .reg-input .enabledSuc .fa-times-circle-o{
+    color:#a70a0a;
+    display: inline-block;
+    vertical-align: bottom;
+}
+ /*修改密碼*/
+ .sky-form .changePasswordBox .changeBtn{
+    width: 35%;
+    background: #E18293;
+    border: 0px;
+    font-size: 14px;
+    padding: 6px;
+    height: 45px;
+    display: inline-block;
+ }
+ .container .memberBox .sky-form .changePasswordBox .col-sm-6 section input{
+    width:80%;
+ }
+
+ /*修改密碼*/
+ .sky-form .forgetPassCon .changeBtn{
+    width: 35%;
+    background: #E18293;
+    border: 0px;
+    font-size: 14px;
+    padding: 6px;
+    height: 45px;
+    display: inline-block;
+ }
+ .container .memberBox .sky-form .forgetPassCon .col-sm-6 section input{
+    width:80%;
  }

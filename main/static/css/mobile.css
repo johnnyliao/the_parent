@@ -1,5 +1,10 @@
 ﻿@charset "utf-8";	
 /* 載入 */
+@media screen and (max-width:640px){
+.forgetPassCon .inputW,.changePasswordBox .inputW{
+	min-width:50px;
+}
+}
 @media screen and (max-width:440px){
 .container .memberBox .sky-form .col-sm-6 section input{
     width: 80%;
@@ -9,6 +14,9 @@
     width: 80%;
     margin-left: 3%;
 }
+.container .memberBox .sky-form .changePasswordBox .col-sm-6 section input{
+    width:70%;
+ }
 .addressBox{
     width:80%;
     margin-left: 2%

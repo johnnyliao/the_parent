@@ -96,7 +96,7 @@
 <!--地址欄位使用 start-->
 	<script>
 		$("document").ready(function(){
-			$("#twzipcode").twzipcode({"countySel":"{{user.city}}", "districtSel":"{{user.district}}"});
+			$("#twzipcode").twzipcode({"countySel":"{{user.city|default:""}}", "districtSel":"{{user.district|default:""}}"});
 		});
 	</script>
 <!--地址欄位使用 End-->
@@ -131,20 +131,20 @@
 					</form>
 				</li>
 				<li>
-					<a href="/main/login">登入</a>
+					<a href="/main/login/">登入</a>
 				</li>
 				<li>
-					<a href="/main/register">註冊</a>
+					<a href="/main/register/">註冊</a>
 				</li>
 				<li class="has-children">
 					<a href="#">會員專區</a>
 					<ul class="cd-secondary-dropdown is-hidden">
 						<li class="go-back"><a href="#0">Menu</a></li>
 						<li>
-							<a href="#">會員資料</a>
+							<a href="/main/member/">會員資料</a>
 						</li>
 						<li>
-							<a href="#">修改密碼</a>
+							<a href="/main/change_password/">修改密碼</a>
 						</li>
 					</ul> <!-- .cd-secondary-dropdown -->
 				</li> <!-- .has-children -->
@@ -163,7 +163,7 @@
 						<div class="col-sm-6">
 							<section>
 								<label class="input">
-									<span class="inputW">姓名</span><input type="text" id="nickname" placeholder="請輸入姓名" class="form-control" value="{{user.nickname}}">
+									<span class="inputW">姓名</span><input type="text" id="nickname" placeholder="請輸入姓名" class="form-control" value="{{user.nickname|default:""}}">
 								</label>
 							</section>
 						</div>
@@ -194,7 +194,7 @@
 						<div class="col-sm-6">
 							<section>
 								<label class="input">
-									<span class="inputW">手機</span><input type="text" id="phone_number" placeholder="請輸入手機" class="form-control" value="{{user.phone_number}}">
+									<span class="inputW">手機</span><input type="text" id="phone_number" placeholder="請輸入手機" class="form-control" value="{{user.phone_number | default:""}}">
 								</label>
 							</section>
 						</div>
@@ -203,7 +203,7 @@
 						<div class="col-sm-6">
 							<section>
 								<label class="input">
-									<span class="inputW">年齡</span><input type="number" id="year" placeholder="請輸入年齡" class="form-control" value="{{user.year}}">
+									<span class="inputW">年齡</span><input type="number" id="year" placeholder="請輸入年齡" class="form-control" value="{{user.year|default:""}}">
 								</label>
 							</section>
 						</div>
@@ -212,7 +212,7 @@
 						<span class="inputW">地址</span>
 						<div class="addressBox">
 							<div id="twzipcode"></div>
-							<input type="text" id="address" placeholder="請輸入地址" class="addressText" value="{{user.address}}">
+							<input type="text" id="address" placeholder="請輸入地址" class="addressText" value="{{user.address|default:""}}">
 						</div>
 					</div>
 				</div>
