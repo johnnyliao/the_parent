@@ -309,16 +309,19 @@ def create_invoice(order_id):
     item_count_arr = list()
     item_price_arr = list()
     item_amount_arr = list()
+    item_word_arr = list()
     for cart in payment_record[0].cart.all():
     	item_name_arr.append(cart.product.item_name)
     	item_count_arr.append(cart.amount)
         item_price_arr.append(cart.product.total_amount)
-    	item_amount_arr.append(cart.product.total_amount * cart.amount)
+        item_amount_arr.append(cart.product.total_amount * cart.amount)
+    	item_word_arr.append(cart.product.unit)
 
 	item_name = "| ".join('%s' % string for string in item_name_arr)
 	item_count = "| ".join('%s' % string for string in item_count_arr)
     item_amount = "| ".join('%s' % string for string in item_amount_arr)
     item_price = "| ".join('%s' % string for string in item_price_arr)
+    item_word = "| ".join('%s' % string for string in item_word_arr)
 
 
     url_data = {
@@ -348,7 +351,7 @@ def create_invoice(order_id):
 
     url_data['CheckMacValue'] = get_invoice_check_value(url_data)
     url_data['ItemName'] = urllib.quote_plus(item_name.encode("utf-8"))
-    url_data['ItemWord'] = urllib.quote_plus(u"件|件|件".encode("utf-8"))
+    url_data['ItemWord'] = urllib.quote_plus(item_word.encode("utf-8"))
 
     print url_data
 
