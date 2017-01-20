@@ -14,5 +14,5 @@ urlpatterns = patterns(".views",
    	url('^cart_check_out/', cart_check_out.as_view()),
    	url('^receive_order/', receive_order),
    	url('^check_out_cart/', check_out_cart),
-      url("^allpay_recevive/$", allpay_recevive.as_view()),
+      url("^allpay_recevive/$", allpay_recevive),
 )

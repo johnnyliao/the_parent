@@ -11,7 +11,7 @@ import json, requests, urllib, urllib2, re, base64, os, datetime
 import urlparse, time, cookielib, hashlib, time
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
-
+from django.http import HttpResponse
 class add_to_cart(APIView):
 	#serializer_class = PasswordResetSerializer
 	permission_classes = (IsAuthenticated, )
@@ -450,53 +450,54 @@ def get_check_value(url_data):
     #import pdb;pdb.set_trace()
     return check
 
-class allpay_recevive(APIView):
+def allpay_recevive(request):
     #serializer_class = PasswordResetSerializer
-    permission_classes = (AllowAny, )
+    #permission_classes = (AllowAny, )
 
-    def post(self, request, format=None):
-        return Response("1|OK")
-        post_data = request.POST.copy()
+    #def post(self, request, format=None):
+    print request.POST
+    return HttpResponse("1|OK")
+    post_data = request.POST.copy()
 
-        CheckMacValue = post_data["CheckMacValue"]
-        del post_data['CheckMacValue']
-        HashKey = "5294y06JbISpM5x9"
-        HashIV = "v77hoKGq4kWxNNIS"
-        #check_value = 'HashKey=' + hashkey
+    CheckMacValue = post_data["CheckMacValue"]
+    del post_data['CheckMacValue']
+    HashKey = "5294y06JbISpM5x9"
+    HashIV = "v77hoKGq4kWxNNIS"
+    #check_value = 'HashKey=' + hashkey
 
-        check_value = ""
-        check_value = "HashKey=5294y06JbISpM5x9"
-        for k in sorted(post_data):
-            check_value += "&" + k + "=" +post_data[k]
-        check_value += '&HashIV=' + HashIV
-        check_value = urllib.quote_plus(check_value.encode("utf-8"))
-        print check_value
-        m = hashlib.md5(check_value.lower())
-        md5 = m.hexdigest()
-        check =  md5.upper()
-        if CheckMacValue != check:
-            print "\n\n\n\n"
-            print "check mac value error"
-            return Response("0|check mac value error")
+    check_value = ""
+    check_value = "HashKey=5294y06JbISpM5x9"
+    for k in sorted(post_data):
+        check_value += "&" + k + "=" +post_data[k]
+    check_value += '&HashIV=' + HashIV
+    check_value = urllib.quote_plus(check_value.encode("utf-8"))
+    print check_value
+    m = hashlib.md5(check_value.lower())
+    md5 = m.hexdigest()
+    check =  md5.upper()
+    if CheckMacValue != check:
+        print "\n\n\n\n"
+        print "check mac value error"
+        return Response("0|check mac value error")
 
-        else:
-            print "check mac value OK"
-            #try:
-            record = PayMentRecord.objects.filter(order_id=post_data['MerchantTradeNo'])
-            if record:
-                print "have record"
-                record = record[0]
-                if record.is_checked:
-                    return Response("0|record was checked")
-                else:
-                    record.is_checked = True
-                    record.save()
-
-                    create_invoice(post_data['MerchantTradeNo'])
-                    print "1|OK"
-                    return Response("1|OK")
+    else:
+        print "check mac value OK"
+        #try:
+        record = PayMentRecord.objects.filter(order_id=post_data['MerchantTradeNo'])
+        if record:
+            print "have record"
+            record = record[0]
+            if record.is_checked:
+                return Response("0|record was checked")
             else:
-                return Response("0|no record")
+                record.is_checked = True
+                record.save()
+
+                create_invoice(post_data['MerchantTradeNo'])
+                print "1|OK"
+                return Response("1|OK")
+        else:
+            return Response("0|no record")
 
 def order_create(request):
     product_info = ProductInfo.objects.all()
