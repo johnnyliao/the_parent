@@ -18,7 +18,7 @@ class ProductImageAdmin(SalmonellaMixin, admin.ModelAdmin):
 
 
 class ProductInfoAdmin(SalmonellaMixin, admin.ModelAdmin):
-    list_display = ["item_name", "total_amount", "trade_desc", "date"]
+    list_display = ["item_name", "total_amount", "trade_desc", "date", "unit"]
     salmonella_fields  = ["photo"]
 
 class PayMentInvoiceAdmin(SalmonellaMixin, admin.ModelAdmin):
