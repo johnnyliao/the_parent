@@ -44,6 +44,11 @@ DONATION_CHOICES = (
     ("2", _(u'不捐贈')),
 )
 
+BRAND_CHOICES = (
+    ("yamahome", _(u'山本富也')),
+    ("flower", _(u'花花')),
+)
+
 class UserInvoice(models.Model):
     customer_identifier = models.CharField(_(u"統一編號"), max_length=8, null=True, blank=True)
     customer_name = models.CharField(_(u"客戶名稱"), max_length=20, null=True, blank=True)
@@ -71,7 +76,6 @@ class ProductInfo(models.Model):
     video_link = models.CharField(_(u"商品影片連結"), max_length=50)
     size = models.CharField(_(u"size"), max_length=10, null=True, blank=True)
     unit = models.CharField(_(u"單位"), max_length=10)
-
     class Meta:
         verbose_name = _(u"商品資訊")
         verbose_name_plural = _(u"商品列表")
