@@ -76,6 +76,7 @@ class ProductInfo(models.Model):
     video_link = models.CharField(_(u"商品影片連結"), max_length=50)
     size = models.CharField(_(u"size"), max_length=10, null=True, blank=True)
     unit = models.CharField(_(u"單位"), max_length=10)
+    brand = models.CharField(_(u"品牌"), choices=BRAND_CHOICES, max_length=10)
     class Meta:
         verbose_name = _(u"商品資訊")
         verbose_name_plural = _(u"商品列表")
