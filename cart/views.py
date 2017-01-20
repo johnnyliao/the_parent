@@ -453,12 +453,9 @@ def get_check_value(url_data):
 class allpay_recevive(APIView):
     #serializer_class = PasswordResetSerializer
     permission_classes = (AllowAny, )
-    def get(self, request, format=None):
-        print request.POST
-        print request.GET
-        return Response("1|OK")
 
     def post(self, request, format=None):
+        return Response("1|OK")
         post_data = request.POST.copy()
 
         CheckMacValue = post_data["CheckMacValue"]
