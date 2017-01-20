@@ -43,7 +43,7 @@ from django.db.models import Q
 import pytz
 
 class UserLogoutView(generics.GenericAPIView):
-    #serializer_class = UserLoginSerializer
+    serializer_class = UserLoginSerializer
     permission_classes = (AllowAny, )
 
     def get(self, request, format=None):
