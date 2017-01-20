@@ -12,7 +12,7 @@ from django.utils import timezone
 from django.contrib.contenttypes import generic
 
 from django.core.exceptions import ObjectDoesNotExist
-
+from mezzanine.core.fields import RichTextField
 from django.contrib.sites.models import Site
 import urlparse, settings
 
@@ -63,13 +63,14 @@ class ProductImage(models.Model):
 
 class ProductInfo(models.Model):
     total_amount = models.IntegerField(_(u"金額"))
-    trade_desc = models.CharField(_(u"商品描述"), max_length=30)
+    trade_desc = RichTextField(_(u"商品描述"), max_length=2000)
     item_name = models.CharField(_(u"商品名稱"), max_length=30)
     date = models.DateTimeField(_(u"建立時間"), auto_now=True)
     photo = models.ManyToManyField("ProductImage", verbose_name=_(u"商品照片"), related_name='product_images')
     #photo = models.CharField(_(u"商品圖片"), max_length=50)
     video_link = models.CharField(_(u"商品影片連結"), max_length=50)
     size = models.CharField(_(u"size"), max_length=10, null=True, blank=True)
+    unit = models.CharField(_(u"單位"), max_length=10)
 
     class Meta:
         verbose_name = _(u"商品資訊")
