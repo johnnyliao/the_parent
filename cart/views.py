@@ -455,8 +455,7 @@ def allpay_recevive(request):
     #permission_classes = (AllowAny, )
 
     #def post(self, request, format=None):
-    print request.POST
-    return HttpResponse("1|OK")
+
     post_data = request.POST.copy()
 
     CheckMacValue = post_data["CheckMacValue"]
@@ -478,7 +477,7 @@ def allpay_recevive(request):
     if CheckMacValue != check:
         print "\n\n\n\n"
         print "check mac value error"
-        return Response("0|check mac value error")
+        return HttpResponse("0|check mac value error")
 
     else:
         print "check mac value OK"
@@ -488,16 +487,16 @@ def allpay_recevive(request):
             print "have record"
             record = record[0]
             if record.is_checked:
-                return Response("0|record was checked")
+                return HttpResponse("0|record was checked")
             else:
                 record.is_checked = True
                 record.save()
 
                 create_invoice(post_data['MerchantTradeNo'])
                 print "1|OK"
-                return Response("1|OK")
+                return HttpResponse("1|OK")
         else:
-            return Response("0|no record")
+            return HttpResponse("0|no record")
 
 def order_create(request):
     product_info = ProductInfo.objects.all()
