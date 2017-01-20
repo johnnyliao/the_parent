@@ -76,8 +76,6 @@ class ProductInfo(models.Model):
         verbose_name = _(u"商品資訊")
         verbose_name_plural = _(u"商品列表")
 
-    def __unicode__(self):
-        return self.item_name
 
 class CartItem(models.Model):
     user = models.ForeignKey(User, related_name='user_cart_item')
