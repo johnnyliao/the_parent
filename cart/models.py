@@ -56,7 +56,9 @@ class UserInvoice(models.Model):
     customer_phone = models.CharField(_(u"客戶手機號碼"), max_length=20, null=True, blank=True)
     customer_email = models.CharField(_(u"客戶電子信箱"), max_length=80, null=True, blank=True)
     user = models.OneToOneField(User,  related_name='user_invoice')
-
+    class Meta:
+        verbose_name = _(u"使用者發票資訊")
+        verbose_name_plural = _(u"使用者發票列表")
 
 class ProductImage(models.Model):
     photo = models.ImageField(_(u"商品照片"), upload_to='cart/productinfo')
@@ -65,6 +67,43 @@ class ProductImage(models.Model):
         return '<img style="width:100px;height:100px" src="' + self.photo.url + '" />'
 
     image_tag.allow_tags = True
+    class Meta:
+        verbose_name = _(u"商品圖片資訊")
+        verbose_name_plural = _(u"商品圖片列表")
+
+class BrandBanner(models.Model):
+    banner = models.ImageField(_(u"banner"), upload_to='cart/brand_banner')
+    name = models.CharField(_(u"Banner名稱"), max_length=30)
+
+    def __unicode__(self):
+        return self.name
+
+    def image_tag(self):
+        return '<img style="width:100px;height:100px" src="' + self.banner.url + '" />'
+
+    class Meta:
+        verbose_name = _(u"品牌Banner資訊")
+        verbose_name_plural = _(u"品牌Banner列表")
+
+class BrandMovie(models.Model):
+    link = models.CharField(_(u"連結"), max_length=100)
+    name = models.CharField(_(u"影片名稱"), max_length=30)
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _(u"品牌影片資訊")
+        verbose_name_plural = _(u"品牌影片列表")
+
+class Brand(models.Model):
+    brand_name = models.CharField(_(u"商店名稱"), max_length=30)
+    banner = models.ManyToManyField("BrandBanner", verbose_name=_(u"品牌banner"), related_name='brand_banner')
+    movie = models.ManyToManyField("BrandMovie", verbose_name=_(u"品牌影片"), related_name='brand_movie')
+
+    class Meta:
+        verbose_name = _(u"品牌資訊")
+        verbose_name_plural = _(u"品牌列表")
 
 class ProductInfo(models.Model):
     total_amount = models.IntegerField(_(u"金額"))
@@ -81,6 +120,7 @@ class ProductInfo(models.Model):
     ship_way = models.CharField(_(u"運送方式"), max_length=30)
     ship_day = models.CharField(_(u"出貨天數"), max_length=30)
     other = models.CharField(_(u"其它"), max_length=30)
+    brand = models.ForeignKey(Brand, related_name='product_brand')
 
     class Meta:
         verbose_name = _(u"商品資訊")
@@ -129,12 +169,10 @@ class CartItem(models.Model):
     amount = models.IntegerField(_(u"數量"))
 
     class Meta:
-        verbose_name = _('item')
-        verbose_name_plural = _('items')
+        verbose_name = _(u"購物車資訊")
+        verbose_name_plural = _(u"購物車列表")
         ordering = ('creation_date',)
 
-    def __unicode__(self):
-        return u'%d units of %s' % (self.amount, self.product.__class__.__name__)
 
 class PayMentRecord(models.Model):
     product = models.ManyToManyField(ProductInfo,  related_name='record_product')
@@ -146,6 +184,9 @@ class PayMentRecord(models.Model):
     is_checked = models.BooleanField(_(u"是否已付款"), default=False)
     checked_time = models.DateTimeField(_(u"付款時間"), null=True, blank=True)
     #invoice = models.OneToOneField(PayMentInvoice,  related_name='payment_record_invoice', null=True, blank=True)
+    class Meta:
+        verbose_name = _(u"訂單資訊")
+        verbose_name_plural = _(u"訂單列表")
 
 class PayMentInvoice(models.Model):
     relate_number = models.CharField(_(u"自訂編號"), max_length=30, null=True, blank=True)
@@ -170,9 +211,15 @@ class PayMentInvoice(models.Model):
     def __unicode__(self):
         return self.invoice_number
 
+    class Meta:
+        verbose_name = _(u"發票資訊")
+        verbose_name_plural = _(u"發票列表")
 
 
 class FavoriteItem(models.Model):
     user = models.ForeignKey(User, related_name='user_favorite_item')
     product = models.ForeignKey(ProductInfo,  related_name='user_favorite_product')
 
+    class Meta:
+        verbose_name = _(u"使用者最愛資訊")
+        verbose_name_plural = _(u"使用者最愛列表")
