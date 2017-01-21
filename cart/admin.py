@@ -4,7 +4,7 @@ from django import forms
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin, UserChangeForm as DjangoUserChangeForm
 from django.contrib.auth.forms import UserCreationForm as DjangoUserCreationForm
-from .models import CartItem, ProductInfo, PayMentRecord, PayMentInvoice, ProductImage
+from .models import CartItem, ProductInfo, PayMentRecord, PayMentInvoice, ProductImage, Brand, BrandBanner, BrandMovie
 from salmonella.admin import SalmonellaMixin
 
 class CartItemAdmin(SalmonellaMixin, admin.ModelAdmin):
