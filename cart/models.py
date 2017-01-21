@@ -96,6 +96,10 @@ class BrandBanner(models.Model):
     def image_tag(self):
         return '<img style="width:100px;height:100px" src="' + self.banner.url + '" />'
 
+    class Meta:
+        verbose_name = _(u"品牌Banner資訊")
+        verbose_name_plural = _(u"品牌Banner列表")
+
 class BrandMovie(models.Model):
     link = models.CharField(_(u"連結"), max_length=100)
     name = models.CharField(_(u"影片名稱"), max_length=30)
@@ -103,10 +107,18 @@ class BrandMovie(models.Model):
     def __unicode__(self):
         return self.name
 
+    class Meta:
+        verbose_name = _(u"品牌影片資訊")
+        verbose_name_plural = _(u"品牌影片列表")
+
 class Brand(models.Model):
     brand_name = models.CharField(_(u"商店名稱"), max_length=30)
     banner = models.ManyToManyField("BrandBanner", verbose_name=_(u"品牌banner"), related_name='brand_banner')
     movie = models.ManyToManyField("BrandMovie", verbose_name=_(u"品牌影片"), related_name='brand_movie')
+
+    class Meta:
+        verbose_name = _(u"品牌資訊")
+        verbose_name_plural = _(u"品牌列表")
 
 class CartItem(models.Model):
     user = models.ForeignKey(User, related_name='user_cart_item')
