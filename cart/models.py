@@ -68,6 +68,7 @@ class ProductImage(models.Model):
 
 class ProductInfo(models.Model):
     total_amount = models.IntegerField(_(u"金額"))
+    in_stock = models.IntegerField(_(u"庫存"))
     trade_desc = RichTextField(_(u"商品描述"), max_length=2000)
     item_name = models.CharField(_(u"商品名稱"), max_length=30)
     date = models.DateTimeField(_(u"建立時間"), auto_now=True)
@@ -77,10 +78,35 @@ class ProductInfo(models.Model):
     size = models.CharField(_(u"size"), max_length=10, null=True, blank=True)
     unit = models.CharField(_(u"單位"), max_length=10)
     brand = models.CharField(_(u"品牌"), choices=BRAND_CHOICES, max_length=10)
+    ship_way = models.CharField(_(u"運送方式"), max_length=30)
+    ship_day = models.CharField(_(u"出貨天數"), max_length=30)
+    other = models.CharField(_(u"其它"), max_length=30)
+
     class Meta:
         verbose_name = _(u"商品資訊")
         verbose_name_plural = _(u"商品列表")
 
+class BrandBanner(models.Model):
+    banner = models.ImageField(_(u"banner"), upload_to='cart/brand_banner')
+    name = models.CharField(_(u"Banner名稱"), max_length=30)
+
+    def __unicode__(self):
+        return self.name
+
+    def image_tag(self):
+        return '<img style="width:100px;height:100px" src="' + self.banner.url + '" />'
+
+class BrandMovie(models.Model):
+    link = models.CharField(_(u"連結"), max_length=100)
+    name = models.CharField(_(u"影片名稱"), max_length=30)
+
+    def __unicode__(self):
+        return self.name
+
+class Brand(models.Model):
+    brand_name = models.CharField(_(u"商店名稱"), max_length=30)
+    banner = models.ManyToManyField("BrandBanner", verbose_name=_(u"品牌banner"), related_name='brand_banner')
+    movie = models.ManyToManyField("BrandMovie", verbose_name=_(u"品牌影片"), related_name='brand_movie')
 
 class CartItem(models.Model):
     user = models.ForeignKey(User, related_name='user_cart_item')

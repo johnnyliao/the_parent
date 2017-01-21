@@ -32,8 +32,21 @@ class PayMentRecordAdmin(SalmonellaMixin, admin.ModelAdmin):
     list_display = ["total_amount", "user", "is_checked", "date"]
     salmonella_fields  = ["product", "cart", "user"]
 
+class BrandAdmin(SalmonellaMixin, admin.ModelAdmin):
+    list_display = ["brand_name"]
+    salmonella_fields  = ["banner", "movie"]
+
+class BrandBannerAdmin(SalmonellaMixin, admin.ModelAdmin):
+    list_display = ["name", "image_tag"]
+
+class BrandMovieAdmin(SalmonellaMixin, admin.ModelAdmin):
+    list_display = ["name", "link"]
+
 admin.site.register(CartItem, CartItemAdmin)
 admin.site.register(ProductInfo, ProductInfoAdmin)
 admin.site.register(ProductImage, ProductImageAdmin)
 admin.site.register(PayMentInvoice, PayMentInvoiceAdmin)
 admin.site.register(PayMentRecord, PayMentRecordAdmin)
+admin.site.register(Brand, BrandAdmin)
+admin.site.register(BrandBanner, BrandBannerAdmin)
+admin.site.register(BrandMovie, BrandMovieAdmin)
