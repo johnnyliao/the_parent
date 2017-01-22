@@ -1,4 +1,5 @@
 {% load staticfiles %}
+
 <!doctype html>
 <html>
 <head>
@@ -11,10 +12,10 @@
 <!--匯入JSJQ -->
 	<script src="{% static "js/jquery-1.8.2.min.js"%}"></script>
     <script src="{% static "js/jquery.min.js"%}"></script>
+    <script src="{% static "js/public.js"%}"></script>
     <script src="{% static "js/main.js"%}"></script>
     <script src="{% static "js/modernizr.js"%}"></script>
     <script src="{% static "js/headroom.js"%}"></script>
-    <script src="{% static "js/jquery.menu-aim.js"%}"></script>
 <!--匯入css -->
     <link rel="stylesheet" type="text/css" href="{% static "css/style.css"%}">
 <!--header隱藏css js-->
@@ -44,13 +45,13 @@
     <script src="{% static "js/initslider-2.js"%}"></script>
 <!-- 輪播效果 End -->
 
-<!--分頁使用 start-->
-	<link rel="stylesheet" href="css/jquery.paginate.css" />
+<!--分頁使用 start
+	<link rel="stylesheet" href="{% static "css/jquery.paginate.css"%}" />
 	<style>
 		.paginate { padding: 0; margin: 0; }
 		.paginate > li { list-style: none; padding: 10px 20px; border: 1px solid #ddd; margin: 10px 0; }
 	</style>
-<!--分頁 End-->
+分頁 End-->
 </head>
 
 <body>
@@ -67,6 +68,11 @@
 				</a>
 			</div>
 		</article>
+		<div class="tabs fixed show-tab dark" fixed-tabs="#tv-tabs" ng-class="{'show-tab' : showTabs}">
+			{% for brand in brand_index.brand.all %}
+	  		<a href="/main/indexshop/?brand_id={{brand.id}}" target="_self" class="tab {% if brand_id1 == brand.id %}active"{% else %}"{% endif %}>{{brand.brand_name}}</a>
+	  		{% endfor %}
+		</div>
 	</header>
 	<!--nav start-->
 	<div class="cd-dropdown-wrapper">
@@ -107,55 +113,104 @@
 	</div> <!-- .cd-dropdown-wrapper -->
 	<!--nav End-->
 
-	<div class="container_default shop">
+	<div class="container_default">
 		<!-- 輪播1 start -->
 	    <div id="amazingslider-wrapper-1" style="display:block;position:relative;max-width:1920px;margin:0px auto 56px;">
 	        <div id="amazingslider-1" style="display:block;position:relative;margin:0 auto;">
 	            <ul class="amazingslider-slides" style="display:none;">
-	            	{% for banners in brand_index.banner.all %}
-		                <li><img src="{{banners.banner.url}}" alt="{{banners.name}}"  title="{{banners.name}}" />
-		                </li>
+	            	{% for banner in brand_obj.banner.all %}
+	                <li><img src="{{banner.banner.url}}" alt="{{banner.name}}"  title="{{banner.name}}" />
+	                </li>
 	                {% endfor %}
-	                {% for movies in brand_index.movie.all %}
-		                <li><img src="{{movies.photo.url}}" />
-		                <video preload="none" src="{{movies.link}}" ></video>
-		                </li>
+	                {% for movie in brand_obj.movie.all %}
+	                <li><img src="{{movie.photo.url}}" />
+	                <video preload="none" src="{{movie.link}}" ></video>
+	                </li>
 	                {% endfor %}
+
 	            </ul>
 	            <ul class="amazingslider-thumbnails" style="display:none;">
-	            	{% for banners in brand_index.banner.all %}
-		                <li><img src="{{banners.banner.url}}" alt="{{banners.name}}"  title="{{banners.name}}" />
-		                </li>
+	            	{% for banner in brand_obj.banner.all %}
+	                	<li>
+	                		<img src="{{banner.url}}" alt="{{banner.name}}"  title="{{banner.name}}" />
+	                	</li>
 	                {% endfor %}
-	                {% for movies in brand_index.movie.all %}
-		                <li><img src="{{movies.photo.url}}" /></li>
+	                {% for movie in brand_obj.movie.all %}
+	                	<li><img src="{{movie.photo.url}}" /></li>
 	                {% endfor %}
 	            </ul>
 	        <div class="amazingslider-engine"><a href="http://amazingslider.com" title="Responsive jQuery Content Slider">Responsive jQuery Content Slider</a></div>
 	        </div>
     	</div>
     <!-- 輪播1 End -->
-
-    <!--店家列表 start-->
-    <div class="shopBox">
-    	<div class="shopTitleBox"><h2 class="shopTitle">店家列表</h2></div>
-		<div class="shopCon">
-			<ul>
-				{% for brand in brand_index.brand.all %}
-					<li>
-						<a class="listLink" href="/main/indexshop?brand_id={{brand.id}}">
-							<img src="{{brand.index_photo.url}}">
-						</a>
-					</li>
+    <!--商品列表 start-->
+    <div class="productListBox">
+		<div class="productTitle"><h2 class="proTitle">商品列表</h2></div>
+		<div class="productCon">
+			<ul class="productConList type2Box" id="example">
+				<!--橫條列表-->
+				<!--<li class="productItem">
+					<a class="listLink" href="#">
+						<div class="imgBox"><img class="proImg" src="img/product1.png" /></div>
+						<div class="proItemRight">
+							<div class="proNameBox">
+								<h3 class="proNam">紫鑽蝶戀沐浴乳</h3>
+								<span class="shopName">山本富也</span>
+							</div>
+							<div class="priceBox">
+								<span class="bargainPrice">$60.00</span>
+								<span class="originalPrice">$60.00</span>
+							</div>
+							<div class="proDescBox">
+								<p class="proDescMain">倒許節思的個灣統，一止吃少期愛組決他對一頭用。成原同醫漸張看，組活動有藥車首人致是發特便公於以風意好在
+								</p>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li class="productItem">
+					<a class="listLink" href="#">
+						<div class="imgBox"><img class="proImg" src="img/product2.png" /></div>
+						<div class="proItemRight">
+							<div class="proNameBox">
+								<h3 class="proNam">馬卡龍香嫩身體乳</h3>
+								<span class="shopName">山本富也</span>
+							</div>
+							<div class="priceBox">
+								<span class="bargainPrice">$60.00</span>
+								<span class="originalPrice">$60.00</span>
+							</div>
+							<div class="proDescBox">
+								<p class="proDescMain">倒許節思的個灣統，一止吃少期愛組決他對一頭用。成原同醫漸張看，組活動有藥車首人致是發特便公於以風意好在
+								</p>
+							</div>
+						</div>
+					</a>
+				</li>-->
+				{% for product in brand_obj.product_brand.all %}
+				<li class="productItem type2">
+					<a class="listLink" href="/main/product_detail?id={{product.id}}">
+						<div class="imgBox"><img class="proImg" src="{{product.photo.all.0.photo.url}}" /></div>
+						<div class="proItemRight">
+							<div class="proNameBox">
+								<h3 class="proNam">{{product.item_name}}</h3>
+							</div>
+							<div class="priceBox">
+								<!--原價<span class="originalPrice">$3200.00</span>-->
+								<span class="bargainPrice">${{product.total_amount}}</span>
+							</div>
+						</div>
+					</a>
+				</li>
 				{% endfor %}
 			</ul>
 		</div>
     </div>
-    <!--店家列表 End-->
-    <!--分頁 start
-    <nav aria-label="Page navigation">
-        <ul class="pagination" id="pagination"></ul>
-    </nav>-->
+    <!--商品列表 End-->
+    <!--分頁 start-->
+    <!--<nav aria-label="Page navigation">
+        <ul class="pagination" id="pagination"></ul>-->
+    </nav>
     <!--分頁 End-->
 
 	</div>
@@ -164,15 +219,15 @@
 	    <a aria-hidden="true" href="#" class="inner-nav icon-social-youtube"></a><a href="#" aria-hidden="true" class="inner-nav icon-feed"></a>
 	    <a href="#" aria-hidden="true" class="inner-nav icon-list"></a>
 	</div>
-
-	<!--分頁功能
-	<script src="js/jquery.paginate.js"></script>
+	<script src="{% static "js/jquery.menu-aim.js"%}"></script>
+	<script src="{% static "js/jquery.paginate.js"%}"></script>
+	<!--分頁使用
 	<script>
 		//call paginate
 		$('#example').paginate({
 
 		  // how many items per page
-		  perPage:                2,
+		  perPage:                4,
 
 		  // boolean: scroll to top of the container if a user clicks on a pagination link
 		  autoScroll:             true,

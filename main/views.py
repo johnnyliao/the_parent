@@ -31,6 +31,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 import settings, random
 from account.models import User, UserVerify
+from cart.models import Brand
 from rest_framework.views import APIView
 from django.shortcuts import render_to_response, redirect, render, get_object_or_404
 from django.template import RequestContext
@@ -50,9 +51,18 @@ def register(request):
 	return render_to_response("main/register.html", locals(), context_instance=RequestContext(request))
 
 def index(request):
+	#import pdb;pdb.set_trace()
 	brand_index = BrandIndex.objects.all()[0]
 
 	return render_to_response("main/index.html", locals(), context_instance=RequestContext(request))
+
+def indexshop(request):
+	brand_id = request.GET.get("brand_id")
+	brand_id1 = int(brand_id)
+	brand_obj = Brand.objects.get(id=brand_id)
+	brand_index = BrandIndex.objects.all()[0]
+	print brand_id
+	return render_to_response("main/index_shop.html", locals(), context_instance=RequestContext(request))
 
 def forget_password(request):
 	if is_social_account(request.user):
