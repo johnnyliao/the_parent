@@ -1,0 +1,206 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>roduct Details | Unify - Responsive Website Template</title>
+<meta name="Keywords" content="那對夫妻">
+<meta name="Description" content="那對夫妻">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, maximum-scale=1.0" />
+<!--匯入JSJQ -->
+	<script src="{% static "js/jquery-1.8.2.min.js"%}"></script>
+    <script src="{% static "js/jquery.min.js"%}"></script>
+    <script src="{% static "js/main.js"%}"></script>
+    <script src="{% static "js/modernizr.js"%}"></script>
+    <script src="{% static "js/headroom.js"%}"></script>
+    <script src="{% static "js/jquery.menu-aim.js"%}"></script>
+<!--匯入css -->
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css"%}">
+<!--header隱藏css js-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.3/headroom.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.3/jQuery.headroom.js"></script>
+    <style type="text/css">
+		.headroom {position: fixed;top: 0;left: 0;right: 0;transition: all .2s ease-in-out;}
+		.headroom--unpinned {top: -100px;transform: translateY(-100%);}
+		.headroom--pinned {transform: translateY(0%);z-index: 1;}
+    }
+	</style>
+	<script type="text/javascript">
+      	$("document").ready(function(){
+     		 $("#header").headroom();
+       	 });
+    </script>
+<!--header隱藏css js End-->
+
+<!--header類別滑動效果 start-->
+	<link rel="stylesheet" type="text/css" href="{% static "css/categorySlide.css"%}">
+<!--header類別滑動效果 End-->
+<!-- 輪播效果 start -->
+	<script src="{% static "js/amazingslider.js"%}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "css/amazingslider-1.css"%}">
+    <script src="{% static "js/initslider-1.js"%}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "css/amazingslider-2.css"%}">
+    <script src="{% static "js/initslider-2.js"%}"></script>
+<!-- 輪播效果 End -->
+
+<!--分頁使用 start-->
+	<link rel="stylesheet" href="css/jquery.paginate.css" />
+	<style>
+		.paginate { padding: 0; margin: 0; }
+		.paginate > li { list-style: none; padding: 10px 20px; border: 1px solid #ddd; margin: 10px 0; }
+	</style>
+<!--分頁 End-->
+</head>
+
+<body>
+	<header class="header">
+		<article class="topnav">
+			<div class="cd-dropdown-wrapper">
+				<a class="cd-dropdown-trigger top" href="#0">
+					<span></span>
+				</a>
+			</div>
+			<div class="logo">
+				<a href="/index.html">
+					<img class="top_logo" src="{% static "img/thecouple_webpage_logo.png"%}">
+				</a>
+			</div>
+		</article>
+	</header>
+	<!--nav start-->
+	<div class="cd-dropdown-wrapper">
+		<!--<a class="cd-dropdown-trigger" href="#0">Dropdown</a>-->
+		<nav class="cd-dropdown">
+			<h2>那對夫妻</h2>
+			<a href="#0" class="cd-close">Close</a>
+			<ul class="cd-dropdown-content">
+				<li>
+					<form class="cd-search" method="get">
+						<input type="search" placeholder="Search..." class="searchlnput_text">
+						<input class="searchlnput_bnt" name="" type="submit" value="">
+					</form>
+				</li>
+				<li>
+					<a href="/main/login/">登入</a>
+				</li>
+				<li style="display: none;">
+					<a href="#">登出</a>
+				</li>
+				<li>
+					<a href="/main/register/">註冊</a>
+				</li>
+				<li class="has-children">
+					<a href="#">會員專區</a>
+					<ul class="cd-secondary-dropdown is-hidden">
+						<li class="go-back"><a href="#0">Menu</a></li>
+						<li>
+							<a href="/main/member/">會員資料</a>
+						</li>
+						<li>
+							<a href="/main/changePassword/">修改密碼</a>
+						</li>
+					</ul> <!-- .cd-secondary-dropdown -->
+				</li> <!-- .has-children -->
+			</ul> <!-- .cd-dropdown-content -->
+		</nav> <!-- .cd-dropdown -->
+	</div> <!-- .cd-dropdown-wrapper -->
+	<!--nav End-->
+
+	<div class="container_default shop">
+		<!-- 輪播1 start -->
+	    <div id="amazingslider-wrapper-1" style="display:block;position:relative;max-width:1920px;margin:0px auto 56px;">
+	        <div id="amazingslider-1" style="display:block;position:relative;margin:0 auto;">
+	            <ul class="amazingslider-slides" style="display:none;">
+	            	{% for banners brand_index.banner.all %}
+		                <li><img src="{{banners.banner.url}}" alt="{{banners.name}}"  title="{{banners.name}}" />
+		                </li>
+	                {% end for %}
+	                <li><img src="img/H60515r4PGQ.jpg" />
+	                <video preload="none" src="https://www.youtube.com/embed/H60515r4PGQ?v=H60515r4PGQ&list=PLH2b4YnNI7j0_bTKPQ74JsGAvdrkx16Fh" ></video>
+	                </li>
+
+	            </ul>
+	            <ul class="amazingslider-thumbnails" style="display:none;">
+	                <li><img src="img/001-tn.png" alt="001" title="001" /></li>
+	                <li><img src="img/002-tn.png" alt="002" title="002" /></li>
+	                <li><img src="img/H60515r4PGQ-tn.jpg" /></li>
+	            </ul>
+	        <div class="amazingslider-engine"><a href="http://amazingslider.com" title="Responsive jQuery Content Slider">Responsive jQuery Content Slider</a></div>
+	        </div>
+    	</div>
+    <!-- 輪播1 End -->
+
+    <!--店家列表 start-->
+    <div class="shopBox">
+    	<div class="shopTitleBox"><h2 class="shopTitle">店家列表</h2></div>
+		<div class="shopCon">
+			<ul>
+				<li><a class="listLink" href="index_shop.html"><img src="img/banner01.jpg"></a></li>
+				<li><a class="listLink" href="index_shop.html"><img src="img/banner02.png"></a></li>
+			</ul>
+		</div>
+    </div>
+    <!--店家列表 End-->
+    <!--分頁 start
+    <nav aria-label="Page navigation">
+        <ul class="pagination" id="pagination"></ul>
+    </nav>-->
+    <!--分頁 End-->
+
+	</div>
+	<div class="under-nav">
+	    <a href="#" class="inner-nav  icon-basket"></a>
+	    <a aria-hidden="true" href="#" class="inner-nav icon-social-youtube"></a><a href="#" aria-hidden="true" class="inner-nav icon-feed"></a>
+	    <a href="#" aria-hidden="true" class="inner-nav icon-list"></a>
+	</div>
+
+	<!--分頁功能
+	<script src="js/jquery.paginate.js"></script>
+	<script>
+		//call paginate
+		$('#example').paginate({
+
+		  // how many items per page
+		  perPage:                2,
+
+		  // boolean: scroll to top of the container if a user clicks on a pagination link
+		  autoScroll:             true,
+
+		  // which elements to target
+		  scope:                  '',
+
+		  // defines where the pagination will be displayed
+		  paginatePosition:       ['bottom'],
+
+		  // Pagination selectors
+		  containerTag:           'nav',
+		  paginationTag:          'ul',
+		  itemTag:                'li',
+		  linkTag:                'a',
+
+		  // Determines whether or not the plugin makes use of hash locations
+		  useHashLocation:        true,
+
+		  // Triggered when a pagination link is clicked
+		  onPageClick:            function() {}
+
+		});
+
+	</script>
+	-->
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-36251023-1']);
+	  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+</body>

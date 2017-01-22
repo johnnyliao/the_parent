@@ -35,6 +35,7 @@ from rest_framework.views import APIView
 from django.shortcuts import render_to_response, redirect, render, get_object_or_404
 from django.template import RequestContext
 from datetime import datetime, timedelta
+from main.models import BrandIndex, BrandIndexBanner, BrandIndexMovie
 from django.db.models import Q
 import pytz
 from allauth.socialaccount.models import *
@@ -47,6 +48,11 @@ def login(request):
 
 def register(request):
 	return render_to_response("main/register.html", locals(), context_instance=RequestContext(request))
+
+def index(request):
+	brand_index = BrandIndex.objects.all()[0]
+
+	return render_to_response("main/index.html", locals(), context_instance=RequestContext(request))
 
 def forget_password(request):
 	if is_social_account(request.user):

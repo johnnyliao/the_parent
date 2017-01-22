@@ -1,0 +1,86 @@
+﻿@charset "utf-8";   
+/* 載入 */
+.tabs::-webkit-scrollbar {
+    display: none;
+}
+.tabs {
+    z-index: 101;
+    text-align: center;
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    text-align: left;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.tabs.fixed {
+    transform: translateY(-100%);
+    z-index: 10;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    margin-top: 0;
+    height: 60px;
+    line-height: 58px;
+    padding: 0 20px;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+    transition: transform 300ms ease;
+}
+.tabs.fixed.show-tab {
+    transform: translateY(0);
+}
+.tabs.fixed.dark {
+    background-color: #ffffff;
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+}
+.tabs.fixed.dark .tab {
+    color: #666666;
+    font-weight: bold;
+    font-size: 14px;
+}
+.tabs.fixed .tab {
+    padding: 0 10px;
+    margin: 0 8px;
+}
+.tabs .tab {
+    display: inline-block;
+    margin: 0 18px;
+    padding: 8px 0;
+    border-bottom: 2px solid transparent;
+    text-align: center;
+    font-size: 14px;
+    color: #8C8D93;
+}
+.tabs .tab a {
+    color: #8C8D93;
+}
+.tabs .tab:hover {
+    cursor: pointer;
+    color: #1A1C27;
+}
+.tabs .tab.active {
+    font-weight: bold;
+    border-bottom: 4px solid #ec7b88;
+    color: #ec7b88!important;
+}
+.tabs .tab.active a {
+    color: #B09A77;
+}
+@media screen and (max-width: 767px) {
+.tabs {
+    justify-content: initial;
+}
+.tabs.fixed {
+    height: 40px;
+    line-height: 38px;
+}
+.tabs .tab {
+    flex: none;
+    margin: 0 32px 0 0;
+}
+}

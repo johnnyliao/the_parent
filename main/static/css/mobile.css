@@ -1,5 +1,13 @@
 ﻿@charset "utf-8";	
 /* 載入 */
+@media screen and (max-width:767px){
+.container_default {
+    margin-top: 17px;
+}
+.shop{
+    margin-top: -18px;
+}
+}
 @media screen and (max-width:640px){
 .forgetPassCon .inputW,.changePasswordBox .inputW{
 	min-width:50px;

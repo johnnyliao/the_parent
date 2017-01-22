@@ -88,6 +88,7 @@ class BrandBanner(models.Model):
 class BrandMovie(models.Model):
     link = models.CharField(_(u"連結"), max_length=100)
     name = models.CharField(_(u"影片名稱"), max_length=30)
+    photo = models.ImageField(_(u"預覽圖"), upload_to='cart/brand_movie_preview')
 
     def __unicode__(self):
         return self.name

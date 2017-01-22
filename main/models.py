@@ -24,7 +24,7 @@ class S3Data(models.Model):
 
 
 class BrandIndexBanner(models.Model):
-    banner = models.ImageField(_(u"banner"), upload_to='cart/brand_banner')
+    banner = models.ImageField(_(u"banner"), upload_to='main/brand_banner')
     name = models.CharField(_(u"Banner名稱"), max_length=30)
 
     def __unicode__(self):
@@ -40,6 +40,7 @@ class BrandIndexBanner(models.Model):
 class BrandIndexMovie(models.Model):
     link = models.CharField(_(u"連結"), max_length=100)
     name = models.CharField(_(u"影片名稱"), max_length=30)
+    photo = models.ImageField(_(u"預覽圖"), upload_to='main/brand_index_movie_prview')
 
     def __unicode__(self):
         return self.name
