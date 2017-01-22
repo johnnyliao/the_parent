@@ -26,6 +26,10 @@
 		.headroom {position: fixed;top: 0;left: 0;right: 0;transition: all .2s ease-in-out;}
 		.headroom--unpinned {top: -100px;transform: translateY(-100%);}
 		.headroom--pinned {transform: translateY(0%);z-index: 1;}
+		button.icon.t60 {
+			width: 50px;
+			height: 50px;
+		}
     }
 	</style>
 	<script type="text/javascript">
@@ -164,8 +168,8 @@
 					<a href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent('http://nicokim.cc/main/product_detail/{{product_obj.id}}/'))));"><img src="{% static "img/fb_share.png"%}"/></a>
 					<div class="line-it-button" style="display: none;" data-type="share-c" data-lang="zh-Hant" ></div>
 					<script src="http://scdn.line-apps.com/n/line_it/thirdparty/loader.min.js" async="async" defer="defer" ></script>
-					<!--<script type="text/javascript"> LineIt.loadButton(); </script>-->
-					<a href="http://line.naver.jp/R/msg/text/?http://nicokim.cc/main/product_detail/{{product_obj.id}}/"><img src="{% static "img/line_share.png"%}" width="50" /></a>
+					<!--<script type="text/javascript"> LineIt.loadButton(); </script>
+					<a href="http://line.naver.jp/R/msg/text/?http://nicokim.cc/main/product_detail/{{product_obj.id}}/"><img src="{% static "img/line_share.png"%}" width="50" /></a>-->
 				</div>
 
 
