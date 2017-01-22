@@ -24,9 +24,9 @@ from django.utils.translation import ugettext_lazy as _
 ADMIN_MENU_ORDER = (
     ("Site", ("sites.Site", "redirects.Redirect", "conf.Setting")),
     (_(u"使用者設定"), ("account.User")),
-    (_(u"購物車設定"), ("cart.ProductInfo", "cart.CartItem", "cart.PayMentRecord", "cart.PayMentInvoice", "cart.Brand", "cart.BrandBanner", "cart.BrandMovie")),
+    (_(u"購物車設定"), ("cart.ProductInfo", "cart.CartItem", "cart.PayMentRecord", "cart.PayMentInvoice", "cart.Brand", "cart.BrandBanner", "cart.BrandMovie", "cart.ProductImage")),
     (_(u"活動設定"), ("action.Comment")),
-    (_(u"S3設定"), ("cart.ProductImage")),
+    (_(u"商家首頁設定"), ("main.BrandIndex", "main.BrandIndexBanner", "main.BrandIndexMovie")),
     (_(u"影片設定"), ("movie.Movie")),
 )
 

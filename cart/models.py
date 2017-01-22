@@ -100,6 +100,7 @@ class Brand(models.Model):
     brand_name = models.CharField(_(u"商店名稱"), max_length=30)
     banner = models.ManyToManyField("BrandBanner", verbose_name=_(u"品牌banner"), related_name='brand_banner')
     movie = models.ManyToManyField("BrandMovie", verbose_name=_(u"品牌影片"), related_name='brand_movie')
+    index_photo = models.ImageField(_(u"首頁圖片"), upload_to='cart/brand_index_photo')
 
     class Meta:
         verbose_name = _(u"品牌資訊")
