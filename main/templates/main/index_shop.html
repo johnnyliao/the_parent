@@ -189,7 +189,7 @@
 				</li>-->
 				{% for product in brand_obj.product_brand.all %}
 				<li class="productItem type2">
-					<a class="listLink" href="/main/product_detail?id={{product.id}}">
+					<a class="listLink" href="/main/product_detail/{{product.id}}">
 						<div class="imgBox"><img class="proImg" src="{{product.photo.all.0.photo.url}}" /></div>
 						<div class="proItemRight">
 							<div class="proNameBox">

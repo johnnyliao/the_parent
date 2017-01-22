@@ -42,5 +42,21 @@ $(function(){
         }
 	});
 	/*確認欄位是否未填 End*/
+	/*goTop start*/
+	$(function () {
+		$(".scroll").click(function () {
+			jQuery("html,body").animate({
+				scrollTop: 0
+			}, 1000);
+		});
+		$(window).scroll(function () {
+			if ($(this).scrollTop() > 300) {
+				$('.scroll,#goTop').fadeIn("fast");
+			} else {
+				$('.scroll,#goTop').stop().fadeOut("fast");
+			}
+		});
+	});
+	/*goTop End*/
 
 });

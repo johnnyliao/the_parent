@@ -15,10 +15,21 @@ header .topnav, .header .topnav{
     border-bottom: 2px solid #e8e8e8;
     position: fixed;
     top: 0;
-    z-index: 10;
+    z-index: 20;
 }
-header .logo{
+header .topnav, .header .topnav .goBack a{
+    color: #666666;
+    font-size: 18px;
+    font-weight: bold;
+}
+header .topnav, .header .topnav .logo a{
+    color: #666666;
+}
+header .logo,header .headerTitle{
     text-align: center;
+}
+header .headerTitle{
+    line-height: 65px;
 }
 header .logo .top_logo{
     height:60px;
@@ -33,11 +44,13 @@ header .topnav .cd-dropdown-trigger span{
     top: 0px;
     right: 5px;
 }
+
 header .topnav .cd-dropdown-wrapper{
     display: inline-block;
     position: absolute;
     right: 0px;
 }
+
 header .topnav .cd-dropdown-trigger span::before{
     background-color: #675653;
     width: 20px;
@@ -55,6 +68,18 @@ header .topnav .cd-dropdown-trigger span::after{
     position: absolute;
     top: -7px;
     right: 0px;
+}
+header .topnav .goBackBox span{
+    margin: 24px 7px;
+    display: inline-block;
+    position: relative;
+    left: 5px;
+}
+
+header .topnav .goBack{
+    display: inline-block;
+    position: absolute;
+    left: 0px;
 }
 .header{
     z-index: 999;
@@ -410,6 +435,9 @@ input[name="zipcode"]{
 .container_default{
     margin-top:37px;
 }
+.container_defaultProduct{
+   margin-top: -18px; 
+}
 .shop{
     margin-top: -18px;
 }
@@ -589,3 +617,172 @@ input[name="zipcode"]{
     text-decoration: line-through;
     color:#000;
 }
+/*商品內容頁*/
+.container_default .productConBox{
+    margin: 0px 15px 15px 15px;
+    border: 1px solid #e8e8e8;
+    padding: 2%;
+}
+.container_default .productConBox .productDetail .productTitle h2{
+    font-size: 18px;
+    color: #f55791;
+    line-height: 40px;
+}
+.container_default .productConBox .productDetail .priceBox .bargainPrice{
+    color: #ee1867;
+    margin-right: 15px;
+    font-size: 30px;
+    font-weight: bold;
+}
+.container_default .productConBox .productConTxt .quantity{
+    margin-top: 15px;
+    color: #666;
+}
+.container_default .productConBox .detailBox{
+    list-style-type: none;
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+    border-top: 1px solid #e0e0e0;
+}
+.container_default .productConBox .tableTop{
+    margin-top: 15px;
+}
+.container_default .productConBox .detailBox .detailCon{
+    width: 7%;
+    background: #e8e8e8;
+    border-left: 1px solid #e0e0e0;
+    text-align: center;
+    font-size: 14px;
+    display: table-cell;
+    padding: 2%;
+}
+.container_default .productConBox .detailBox .detailCon1{
+    width: 20%;
+    background: #fff;
+    text-align: center;
+    font-size: 14px;
+    display: table-cell;
+    border-right: 1px solid #e8e8e8;
+    padding: 2%;
+    text-align: left;
+}
+.container_default .productConBox .bottom{
+    border-bottom: 1px solid #e8e8e8;
+}
+.quantity-button {
+    color: #555;
+    width: 55px;
+    height: 50px;
+    padding: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 20px;
+    background: #eee;
+    text-align: center;
+    font-weight: normal;
+    white-space: nowrap;
+    display: inline-block;
+    background-image: none;
+    margin-top: 15px;
+}
+.quantity-field {
+    width: 55px;
+    height: 50px;
+    outline: none;
+    margin: 0 -4px;
+    font-size: 20px;
+    text-align: center;
+    border: 1px solid #eee;
+    vertical-align: bottom;
+}
+.buyBox .buyBoxCon{
+    font-size: 0px;
+    width: 100%;
+    opacity: 0.95;
+}
+.buyBox .buyBoxCon a{
+    display: block;
+    color: #FFF;
+}
+.buyBox .buyNowBtn{
+    width: 50%;
+    background: #ec7b88;
+    display: inline-block;
+    font-size: 18px;
+    text-align: center;
+}
+.buyBox{
+    bottom: 0px;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    position: fixed;
+}
+.buyBox li{
+    padding:2%;
+    color: #FFF;
+}
+.nowBuy{
+    position: absolute;
+    top: 4px;
+    right: 9px;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    font-size: 10px;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    z-index: 1010;
+    border-radius: 50%;
+    background-color: #e75353;
+}
+.buyBox .addCart{
+    width: 27.3%;
+    background: #e8e8e8;
+    display: inline-block;
+    font-size: 18px;
+    text-align: center;
+    background: #78cbd0;
+}
+.buyBox .nowCart{
+    width: 22.7%;
+    background: #b3dee3;
+    display: inline-block;
+    font-size: 18px;
+    text-align: center;
+    position: relative;
+}
+.productDetailBottom{
+    margin-bottom: 50px;
+}
+#container h3 a{
+    line-height: 40px;
+    padding-left: 2%;
+    color: #666666;
+}
+.fa-shopping-bag{
+    margin-right: 2%;
+}
+.proShareBox{
+    margin-top: 15px;
+}
+#goTop {
+    position: fixed;
+    bottom: 60px;
+    right: 10px;
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    margin: auto;
+    margin-bottom: -9px;
+}
+.fa-chevron-circle-up{
+    color: rgba(230, 0,18,0.6);
+}
+#fa-3{
+    font-size: 2em;
+}
+/*購物車 start*/

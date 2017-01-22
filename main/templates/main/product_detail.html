@@ -1,0 +1,273 @@
+{% load staticfiles %}
+
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>roduct Details | Unify - Responsive Website Template</title>
+<meta name="Keywords" content="那對夫妻">
+<meta name="Description" content="那對夫妻">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, maximum-scale=1.0" />
+</head>
+<!--匯入JSJQ -->
+	<script src="{% static "js/jquery-1.8.2.min.js"%}"></script>
+    <script src="{% static "js/jquery.min.js"%}"></script>
+    <script src="{% static "js/public.js"%}"></script>
+    <script src="{% static "js/main.js"%}"></script>
+    <script src="{% static "js/modernizr.js"%}"></script>
+    <script src="{% static "js/headroom.js"%}"></script>
+<!--匯入css -->
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css"%}">
+<!--header隱藏css js-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.3/headroom.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.3/jQuery.headroom.js"></script>
+    <style type="text/css">
+		.headroom {position: fixed;top: 0;left: 0;right: 0;transition: all .2s ease-in-out;}
+		.headroom--unpinned {top: -100px;transform: translateY(-100%);}
+		.headroom--pinned {transform: translateY(0%);z-index: 1;}
+    }
+	</style>
+	<script type="text/javascript">
+      	$("document").ready(function(){
+     		 $("#header").headroom();
+       	 });
+    </script>
+<!--header隱藏css js End-->
+
+<!--header類別滑動效果 start-->
+	<link rel="stylesheet" type="text/css" href="{% static "css/categorySlide.css"%}">
+<!--header類別滑動效果 End-->
+<!-- 輪播效果 start -->
+	<script src="{% static "js/amazingslider.js"%}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "css/amazingslider-1.css"%}">
+    <script src="{% static "js/initslider-1.js"%}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "css/amazingslider-2.css"%}">
+    <script src="{% static "js/initslider-2.js"%}"></script>
+<!-- 輪播效果 End -->
+<!--購買數項加減 start-->
+	<script id="jsbin-javascript">
+		function subtractQty(){
+		    if(document.getElementById("qty").value - 1 < 0)
+		        return;
+		    else
+		        document.getElementById("qty").value--;
+		}
+	</script>
+<!--購買數項加減 End-->
+<!--你可能會喜歡 start-->
+	<link rel="stylesheet" href="css/demo.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+<!--你可能會喜歡 End-->
+
+</head>
+
+<body>
+	<header class="header">
+		<article class="topnav">
+			<div class="goBack">
+				<a class="goBackBox" href="index_shop.html">
+					<span><i class="fa fa-chevron-left" aria-hidden="true"></i></span>
+				</a>
+			</div>
+			<div class="logo">
+				<a href="/index.html">
+					<h2 class="headerTitle">{{product_obj.item_name}}</h2>
+				</a>
+			</div>
+		</article>
+	</header>
+	<!--nav start-->
+	<div class="cd-dropdown-wrapper">
+		<!--<a class="cd-dropdown-trigger" href="#0">Dropdown</a>-->
+		<nav class="cd-dropdown">
+			<h2>那對夫妻</h2>
+			<a href="#0" class="cd-close">Close</a>
+			<ul class="cd-dropdown-content">
+				<li>
+					<form class="cd-search" method="get">
+						<input type="search" placeholder="Search..." class="searchlnput_text">
+						<input class="searchlnput_bnt" name="" type="submit" value="">
+					</form>
+				</li>
+				<li>
+					<a href="/main/login/">登入</a>
+				</li>
+				<li style="display: none;">
+					<a href="#">登出</a>
+				</li>
+				<li>
+					<a href="/main/register/">註冊</a>
+				</li>
+				<li class="has-children">
+					<a href="#">會員專區</a>
+					<ul class="cd-secondary-dropdown is-hidden">
+						<li class="go-back"><a href="#0">Menu</a></li>
+						<li>
+							<a href="/main/member/">會員資料</a>
+						</li>
+						<li>
+							<a href="/main/changePassword/">修改密碼</a>
+						</li>
+					</ul> <!-- .cd-secondary-dropdown -->
+				</li> <!-- .has-children -->
+			</ul> <!-- .cd-dropdown-content -->
+		</nav> <!-- .cd-dropdown -->
+	</div> <!-- .cd-dropdown-wrapper -->
+	<!--nav End-->
+
+	<div class="container_default container_defaultProduct productDetailBottom">
+		<!-- 輪播1 start -->
+	    <div id="amazingslider-wrapper-1" style="display:block;position:relative;max-width:1920px;margin:0px auto 56px;">
+	        <div id="amazingslider-1" style="display:block;position:relative;margin:0 auto;">
+	            <ul class="amazingslider-slides" style="display:none;">
+	            	{% for photo in product_obj.photo.all%}
+	                	<li><img src="{{photo.photo.url}}" alt=""  title="" />
+	                </li>
+	                {% endfor %}
+	                {% if product_obj.video_link %}
+                	<li>
+                		<img src="{{product_obj.video_photo.url}}" />
+                		<video preload="none" src="{{product_obj.video_link}}" >
+                		</video>
+                	</li>
+                	{% endif %}
+
+	            </ul>
+	            <ul class="amazingslider-thumbnails" style="display:none;">
+	            	{% for photo in product_obj.photo.all%}
+	                	<li><img src="{{photo.photo.url}}"/></li>
+	                {% endfor %}
+	                {% if product_obj.video_link %}
+                	<li>
+                		<img src="{{product_obj.video_photo.url}}" />
+                	</li>
+                	{% endif %}
+	            </ul>
+	        <div class="amazingslider-engine"><a href="http://amazingslider.com" title="Responsive jQuery Content Slider">Responsive jQuery Content Slider</a></div>
+	        </div>
+    	</div>
+    <!-- 輪播1 End -->
+    <!--商品詳情 start-->
+    <div class="productConBox">
+    	<div class="productDetail">
+			<div class="productTitle"><h2 class="proTitle">{{product_obj.item_name}}</h2></div>
+			<div class="productConTxt">
+				<div class="priceBox">
+					<span class="bargainPrice">{{product_obj.total_amount}}</span>
+				</div>
+				<h2 class="quantity">購買數量</h2>
+				<button type="button" class="quantity-button" name="subtract" onclick="javascript: subtractQty();" value="-">-</button>
+				<input type="text" class="quantity-field" name="qty" value="1" id="qty">
+				<button type="button" class="quantity-button" name="add" onclick="javascript:document.getElementById('qty').value++;" value="+">+</button>
+				<div class="proShareBox">
+					<a href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent('http://nicokim.cc/main/product_detail/{{product_obj.id}}/'))));"><img src="{% static "img/fb_share.png"%}"/></a>
+					<div class="line-it-button" style="display: none;" data-type="share-c" data-lang="zh-Hant" ></div>
+					<script src="http://scdn.line-apps.com/n/line_it/thirdparty/loader.min.js" async="async" defer="defer" ></script>
+					<!--<script type="text/javascript"> LineIt.loadButton(); </script>-->
+					<a href="http://line.naver.jp/R/msg/text/?http://nicokim.cc/main/product_detail/{{product_obj.id}}/"><img src="{% static "img/line_share.png"%}" width="50" /></a>
+				</div>
+
+
+				</div>
+			</div>
+		</div>
+		<div class="productConBox">
+	    	<div class="productDetail">
+				<div class="productTitle"><h2 class="proTitle">商品敘述</h2></div>
+				<div class="productConTxt">
+					<div class="description text L14">{{product_obj.trade_desc|safe}}
+					</div>
+				</div>
+			</div>
+			<ul class="detailBox tableTop">
+		        <li class="detailCon">配送方式</li>
+		        <li class="detailCon1">{{product_obj.ship_way}}</li>
+		    </ul>
+		    <ul class="detailBox">
+		        <li class="detailCon">出貨天數</li>
+		        <li class="detailCon1">{{product_obj.ship_day}}</li>
+		    </ul>
+		    <ul class="detailBox">
+		        <li class="detailCon">庫存數量</li>
+		        <li class="detailCon1">{{product_obj.in_stock}}</li>
+		    </ul>
+		    <ul class="detailBox bottom">
+		        <li class="detailCon">其他</li>
+		        <li class="detailCon1">{{product_obj.other}}</li>
+		    </ul>
+	    </div>
+
+    </div>
+    <!--商品詳情 End-->
+    <!--分頁 start-->
+    <!--<nav aria-label="Page navigation">
+        <ul class="pagination" id="pagination"></ul>
+    </nav>-->
+    <!--分頁 End-->
+
+	<!--你可能會喜歡 start-->
+	<div id="container" class="cf expertBox">
+				<h3><a href="#">你可能會喜歡</a></h3>
+				<div id="main" role="main">
+				  <section class="slider expertCon">
+					<div class="flexslider carousel expertArea">
+					  <ul class="slides">
+						<li>
+							<div class="experImg"><img src="img/001.jpg" /></div>
+						</li>
+						<li>
+							<div class="experImg"><img src="img/002.jpg" /></div>
+						</li>
+						<li>
+							<div class="experImg"><img src="img/003.jpg" /></div>
+						</li>
+						<li>
+							<div class="experImg"><img src="img/004.jpg" /></div>
+						</li>
+
+					  </ul>
+					</div>
+				  </section>
+				</div>
+			  </div>
+	<!--你可能會喜歡 End-->
+	</div>
+	<div class="buyBox">
+		<ul class="buyBoxCon">
+			<li class="nowCart"><a href=""><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i><span class="nowBuy">1</span></a></li>
+			<li class="addCart"><a href=""><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a></li>
+			<li class="buyNowBtn fa-2x"><a href=""><i class="fa fa-shopping-bag fa-2x" aria-hidden="true"></i>立即購買</a></li>
+		</ul>
+	</div>
+	<div class="under-nav">
+	    <a href="#" class="inner-nav  icon-basket"></a>
+	    <a aria-hidden="true" href="#" class="inner-nav icon-social-youtube"></a><a href="#" aria-hidden="true" class="inner-nav icon-feed"></a>
+	    <a href="#" aria-hidden="true" class="inner-nav icon-list"></a>
+	</div>
+	<div id="goTop"><a href="#home" id="toTop" class="scroll" style="display: none;"> <span id="toTopHover" style="opacity: 1;"><i class="fa fa-chevron-circle-up fa-3" id="fa-3" aria-hidden="true"></i></span></a></div>
+	<script src="{% static "js/jquery.menu-aim.js"%}"></script>
+	<!--你可能會喜歡 start-->
+	<script defer src="{% static "js/jquery.flexslider.js"%}"></script>
+	<div id="fb-root"></div>
+	<script type="text/javascript">
+	$(window).load(function(){
+    	$('.flexslider').flexslider({
+	        animation: "slide",
+	        animationLoop: true,
+	        itemWidth: 150,
+	        itemMargin: 50,
+	        minItems: 1,
+	        maxItems: 3,
+			keyboardNav: true,
+	        start: function(slider){
+	          $('body').removeClass('loading');
+	        }
+      	});
+    });
+  	</script>
+  	<!--你可能會喜歡 End-->
+  	<!--FB share start-->
+
+  	<!--FB share End-->
+</body>

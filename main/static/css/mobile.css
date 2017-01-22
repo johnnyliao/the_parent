@@ -4,6 +4,9 @@
 .container_default {
     margin-top: 17px;
 }
+.container_defaultProduct{
+   margin-top: -18px; 
+}
 .shop{
     margin-top: -18px;
 }

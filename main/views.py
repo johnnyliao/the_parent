@@ -31,7 +31,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 import settings, random
 from account.models import User, UserVerify
-from cart.models import Brand
+from cart.models import Brand, ProductInfo
 from rest_framework.views import APIView
 from django.shortcuts import render_to_response, redirect, render, get_object_or_404
 from django.template import RequestContext
@@ -51,10 +51,17 @@ def register(request):
 	return render_to_response("main/register.html", locals(), context_instance=RequestContext(request))
 
 def index(request):
-	#import pdb;pdb.set_trace()
 	brand_index = BrandIndex.objects.all()[0]
 
 	return render_to_response("main/index.html", locals(), context_instance=RequestContext(request))
+
+def product_detail(request, pk):
+	#product_id = request.GET.get("product_id")
+	#import pdb;pdb.set_trace()
+	product_obj = ProductInfo.objects.get(id=pk)
+	print product_obj
+
+	return render_to_response("main/product_detail.html", locals(), context_instance=RequestContext(request))
 
 def indexshop(request):
 	brand_id = request.GET.get("brand_id")
@@ -92,7 +99,7 @@ def register_success(request):
 	if user.is_verified():
 		user = request.user
 		birthday = str(user.birthday).split(' ')[0]
-		return render_to_response("main/member.html", locals(), context_instance=RequestContext(request))
+		return render_to_response("main/index.html", locals(), context_instance=RequestContext(request))
 	else:
 		try:
 			UserVerify.objects.get(user=request.user)
