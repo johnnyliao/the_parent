@@ -1126,3 +1126,7 @@ input[name="zipcode"]{
     margin:20px 0%;
     text-align: left;
 }
+/*訂單成功導回頁*/
+.sky-form .reg-input .regSuccess .paySuccessBox{
+    margin-top:10px;
+}

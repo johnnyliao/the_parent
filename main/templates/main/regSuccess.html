@@ -122,9 +122,15 @@
 						<input class="searchlnput_bnt" name="" type="submit" value="">
 					</form>
 				</li>
-				<li>
-					<a href="/main/login/">登入</a>
-				</li>
+				{% if request.user.is_authenticated %}
+					<li>
+						<a href="/account/user_logout/">登出</a>
+					</li>
+				{% else%}
+					<li>
+						<a href="/main/login/">登入</a>
+					</li>
+				{% endif %}
 				<li>
 					<a href="/main/register/">註冊</a>
 				</li>

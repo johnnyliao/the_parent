@@ -25,7 +25,7 @@ from allauth.socialaccount.providers.weibo.provider import WeiboProvider
 
 from allauth.socialaccount.models import (SocialLogin, SocialToken, SocialAccount)
 from allauth.socialaccount.helpers import complete_social_login, render_authentication_error
-from cart.models import CartItem
+from cart.models import CartItem, PayMentRecord
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
@@ -51,6 +51,11 @@ def login(request):
 
 def register(request):
 	return render_to_response("main/register.html", locals(), context_instance=RequestContext(request))
+
+@login_required
+def pay_success(request):
+	records = PayMentRecord.objects.filter(user=request.user)
+	return render_to_response("main/pay_success.html", locals(), context_instance=RequestContext(request))
 
 def cart_final(request):
 	username = request.POST.get("username")

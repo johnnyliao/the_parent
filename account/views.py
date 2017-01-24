@@ -40,19 +40,12 @@ from django.shortcuts import render_to_response, redirect, render, get_object_or
 from django.template import RequestContext
 from datetime import datetime, timedelta
 from django.db.models import Q
+from main.views import login as login_view
 import pytz
 
-class UserLogoutView(generics.GenericAPIView):
-    serializer_class = UserLoginSerializer
-    permission_classes = (AllowAny, )
-
-    def get(self, request, format=None):
-        """
-        登出會員
-        """
-        auth.logout(request)
-        return Response({"status":True}, status=status.HTTP_200_OK)
-
+def UserLogoutView(request):
+    auth.logout(request)
+    return redirect(login_view)
 
 class UserLoginView(generics.GenericAPIView):
     serializer_class = UserLoginSerializer
@@ -67,13 +60,11 @@ class UserLoginView(generics.GenericAPIView):
             username = serializer.data.get('username')
             password = serializer.data.get('password')
             try:
-                #import pdb;pdb.set_trace()
                 User.objects.get(username=username)
-                print username
-                print password
                 user = authenticate(username=username, password=password)
                 if user is not None:
                     if user.is_active:
+                        #import pdb;pdb.set_trace()
                         login(request, user)
                 else:
                     return Response({"status":False, "msg":u"錯誤的帳號或密碼"}, status=status.HTTP_200_OK)

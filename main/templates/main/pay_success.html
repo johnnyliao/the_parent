@@ -11,10 +11,10 @@
 <!--匯入JSJQ -->
 	<script src="{% static "js/jquery-1.8.2.min.js"%}"></script>
     <script src="{% static "js/jquery.min.js"%}"></script>
+    <script src="{% static "js/public.js"%}"></script>
     <script src="{% static "js/main.js"%}"></script>
     <script src="{% static "js/modernizr.js"%}"></script>
     <script src="{% static "js/headroom.js"%}"></script>
-    <script src="{% static "js/jquery.menu-aim.js"%}"></script>
 <!--匯入css -->
     <link rel="stylesheet" type="text/css" href="{% static "css/style.css"%}">
 <!--header隱藏css js-->
@@ -28,47 +28,17 @@
 	</style>
 	<script type="text/javascript">
       	$("document").ready(function(){
-      		{% if social_account == "yes"%}
-      			alert("此為facebook登入帳號，不可使用忘記密碼功能！")
-      		{% endif %}
-
-     		$("#header").headroom();
-     		$( "#send_change" ).click(function() {
-	     		var old_password = $("#old_password").val();
-	     		var new_password = $("#new_password").val();
-
-	     		var confirm_password = $("#confirm_password").val();
-	     		$.ajax({
-				  type: 'POST',
-				  url: "/account/user_change_password/",
-				  data: JSON.stringify({"old_password":old_password, "new_password":new_password, "confirm_password":confirm_password}),
-				  success: function(data) {
-				    if(!data["status"]) {
-				    	alert(data["msg"]);
-				    } else {
-				    	alert("更改成功！");
-				    	window.location.assign('/main/member/');
-				    }
-				  },
-				  dataType: "json",
-				  contentType: "application/json"
-				});
-			});
-			$( "#clear_all" ).click(function() {
-				$("#old_password").val("");
-	     		$("#new_password").val("");
-	     		$("#confirm_password").val("");
-			});
+     		 $("#header").headroom();
        	 });
     </script>
 <!--header隱藏css js End-->
-<!--彈窗使用css js start-->
-	<link rel="stylesheet" href="css/jquery.sweet-modal.min.css" />
-	<script src="{% static "js/jquery.sweet-modal.min.js"%}"></script>
-<!--彈窗使用css js End-->
+<!--撐開頁面使用 start-->
+	<script src="{% static "js/minwt.auto_full_height.mini.js"%}"></script>
+<!--撐開頁面使用 End-->
 </head>
 
 <body>
+	<div class="" none="ture">
 	<header class="header">
 		<article class="topnav">
 			<div class="cd-dropdown-wrapper">
@@ -113,10 +83,10 @@
 					<ul class="cd-secondary-dropdown is-hidden">
 						<li class="go-back"><a href="#0">Menu</a></li>
 						<li>
-							<a href="/main/member/">會員資料</a>
+							<a href="member.html">會員資料</a>
 						</li>
 						<li>
-							<a href="/main/change_password/">修改密碼</a>
+							<a href="changePassword.html">修改密碼</a>
 						</li>
 					</ul> <!-- .cd-secondary-dropdown -->
 				</li> <!-- .has-children -->
@@ -125,51 +95,28 @@
 	</div> <!-- .cd-dropdown-wrapper -->
 	<!--nav End-->
 
-	<div class="container">
-		<div class="memberBox">
-			<div id="sky-form4" class="changeBox sky-form" novalidate="novalidate">
-				<h2>修改密碼</h2>
-				<div class="changePasswordBox reg-input">
-					<div class="row">
-						<div class="col-sm-6">
-							<section>
-								<label class="input">
-									<span class="inputW">原密碼</span><input type="password" {% if social_account == "yes"%}disabled="disabled"{% endif %} class="passwordOld" id="old_password" placeholder="請輸入原密碼" class="form-control">
-								</label>
-							</section>
+	<div class="container"  _height="auto">
+		{% for record in records %}
+			<div class="memberBox" >
+				<form id="sky-form4" class="log-reg-block sky-form" novalidate="novalidate">
+					<div class="login-input reg-input">
+						<div class="regSuccess">
+							<i class="fa fa-info-circle fa-3x" aria-hidden="true"></i>
+							<h3>訂購資訊</h3>
+							<p class="paySuccessBox">訂單編號：<span class="orderNumber">{{record.order_id}}</span></p>
+							<p class="paySuccessBox">付款狀態：<span class="paymentStatus">{% if record.is_checked %}已付款{% else %}尚未付款{% endif %}</span></p>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-sm-6">
-							<section>
-								<label class="input">
-									<span class="inputW">新密碼</span>
-									<input type="password" {% if social_account == "yes"%}disabled="disabled"{% endif %} class="passwordNew" id="new_password" placeholder="請輸入新密碼" class="form-control">
-								</label>
-							</section>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-6">
-							<section>
-								<label class="input">
-									<span class="inputW">確認<br />密碼</span><input type="password" {% if social_account == "yes"%}disabled="disabled"{% endif %} class="passwordCon" id="confirm_password" placeholder="請再次輸入新密碼" class="form-control">
-								</label>
-							</section>
-						</div>
-					</div>
-					<button class="clearBtn" type="reset" {% if social_account == "yes"%}disabled="disabled"{% endif %} id="clear_all">清除</button>
-					<button class="changeBtn" type="button" {% if social_account == "yes"%}disabled="disabled"{% endif %} id="send_change">送出</button>
-				</div>
+				</form>
 			</div>
-		</div>
+		{% endfor %}
 	</div>
 	<div class="under-nav">
 	    <a href="#" class="inner-nav  icon-basket"></a>
 	    <a aria-hidden="true" href="#" class="inner-nav icon-social-youtube"></a><a href="#" aria-hidden="true" class="inner-nav icon-feed"></a>
 	    <a href="#" aria-hidden="true" class="inner-nav icon-list"></a>
 	</div>
-	<footer>
+	<footer _height="none">
 		<ul>
 			<li>台北市內湖區洲子街105-107號3樓</li>
 			<li>02-7709-5168</li>
@@ -177,4 +124,6 @@
 			<li>© 2016 SUPER MEDIA All rights reserved</li>
 		</ul>
 	</footer>
+	</div>
+	<script src="{% static "js/jquery.menu-aim.js"%}"></script>
 </body>

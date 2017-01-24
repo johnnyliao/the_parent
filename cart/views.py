@@ -150,12 +150,13 @@ class cart_check_out(APIView):
                 item_name = ",".join(item_arr)
                 item_name_arr = "#".join(item_arr)
 
+            order_id = "supermedia" + str(time.time()).replace(".",'')
             target = "_self"
             ServiceURL = "https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V2"
             url_data = {
                 'ChoosePayment':serializer.data["choose_payment"],
                 'ChooseSubPayment':'',
-                'ClientBackURL':'http://nicokim.cc/main/index',
+                'ClientBackURL':'http://nicokim.cc/main/pay_success',
                 'CreditInstallment':'0',
                 'DeviceSource':'',
                 'EncryptType':'0',
@@ -168,7 +169,7 @@ class cart_check_out(APIView):
                 'Language':'',
                 'MerchantID':'2000132',
                 'MerchantTradeDate':datetime.datetime.fromtimestamp(time.time()).strftime('%Y/%m/%d %H:%M:%S'),
-                'MerchantTradeNo':"supermedia"+  str(time.time()).replace(".",''),
+                'MerchantTradeNo':order_id,
                 'NeedExtraPaidInfo':'N',
                 'OrderResultURL':'',
                 'PaymentType':'aio',
@@ -341,7 +342,7 @@ def create_invoice(order_id):
 
     url_data = {
         'TimeStamp': str(time.time()).split('.')[0],
-        'RelateNumber': "ieachInvoice"+str(time.time()).replace(".",''),
+        'RelateNumber': "supermediaInvoice"+str(time.time()).replace(".",''),
         'MerchantID': "2000132",
         'CustomerID': "",
         'CustomerIdentifier': customer_identifier,
