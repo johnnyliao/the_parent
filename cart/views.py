@@ -150,7 +150,7 @@ class cart_check_out(APIView):
                 item_name = ",".join(item_arr)
                 item_name_arr = "#".join(item_arr)
 
-            order_id = "supermedia"+  str(time.time()).replace(".",'')
+            order_id = "sumedia"+  str(time.time()).replace(".",'')
             print "\n\n"
             print order_id
             target = "_self"
