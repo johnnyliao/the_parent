@@ -205,7 +205,7 @@ class cart_check_out(APIView):
                 record.cart.add(item)
 
             record.save()
-            print record.car.all()
+            print record.cart.all()
 
             szCheckMacValue = get_check_value(url_data)
 
