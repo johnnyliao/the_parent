@@ -150,7 +150,9 @@ class cart_check_out(APIView):
                 item_name = ",".join(item_arr)
                 item_name_arr = "#".join(item_arr)
 
-            order_id = "supermedia" + str(time.time()).replace(".",'')
+            order_id = "supermedia"+  str(time.time()).replace(".",'')
+            print "\n\n"
+            print order_id
             target = "_self"
             ServiceURL = "https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V2"
             url_data = {
@@ -190,7 +192,7 @@ class cart_check_out(APIView):
 
             record = PayMentRecord(
                 total_amount=total_amount,
-                order_id=url_data["MerchantTradeNo"],
+                order_id=order_id,
                 user=request.user,
                 ship_info=ship_info,
                 ship_time=serializer.data["ship_time"],
