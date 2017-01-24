@@ -29,8 +29,10 @@ class PayMentInvoiceInline(admin.StackedInline):
 
 class PayMentRecordAdmin(SalmonellaMixin, admin.ModelAdmin):
     inlines = (PayMentInvoiceInline,)
-    list_display = ["total_amount", "user", "is_checked", "date"]
+    list_display = ["order_id", "total_amount", "user", "is_checked", "date"]
     salmonella_fields  = ["product", "cart", "user"]
+    search_fields = ['order_id']
+    list_filter = ["is_checked"]
 
 class BrandAdmin(SalmonellaMixin, admin.ModelAdmin):
     list_display = ["brand_name"]

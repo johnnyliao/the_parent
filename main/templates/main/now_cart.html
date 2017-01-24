@@ -41,6 +41,7 @@
 			  $('#loading').fadeIn("fast");
 			  success: function(data) {
 			    if(!data["status"]) {
+			    	$('#loading').fadeOut("fast");
 			    	alert(data["msg"]);
 			    } else {
 			    	$("#cart_count").val(data["count"]);

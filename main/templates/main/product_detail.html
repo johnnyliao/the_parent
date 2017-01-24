@@ -58,6 +58,7 @@
 		        document.getElementById("qty").value--;
 		}
 		function add_to_cart(product_id) {
+			$('#loading').fadeIn("fast");
 			var url = "/cart/add_cart/?product_id=" + product_id + "&quantity=" + $("#qty").val()
 			$.ajax({
 			  type: 'GET',
@@ -65,8 +66,10 @@
 
 			  success: function(data) {
 			    if(!data["status"]) {
+			    	$('#loading').fadeOut("fast");
 			    	alert(data["msg"]);
 			    } else {
+			    	$('#loading').fadeOut("fast");
 			    	$("#cart_count").text(data["count"]);
 			    	alert("加入購物車成功！");
 
@@ -113,6 +116,9 @@
 </head>
 
 <body>
+<div id="loading">
+  	<img id="loading-image" src="{% static "img/page-loader.gif"%}" alt="Loading..." />
+</div>
 	<header class="header">
 		<article class="topnav">
 			<div class="goBack">
