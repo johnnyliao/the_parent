@@ -98,14 +98,17 @@
 				var address =  $("#address").val();
 
 				var birthday = $("#birthday").val() + "T00:00:00Z";
+				$('#loading').fadeIn("fast");
 				$.ajax({
 				  type: 'POST',
 				  url: "/account/user_register/",
 				  data: JSON.stringify({"username":username, "password":password, "nickname":nickname, "sex":sex, "phone_number":phone_number, "year":year, "address":address, "birthday":birthday, 'city':city, "district":district}),
 				  success: function(data) {
 				    if(!data["status"]) {
+				    	$('#loading').fadeOut("fast");
 				    	alert(data["msg"]);
 				    } else {
+				    	$('#loading').fadeOut("fast");
 				    	alert("註冊成功");
 				    	window.location.assign('/main/register_success/');
 				    }
@@ -123,6 +126,9 @@
 </head>
 
 <body>
+<div id="loading">
+  	<img id="loading-image" src="img/page-loader.gif" alt="Loading..." />
+</div>
 	<header class="header">
 		<article class="topnav">
 			<div class="cd-dropdown-wrapper">

@@ -100,7 +100,7 @@
 
 				var paymentMethod = $("input[name='paymentMethod']:checked").val()
 
-
+				$('#loading').fadeIn("fast");
 				$.redirect("/main/cart_final/",{
 					"invoice_type":$("input[id='invoice_type']:checked").val(),
 					"invoice_kind":invoice_kind,
@@ -119,7 +119,6 @@
 					"phone_number":$("#phone_number").val(),
 					"city":$( "select[name*='county']" ).val(),
 					"district":$( "select[name*='district']" ).val(),
-
 				});
 				/*$.post("/main/cart/", {
 					"invoice_type":$("input[id='invoice_type']:checked").val(),
@@ -376,6 +375,9 @@
 </head>
 
 <body>
+<div id="loading">
+  	<img id="loading-image" src="img/page-loader.gif" alt="Loading..." />
+</div>
 	<header class="header">
 		<article class="topnav">
 			<div class="goBack">
