@@ -1,0 +1,11 @@
+﻿@charset "utf-8";	
+/* 載入 */
+.ruleH1{
+    color: #09c;
+}
+.colorR{
+    color: #f00;
+}
+p{
+    margin:5px 0px;
+}
