@@ -3,7 +3,7 @@ from django.conf.urls import patterns, url
 from main.views import home, login, register, member, register_success, forget_password, change_password, index, indexshop, product_detail, now_cart, cart_check, cart_final
 
 urlpatterns = patterns(".views",
-	url("^$", index),
+	url("^$", home),
 	url('^login/', login),
 	url('^register/', register),
 	url('^member/', member),

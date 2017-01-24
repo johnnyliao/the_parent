@@ -42,6 +42,8 @@ import pytz
 from allauth.socialaccount.models import *
 
 def home(request):
+	brand_index = BrandIndex.objects.all()[0]
+
 	return render_to_response("main/index.html", locals(), context_instance=RequestContext(request))
 
 def login(request):
