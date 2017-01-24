@@ -75,6 +75,15 @@
 			  		}
 			  	}
 
+			  	var regExp = /^09[0-9]{8}$/;
+
+				if (check_data("phone_number", "手機號碼") == false) return false;
+
+				if (!$("#phone_number").val().match(regExp)) {
+					$("#phone_number").focus();
+					alert("手機號碼格式錯誤！");
+					return false;
+				}
 
 		 		if($("input[name='deliveryTime']:checked").val() == undefined) {
 		 			alert("請選擇配送時間！");
@@ -529,7 +538,7 @@
 				<div id="invoice_kind_div" style="display: none; margin-bottom: 10px;">
 					發票類型：
 					<input type="radio" id="invoice_kind" name="invoice_kind" value="1" onclick="change_invoice(1);"> 電子發票
-					<input type="radio" id="invoice_kind" name="invoice_kind" value="2" onclick="change_invoice(2);"> 紙本發票
+					<!--<input type="radio" id="invoice_kind" name="invoice_kind" value="2" onclick="change_invoice(2);"> 紙本發票-->
 				</div>
 
 				<div id="carruer_div" style="display: none; margin-bottom: 10px;">

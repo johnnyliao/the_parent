@@ -6,6 +6,7 @@ class Cart:
     def add(self, product, request, quantity=1):
         try:
             cart_item = request.user.user_cart_item.all().get(product=product)
+            cart_item.is_checked = False
             cart_item.amount += quantity
 
         except ObjectDoesNotExist:

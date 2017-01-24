@@ -114,8 +114,8 @@ def now_cart(request):
 	if not request.user.is_authenticated():
 		return render_to_response("main/login.html", locals(), context_instance=RequestContext(request))
 
-	total_count = request.user.user_cart_item.all().count()
 	cart_items = request.user.user_cart_item.all().filter(is_checked=False)
+	total_count = cart_items.count()
 	red_bag = 0
 	total_price = 0
 	for item in cart_items:
@@ -129,7 +129,8 @@ def product_detail(request, pk):
 	product_obj = ProductInfo.objects.get(id=pk)
 	you_like = ProductInfo.objects.exclude(id=pk)
 	if request.user.is_authenticated():
-		total_count = request.user.user_cart_item.all().count()
+		cart_items = request.user.user_cart_item.all().filter(is_checked=False)
+		total_count = cart_items.count()
 	else:
 		total_count = 0
 	return render_to_response("main/product_detail.html", locals(), context_instance=RequestContext(request))
