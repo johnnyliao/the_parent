@@ -201,11 +201,11 @@ class cart_check_out(APIView):
             #import pdb;pdb.set_trace()
             record.save()
             for item in request.user.user_cart_item.all():
-                #import pdb;pdb.set_trace()
                 record.product.add(item.product)
                 record.cart.add(item)
 
             record.save()
+            print record.car.all()
 
             szCheckMacValue = get_check_value(url_data)
 
@@ -215,7 +215,7 @@ class cart_check_out(APIView):
             print szCheckMacValue
             print url_data
 
-            request.user.user_cart_item.all().delete()
+            #request.user.user_cart_item.all().delete()
 
             return Response({"CheckMacValue": szCheckMacValue, "url_data":url_data, "target":target})
         else:
@@ -344,7 +344,7 @@ def create_invoice(order_id):
 
     url_data = {
         'TimeStamp': str(time.time()).split('.')[0],
-        'RelateNumber': "supermediaInvoice"+str(time.time()).replace(".",''),
+        'RelateNumber': "supermedia"+str(time.time()).replace(".",''),
         'MerchantID': "2000132",
         'CustomerID': "",
         'CustomerIdentifier': customer_identifier,
