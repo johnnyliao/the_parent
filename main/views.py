@@ -25,7 +25,7 @@ from allauth.socialaccount.providers.weibo.provider import WeiboProvider
 
 from allauth.socialaccount.models import (SocialLogin, SocialToken, SocialAccount)
 from allauth.socialaccount.helpers import complete_social_login, render_authentication_error
-
+from cart.models import CartItem
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
@@ -50,17 +50,65 @@ def login(request):
 def register(request):
 	return render_to_response("main/register.html", locals(), context_instance=RequestContext(request))
 
+def cart_final(request):
+	username = request.POST.get("username")
+	ship_time = request.POST.get("ship_time")
+	if ship_time == "morning":
+		ship_time_tw = u"早上"
+	elif ship_time == "afternoon":
+		ship_time_tw = u"下午"
+	elif ship_time == "night":
+		ship_time_tw = u"晚上"
+	choose_payment = request.POST.get("choose_payment")
+	phone_number = request.POST.get("phone_number")
+	city = request.POST.get("city")
+	district = request.POST.get("district")
+	address = request.POST.get("address")
+	invoice_type = request.POST.get("invoice_type")
+	invoice_kind = request.POST.get("invoice_kind")
+	carruer_type = request.POST.get("carruer_type")
+	love_code = request.POST.get("love_code")
+	customer_identifier = request.POST.get("customer_identifier")
+	customer_name = request.POST.get("customer_name")
+	customer_addr = request.POST.get("customer_addr")
+	customer_phone = request.POST.get("customer_phone")
+	customer_email = request.POST.get("customer_email")
+
+
+	return render_to_response("main/cart_final.html", locals(), context_instance=RequestContext(request))
+
 def index(request):
 	brand_index = BrandIndex.objects.all()[0]
 
 	return render_to_response("main/index.html", locals(), context_instance=RequestContext(request))
 
+def cart_check(request):
+	brand_index = BrandIndex.objects.all()[0]
+
+	return render_to_response("main/cart_check.html", locals(), context_instance=RequestContext(request))
+
+def now_cart(request):
+	if not request.user.is_authenticated():
+		return render_to_response("main/login.html", locals(), context_instance=RequestContext(request))
+
+	total_count = request.user.user_cart_item.all().count()
+	cart_items = request.user.user_cart_item.all()
+	red_bag = 0
+	total_price = 0
+	for item in cart_items:
+		red_bag += item.amount
+		total_price += item.amount * item.product.total_amount
+	return render_to_response("main/now_cart.html", locals(), context_instance=RequestContext(request))
+
 def product_detail(request, pk):
 	#product_id = request.GET.get("product_id")
 	#import pdb;pdb.set_trace()
 	product_obj = ProductInfo.objects.get(id=pk)
-	print product_obj
-
+	you_like = ProductInfo.objects.exclude(id=pk)
+	if request.user.is_authenticated():
+		total_count = request.user.user_cart_item.all().count()
+	else:
+		total_count = 0
 	return render_to_response("main/product_detail.html", locals(), context_instance=RequestContext(request))
 
 def indexshop(request):

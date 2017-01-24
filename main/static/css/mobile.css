@@ -10,10 +10,31 @@
 .shop{
     margin-top: -18px;
 }
+.container_cart{
+    margin-top: 0px;
+}
+.container_cart .cartConBox .invoiceBox input[type="text"]{
+    padding: 20px;
+    width: 85%;
+    border: 1px solid #e8e8e8;
+    margin:0px 0px 15px 0px; 
+}
+.container_cart .cartConBox .invoiceBox #love_code_div a{
+    right: 5%;
+}
 }
 @media screen and (max-width:640px){
 .forgetPassCon .inputW,.changePasswordBox .inputW{
 	min-width:50px;
+}
+.container_cart .cartConBox .invoiceBox input[type="text"]{
+    width: 75%;
+}
+.container_cart .cartConBox .invoiceBox #love_code{
+    width: 75%;
+}
+.container_cart .cartConBox .invoiceBox #love_code_div a{
+    right: 12%;
 }
 }
 @media screen and (max-width:440px){
@@ -38,5 +59,33 @@
 .container .memberBox .sky-form .brithday{
     width: 80%;
     margin-left: 3%;
+}
+.container_cart .cartConBox .shopDate .shopTotalBox{
+    width: 77%;
+}
+.container_cart .cartConBox .sky-form .col-sm-6 section input{
+    width: 80%;
+    margin-left: 3%;
+}
+.container_cart .cartConBox .sky-form .select .form-control{
+    width: 80%;
+    margin-left: 3%;
+}
+.container_cart .cartConBox .invoiceBox input[type="text"]{
+    padding: 20px;
+    width: 68%;
+    border: 1px solid #e8e8e8;
+    margin:0px 0px 15px 0px; 
+}
+.container_cart .cartConBox .invoiceBox #love_code{
+    width: 68%;
+}
+.container_cart .cartConBox .invoiceBox #love_code_div a{
+    right: 12%;
+}
+}
+@media screen and (max-width:320px){
+{
+    right: 5%;
 }
 }

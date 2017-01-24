@@ -22,6 +22,18 @@ INVOICE_TYPE_CHOICES = (
     ("3", _(u'三聯式')),
 )
 
+SHIP_TIME_CHOICES = (
+    ("morning", _(u'早上')),
+    ("afternoon", _(u'下午')),
+    ("night", _(u'晚上')),
+)
+
+CHOIESE_PAYMENT_CHOICES = (
+    ("Credit", _(u'信用卡')),
+    ("CVS", _(u'超商代碼')),
+    ("ATM", _(u'自動櫃員機')),
+)
+
 INVOICE_KIND_CHOICES = (
     (0, _(u'無')),
     (1, _(u'電子')),
@@ -176,6 +188,12 @@ class CartItem(models.Model):
         verbose_name_plural = _(u"購物車列表")
         ordering = ('creation_date',)
 
+class ShipInfo(models.Model):
+    name = models.CharField(_(u"收件人名稱"), max_length=30)
+    phone_number = models.CharField(_(u"電話號碼"), max_length=30)
+    city = models.CharField(_(u"地址縣市"), max_length=30)
+    district = models.CharField(_(u"地址行政區"), max_length=30)
+    address = models.CharField(_(u"地址"), max_length=100)
 
 class PayMentRecord(models.Model):
     product = models.ManyToManyField(ProductInfo,  related_name='record_product')
@@ -187,6 +205,10 @@ class PayMentRecord(models.Model):
     is_checked = models.BooleanField(_(u"是否已付款"), default=False)
     checked_time = models.DateTimeField(_(u"付款時間"), null=True, blank=True)
     #invoice = models.OneToOneField(PayMentInvoice,  related_name='payment_record_invoice', null=True, blank=True)
+    ship_info = models.ForeignKey(ShipInfo,  related_name='user_payment_record', null=True, blank=True)
+    ship_time = models.CharField(_(u"寄送時間"), choices=SHIP_TIME_CHOICES, null=True, blank=True, max_length=10)
+    choose_payment = models.CharField(_(u"付款方式"), choices=CHOIESE_PAYMENT_CHOICES, null=True, blank=True, max_length=10)
+
     class Meta:
         verbose_name = _(u"訂單資訊")
         verbose_name_plural = _(u"訂單列表")

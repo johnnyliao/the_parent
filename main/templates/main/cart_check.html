@@ -1,0 +1,583 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>roduct Details | Unify - Responsive Website Template</title>
+<meta name="Keywords" content="那對夫妻">
+<meta name="Description" content="那對夫妻">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, maximum-scale=1.0" />
+</head>
+<!--匯入JSJQ -->
+	<script src="{% static "js/jquery-1.8.2.min.js"%}"></script>
+    <script src="{% static "js/jquery.min.js"%}"></script>
+    <script src="{% static "js/main.js"%}"></script>
+    <script src="{% static "js/modernizr.js"%}"></script>
+    <script src="{% static "js/headroom.js"%}"></script>
+    <script src="{% static "js/jquery.menu-aim.js"%}"></script>
+    <script src="{% static "js/jquery.redirect.js"%}"></script>
+<!--匯入css -->
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css"%}">
+<!--header隱藏css js-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.3/headroom.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.3/jQuery.headroom.js"></script>
+    <style type="text/css">
+		.headroom {position: fixed;top: 0;left: 0;right: 0;transition: all .2s ease-in-out;}
+		.headroom--unpinned {top: -100px;transform: translateY(-100%);}
+		.headroom--pinned {transform: translateY(0%);z-index: 1;}
+    }
+	</style>
+	<script type="text/javascript">
+      	$("document").ready(function(){
+     		 $("#header").headroom();
+       	 });
+    </script>
+<!--header隱藏css js End-->
+<!--地址欄位使用 start-->
+	<script src="{% static "js/jquery.twzipcode.js"%}"></script>
+	<script src="{% static "js/jquery.twzipcode.min.js"%}"></script>
+	<script>
+		$("document").ready(function(){
+			$("#twzipcode").twzipcode();
+		});
+	</script>
+<!--地址欄位使用 End-->
+<!--發票種類使用 start-->
+	<script type="text/javascript">
+		$(document).ready(function () {
+		 	$("#payment").click(function(){
+		 		var fields = ["username", "phone_number", "address"];
+
+				var tw_fields = ["姓名", "手機", "地址"];
+
+				if($( "select[name*='county']" ).val() == "") {
+		  			alert("請選擇地址縣市");
+			  		$( "select[name*='county']" ).focus();
+			  		return;
+		  		}
+		  		if($( "select[name*='district']" ).val() == "") {
+		  			alert("請選擇地址鄉鎮市區");
+			  		$( "select[name*='district']" ).focus();
+			  		return;
+		  		}
+
+				for(item in fields) {
+			  		if(!$("#" + fields[item]).val()) {
+				  		alert("請輸入"+tw_fields[item]);
+				  		$("#"+fields[item]).focus();
+				  		return;
+			  		}
+			  	}
+
+
+		 		if($("input[name='deliveryTime']:checked").val() == undefined) {
+		 			alert("請選擇配送時間！");
+		 			return;
+		 		}
+
+		 		if($("input[name='paymentMethod']:checked").val() == undefined) {
+		 			alert("請選擇付款方式！");
+		 			return;
+		 		}
+
+		 		if (check_invoice_info() == false) return false;
+
+		 		if(!$("#checkbox").prop("checked")) {
+		  			alert("請勾選我同意那對夫妻客戶服務條款及客戶隱私權政策");
+			  		$( "checkbox[name*='checkbox']" ).focus();
+			  		return;
+		  		}
+
+				var item_id = this.name.replace("item_","");
+				var choose_payment = $("#choose_"+item_id).val();
+
+				var invoice_kind = ($("input[id='invoice_kind']:checked").val() == undefined) ? "0" : $("input[id='invoice_kind']:checked").val();
+
+				var carruer_type = ($("input[id='carruer_type']:checked").val() == undefined) ? "0" : $("input[id='carruer_type']:checked").val();
+
+				var deliveryTime = $("input[name='deliveryTime']:checked").val()
+
+				var paymentMethod = $("input[name='paymentMethod']:checked").val()
+
+
+				$.redirect("/main/cart_final/",{
+					"invoice_type":$("input[id='invoice_type']:checked").val(),
+					"invoice_kind":invoice_kind,
+					"carruer_type":carruer_type,
+					"carruer_num":$('#carruer_num').val(),
+					"love_code":$('#love_code').val(),
+					"customer_identifier":$('#customer_identifier').val(),
+					"customer_name":$('#customer_name').val(),
+					"customer_addr":$('#customer_addr').val(),
+					"customer_phone":$('#customer_phone').val(),
+					"customer_email":$('#customer_email').val(),
+					"address":$('#address').val(),
+					"username":$("#username").val(),
+					"ship_time":deliveryTime,
+					"choose_payment":paymentMethod,
+					"phone_number":$("#phone_number").val(),
+					"city":$( "select[name*='county']" ).val(),
+					"district":$( "select[name*='district']" ).val(),
+
+				});
+				/*$.post("/main/cart/", {
+					"invoice_type":$("input[id='invoice_type']:checked").val(),
+					"invoice_kind":invoice_kind,
+					"carruer_type":carruer_type,
+					"carruer_num":$('#carruer_num').val(),
+					"love_code":$('#love_code').val(),
+					"customer_identifier":$('#customer_identifier').val(),
+					"customer_name":$('#customer_name').val(),
+					"customer_addr":$('#customer_addr').val(),
+					"customer_phone":$('#customer_phone').val(),
+					"customer_email":$('#customer_email').val()
+					},
+					function(data){
+						var link = "/cart/receive_order?CheckMacValue="+data["CheckMacValue"]+"&url_data="+JSON.stringify(data["url_data"]);
+
+						window.location.href = link;
+					});*/
+	    	});
+	    });
+
+	    function hide_invoice_info() {
+			$('#love_code_div').hide();
+			$('#invoice_info').hide();
+			$('#invoice_kind_div').hide();
+			$('#identifier_div').hide();
+			$('#carruer_div').hide();
+			$('#carruer_num_div').hide();
+			$("input[id='invoice_kind']").removeAttr("checked");
+			$("input[id='carruer_type']").removeAttr("checked");
+		}
+
+	    function show_invoice(type) {
+			hide_invoice_info();
+
+			switch(type) {
+				case 1:
+					$('#love_code_div').show();
+					break;
+
+				case 2:
+					$('#invoice_kind_div').show();
+					break;
+
+				case 3:
+					$('#invoice_info').show();
+					$('#identifier_div').show();
+					$('#customer_name_title').html("發票抬頭:");
+					break;
+			}
+		}
+
+		function change_invoice(type) {
+			switch(type) {
+				case 1:
+					$('#carruer_div').show();
+					$('#invoice_info').hide();
+					break;
+
+				case 2:
+					$('#carruer_div').hide();
+					$('#invoice_info').show();
+					$('#customer_name_title').html("聯絡人:");
+					break;
+			}
+		}
+
+	    function change_carruer(type) {
+			switch(type) {
+				case 1:
+					$('#carruer_num_div').hide();
+					break;
+
+				case 2:
+					$('#carruer_num_name').html("自然人<br />憑證");
+					$('#carruer_num_div').show();
+					break;
+
+				case 3:
+					$('#carruer_num_name').html("手機條碼:");
+					$('#carruer_num_div').show();
+					break;
+			}
+		}
+
+		function check_data(id, msg) {
+			if ($("#"+id).val() == '') {
+				$("#"+id).focus();
+				alert("請輸入"+msg+"！");
+				return false;
+			}
+			return true;
+		}
+
+	    function check_love_code() {
+			if (check_data("love_code", "愛心碼") == false) return false;
+
+			var result;
+			$.ajax({
+				type: 'POST',
+				url: '/account/invoice_check_lovecode/',
+				data: {love_code: $('#love_code').val()},
+				success: function(data)
+				{
+					if(data == "IsExist") {
+						result = true;
+					} else {
+						result = false;
+						alert("錯誤的愛心碼，請重新輸入！");
+					}
+				},
+				dataType: 'json',
+				async: false
+			});
+
+			return result;
+		}
+		function check_carruer_num() {
+			var regExp = /^[A-Z|a-z]{2}\d{14}$/;
+
+			if (check_data("carruer_num", "自然人憑證") == false) return false;
+
+			if (!$("#carruer_num").val().match(regExp)) {
+				$("#carruer_num").focus();
+				alert("自然人憑證格式錯誤！");
+				return false;
+			}
+			return true;
+		}
+
+	    function check_barcode() {
+			if (check_data("carruer_num", "手機條碼") == false) return false;
+
+			var result;
+			$.ajax({
+				type: 'POST',
+				url: '/account/invoice_check_barcode/',
+				data: {barcode: $('#carruer_num').val()},
+				success: function(data)
+				{
+					if(data == "IsExist") {
+						result = true;
+					} else {
+						result = false;
+						alert("錯誤的手機條碼，請重新輸入！");
+					}
+				},
+				dataType: 'json',
+				async: false
+			});
+
+			return result;
+		}
+		function check_identifier() {
+			var regExp = /^\d{8}$/;
+
+			if (check_data("customer_identifier", "統一編號") == false) return false;
+
+			if (!$("#customer_identifier").val().match(regExp)) {
+				$("#customer_identifier").focus();
+				alert("統一編號格式錯誤！");
+				return false;
+			}
+			return true;
+		};
+
+		function check_phone() {
+			var regExp = /^09[0-9]{8}$/;
+
+			if (check_data("customer_phone", "手機號碼") == false) return false;
+
+			if (!$("#customer_phone").val().match(regExp)) {
+				$("#customer_phone").focus();
+				alert("手機號碼格式錯誤！");
+				return false;
+			}
+			return true;
+		};
+
+	    function check_email() {
+			var regExp = /^[^@^\s]+@[^\.@^\s]+(\.[^\.@^\s]+)+$/;
+
+			if (check_data("customer_email", "電子郵件") == false) return false;
+
+			if (!$("#customer_email").val().match(regExp)) {
+				$("#customer_email").focus();
+				alert("電子郵件格式錯誤！");
+				return false;
+			}
+			return true;
+		}
+
+		function check_invoice_info() {
+			switch($("input[id='invoice_type']:checked").val()) {
+				case "1":
+					if (check_love_code() == false) return false;
+					break;
+
+				case "2":
+					switch($("input[id='invoice_kind']:checked").val()) {
+						case "1":
+							switch($("input[id='carruer_type']:checked").val()) {
+								case "1":
+									// not thing
+									break;
+
+								case "2":
+									if (check_carruer_num() == false) return false;
+									break;
+
+								case "3":
+									if (check_barcode() == false) return false;
+									break;
+
+								default:
+									alert("請選擇載具類型！");
+									return false;
+									break;
+							}
+							break;
+
+						case "2":
+							if (check_data("customer_name", "聯絡人") == false) return false;
+							if (check_data("customer_addr", "寄送地址") == false) return false;
+							break;
+
+						default:
+							alert("請選擇發票類型！");
+							return false;
+							break;
+					}
+					break;
+
+				case "3":
+					if (check_identifier() == false) return false;
+					if (check_data("customer_name", "發票抬頭") == false) return false;
+					if (check_data("customer_addr", "寄送地址") == false) return false;
+					break;
+
+				default:
+					alert("請選擇發票方式！");
+					return false;
+					break;
+			}
+
+			if (check_phone() == false) return false;
+			if (check_email() == false) return false;
+
+			return true;
+		}
+	</script>
+<!--發票種類使用 End-->
+
+</head>
+
+<body>
+	<header class="header">
+		<article class="topnav">
+			<div class="goBack">
+				<a class="goBackBox" href="productCon.html">
+					<span><i class="fa fa-chevron-left" aria-hidden="true"></i></span>
+				</a>
+			</div>
+			<div class="logo">
+				<a href="/main/index">
+					<h2 class="headerTitle">那對夫妻</h2>
+				</a>
+			</div>
+		</article>
+	</header>
+	<!--購物步驟進度 start-->
+	<div class="stepBox">
+		<ul class="stepCon">
+			<li class="step1Box stepConActiveBox"><span class="stepCon stepConActive">1</span>本店購物車</li>
+			<li class="step2Box stepConActiveBox"><span class="stepCon stepConActive">2</span>付款資料</li>
+			<li class="step3Box"><span class="stepCon">3</span>最後確認</li>
+		</ul>
+	</div>
+	<!--購物步驟進度 End-->
+	<!--nav start-->
+	<div class="cd-dropdown-wrapper">
+		<!--<a class="cd-dropdown-trigger" href="#0">Dropdown</a>-->
+		<nav class="cd-dropdown">
+			<h2>那對夫妻</h2>
+			<a href="#0" class="cd-close">Close</a>
+			<ul class="cd-dropdown-content">
+				<li>
+					<form class="cd-search" method="get">
+						<input type="search" placeholder="Search..." class="searchlnput_text">
+						<input class="searchlnput_bnt" name="" type="submit" value="">
+					</form>
+				</li>
+				<li>
+					<a href="/main/login/">登入</a>
+				</li>
+				<li style="display: none;">
+					<a href="#">登出</a>
+				</li>
+				<li>
+					<a href="/main/register/">註冊</a>
+				</li>
+				<li class="has-children">
+					<a href="#">會員專區</a>
+					<ul class="cd-secondary-dropdown is-hidden">
+						<li class="go-back"><a href="#0">Menu</a></li>
+						<li>
+							<a href="/main/member/">會員資料</a>
+						</li>
+						<li>
+							<a href="/main/changePassword/">修改密碼</a>
+						</li>
+					</ul> <!-- .cd-secondary-dropdown -->
+				</li> <!-- .has-children -->
+			</ul> <!-- .cd-dropdown-content -->
+		</nav> <!-- .cd-dropdown -->
+	</div> <!-- .cd-dropdown-wrapper -->
+	<!--nav End-->
+
+	<div class="container_default container_cart">
+		<div class="cartConBox">
+			<div class="shopDetailTitle"><h3>收件人資料</h3></div>
+			<form id="sky-form4" class="log-reg-block sky-form mt15" novalidate="novalidate">
+				<div class="login-input reg-input">
+					<div class="row">
+						<div class="col-sm-6">
+							<section>
+								<label class="input">
+									<span class="inputW">姓名</span><input type="text" name="firstname" id="username" placeholder="請輸入姓名" class="form-control">
+								</label>
+							</section>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<section>
+								<label class="input">
+									<span class="inputW">手機</span><input type="text" name="mobile" id="phone_number" placeholder="請輸入手機" class="form-control">
+								</label>
+							</section>
+						</div>
+					</div>
+					<div class="address">
+						<section>
+							<span class="inputW">地址</span>
+							<div class="addressBox">
+								<div id="twzipcode"></div>
+								<input type="text" id="address" placeholder="請輸入地址" class="addressText" />
+							</div>
+						</section>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="cartConBox">
+			<div class="shopDetailTitle"><h3>配送時間</h3></div>
+			<form class="deliveryTimeBox">
+				<p class="deliveryTimeCon">請選擇配送時間</p>
+				<input type="radio" name="deliveryTime" value="morning"> 上午<br>
+				<input type="radio" name="deliveryTime" value="afternoon"> 下午<br>
+				<input type="radio" name="deliveryTime" value="night"> 晚上<br>
+			</form>
+		</div>
+		<div class="cartConBox">
+			<div class="shopDetailTitle"><h3>付款方式</h3></div>
+			<form class="paymentBox">
+				<p class="paymentCon">請選擇付款方式</p>
+				<input type="radio" name="paymentMethod" value="Credit"> 信用卡<br>
+				<input type="radio" name="paymentMethod" value="ATM"> ATM<br>
+				<input type="radio" name="paymentMethod" value="CVS"> 超商代碼<br>
+			</form>
+		</div>
+		<div class="cartConBox">
+			<div class="shopDetailTitle"><h3>發票資料</h3></div>
+			<div class="invoiceBox">
+				<div class="">
+					<!-- <label for="">發票方式：</label> -->
+					<span>發票方式：</span>
+					<div class="invoiceBItem">
+						<input type="radio" id="invoice_type" name="invoice_type" value="1" onclick="show_invoice(1);"> 捐贈發票<br />
+						<input type="radio" id="invoice_type" name="invoice_type" value="2" onclick="show_invoice(2);"> 二聯式<br />
+						<input type="radio" id="invoice_type" name="invoice_type" value="3" onclick="show_invoice(3);"> 三聯式
+					</div>
+				</div>
+
+				<br />
+
+				<div id="love_code_div" style="display: none;">
+					<span>愛心碼：</span>
+					<input type="text" id="love_code" class="" value="" maxlength="7"/>
+
+					<a href="https://www.einvoice.nat.gov.tw/APMEMBERVAN/XcaOrgPreserveCodeQuery/XcaOrgPreserveCodeQuery?CSRT=4350550699150711492" target="_blank">查詢愛心碼</a>
+				</div>
+
+				<div id="invoice_kind_div" style="display: none; margin-bottom: 10px;">
+					發票類型：
+					<input type="radio" id="invoice_kind" name="invoice_kind" value="1" onclick="change_invoice(1);"> 電子發票
+					<input type="radio" id="invoice_kind" name="invoice_kind" value="2" onclick="change_invoice(2);"> 紙本發票
+				</div>
+
+				<div id="carruer_div" style="display: none; margin-bottom: 10px;">
+					<span class="carruerBox">載具類型：</span>
+					<div class="invoiceBItem">
+						<input type="radio" id="carruer_type" name="carruer_type" value="1" onclick="change_carruer(1);"> 沒有共通性載具<br />
+						<input type="radio" id="carruer_type" name="carruer_type" value="2" onclick="change_carruer(2);"> 自然人憑證<br />
+						<input type="radio" id="carruer_type" name="carruer_type" value="3" onclick="change_carruer(3);"> 手機條碼
+					</div>
+					<div id="carruer_num_div" style="display: none;">
+						<span id="carruer_num_name"></span><input type="text" id="carruer_num" class="" value=""/>
+					</div>
+				</div>
+
+				<div id="invoice_info" style="display: none;">
+					<div id="identifier_div" style="display: none;">
+						<span>統一編號：</span>
+						<input type="text" id="customer_identifier" class="" value="" maxlength="8"/>
+					</div>
+
+					<div>
+						<span id="customer_name_title"></span>
+						<input type="text" id="customer_name" class="" value=""/>
+					</div>
+
+					<div>
+						<span>寄送地址：</span>
+						<input type="text" id="customer_addr" class="" value=""/>
+					</div>
+				</div>
+
+				<div>
+					<span>手機號碼：</span>
+					<input type="text" id="customer_phone" class="" value="" maxlength="10"/>
+				</div>
+
+				<div>
+					<span>電子郵件：</span>
+					<input type="text" id="customer_email" class="" value=""/>
+				</div>
+			</div>
+		</div>
+		<div class="ruleBox1">
+			<label class="checkbox margin-bottom-10">
+				<input type="checkbox" name="checkbox" id="checkbox" class="ruleCheckbox">
+				<div class="ruleText">我同意那對夫妻<a href="#" id="html-content" class="bordered">客戶服務條款及聲明</a>與<a href="#" id="html-privacy">客戶隱私權政策</a></div>
+			</label>
+		</div>
+		<div class="cartBtnBox">
+			<a class="prevStep" href="javascript: void(history.go(-1))">上一步</a>
+			<a id="payment" class="nextStep" href="#" >下一步</a>
+		</div>
+
+	</div>
+
+	<div class="under-nav">
+	    <a href="#" class="inner-nav  icon-basket"></a>
+	    <a aria-hidden="true" href="#" class="inner-nav icon-social-youtube"></a><a href="#" aria-hidden="true" class="inner-nav icon-feed"></a>
+	    <a href="#" aria-hidden="true" class="inner-nav icon-list"></a>
+	</div>
+	<div id="goTop"><a href="#home" id="toTop" class="scroll" style="display: none;"> <span id="toTopHover" style="opacity: 1;"><i class="fa fa-chevron-circle-up fa-3" id="fa-3" aria-hidden="true"></i></span></a></div>
+
+
+</body>

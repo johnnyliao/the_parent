@@ -1,6 +1,6 @@
 #-*- encoding: utf-8 -*-
 from .cart import Cart
-from .models import ProductInfo, FavoriteItem, PayMentRecord, PayMentInvoice, UserInvoice
+from .models import ProductInfo, FavoriteItem, PayMentRecord, PayMentInvoice, UserInvoice, ShipInfo
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly, IsAuthenticated
@@ -28,7 +28,7 @@ class add_to_cart(APIView):
 		cart = Cart()
 		cart.add(product, request, int(quantity))
 		serializer = CartItemSerializer(request.user.user_cart_item.all(), many=True)
-		return Response(serializer.data)
+		return Response({"status":True, "msg":serializer.data, "count":request.user.user_cart_item.all().count()})
 
 class add_favorite(APIView):
 	#serializer_class = PasswordResetSerializer
@@ -71,19 +71,20 @@ class remove_favorite(APIView):
 
 
 class remove_cart(APIView):
-	#serializer_class = PasswordResetSerializer
-	permission_classes = (IsAuthenticated, )
+    #serializer_class = PasswordResetSerializer
+    permission_classes = (IsAuthenticated, )
 
-	def get(self, request, format=None):
-		"""
+    def get(self, request, format=None):
+        """
         刪除購物車商品
         product_id -- 商品ID
         """
-		product_id = request.QUERY_PARAMS.get('product_id')
-		cart = Cart()
-		status = cart.remove(product, request)
-		serializer = CartItemSerializer(request.user.user_cart_item.all(), many=True)
-		return Response(serializer.data)
+        product_id = request.QUERY_PARAMS.get('product_id')
+        product = ProductInfo.objects.get(id=product_id)
+        cart = Cart()
+        status = cart.remove(product, request)
+        serializer = CartItemSerializer(request.user.user_cart_item.all(), many=True)
+        return Response({"status":True, "msg":serializer.data})
 
 
 class update_cart(APIView):
@@ -129,81 +130,91 @@ class get_favorite(APIView):
 			return Response({})
 
 class cart_check_out(APIView):
-	serializer_class = CreateOrderSerializer
-	permission_classes = (IsAuthenticated, )
+    serializer_class = CreateOrderSerializer
+    permission_classes = (IsAuthenticated, )
 
-	def post(self, request, format=None):
-		"""
-		結帳購物車內容
-		"""
-		serializer = self.serializer_class(data=request.DATA)
-		if serializer.is_valid():
-			item_arr = list()
-			total_amount = 0
-			item_name_arr = ""
-			for name in request.user.user_cart_item.all():
-				#import pdb;pdb.set_trace()
-				item_arr.append(name.product.item_name)
-				total_amount += (name.product.total_amount * name.amount)
-				item_name = ",".join(item_arr)
-				item_name_arr = "#".join(item_arr)
+    def post(self, request, format=None):
+        """
+        結帳購物車內容
+        """
+        serializer = self.serializer_class(data=request.DATA)
+        #import pdb;pdb.set_trace()
+        if serializer.is_valid():
+            item_arr = list()
+            total_amount = 0
+            item_name_arr = ""
+            for name in request.user.user_cart_item.all():
+                #import pdb;pdb.set_trace()
+                item_arr.append(name.product.item_name)
+                total_amount += (name.product.total_amount * name.amount)
+                item_name = ",".join(item_arr)
+                item_name_arr = "#".join(item_arr)
 
-			target = "_self"
-			ServiceURL = "https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V2"
-			url_data = {
-				'ChoosePayment':"ALL",
-				'ChooseSubPayment':'',
-				'ClientBackURL':'http://www.dodohouse.com.tw/',
-				'CreditInstallment':'0',
-				'DeviceSource':'',
-				'EncryptType':'0',
-				'ExecTimes':'',
-				'Frequency':'',
-				'InstallmentAmount':'0',
-				'InvoiceMark':'',
-				'ItemName':item_name_arr,
-				'ItemURL':'dedwed ',
-				'Language':'',
-				'MerchantID':'2000132',
-				'MerchantTradeDate':datetime.datetime.fromtimestamp(time.time()).strftime('%Y/%m/%d %H:%M:%S'),
-				'MerchantTradeNo':"Test"+  str(time.time()).replace(".",''),
-				'NeedExtraPaidInfo':'N',
-				'OrderResultURL':'',
-				'PaymentType':'aio',
-				'PeriodAmount':'',
-				'PeriodReturnURL':'',
-				'PeriodType':'',
-				'Redeem':'',
-				'Remark':'',
-				'ReturnURL':'http://nicokim.cc/cart/allpay_recevive/',
-				'TotalAmount':total_amount,
-				'TradeDesc':"111",
-				'UnionPay':''
-			}
+            target = "_self"
+            ServiceURL = "https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V2"
+            url_data = {
+                'ChoosePayment':serializer.data["choose_payment"],
+                'ChooseSubPayment':'',
+                'ClientBackURL':'http://nicokim.cc/main/index',
+                'CreditInstallment':'0',
+                'DeviceSource':'',
+                'EncryptType':'0',
+                'ExecTimes':'',
+                'Frequency':'',
+                'InstallmentAmount':'0',
+                'InvoiceMark':'',
+                'ItemName':item_name_arr,
+                'ItemURL':'dedwed ',
+                'Language':'',
+                'MerchantID':'2000132',
+                'MerchantTradeDate':datetime.datetime.fromtimestamp(time.time()).strftime('%Y/%m/%d %H:%M:%S'),
+                'MerchantTradeNo':"Test"+  str(time.time()).replace(".",''),
+                'NeedExtraPaidInfo':'N',
+                'OrderResultURL':'',
+                'PaymentType':'aio',
+                'PeriodAmount':'',
+                'PeriodReturnURL':'',
+                'PeriodType':'',
+                'Redeem':'',
+                'Remark':'',
+                'ReturnURL':'http://nicokim.cc/cart/allpay_recevive/',
+                'TotalAmount':total_amount,
+                'TradeDesc':"111",
+                'UnionPay':''
+            }
 
-			record = PayMentRecord(
-				total_amount=total_amount,
-				order_id=url_data["MerchantTradeNo"],
-				user=request.user
-			)
+            ship_info = ShipInfo(name=serializer.data.get("username"),phone_number=serializer.data["phone_number"],city=serializer.data["city"],district=serializer.data["district"],address=serializer.data["address"])
 
-			record.save()
-			for item in request.user.user_cart_item.all():
-				#import pdb;pdb.set_trace()
-				record.product.add(item.product)
-				record.cart.add(item)
+            ship_info.save()
 
-			record.save()
+            record = PayMentRecord(
+                total_amount=total_amount,
+                order_id=url_data["MerchantTradeNo"],
+                user=request.user,
+                ship_info=ship_info,
+                ship_time=serializer.data["ship_time"],
+                choose_payment=serializer.data["choose_payment"]
+            )
+            #import pdb;pdb.set_trace()
+            record.save()
+            for item in request.user.user_cart_item.all():
+                #import pdb;pdb.set_trace()
+                record.product.add(item.product)
+                record.cart.add(item)
 
-			szCheckMacValue = get_check_value(url_data)
+            record.save()
 
-			url_data["ItemName"] = item_name
+            szCheckMacValue = get_check_value(url_data)
 
-			save_invoice_info(serializer.data, request.user, record)
+            url_data["ItemName"] = item_name
 
-			return Response({"CheckMacValue": szCheckMacValue, "url_data":url_data, "target":target})
-		else:
-			return Response(serializer.errors)
+            save_invoice_info(serializer.data, request.user, record)
+            print szCheckMacValue
+            print url_data
+            return Response({"CheckMacValue": szCheckMacValue, "url_data":url_data, "target":target})
+        else:
+            print serializer.errors
+            return Response(serializer.errors)
 
 def save_invoice_info(invoice_data, user_id, record):
     user_invoice = UserInvoice.objects.filter(user=user_id)
@@ -222,6 +233,7 @@ def save_invoice_info(invoice_data, user_id, record):
 
         user_invoice[0].save()
     else:
+        #import pdb;pdb.set_trace()
         user_invoice = UserInvoice(
             customer_name=invoice_data["customer_name"],
             customer_addr=invoice_data["customer_addr"],
@@ -490,7 +502,13 @@ def allpay_recevive(request):
                 return HttpResponse("0|record was checked")
             else:
                 record.is_checked = True
+                record.checked_time = datetime.datetime.now()
                 record.save()
+
+                for cart in record.cart.all():
+                    cart.product.in_stock -= cart.amount
+                    cart.product.save()
+                    cart.save()
 
                 create_invoice(post_data['MerchantTradeNo'])
                 print "1|OK"

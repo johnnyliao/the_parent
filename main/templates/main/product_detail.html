@@ -9,7 +9,7 @@
 <meta property="og:url"           content="nicokim.cc/main/product_detail/{{product_obj.id}}/" />
 	<meta property="og:type"          content="website" />
 	<meta property="og:title"         content="{{product_obj.item_name}}" />
-	<meta property="og:description"   content="{{product_obj.trade_desc}}" />
+	<meta property="og:description"   content="{{product_obj.trade_desc|safe}}" />
 	<meta property="og:image"         content="{{product_obj.photo.all.0.photo.url}}" />
 <meta name="Description" content="那對夫妻">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -56,6 +56,29 @@
 		        return;
 		    else
 		        document.getElementById("qty").value--;
+		}
+		function add_to_cart(product_id) {
+			var url = "/cart/add_cart/?product_id=" + product_id + "&quantity=" + $("#qty").val()
+			$.ajax({
+			  type: 'GET',
+			  url: url,
+
+			  success: function(data) {
+			    if(!data["status"]) {
+			    	alert(data["msg"]);
+			    } else {
+			    	$("#cart_count").text(data["count"]);
+			    	alert("加入購物車成功！");
+
+			    }
+			  },
+			  error: function(data) {
+			    if(data["status"] == 403) {
+			    	alert("請先登入");
+			    	window.location.assign('/main/login/');
+			    }
+			  },
+			});
 		}
 	</script>
 <!--購買數項加減 End-->
@@ -158,11 +181,11 @@
 			<div class="productTitle"><h2 class="proTitle">{{product_obj.item_name}}</h2></div>
 			<div class="productConTxt">
 				<div class="priceBox">
-					<span class="bargainPrice">{{product_obj.total_amount}}</span>
+					<span class="bargainPrice">{{product_obj.total_amount}}元</span>
 				</div>
 				<h2 class="quantity">購買數量</h2>
 				<button type="button" class="quantity-button" name="subtract" onclick="javascript: subtractQty();" value="-">-</button>
-				<input type="text" class="quantity-field" name="qty" value="1" id="qty">
+				<input type="text" class="quantity-field" name="qty" id="qty" value="1" id="qty">
 				<button type="button" class="quantity-button" name="add" onclick="javascript:document.getElementById('qty').value++;" value="+">+</button>
 				<div class="proShareBox">
 					<a style="display: inline-block;
@@ -220,19 +243,11 @@
 				  <section class="slider expertCon">
 					<div class="flexslider carousel expertArea">
 					  <ul class="slides">
+					  	{% for like in you_like %}
 						<li>
-							<div class="experImg"><img src="img/001.jpg" /></div>
+							<div class="experImg"><a href="/main/product_detail/{{like.id}}/"><img src="{{like.photo.all.0.photo.url}}" /></a></div>
 						</li>
-						<li>
-							<div class="experImg"><img src="img/002.jpg" /></div>
-						</li>
-						<li>
-							<div class="experImg"><img src="img/003.jpg" /></div>
-						</li>
-						<li>
-							<div class="experImg"><img src="img/004.jpg" /></div>
-						</li>
-
+						{% endfor %}
 					  </ul>
 					</div>
 				  </section>
@@ -242,8 +257,8 @@
 	</div>
 	<div class="buyBox">
 		<ul class="buyBoxCon">
-			<li class="nowCart"><a href=""><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i><span class="nowBuy">1</span></a></li>
-			<li class="addCart"><a href=""><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a></li>
+			<li class="nowCart"><a href="/main/now_cart/"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i><span class="nowBuy" id="cart_count">{{total_count}}</span></a></li>
+			<li class="addCart"><a href="javascript: void(add_to_cart({{product_obj.id}}))"><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a></li>
 			<li class="buyNowBtn fa-2x"><a href=""><i class="fa fa-shopping-bag fa-2x" aria-hidden="true"></i>立即購買</a></li>
 		</ul>
 	</div>

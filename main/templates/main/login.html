@@ -53,7 +53,20 @@
 			    	alert(data["msg"]);
 			    } else {
 			    	alert("登入成功！");
-			    	window.location.assign('/main/register_success/');
+
+			    	$.ajax({
+					  type: 'GET',
+					  url: "/account/check_user_verify/",
+					  success: function(data) {
+					    if (data == false) {
+					    	alert("請先進行email認證功能！");
+					    	window.location.assign('/main/register_success/');
+					    } else {
+					    	window.location.assign('/main/index/');
+					    }
+					  }
+					});
+			    	//
 			    }
 			  },
 			  dataType: "json",
