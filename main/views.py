@@ -65,8 +65,24 @@ def cart_final(request):
 	district = request.POST.get("district")
 	address = request.POST.get("address")
 	invoice_type = request.POST.get("invoice_type")
+
+	if invoice_type == "1":
+		invoice_type_tw = u"捐贈"
+	elif invoice_type == "2":
+		invoice_type_tw = u"二聯式"
+	elif invoice_type == "3":
+		invoice_type_tw = u"三聯式"
+
 	invoice_kind = request.POST.get("invoice_kind")
 	carruer_type = request.POST.get("carruer_type")
+
+	if invoice_type == "":
+		carruer_type_tw = u"沒有載具"
+	elif invoice_type == "2":
+		carruer_type_tw = u"自然人憑證"
+	elif invoice_type == "3":
+		carruer_type_tw = u"手機條碼"
+
 	love_code = request.POST.get("love_code")
 	customer_identifier = request.POST.get("customer_identifier")
 	customer_name = request.POST.get("customer_name")

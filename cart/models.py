@@ -233,6 +233,7 @@ class PayMentInvoice(models.Model):
     invalid_time = models.DateTimeField(_(u"作廢時間"), null=True, blank=True)
     invoice_number = models.CharField(_(u"發票號碼"), max_length=10, null=True, blank=True)
     record = models.OneToOneField(PayMentRecord,  related_name='payment_record_', null=True, blank=True)
+
     def __unicode__(self):
         return self.invoice_number
 

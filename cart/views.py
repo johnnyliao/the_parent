@@ -168,7 +168,7 @@ class cart_check_out(APIView):
                 'Language':'',
                 'MerchantID':'2000132',
                 'MerchantTradeDate':datetime.datetime.fromtimestamp(time.time()).strftime('%Y/%m/%d %H:%M:%S'),
-                'MerchantTradeNo':"Test"+  str(time.time()).replace(".",''),
+                'MerchantTradeNo':"supermedia"+  str(time.time()).replace(".",''),
                 'NeedExtraPaidInfo':'N',
                 'OrderResultURL':'',
                 'PaymentType':'aio',
@@ -211,6 +211,9 @@ class cart_check_out(APIView):
             save_invoice_info(serializer.data, request.user, record)
             print szCheckMacValue
             print url_data
+
+            request.user.user_cart_item.all().delete()
+
             return Response({"CheckMacValue": szCheckMacValue, "url_data":url_data, "target":target})
         else:
             print serializer.errors
