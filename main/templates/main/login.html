@@ -52,6 +52,7 @@
 			  data: JSON.stringify({"username":email, "password":password}),
 			  success: function(data) {
 			    if(!data["status"]) {
+			    	$('#loading').fadeOut("fast");
 			    	alert(data["msg"]);
 			    } else {
 			    	$('#loading').fadeOut("fast");
