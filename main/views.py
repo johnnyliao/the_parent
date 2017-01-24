@@ -42,7 +42,7 @@ import pytz
 from allauth.socialaccount.models import *
 
 def home(request):
-	return render_to_response("main/page_coming_soon2.html", locals(), context_instance=RequestContext(request))
+	return render_to_response("main/index.html", locals(), context_instance=RequestContext(request))
 
 def login(request):
 	return render_to_response("main/login.html", locals(), context_instance=RequestContext(request))
