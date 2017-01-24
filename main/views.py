@@ -115,7 +115,7 @@ def now_cart(request):
 		return render_to_response("main/login.html", locals(), context_instance=RequestContext(request))
 
 	total_count = request.user.user_cart_item.all().count()
-	cart_items = request.user.user_cart_item.all()
+	cart_items = request.user.user_cart_item.all().filter(is_checked=False)
 	red_bag = 0
 	total_price = 0
 	for item in cart_items:

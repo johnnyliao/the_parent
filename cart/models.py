@@ -83,6 +83,7 @@ class ProductImage(models.Model):
         verbose_name = _(u"商品圖片資訊")
         verbose_name_plural = _(u"商品圖片列表")
 
+
 class BrandBanner(models.Model):
     banner = models.ImageField(_(u"banner"), upload_to='cart/brand_banner')
     name = models.CharField(_(u"Banner名稱"), max_length=30)
@@ -182,6 +183,7 @@ class CartItem(models.Model):
     checked_date = models.DateTimeField(verbose_name=_('creation date'), null=True, blank=True)
     is_checked_out = models.BooleanField(default=False, verbose_name=_('checked out'))
     amount = models.IntegerField(_(u"數量"))
+    is_checked = models.BooleanField(_(u"是否已付款"), default=False)
 
     class Meta:
         verbose_name = _(u"購物車資訊")
@@ -212,6 +214,7 @@ class PayMentRecord(models.Model):
     class Meta:
         verbose_name = _(u"訂單資訊")
         verbose_name_plural = _(u"訂單列表")
+
 
 class PayMentInvoice(models.Model):
     relate_number = models.CharField(_(u"自訂編號"), max_length=30, null=True, blank=True)

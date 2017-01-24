@@ -55,6 +55,9 @@ class User(AbstractUser):
 		except:
 			return False
 
+	def __unicode__(self):
+		return self.username
+
 class UserVerify(models.Model):
 	user = models.OneToOneField(User, related_name='verify')
 	verification_hash = models.CharField(_(u"驗證碼"), max_length= 50, null=False, blank=False)

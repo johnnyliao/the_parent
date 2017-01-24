@@ -215,6 +215,12 @@ class cart_check_out(APIView):
             print szCheckMacValue
             print url_data
 
+            cart_items = request.user.user_cart_item.all().filter(is_checked=False)
+
+            for item in cart_items:
+                item.is_checked = True
+                item.save()
+
             #request.user.user_cart_item.all().delete()
 
             return Response({"CheckMacValue": szCheckMacValue, "url_data":url_data, "target":target})
