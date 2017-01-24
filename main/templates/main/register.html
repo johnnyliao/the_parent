@@ -15,9 +15,14 @@
     <script src="{% static "js/main.js"%}"></script>
     <script src="{% static "js/modernizr.js"%}"></script>
     <script src="{% static "js/headroom.js"%}"></script>
+    <script src="{% static "js/public.js"%}"></script>
     <script src="{% static "js/jquery.menu-aim.js"%}"></script>
     <script src="{% static "js/jquery.twzipcode.js"%}"></script>
-	<script src="{% static "js/jquery.twzipcode.min.js"%}"></script><
+	<script src="{% static "js/jquery.twzipcode.min.js"%}"></script>
+	<!--彈窗使用css js start-->
+	<link rel="stylesheet" href="{% static "css/jquery.sweet-modal.min.css"%}" />
+	<script src="{% static "js/jquery.sweet-modal.min.js"%}"></script>
+<!--彈窗使用css js End-->
 <!--匯入css -->
     <link rel="stylesheet" type="text/css" href="{% static "css/style.css"%}">
     <link rel="shortcut icon" href="images/favicon.ico"/>
@@ -274,7 +279,7 @@
 				<div class="ruleBox">
 					<label class="checkbox margin-bottom-10">
 						<input type="checkbox" name="checkbox" id="checkbox" class="ruleCheckbox">
-						<div class="ruleText">我同意那對夫妻<a href="#">客戶服務條款</a>與<a href="#">客戶隱私權政策</a></div>
+						<div class="ruleText">我同意那對夫妻<a href="" id="html-content">客戶服務條款</a>與<a href="" id="html-privacy">客戶隱私權政策</a></div>
 					</label>
 				</div>
 				<button class="clearBtn" id="clean">清空</button>
