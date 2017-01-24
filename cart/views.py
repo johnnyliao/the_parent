@@ -215,7 +215,7 @@ class cart_check_out(APIView):
             print szCheckMacValue
             print url_data
 
-            request.user.user_cart_item.all().delete()
+            #request.user.user_cart_item.all().delete()
 
             return Response({"CheckMacValue": szCheckMacValue, "url_data":url_data, "target":target})
         else:
