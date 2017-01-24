@@ -499,6 +499,7 @@ def allpay_recevive(request):
         print "check mac value OK"
         #try:
         record = PayMentRecord.objects.filter(order_id=post_data['MerchantTradeNo'])
+        print record
         if record:
             print "have record"
             record = record[0]
