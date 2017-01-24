@@ -22,7 +22,8 @@ class Cart:
     def remove(self, product, request):
         try:
             cart_item = request.user.user_cart_item.all().get(product=product)
-            cart_item.delete()
+            cart_item.is_checked = True
+            cart_item.save()
             return True
 
         except ObjectDoesNotExist:
