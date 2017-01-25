@@ -582,7 +582,7 @@ class InvoiceCheckLoveCode(generics.GenericAPIView):
             if serializer.is_valid():
                 url_data = {
                     'TimeStamp':str(time.time()).split('.')[0],
-                    'MerchantID':"2000132",
+                    'MerchantID':"3005361",
                     'LoveCode': serializer.data.get('love_code', None),
                 }
 
