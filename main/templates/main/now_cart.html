@@ -34,11 +34,11 @@
        	 });
 
       	function remove_to_cart(product_id) {
+      		$('#loading').fadeIn("fast");
       		var url = "/cart/remove_cart/?product_id=" + product_id;
 			$.ajax({
 			  type: 'GET',
 			  url: url,
-			  $('#loading').fadeIn("fast");
 			  success: function(data) {
 			    if(!data["status"]) {
 			    	$('#loading').fadeOut("fast");
