@@ -109,8 +109,8 @@
 	</script>
 <!--購買數項加減 End-->
 <!--你可能會喜歡 start-->
-	<link rel="stylesheet" href="css/demo.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="{% static "css/demo.css"%}" type="text/css" media="screen" />
+	<link rel="stylesheet" href="{% static "css/flexslider.css"%}" type="text/css" media="screen" />
 <!--你可能會喜歡 End-->
 
 </head>
@@ -122,12 +122,12 @@
 	<header class="header">
 		<article class="topnav">
 			<div class="goBack">
-				<a class="goBackBox" href="index_shop.html">
+				<a class="goBackBox" href="javascript: void(history.go(-1))">
 					<span><i class="fa fa-chevron-left" aria-hidden="true"></i></span>
 				</a>
 			</div>
 			<div class="logo">
-				<a href="/index.html">
+				<a href="/main/index">
 					<h2 class="headerTitle">{{product_obj.item_name}}</h2>
 				</a>
 			</div>
