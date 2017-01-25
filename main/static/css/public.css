@@ -1130,3 +1130,13 @@ input[name="zipcode"]{
 .sky-form .reg-input .regSuccess .paySuccessBox{
     margin-top:10px;
 }
+
+/*選單隱藏search*/
+.cd-search{
+    display:none;
+}
+
+/*隱私權政策捲軸*/
+.sweet-modal-box{
+    overflow-y: scroll!important ;
+}
