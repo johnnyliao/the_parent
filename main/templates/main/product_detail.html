@@ -94,7 +94,7 @@
 			    	alert(data["msg"]);
 			    } else {
 			    	$("#cart_count").text(data["count"]);
-			    	window.location.assign('/main/now_cart/?product_id={{product_id}}');
+			    	window.location.assign('/main/now_cart/?product_id={{product_obj.id}}');
 
 			    }
 			  },
