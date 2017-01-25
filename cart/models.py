@@ -10,7 +10,7 @@ from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
 
 from django.contrib.contenttypes import generic
-
+from django.utils.timezone import now
 from django.core.exceptions import ObjectDoesNotExist
 from mezzanine.core.fields import RichTextField
 from django.contrib.sites.models import Site
@@ -215,6 +215,9 @@ class PayMentRecord(models.Model):
         verbose_name = _(u"訂單資訊")
         verbose_name_plural = _(u"訂單列表")
 
+    def save(self, *args, **kwargs):
+        self.publish_date = now()
+        super(PayMentRecord, self).save(*args, **kwargs)
 
 class PayMentInvoice(models.Model):
     relate_number = models.CharField(_(u"自訂編號"), max_length=30, null=True, blank=True)

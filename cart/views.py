@@ -515,7 +515,6 @@ def allpay_recevive(request):
                 return HttpResponse("0|record was checked")
             else:
                 record.is_checked = True
-                record.checked_time = datetime.datetime.now()
                 record.save()
 
                 for cart in record.cart.all():
