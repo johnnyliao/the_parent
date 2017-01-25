@@ -28,7 +28,7 @@ class add_to_cart(APIView):
 		cart = Cart()
 		cart.add(product, request, int(quantity))
 		serializer = CartItemSerializer(request.user.user_cart_item.all(), many=True)
-		return Response({"status":True, "msg":serializer.data, "count":request.user.user_cart_item.all().count().filter(is_checked=False)})
+		return Response({"status":True, "msg":serializer.data, "count":request.user.user_cart_item.all().filter(is_checked=False).count()})
 
 class add_favorite(APIView):
 	#serializer_class = PasswordResetSerializer
