@@ -40,6 +40,7 @@ from main.models import BrandIndex, BrandIndexBanner, BrandIndexMovie
 from django.db.models import Q
 import pytz
 from allauth.socialaccount.models import *
+from account.views import login as main_login
 
 def home(request):
 	brand_index = BrandIndex.objects.all()[0]
@@ -112,8 +113,9 @@ def cart_check(request):
 
 def now_cart(request):
 	if not request.user.is_authenticated():
-		return render_to_response("main/login.html", locals(), context_instance=RequestContext(request))
+		return redirect(main_login)
 
+	product_id = request.GET.get("product_id")
 	cart_items = request.user.user_cart_item.all().filter(is_checked=False)
 	total_count = cart_items.count()
 	red_bag = 0

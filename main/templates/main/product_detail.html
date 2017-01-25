@@ -94,7 +94,7 @@
 			    	alert(data["msg"]);
 			    } else {
 			    	$("#cart_count").text(data["count"]);
-			    	window.location.assign('/main/now_cart/');
+			    	window.location.assign('/main/now_cart/?product_id={{product_id}}');
 
 			    }
 			  },
@@ -289,7 +289,7 @@
 	</div>
 	<div class="buyBox">
 		<ul class="buyBoxCon">
-			<li class="nowCart"><a href="/main/now_cart/"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i><span class="nowBuy" id="cart_count">{{total_count}}</span></a></li>
+			<li class="nowCart"><a href="/main/now_cart?product_id={{product_obj.id}}"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i><span class="nowBuy" id="cart_count">{{total_count}}</span></a></li>
 			<li class="addCart"><a href="javascript: void(add_to_cart({{product_obj.id}}))"><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a></li>
 			<li class="buyNowBtn fa-2x"><a href="javascript: void(buy_now({{product_obj.id}}))"><i class="fa fa-shopping-bag fa-2x" aria-hidden="true"></i>立即購買</a></li>
 		</ul>
