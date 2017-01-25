@@ -169,7 +169,7 @@ class cart_check_out(APIView):
                 'ItemName':item_name_arr,
                 'ItemURL':'dedwed ',
                 'Language':'',
-                'MerchantID':'2000132',
+                'MerchantID':'3005361',
                 'MerchantTradeDate':datetime.datetime.fromtimestamp(time.time()).strftime('%Y/%m/%d %H:%M:%S'),
                 'MerchantTradeNo':order_id,
                 'NeedExtraPaidInfo':'N',
@@ -351,7 +351,7 @@ def create_invoice(order_id):
     url_data = {
         'TimeStamp': str(time.time()).split('.')[0],
         'RelateNumber': "supermedia"+str(time.time()).replace(".",''),
-        'MerchantID': "2000132",
+        'MerchantID': "3005361",
         'CustomerID': "",
         'CustomerIdentifier': customer_identifier,
         'CustomerName': urllib.quote_plus(user_invoice[0].customer_name.encode("utf-8")),
@@ -424,8 +424,8 @@ def create_invoice(order_id):
     return "create invoice fail"
 
 def get_invoice_check_value(url_data):
-    hashkey = "ejCk326UnaZWKisg"
-    HashIV = "q9jcZX8Ib9LM8wYk"
+    hashkey = "IyV6T9jgeBbaqiBq"
+    HashIV = "6RrV5KrKAGA8YMOe"
 
     check_value = 'HashKey=' + hashkey
     for k in sorted(url_data):
@@ -449,8 +449,8 @@ def get_invoice_check_value(url_data):
     return check
 
 def get_check_value(url_data):
-    hashkey = "5294y06JbISpM5x9"
-    HashIV = "v77hoKGq4kWxNNIS"
+    hashkey = "IyV6T9jgeBbaqiBq"
+    HashIV = "6RrV5KrKAGA8YMOe"
 
     check_value = 'HashKey=' + hashkey
     for k in sorted(url_data):
@@ -484,12 +484,12 @@ def allpay_recevive(request):
 
     CheckMacValue = post_data["CheckMacValue"]
     del post_data['CheckMacValue']
-    HashKey = "5294y06JbISpM5x9"
-    HashIV = "v77hoKGq4kWxNNIS"
+    HashKey = "IyV6T9jgeBbaqiBq"
+    HashIV = "6RrV5KrKAGA8YMOe"
     #check_value = 'HashKey=' + hashkey
 
     check_value = ""
-    check_value = "HashKey=5294y06JbISpM5x9"
+    check_value = "HashKey=IyV6T9jgeBbaqiBq"
     for k in sorted(post_data):
         check_value += "&" + k + "=" +post_data[k]
     check_value += '&HashIV=' + HashIV
