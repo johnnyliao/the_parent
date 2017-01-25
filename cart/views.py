@@ -373,7 +373,7 @@ def create_invoice(order_id):
         'ItemTaxType':"1|1|1",
     }
 
-    url_data['CheckMacValue'] = get_invoice_check_value(url_data)
+    url_data['CheckMacValue'] = get_invoice_check_value(url_data, False)
     url_data['ItemName'] = urllib.quote_plus(item_name.encode("utf-8"))
     url_data['ItemWord'] = urllib.quote_plus(item_word.encode("utf-8"))
 
@@ -399,7 +399,7 @@ def create_invoice(order_id):
 
     receiveCheckMacValue = rtn_data['CheckMacValue']
     del rtn_data['CheckMacValue']
-    verifyCheckMacValue = get_invoice_check_value(rtn_data)
+    verifyCheckMacValue = get_invoice_check_value(rtn_data, False)
     print "verifyCheckMacValue"
     print verifyCheckMacValue
     print "receiveCheckMacValue"
@@ -423,9 +423,13 @@ def create_invoice(order_id):
     print "create invoice fail"
     return "create invoice fail"
 
-def get_invoice_check_value(url_data):
-    hashkey = "IyV6T9jgeBbaqiBq"
-    HashIV = "6RrV5KrKAGA8YMOe"
+def get_invoice_check_value(url_data, test):
+    if test == True:
+        hashkey = "ejCk326UnaZWKisg"
+        HashIV = "q9jcZX8Ib9LM8wYk"
+    else:
+        hashkey = "IyV6T9jgeBbaqiBq"
+        HashIV = "6RrV5KrKAGA8YMOe"
 
     check_value = 'HashKey=' + hashkey
     for k in sorted(url_data):
@@ -581,24 +585,25 @@ class InvoiceCheckLoveCode(generics.GenericAPIView):
             if serializer.is_valid():
                 url_data = {
                     'TimeStamp':str(time.time()).split('.')[0],
-                    'MerchantID':"3005361",
+                    'MerchantID':"2000132",
                     'LoveCode': serializer.data.get('love_code', None),
                 }
 
-                url_data['CheckMacValue'] = get_invoice_check_value(url_data)
+                url_data['CheckMacValue'] = get_invoice_check_value(url_data, True)
                 print 11111111
                 url_values = urllib.urlencode(url_data)
-                req = urllib2.Request('https://einvoice.ecpay.com.tw/Query/CheckLoveCode', url_values)
+                req = urllib2.Request('https://einvoice-stage.ecpay.com.tw/Query/CheckLoveCode', url_values)
                 response = urllib2.urlopen(req)
                 the_page = response.read()
                 print 222222222
                 rtn_data = dict(urlparse.parse_qsl(the_page, 1))
                 print 33333333
+                #import pdb;pdb.set_trace()
                 receiveCheckMacValue = rtn_data['CheckMacValue']
                 print 44444444
                 del rtn_data['CheckMacValue']
-                verifyCheckMacValue = get_invoice_check_value(rtn_data)
-
+                verifyCheckMacValue = get_invoice_check_value(rtn_data, True)
+                print verifyCheckMacValue
                 if verifyCheckMacValue == receiveCheckMacValue and rtn_data['RtnCode'] == '1' and rtn_data['IsExist'] == 'Y':
                     result = 'IsExist'
             else:
