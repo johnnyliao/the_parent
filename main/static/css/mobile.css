@@ -84,6 +84,18 @@
     right: 12%;
 }
 }
+@media screen and (max-width:400px){
+.container .memberBox .sky-form .forgetPassCon .col-sm-6 section input{
+    width:75%;
+}
+.container .memberBox .forgetpassBox .clearBtn{
+    width:60px;
+}
+.sky-form .forgetPassCon .changeBtn{
+    width:60px;
+}
+}
+
 @media screen and (max-width:320px){
 {
     right: 5%;
