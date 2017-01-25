@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly, IsAuthenticated
 import requests
-from .serializers import CartItemSerializer, FavoriteSerializer, CreateOrderSerializer
+from .serializers import CartItemSerializer, FavoriteSerializer, CreateOrderSerializer, LoveCodeSerializer
 from rest_framework import generics, status
 import json, requests, urllib, urllib2, re, base64, os, datetime
 import urlparse, time, cookielib, hashlib, time
@@ -566,3 +566,45 @@ def convert_url_data(url_data):
 
 def check_out_cart(request):
     return render_to_response("cart/check_out.html", locals(), context_instance=RequestContext(request))
+
+class InvoiceCheckLoveCode(generics.GenericAPIView):
+    serializer_class = LoveCodeSerializer
+    permission_classes = (AllowAny, )
+
+    def post(self, request, format=None):
+        """
+        檢查愛心碼
+        """
+        try:
+            result = 'NotExist'
+            serializer = self.serializer_class(data=request.DATA)
+
+            if serializer.is_valid():
+                url_data = {
+                    'TimeStamp':str(time.time()).split('.')[0],
+                    'MerchantID':"2000132",
+                    'LoveCode': serializer.data.get('love_code', None),
+                }
+
+                url_data['CheckMacValue'] = get_invoice_check_value(url_data)
+
+                url_values = urllib.urlencode(url_data)
+                req = urllib2.Request('https://einvoice-stage.ecpay.com.tw/Query/CheckLoveCode', url_values)
+                response = urllib2.urlopen(req)
+                the_page = response.read()
+
+                rtn_data = dict(urlparse.parse_qsl(the_page, 1))
+
+                receiveCheckMacValue = rtn_data['CheckMacValue']
+                del rtn_data['CheckMacValue']
+                verifyCheckMacValue = get_invoice_check_value(rtn_data)
+
+                if verifyCheckMacValue == receiveCheckMacValue and rtn_data['RtnCode'] == '1' and rtn_data['IsExist'] == 'Y':
+                    result = 'IsExist'
+            else:
+                result = serializer.errors
+
+        except Exception as exception:
+            result = {type(exception).__name__: exception.args}
+
+        return Response(result, status.HTTP_200_OK)

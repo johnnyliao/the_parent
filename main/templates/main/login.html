@@ -45,6 +45,18 @@
 			var email = $("#email").val();
 			var password = $("#password").val();
 
+			if(!$("#email").val()) {
+		  		alert("請輸入帳號！");
+		  		$("#email").focus();
+		  		return;
+	  		}
+
+	  		if(!$("#password").val()) {
+		  		alert("請輸入密碼！");
+		  		$("#password").focus();
+		  		return;
+	  		}
+
 			$('#loading').fadeIn("fast");
 			$.ajax({
 			  type: 'POST',

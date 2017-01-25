@@ -31,6 +31,13 @@
 	<script type="text/javascript">
       	$("document").ready(function(){
      		 $("#header").headroom();
+     		 $("#cart_check").click(function() {
+     		 	var count = "{{total_count}}"
+     		 	if(count == "0") {
+     		 		alert("購物車內沒有商品！");
+     		 		$("#cart_check").removeAttr('href');
+     		 	}
+     		 });
        	 });
 
       	function remove_to_cart(product_id) {
@@ -166,7 +173,7 @@
 		</div>
 		<div class="cartBtnBox">
 			<a class="canelBtn" href="/main/product_detail/{{product_id}}">繼續逛商店</a>
-			<a class="defineBtn" href="/main/cart_check">我要結帳</a>
+			<a class="defineBtn" id="cart_check" href="/main/cart_check">我要結帳</a>
 		</div>
 
 	</div>

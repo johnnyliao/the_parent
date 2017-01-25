@@ -45,3 +45,6 @@ class CreateOrderSerializer(serializers.Serializer):
     ship_time = serializers.CharField(blank=True)
     choose_payment = serializers.CharField(blank=True)
     phone_number = serializers.CharField(blank=True)
+
+class LoveCodeSerializer(serializers.Serializer):
+    love_code = serializers.CharField(max_length=7)

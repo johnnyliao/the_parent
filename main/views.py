@@ -68,6 +68,14 @@ def cart_final(request):
 	elif ship_time == "night":
 		ship_time_tw = u"晚上"
 	choose_payment = request.POST.get("choose_payment")
+
+	if choose_payment == "Credit":
+		choose_payment_tw = u"信用卡"
+	elif choose_payment == "CVS":
+		choose_payment_tw = u"超商代碼"
+	elif choose_payment == "ATM":
+		choose_payment_tw = u"ATM"
+
 	phone_number = request.POST.get("phone_number")
 	city = request.POST.get("city")
 	district = request.POST.get("district")
@@ -84,11 +92,11 @@ def cart_final(request):
 	invoice_kind = request.POST.get("invoice_kind")
 	carruer_type = request.POST.get("carruer_type")
 
-	if invoice_type == "":
+	if carruer_type == "1":
 		carruer_type_tw = u"沒有載具"
-	elif invoice_type == "2":
+	elif carruer_type == "2":
 		carruer_type_tw = u"自然人憑證"
-	elif invoice_type == "3":
+	elif carruer_type == "3":
 		carruer_type_tw = u"手機條碼"
 
 	love_code = request.POST.get("love_code")

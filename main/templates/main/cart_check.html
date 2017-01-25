@@ -233,7 +233,7 @@
 			var result;
 			$.ajax({
 				type: 'POST',
-				url: '/account/invoice_check_lovecode/',
+				url: '/cart/invoice_check_lovecode/',
 				data: {love_code: $('#love_code').val()},
 				success: function(data)
 				{
@@ -469,7 +469,7 @@
 						<div class="col-sm-6">
 							<section>
 								<label class="input">
-									<span class="inputW">姓名</span><input type="text" name="firstname" id="username" placeholder="請輸入姓名" class="form-control">
+									<span class="inputW">姓名</span><input type="text" name="firstname" id="username" placeholder="請輸入姓名" class="form-control" value="{{request.user.nickname|default:""}}" />
 								</label>
 							</section>
 						</div>
@@ -478,7 +478,7 @@
 						<div class="col-sm-6">
 							<section>
 								<label class="input">
-									<span class="inputW">手機</span><input maxlength="10" type="text" name="mobile" id="phone_number" placeholder="請輸入手機" class="form-control">
+									<span class="inputW">手機</span><input maxlength="10" type="text" name="mobile" id="phone_number" placeholder="請輸入手機" value="{{request.user.phone_number|default:""}}" class="form-control">
 								</label>
 							</section>
 						</div>
@@ -572,12 +572,12 @@
 
 				<div>
 					<span>手機號碼：</span>
-					<input type="text" id="customer_phone" class="" value="" maxlength="10"/>
+					<input type="text" id="customer_phone" value="{{request.user.phone_number|default:""}}" class="" value="" maxlength="10"/>
 				</div>
 
 				<div>
 					<span>電子郵件：</span>
-					<input type="text" id="customer_email" class="" value=""/>
+					<input type="text" value="{{request.user.email|default:""}}" id="customer_email" class="" value=""/>
 				</div>
 			</div>
 		</div>
