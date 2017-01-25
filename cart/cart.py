@@ -24,6 +24,7 @@ class Cart:
         try:
             cart_item = request.user.user_cart_item.all().get(product=product)
             cart_item.is_checked = True
+            cart_item.amount = 0
             cart_item.save()
             return True
 
