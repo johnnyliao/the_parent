@@ -154,7 +154,7 @@ class cart_check_out(APIView):
             print "\n\n"
             print order_id
             target = "_self"
-            ServiceURL = "https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V2"
+            ServiceURL = "https://payment.ecpay.com.tw/Cashier/AioCheckOut/V2"
             url_data = {
                 'ChoosePayment':serializer.data["choose_payment"],
                 'ChooseSubPayment':'',
@@ -392,7 +392,7 @@ def create_invoice(order_id):
 
     #print url_values
 
-    req = urllib2.Request('https://einvoice-stage.ecpay.com.tw/Invoice/Issue', url_values)
+    req = urllib2.Request('https://einvoice.ecpay.com.tw/Invoice/Issue', url_values)
     response = urllib2.urlopen(req)
     the_page = response.read()
     rtn_data = dict(urlparse.parse_qsl(the_page, 1))
@@ -537,7 +537,7 @@ def order_create(request):
     return render_to_response("account/create_order.html", locals(), context_instance=RequestContext(request))
 
 def receive_order(request):
-    ServiceURL = "https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V2"
+    ServiceURL = "https://payment.ecpay.com.tw/Cashier/AioCheckOut/V2"
 
     CheckMacValue = request.GET.get("CheckMacValue")
     #import pdb;pdb.set_trace()
@@ -587,15 +587,16 @@ class InvoiceCheckLoveCode(generics.GenericAPIView):
                 }
 
                 url_data['CheckMacValue'] = get_invoice_check_value(url_data)
-
+                print 11111111
                 url_values = urllib.urlencode(url_data)
-                req = urllib2.Request('https://einvoice-stage.ecpay.com.tw/Query/CheckLoveCode', url_values)
+                req = urllib2.Request('https://einvoice.ecpay.com.tw/Query/CheckLoveCode', url_values)
                 response = urllib2.urlopen(req)
                 the_page = response.read()
-
+                print 222222222
                 rtn_data = dict(urlparse.parse_qsl(the_page, 1))
-
+                print 33333333
                 receiveCheckMacValue = rtn_data['CheckMacValue']
+                print 44444444
                 del rtn_data['CheckMacValue']
                 verifyCheckMacValue = get_invoice_check_value(rtn_data)
 

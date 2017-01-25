@@ -229,7 +229,7 @@
 
 	    function check_love_code() {
 			if (check_data("love_code", "愛心碼") == false) return false;
-
+			return true;
 			var result;
 			$.ajax({
 				type: 'POST',
