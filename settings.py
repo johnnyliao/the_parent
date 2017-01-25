@@ -93,6 +93,7 @@ ADMIN_THUMB_SIZE = "100x100"
 USE_SOUTH = True
 
 
+LOGIN_REDIRECT_URL = "/main/register_success"
 ########################
 # MAIN DJANGO SETTINGS #
 ########################
