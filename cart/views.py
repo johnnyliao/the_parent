@@ -522,7 +522,7 @@ def allpay_recevive(request):
                     cart.product.save()
                     cart.save()
 
-                create_invoice(post_data['MerchantTradeNo'])
+                print create_invoice(post_data['MerchantTradeNo'])
                 print "1|OK"
                 return HttpResponse("1|OK")
         else:

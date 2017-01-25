@@ -41,7 +41,11 @@ from django.template import RequestContext
 from datetime import datetime, timedelta
 from django.db.models import Q
 from main.views import login as login_view
+from main.views import register_success
 import pytz
+
+def social_login(request):
+    return redirect(register_success)
 
 def UserLogoutView(request):
     auth.logout(request)
