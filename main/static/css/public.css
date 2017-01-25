@@ -1,4 +1,4 @@
-﻿@charset "utf-8";	
+﻿@charset "utf-8";
 /* 載入 */
 body{
     font-family: "Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3",FontAwesome,sans-serif;
@@ -470,7 +470,7 @@ input[name="zipcode"]{
     margin-top:37px;
 }
 .container_defaultProduct{
-   margin-top: -18px; 
+   margin-top: -18px;
 }
 .shop{
     margin-top: -18px;
@@ -1012,7 +1012,7 @@ input[name="zipcode"]{
     position: absolute;
     right: 2%;
     bottom: 7px;
-}    
+}
 .container_cart .cartConBox .cartProductBox .delectBox a{
     display: block;
     background: #e8e8e8;
@@ -1050,7 +1050,7 @@ input[name="zipcode"]{
     padding: 20px;
     width: 85%;
     border: 1px solid #e8e8e8;
-    margin:0px 0px 15px 0px; 
+    margin:0px 0px 15px 0px;
 }
 .container_cart .cartConBox .invoiceBox #love_code{
     width: 85%;
@@ -1131,6 +1131,15 @@ input[name="zipcode"]{
     margin-top:10px;
 }
 
+/*選單隱藏search*/
+.cd-search{
+    display:none;
+}
+
+/*隱私權政策捲軸*/
+.sweet-modal-box{
+    overflow-y: scroll!important ;
+}
 /*選單隱藏search*/
 .cd-search{
     display:none;
