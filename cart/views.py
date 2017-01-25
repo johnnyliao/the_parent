@@ -396,17 +396,9 @@ def create_invoice(order_id):
     response = urllib2.urlopen(req)
     the_page = response.read()
     rtn_data = dict(urlparse.parse_qsl(the_page, 1))
-
     receiveCheckMacValue = rtn_data['CheckMacValue']
     del rtn_data['CheckMacValue']
     verifyCheckMacValue = get_invoice_check_value(rtn_data, False)
-    print "verifyCheckMacValue"
-    print verifyCheckMacValue
-    print "receiveCheckMacValue"
-    print receiveCheckMacValue
-    print "rtn_data['RtnCode'"
-    print rtn_data['RtnCode']
-    print rtn_data['RtnMsg']
 
     if verifyCheckMacValue == receiveCheckMacValue and rtn_data['RtnCode'] == '1':
         payment_invoice[0].relate_number = url_data['RelateNumber']
