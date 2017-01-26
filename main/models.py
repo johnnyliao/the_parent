@@ -26,6 +26,7 @@ class S3Data(models.Model):
 class BrandIndexBanner(models.Model):
     banner = models.ImageField(_(u"banner"), upload_to='main/brand_banner')
     name = models.CharField(_(u"Banner名稱"), max_length=30)
+    link = models.CharField(_(u"Banner連結"), max_length=200)
 
     def __unicode__(self):
         return self.name
