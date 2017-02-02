@@ -59,52 +59,79 @@
 		}
 		function add_to_cart(product_id) {
 			$('#loading').fadeIn("fast");
-			var url = "/cart/add_cart/?product_id=" + product_id + "&quantity=" + $("#qty").val()
 			$.ajax({
 			  type: 'GET',
-			  url: url,
-
+			  url: "/account/check_user_verify/",
 			  success: function(data) {
-			    if(!data["status"]) {
-			    	$('#loading').fadeOut("fast");
-			    	alert(data["msg"]);
+			    if (data == false) {
+			    	alert("請先進行email認證功能！");
+			    	window.location.assign('/main/register_success/');
 			    } else {
-			    	$('#loading').fadeOut("fast");
-			    	$("#cart_count").text(data["count"]);
-			    	alert("加入購物車成功！");
+			    	var url = "/cart/add_cart/?product_id=" + product_id + "&quantity=" + $("#qty").val()
+					$.ajax({
+					  type: 'GET',
+					  url: url,
 
+					  success: function(data) {
+					    if(!data["status"]) {
+					    	$('#loading').fadeOut("fast");
+					    	alert(data["msg"]);
+					    } else {
+					    	$('#loading').fadeOut("fast");
+					    	$("#cart_count").text(data["count"]);
+					    	alert("加入購物車成功！");
+
+					    }
+					  },
+					  error: function(data) {
+					    if(data["status"] == 403) {
+					    	alert("請先登入");
+					    	window.location.assign('/main/login/');
+					    }
+					  },
+					});
 			    }
-			  },
-			  error: function(data) {
-			    if(data["status"] == 403) {
-			    	alert("請先登入");
-			    	window.location.assign('/main/login/');
-			    }
-			  },
+			  }
 			});
+
+
 		}
 		function buy_now(product_id) {
-			var url = "/cart/add_cart/?product_id=" + product_id + "&quantity=" + $("#qty").val()
 			$.ajax({
 			  type: 'GET',
-			  url: url,
-
+			  url: "/account/check_user_verify/",
 			  success: function(data) {
-			    if(!data["status"]) {
-			    	alert(data["msg"]);
-			    } else {
-			    	$("#cart_count").text(data["count"]);
-			    	window.location.assign('/main/now_cart/?product_id={{product_obj.id}}');
+			    if (data == false) {
+			    	alert("請先進行email認證功能！");
+			    	window.location.assign('/main/register_success/');
 
+			    } else {
+			    	var url = "/cart/add_cart/?product_id=" + product_id + "&quantity=" + $("#qty").val()
+					$.ajax({
+					  type: 'GET',
+					  url: url,
+
+					  success: function(data) {
+					    if(!data["status"]) {
+					    	alert(data["msg"]);
+					    } else {
+					    	$("#cart_count").text(data["count"]);
+					    	window.location.assign('/main/now_cart/?product_id={{product_obj.id}}');
+
+					    }
+					  },
+					  error: function(data) {
+					    if(data["status"] == 403) {
+					    	alert("請先登入");
+					    	window.location.assign('/main/login/');
+					    }
+					  },
+					});
 			    }
-			  },
-			  error: function(data) {
-			    if(data["status"] == 403) {
-			    	alert("請先登入");
-			    	window.location.assign('/main/login/');
-			    }
-			  },
+			  }
 			});
+
+
 		}
 	</script>
 <!--購買數項加減 End-->
