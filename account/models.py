@@ -20,6 +20,8 @@ from account import sms
 import smtplib
 from email.mime.text import MIMEText
 import pytz
+from cart.models import ProductInfo
+from movie.models import Movie
 
 SEX_CHOICES = (
     ("man", _(u"男")),
@@ -144,3 +146,26 @@ class UserVerify(models.Model):
 		self.save()
 		print "end"
 		return self.is_send
+
+class UserViewLog(models.Model):
+	user = models.ForeignKey(User, related_name='user_view_logs')
+	product = models.ForeignKey(ProductInfo, related_name='user_view_product_logs')
+	time = models.DateTimeField(_(u"時間"), auto_now=True)
+
+class UserMovieViewLog(models.Model):
+	user = models.ForeignKey(User, related_name='user_movie_view_logs')
+	movie = models.ForeignKey(Movie, related_name='user_view_movie_logs')
+	time = models.DateTimeField(_(u"時間"), auto_now=True)
+
+class Message(models.Model):
+	title = models.CharField(_(u"標題"), max_length=50)
+	content = models.CharField(_(u"內容"), max_length=500)
+
+	def __unicode__(self):
+		return self.title
+
+class UserMsg(models.Model):
+	user = models.ForeignKey(User, related_name='user_msgs')
+	msg = models.ForeignKey(Message, related_name='user_msg_msg')
+	is_read = models.BooleanField(_(u"已讀"), default=False)
+	time = models.DateTimeField(_(u"時間"), auto_now=True)

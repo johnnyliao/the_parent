@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 
-from account.models import User
+from account.models import *
 from django.contrib.auth.models import AbstractUser
 
 from django.utils import timezone
@@ -67,7 +67,7 @@ class UserInvoice(models.Model):
     customer_addr = models.CharField(_(u"客戶地址"), max_length=100, null=True, blank=True)
     customer_phone = models.CharField(_(u"客戶手機號碼"), max_length=20, null=True, blank=True)
     customer_email = models.CharField(_(u"客戶電子信箱"), max_length=80, null=True, blank=True)
-    user = models.OneToOneField(User,  related_name='user_invoice')
+    user = models.OneToOneField("account.User",  related_name='user_invoice')
     class Meta:
         verbose_name = _(u"使用者發票資訊")
         verbose_name_plural = _(u"使用者發票列表")
@@ -183,7 +183,7 @@ class Brand(models.Model):
         verbose_name_plural = _(u"品牌列表")
 
 class CartItem(models.Model):
-    user = models.ForeignKey(User, related_name='user_cart_item')
+    user = models.ForeignKey("account.User", related_name='user_cart_item')
     product = models.ForeignKey(ProductInfo,  related_name='user_cart_product')
     creation_date = models.DateTimeField(verbose_name=_('creation date'), auto_now=True)
     checked_date = models.DateTimeField(verbose_name=_('creation date'), null=True, blank=True)
@@ -206,7 +206,7 @@ class ShipInfo(models.Model):
 class PayMentRecord(models.Model):
     product = models.ManyToManyField(ProductInfo,  related_name='record_product')
     cart = models.ManyToManyField(CartItem,  related_name='record_cart_item')
-    user = models.ForeignKey(User,  related_name='user_payment_record')
+    user = models.ForeignKey("account.User",  related_name='user_payment_record')
     total_amount = models.IntegerField(_(u"總金額"))
     date = models.DateTimeField(_(u"建立時間"), auto_now=True)
     order_id = models.CharField(_(u"訂單編號"), max_length=30)
@@ -255,7 +255,7 @@ class PayMentInvoice(models.Model):
 
 
 class FavoriteItem(models.Model):
-    user = models.ForeignKey(User, related_name='user_favorite_item')
+    user = models.ForeignKey("account.User", related_name='user_favorite_item')
     product = models.ForeignKey(ProductInfo,  related_name='user_favorite_product')
 
     class Meta:

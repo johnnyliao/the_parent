@@ -1,6 +1,6 @@
 #-*- encoding: utf-8 -*-
 from django import forms
-
+from django.utils.translation import ugettext_lazy as _
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin, UserChangeForm as DjangoUserChangeForm
 from django.contrib.auth.forms import UserCreationForm as DjangoUserCreationForm
@@ -29,5 +29,21 @@ class UserAdmin(SalmonellaMixin, DjangoUserAdmin):
 	form = UserChangeForm
 	list_display = ['username', 'nickname']
 
+def send_to_all_user(modeladmin, request, queryset):
+	for obj in User.objects.all():
+		user_msg = UserMsg.objects.create(user=obj, msg=queryset[0])
+
+
+send_to_all_user.short_description = _(u"發送給所有使用者")
+
+
+class MessageAdmin(admin.ModelAdmin):
+	list_display = ["title"]
+	actions = [send_to_all_user]
+
+class UserMsgAdmin(admin.ModelAdmin):
+	list_display = ["user", "is_read", "time"]
 
 admin.site.register(User, UserAdmin)
+admin.site.register(Message, MessageAdmin)
+admin.site.register(UserMsg, UserMsgAdmin)

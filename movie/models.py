@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 
-from account.models import User
+from account.models import *
 from django.contrib.auth.models import AbstractUser
 from mezzanine.core.fields import RichTextField
 from django.utils import timezone
