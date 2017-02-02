@@ -471,10 +471,6 @@ def get_check_value(url_data):
     return check
 
 def allpay_recevive(request):
-    #serializer_class = PasswordResetSerializer
-    #permission_classes = (AllowAny, )
-
-    #def post(self, request, format=None):
 
     post_data = request.POST.copy()
 

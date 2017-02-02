@@ -121,6 +121,9 @@ class Brand(models.Model):
         verbose_name = _(u"品牌資訊")
         verbose_name_plural = _(u"品牌列表")
 
+    def __unicode__(self):
+        return self.brand_name
+
 class ProductInfo(models.Model):
     total_amount = models.IntegerField(_(u"金額"))
     in_stock = models.IntegerField(_(u"庫存"))
