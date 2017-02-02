@@ -43,14 +43,13 @@
 	<script src="{% static "js/jquery.twzipcode.js"%}"></script>
 	<script src="{% static "js/jquery.twzipcode.min.js"%}"></script>
 	<script>
-		$("document").ready(function(){
-			$("#twzipcode").twzipcode();
-		});
 	</script>
 <!--地址欄位使用 End-->
 <!--發票種類使用 start-->
 	<script type="text/javascript">
 		$(document).ready(function () {
+			$("#twzipcode").twzipcode({"countySel":"{{request.user.city|default:""}}", "districtSel":"{{request.user.district|default:""}}"});
+
 		 	$("#payment").click(function(){
 		 		var fields = ["username", "phone_number", "address"];
 
@@ -489,7 +488,7 @@
 							<span class="inputW">地址</span>
 							<div class="addressBox">
 								<div id="twzipcode"></div>
-								<input type="text" id="address" placeholder="請輸入地址" class="addressText" />
+								<input type="text" id="address" placeholder="請輸入地址" class="addressText" value="{{request.user.address|default:""}}" />
 							</div>
 						</section>
 					</div>
