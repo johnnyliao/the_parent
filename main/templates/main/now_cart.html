@@ -68,14 +68,17 @@
       	}
     </script>
 <!--header隱藏css js End-->
-
+<!--撐開頁面使用 start-->
+	<script src="{% static "js/minwt.auto_full_height.mini.js"%}"></script>
+<!--撐開頁面使用 End-->
 </head>
 
 <body>
+<div class="" none="ture">
 <div id="loading">
   	<img id="loading-image" src="{% static "img/page-loader.gif"%}" alt="Loading..." />
 </div>
-	<header class="header">
+	<header class="header" _height="none">
 		<article class="topnav">
 			<div class="goBack">
 				<a class="goBackBox" href="/main/product_detail/{{product_id}}">
@@ -140,7 +143,7 @@
 	</div> <!-- .cd-dropdown-wrapper -->
 	<!--nav End-->
 
-	<div class="container_default container_cart">
+	<div class="container_default container_cart" _height="auto">
 		<div class="cartConBox">
 			<div class="shopDetailTitle"><h3>購物明細(<span class="shopQuantityTotel">{{total_count}}</span>)</h3></div>
 			<ul class="cartProductBox">
@@ -189,5 +192,6 @@
 			<li>copyright©那對夫妻nicokim.cc版權所有</li>
 		</ul>
 	</footer>
+</div>
 
 </body>

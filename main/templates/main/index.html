@@ -51,10 +51,14 @@
 		.paginate > li { list-style: none; padding: 10px 20px; border: 1px solid #ddd; margin: 10px 0; }
 	</style>
 <!--分頁 End-->
+<!--撐開頁面使用 start-->
+	<script src="{% static "js/minwt.auto_full_height.mini.js"%}"></script>
+<!--撐開頁面使用 End-->
 </head>
 
 <body>
-	<header class="header">
+<div class="" none="ture">
+	<header class="header" _height="none">
 		<article class="topnav">
 			<div class="cd-dropdown-wrapper">
 				<a class="cd-dropdown-trigger top" href="#0">
@@ -110,7 +114,7 @@
 	</div> <!-- .cd-dropdown-wrapper -->
 	<!--nav End-->
 
-	<div class="container_default shop">
+	<div class="container_default shop" _height="auto">
 		<!-- 輪播1 start -->
 	    <div id="amazingslider-wrapper-1" style="display:block;position:relative;max-width:1920px;margin:0px auto 56px;">
 	        <div id="amazingslider-1" style="display:block;position:relative;margin:0 auto;">
@@ -206,6 +210,7 @@
 
 	</script>
 	-->
+</div>
 	<script type="text/javascript">
 
 	  var _gaq = _gaq || [];
