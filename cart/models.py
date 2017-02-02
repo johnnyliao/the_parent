@@ -133,7 +133,7 @@ class ProductInfo(models.Model):
     video_link = models.CharField(_(u"商品影片連結"), max_length=50, null=True, blank=True)
     size = models.CharField(_(u"size"), max_length=10, null=True, blank=True)
     unit = models.CharField(_(u"單位"), max_length=10)
-    brand = models.CharField(_(u"品牌"), choices=BRAND_CHOICES, max_length=10)
+    #brand = models.CharField(_(u"品牌"), choices=BRAND_CHOICES, max_length=10)
     ship_way = models.CharField(_(u"運送方式"), max_length=30)
     ship_day = models.CharField(_(u"出貨天數"), max_length=30)
     other = models.CharField(_(u"其它"), max_length=30)
