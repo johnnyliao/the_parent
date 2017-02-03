@@ -23,6 +23,10 @@ class UserViewLoSerializer(serializers.ModelSerializer):
 		model = UserViewLog
 
 	def update(self, instance, validated_data):
+		instance.user = validated_data.get('user', instance.user)
+		instance.product = validated_data.get('product', instance.product)
+		instance.save()
+		return instance
 
 class UserRegisterSerializer(serializers.Serializer):
 	username = serializers.CharField()
