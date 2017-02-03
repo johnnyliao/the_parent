@@ -42,7 +42,12 @@ class User(AbstractUser):
 	def save(self, *args, **kwargs):
 		try:
 			old_email = User.objects.get(id=self.id).email
+			print old_email
+			print self.email
 			if old_email != self.email:
+				print "\n\n\n\n"
+				print "resend verify code"
+				#import pdb;pdb.set_trace()
 				self.verify.resend_verify_code()
 			super(User, self).save(*args, **kwargs)
 		except:
@@ -73,7 +78,8 @@ class UserVerify(models.Model):
 	def save(self, *args, **kwargs):
 		super(UserVerify, self).save(*args, **kwargs)
 		if not self.verification_hash:
-			self.send_verification_code()
+			if not self.date_verified:
+				self.send_verification_code()
 
 	def is_verify_code_valid(self, verify_code):
 		#import pdb;pdb.set_trace()
@@ -102,6 +108,7 @@ class UserVerify(models.Model):
 			return False
 
 	def resend_verify_code(self):
+		print "into resend_verify_code"
 		self.verification_hash = None
 		self.is_send = False
 		self.date_verified = None
@@ -114,6 +121,7 @@ class UserVerify(models.Model):
 		return verify_code
 
 	def send_verification_code(self):
+		print "send_verification_code"
 		verify_code = self.generate_verification_code()
 		print "email verify_code is "+ verify_code
 		try:

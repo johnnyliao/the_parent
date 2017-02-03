@@ -31,6 +31,7 @@ class UserRegisterSerializer(serializers.Serializer):
 
 class UserModifySerializer(serializers.Serializer):
 	username = serializers.CharField()
+	email = serializers.CharField(blank=True)
 	nickname = serializers.CharField()
 	city = serializers.CharField()
 	district = serializers.CharField()

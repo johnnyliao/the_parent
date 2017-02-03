@@ -41,11 +41,14 @@ from django.template import RequestContext
 from datetime import datetime, timedelta
 from django.db.models import Q
 from main.views import login as login_view
-from main.views import register_success
+from main.views import member
 import pytz
 
 def social_login(request):
-    return redirect(register_success)
+    if not request.user.is_verified:
+        print "create verify"
+        verify = UserVerify.objects.create(user=request.user, date_verified=datetime.now())
+    return redirect(member)
 
 def UserLogoutView(request):
     auth.logout(request)
@@ -149,6 +152,7 @@ class UserModifyView(generics.GenericAPIView):
             birthday = serializer.data.get('birthday')
             city = serializer.data.get('city')
             district = serializer.data.get('district')
+            email = serializer.data.get("email", None)
             try:
                 user = User.objects.get(username=username)
                 user.nickname = nickname
@@ -160,12 +164,25 @@ class UserModifyView(generics.GenericAPIView):
                 user.email = username
                 user.address = address
                 user.birthday = birthday
+                print user.email
+                print email
+                if email:
+                    #import pdb;pdb.set_trace()
+                    if user.email != email:
+                        user.email = email
+                        #只有fb帳號可改email
+                        redirect = True
+                    else:
+                        redirect = False
                 user.save()
             except User.DoesNotExist:
                 return Response({"status":False, "msg":u"使用者帳號錯誤"}, status=status.HTTP_200_OK)
 
             serializer = UserInfoSerializer(user)
-            return Response({"status":True}, status=status.HTTP_201_CREATED)
+            if redirect:
+                return Response({"status":True, "redirect":True}, status=status.HTTP_201_CREATED)
+            else:
+                return Response({"status":True, "redirect":False}, status=status.HTTP_201_CREATED)
         else:
             return Response({"status":False, "msg":serializer.errors}, status=status.HTTP_200_OK)
 

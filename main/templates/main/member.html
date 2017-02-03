@@ -31,9 +31,9 @@
     }
 	</style>
 	<script type="text/javascript">
-		var fields = ["nickname", "sex", "birthday", "phone_number", "year", "address"]
+		var fields = ["email", "nickname", "sex", "birthday", "phone_number", "year", "address"]
 
-		var tw_fields = ["姓名", "性別", "生日", "手機", "年齡", "地址"]
+		var tw_fields = ["email", "姓名", "性別", "生日", "手機", "年齡", "地址"]
 
       	$("document").ready(function(){
      		 $("#header").headroom();
@@ -57,6 +57,15 @@
 			  		}
 			  	}
 
+			  	{% if social_account %}
+				  	var regExp = /^[^@^\s]+@[^\.@^\s]+(\.[^\.@^\s]+)+$/;
+					if (!$("#email").val().match(regExp)) {
+						$("#email").focus();
+						alert("email格式錯誤請使用email格式！");
+						return false;
+					}
+				{% endif %}
+
 			  	var regExp = /^09[0-9]{8}$/;
 			  	if (!$("#phone_number").val().match(regExp)) {
 					$("#phone_number").focus();
@@ -71,17 +80,23 @@
 				var city = $( "select[name*='county']" ).val();
 				var district = $( "select[name*='district']" ).val();
 				var address =  $("#address").val();
+				var email =  $("#email").val();
 
 				var birthday = $("#birthday").val() + "T00:00:00Z";
 				$.ajax({
 				  type: 'POST',
 				  url: "/account/user_modify/",
-				  data: JSON.stringify({"username":username, "nickname":nickname, "sex":sex, "phone_number":phone_number, "year":year, "address":address, "birthday":birthday, 'city':city, "district":district}),
+				  data: JSON.stringify({"username":username, "nickname":nickname, "sex":sex, "phone_number":phone_number, "year":year, "address":address, "birthday":birthday, 'city':city, "district":district{% if social_account %}, "email":email {% endif %}}),
 				  success: function(data) {
 				    if(!data["status"]) {
 				    	alert(data["msg"]);
 				    } else {
-				    	alert("儲存成功");
+				    	if(data["redirect"]) {
+				    		alert("儲存成功，修改email將進行認證！");
+				    		window.location.assign('/main/register_success/');
+				    		return
+				    	}
+				    	alert("儲存成功！");
 				    	location.reload();
 				    }
 				  },
@@ -166,6 +181,17 @@
 				<h2>會員資料</h2>
 
 				<div class="login-input reg-input">
+					{% if social_account %}
+					<div class="row">
+						<div class="col-sm-6">
+							<section>
+								<label class="input">
+									<span class="inputW">EMAIL</span><input type="text" id="email" placeholder="請輸入EMAIL" class="form-control" value="{{user.email|default:""}}">
+								</label>
+							</section>
+						</div>
+					</div>
+					{% endif %}
 					<div class="row">
 						<div class="col-sm-6">
 							<section>

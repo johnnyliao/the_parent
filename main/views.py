@@ -162,6 +162,17 @@ def forget_password(request):
 
 @login_required
 def member(request):
+	social_account = False
+	if is_social_account(request.user):
+		#print request.user.is_verified != True
+		#import pdb;pdb.set_trace()
+		social_account = True
+		if not is_verified(request.user):
+			print "\n\n\n\n"
+			print "create!!!"
+			social_account = True
+			verify = UserVerify.objects.create(user=request.user, date_verified=datetime.now())
+
 	user = request.user
 	birthday = str(user.birthday).split(' ')[0]
 	return render_to_response("main/member.html", locals(), context_instance=RequestContext(request))
@@ -178,7 +189,16 @@ def change_password(request):
 @login_required
 def register_success(request):
 	user = request.user
-	if user.is_verified():
+	social_account = False
+	if is_social_account(request.user):
+		social_account = True
+		if not is_verified(request.user):
+			#social_account = True
+			verify = UserVerify.objects.create(user=request.user, date_verified=datetime.now())
+			print social_account
+		return redirect(member)
+
+	if is_verified(request.user):
 		user = request.user
 		birthday = str(user.birthday).split(' ')[0]
 		return render_to_response("main/index.html", locals(), context_instance=RequestContext(request))
@@ -200,5 +220,14 @@ def is_social_account(user):
 	try:
 		user = SocialAccount.objects.get(user_id=user.id)
 		return True
+	except:
+		return False
+
+def is_verified(user):
+	try:
+		if user.verify.date_verified:
+			return True
+		else:
+			return False
 	except:
 		return False
