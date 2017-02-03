@@ -161,11 +161,9 @@ class UserModifyView(generics.GenericAPIView):
                 user.sex = sex
                 user.city = city
                 user.district = district
-                user.email = username
+                #user.email = Username
                 user.address = address
                 user.birthday = birthday
-                print user.email
-                print email
                 if email:
                     #import pdb;pdb.set_trace()
                     if user.email != email:
@@ -175,6 +173,7 @@ class UserModifyView(generics.GenericAPIView):
                     else:
                         redirect = False
                 user.save()
+
             except User.DoesNotExist:
                 return Response({"status":False, "msg":u"使用者帳號錯誤"}, status=status.HTTP_200_OK)
 

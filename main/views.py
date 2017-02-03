@@ -164,13 +164,10 @@ def forget_password(request):
 def member(request):
 	social_account = False
 	if is_social_account(request.user):
-		#print request.user.is_verified != True
-		#import pdb;pdb.set_trace()
 		social_account = True
 		if not is_verified(request.user):
 			print "\n\n\n\n"
 			print "create!!!"
-			social_account = True
 			verify = UserVerify.objects.create(user=request.user, date_verified=datetime.now())
 
 	user = request.user
@@ -189,11 +186,15 @@ def change_password(request):
 @login_required
 def register_success(request):
 	user = request.user
+	socail_result = request.GET.get("socail", None)
+	if socail_result:
+		return render_to_response("main/regSuccess.html", locals(), context_instance=RequestContext(request))
+
 	social_account = False
 	if is_social_account(request.user):
 		social_account = True
 		if not is_verified(request.user):
-			#social_account = True
+			social_account = True
 			verify = UserVerify.objects.create(user=request.user, date_verified=datetime.now())
 			print social_account
 		return redirect(member)
