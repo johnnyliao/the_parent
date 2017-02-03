@@ -19,4 +19,5 @@ urlpatterns = format_suffix_patterns(patterns('',
 	url("^check_user_verify/$", UserVerifyCheckView.as_view()),
 	url("^user_change_password/$", UserChangePasswordView.as_view()),
 	url("^user_forget_password/$", UserForgetPasswordView.as_view()),
+	url("^user_product_view_log/$", UserViewLogView.as_view()),
 ))

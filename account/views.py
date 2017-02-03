@@ -7,7 +7,7 @@ from rest_framework import serializers
 from rest_framework.renderers import JSONRenderer
 from django.contrib.auth.decorators import login_required
 from account.models import User, UserVerify
-from account.serializers import FacebookConnectSerializer, UserInfoSerializer, UserLoginSerializer, UserRegisterSerializer, UserChangePasswordSerializer, UserModifySerializer, UserForgetPasswordSerializer
+from account.serializers import FacebookConnectSerializer, UserInfoSerializer, UserLoginSerializer, UserRegisterSerializer, UserChangePasswordSerializer, UserModifySerializer, UserForgetPasswordSerializer, UserViewLoSerializer
 from django.http import HttpResponse
 import urllib, urllib2, json, simplejson
 
@@ -352,3 +352,15 @@ def ReSendVerifyView(request):
     return HttpResponse("ok", status=status.HTTP_200_OK)
 
 
+class UserViewLogView(generics.GenericAPIView):
+    serializer_class = UserViewLoSerializer
+    permission_classes = (IsAuthenticated, )
+
+    def post(self, request, format=None):
+        """
+        使用者瀏覽商品紀錄
+        """
+        serializer = self.serializer_class(data=request.DATA)
+        if serializer.is_valid():
+            serializer.update()
+            return Response(serializer.data, status=status.HTTP_200_OK)

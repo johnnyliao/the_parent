@@ -1,7 +1,7 @@
 #-*- encoding: utf-8 -*-
 
 from django.utils.translation import ugettext_lazy as _
-from account.models import User
+from account.models import User, UserViewLog
 from allauth.socialaccount.models import (SocialLogin, SocialToken, SocialAccount)
 from rest_framework import serializers
 
@@ -16,6 +16,13 @@ class UserInfoSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = User
+
+class UserViewLoSerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = UserViewLog
+
+	def update(self, instance, validated_data):
 
 class UserRegisterSerializer(serializers.Serializer):
 	username = serializers.CharField()

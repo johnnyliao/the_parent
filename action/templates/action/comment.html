@@ -34,24 +34,14 @@
 </script>
 
 <body>
-	<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '738631256291664',
-      xfbml      : true,
-      version    : 'v2.4'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/zh_TW/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
-<div class="fb-comments" data-href="http://nicokim.cc/action/comment" data-width="100%" data-numposts="15"></div>
-
+	<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.8&appId=738631256291664";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div class="fb-comments" data-href="http://127.0.0.1:8000/action/comment" data-numposts="5"></div>
 </body>
 </html>
