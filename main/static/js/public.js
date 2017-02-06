@@ -13,16 +13,16 @@ $(function(){
 		});
 	});
 	$( ".changeBtn" ).click(function() {
-	  
+
 	});
 	/*彈窗使用 End*/
-	
+
 	/*清除欄位值 start*/
 	$( ".clearBtn" ).click(function() {
 		$( ".sky-form" ).find( "input" ).attr("value", "");
 	});
 	/*清除欄位值 End*/
-	
+
 	/*確認欄位是否未填 start*/
 	$('.changeBtn').click(function(){
         var passwdO=$(".passwordOld").val(), passwdN=$(".passwordNew").val(), passwdC=$(".passwordCon").val();
@@ -63,5 +63,9 @@ $(function(){
 		$('#loading').fadeIn("fast");
 	});
 	/*loading icon End*/
-
+	$( ".dropdownIcon" ).click(function() {
+	  $( ".logoinMenu" ).slideToggle( "fast", function() {
+	    // Animation complete.
+	  });
+	});
 });
