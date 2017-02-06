@@ -4,9 +4,9 @@
 <html prefix='og: http://ogp.me/ns#'>
 <head>
 
-<meta property="og:title" content="那對夫妻 X 情人節甜蜜告白三部曲" ></meta>
+<meta property="og:title" content="那對夫妻 X 甜蜜告白三部曲" ></meta>
 <meta property="og:type" content="website" ></meta>
-<meta property="og:description" content="搶先加入，精裝甜蜜禮盒送給你" ></meta>
+<meta property="og:description" content="活動詳情請參考內頁" ></meta>
 <meta property="og:image" content="http://nicokim.cc/static/img/0213.jpg/" ></meta>
 <meta property="og:url" content="http://nicokim.cc" ></meta>
 
@@ -16,6 +16,7 @@
 <title>那對夫妻Nico & Kim</title>
 <link href="{% static "css/reset.css"%}" rel="stylesheet" type="text/css" />
 <link href="{% static "css/action.css"%}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="{% static "css/categorySlide.css"%}">
 <script type="text/javascript" src="{% static "js/jquery-1.8.2.min.js"%}"></script>
 <script type="text/javascript" src="{% static "js/public.js"%}"></script>
 <!--輪播專用 start-->
@@ -62,43 +63,64 @@
 	}
 </script>
 <!--FB留言用 End-->
+<!--a 錨點滑動 start-->
+ <script>
+   $(function () {
+       $('a[href*=#]:not([href=#])').click(function() {
+           var target = $(this.hash);
+           $('html,body').animate({
+               scrollTop: target.offset().top-100
+           }, 1000);
+           return false;
+       });
+
+   });
+</script>
+<!--a 錨點滑動 End-->
+<!--左右滑動 start-->
+	<link rel="stylesheet" href="{% static "css/demo.css"%}" type="text/css" media="screen" />
+	<link rel="stylesheet" href="{% static "css/flexslider.css"%}" type="text/css" media="screen" />
+<!--左右滑動 End-->
 </head>
 <body>
 <div class="wrap">
-	<div class="wrap">
 	<header>
 		<div class="logoBox">
 			<a href="http://nicokim.cc" target="_blank"><img src="{% static "img/logo.png"%}" /></a>
-			<div id="loginBox" {% if not request.user.is_authenticated %}style=
-			"display:inline-block;"{% else %}style=
-			"display:none;" {% endif %}>
+			<div id="loginBox">
 				<a id="facebook_login" href="/account/facebook/login">登入</a>
 			</div>
-			<div id="logoutBox" {% if request.user.is_authenticated %}style=
-			"display:inline-block;"{% else %}style=
-			"display:none;" {% endif %}>
+			<div id="logoutBox">
 				<div class="loginBox">
 					<div>
-						<img src="{{pic_url}}" />
+						<img src="{% static "https://scontent.xx.fbcdn.net/v/t1.0-1/p50x50/10377369_10205776664924228_8903470177486218162_n.jpg?oh=708afd165eb07384094a7e6e394e6ec9&oe=5941121B"%}" />
 						<sapn class="dropdownIcon"></sapn>
 					</div>
 				</div>
 				<div class="logoinMenu">
 					<ul>
-						<li><span class="fbUserName">{{name}}</span></li>
-						<li><a href="/account/user_logout/">登出</a></li>
+						<li><span class="fbUserName">Jamie Lin</span></li>
+						<li><a href="#">登出</a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
+		<div class="tabs fixed show-tab dark" fixed-tabs="#tv-tabs" ng-class="{'show-tab' : showTabs}">
+	  		<a href="#anchor1" class="tab">情人節活動</a>｜
+	  		<a href="#anchor2" class="tab">來電答鈴</a>｜
+	  		<a href="#anchor3" class="tab">新書介紹</a>｜
+	  		<a href="#anchor4" class="tab">新書簽名會</a>｜
+	  		<a href="#anchor5" class="tab">關於我們</a>｜
+	  		<a href="#anchor6" class="tab">相關社群</a>
+		</div>
 	</header>
-	<div class="container">
+	<div class="container" id="anchor1">
 		<div class="mvEvent">
 			<!-- ＭＶ輪播 start-->
 		    <div id="amazingslider-wrapper-1" style="display:block;position:relative;max-width:600px;margin:0px auto 56px;">
 		        <div id="amazingslider-1" style="display:block;position:relative;margin:0 auto;">
 		            <ul class="amazingslider-slides" style="display:none;">
-		                <li><img src="{% static "img/mv.png"%}" alt="mv"  title="mv" />
+		                <li><img src="{% static "img/banner.jpg"%}" alt="mv"  title="mv" />
 		                </li>
 		                <li><img src="{% static "img/7aZZ945rgVA.jpg"%}" />
 		                <video preload="none" src="https://www.youtube.com/embed/7aZZ945rgVA?v=7aZZ945rgVA" ></video>
@@ -113,24 +135,27 @@
 		    </div>
 		    <!-- ＭＶ輪播 End-->
 		    <div class="visitEventBox">
-		    	<div class="visitEventBoxTxt"><p>活動內容活動內容</p></div>
+		    	<div class="visitEventBoxTitle"><h2>情人節甜蜜告白三部曲</h2></div>
+		    	<div class="visitEventBoxTxt"><p></p></div>
 			    <div class="btnBox">
-			    	<a class="visitBox">參加活動抽新書</a>
-			    	<iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fnicokim.cc" width="100" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+			    	<div class="shareFB">
+			    		<a href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent('http://nicokim.cc'))));"><img src="{% static "img/fb_share.png"%}" width="40" height="40" /></a>
+			    	</div>
 			    	<div class="fb-comments" data-href="http://nicokim.cc/action/comment" data-width="100%" data-numposts="15">
 
 			    	</div>
 			    </div>
 		    </div>
 		</div>
-		<div class="ringBox">
+		<div class="ringBox" id="anchor2">
 			<div class="ringBoxImg"><a href="http://bit.ly/Nini-FETnet" target="_blank"><img src="{% static "img/mv.png"%}" /></a></div>
+			<div class="ringBoxTxt"><p>遠傳電信來電答鈴<a href="http://bit.ly/Nini-FETnet" target="_blank">載點</a></p></div>
 		</div>
 		<div class="musicBox">
-			<div class="musicBoxImg"><img src="{% static "img/0213.jpg"%}" /></div>
+			<div class="musicBoxImg"><img src="{% static "img/0206.jpg"%}" /></div>
 			<div class="musicBoxTxt">
-				<h2>最強網紅家庭那對夫妻KIM，終於圓了單曲夢</h2>
-				<h3>下載音樂：</h3>
+				<h2>地表最強網紅家庭那對夫妻KIM，單曲下載</h2>
+				<h3>載點：</h3>
 				<p>
 					<a href="http://bit.ly/Nini-Indievox" target="_blank">Indievox</a> |
 					<a href="http://bit.ly/Nini-Omusic" target="_blank">Omusic</a> |
@@ -142,37 +167,79 @@
 					<a href="http://bit.ly/Nini-163music" target="_blank">网易云音乐</a> |
 					<a href="http://bit.ly/Nini-Baidu" target="_blank">百度音乐</a>
 				</p>
-				<p>
+				<!--<p>
 					頂著最強網紅家庭的那對夫妻的KIM，之前參加過新光大道第一屆海選就被淘汰，還有眾多歌唱比賽也沒被選上，但一路上只有老婆NICO鼓勵他絕對不要放棄，現在KIM終於能如願出單曲並可供所有喜愛他們的人所下載了，KIM沒有什麼其他想法，只想說~老婆”我做到了”！「謝謝這一路上只有妳覺得我可以!而我最在意的，也永遠只有妳！」那對夫妻12年來始終互相扶持，讓人看到展現令人鶼鰈情深動容的一面。
-				</p>
+				</p>-->
 				</p>
 
 			</div>
 		</div>
-		<div class="bookBox">
+		<div class="bookBox" id="anchor3">
 			<div class="bookBoxImg"><img src="{% static "img/FB.png"%}" /></div>
 			<div class="bookBoxTxt">
 				<h2>百萬台灣網紅【那對夫妻】出書了</h2>
 				<p>百萬粉絲的台灣網紅「那對夫妻」出書了!平時FB上恩愛的影片受到廣大粉絲喜愛，這次他們將12年一路走來的點滴故事集結成冊，用網路力量來感動更多粉絲！
 				</p>
-				<p>
+				<!--<p>
 					新書眾好友藝人大力推薦！ 「那對夫妻」FB粉專上的影片，已經是台灣民眾高壓生活的療癒小確幸，自然不做作的內容，搞笑又溫馨，十足台味的三口家庭，引起廣大鄉民的喜愛，快速傳播，半年內粉絲數衝破百萬！其中妮妮與夫Kim的放閃影片，更是號稱史上最強小三，沒有之一了。
 				</p>
 				<p>
 					為了給長大後的妮妮一份愛的禮物，夫妻兩人特別打開塵封的愛情往事，從一見鍾情到妮妮出生，12年來的點點滴滴，義無反顧的出走、酸甜動人的相守、爆笑不斷的真實生活，詳細收錄在新書當中。其中Kim還特別作詞作曲一首歌曲，獻給老婆和妮妮，兩人也重遊舊地重拍婚紗、拍攝MV，再次感受心動的瞬間！新書的用心創作，更受到羅志祥、愷樂、黑人&范范的大力推薦！
-				</p>
-				<p style="font-size: 20px;font-weight: bold;">~妮可以公主病-平裝版~</p>
+				</p>-->
+				<h3>購買通路：</h3>
+				<!--<p style="font-size: 20px;font-weight: bold;">~妮可以公主病-平裝版~</p>-->
 				<a href="http://bit.ly/LoveisAllTheseTinyLittleThings-paperback-books" target="_blank" >博客來</a>｜
 				<a href="http://bit.ly/LoveisAllTheseTinyLittleThing-paperback-KingStone" target="_blank" >金石堂</a>｜
 				<a href="http://bit.ly/LoveisAllTheseTinyLittleThings-paperback-eslite" target="_blank" >誠品</a>｜
 				<a href="http://bit.ly/LoveisAllTheseTinyLittleThings-paperback-TAZZE" target="_blank" >讀冊生活</a>｜
 				<a href="http://bit.ly/LoveisAllTheseTinyLittleThings-paperback-suncolor" target="_blank" >三采文化</a>｜
 				<a href="http://www.suncolor.com.tw/Event/201701the-couple/index.html" target="_blank" >新書專屬區</a>
+				<h2>史上最強【那對夫妻】將於2/11國際書展來踢館了！</h2>
+				<p>簽書會資訊如下:<br /><br />
+					台北場：<br />
+					02/11(六) 下午16：00<br />
+					國際書展(世貿中心一館)三采攤位<br /><br />
+
+					板橋場：<br />
+					03/12(日) 下午15：00 <br />
+					板橋大遠百一樓米蘭廣場<br /><br />
+
+					高雄場：<br />
+					03/19(日)下午14：00 <br />
+					高雄金石堂左營店(環球百貨)二樓室內大廳<br /><br />
+
+					台中場：<br />
+					03/26(日)下午15：00 <br />
+					台中大遠百一樓戶外場地<br />
+				</p>
+			</div>
+		</div>
+		<div class="bookBox" id="anchor4">
+			<!--<div class="bookBoxImg"><img src="img/FB.png" /></div>-->
+			<div class="bookBoxTxt">
+				<!--<h2>史上最強【那對夫妻】將於2/11國際書展來踢館了！</h2>
+				<p>簽書會資訊如下:<br /><br />
+					台北場：<br />
+					02/11(六) 下午16：00<br />
+					國際書展(世貿中心一館)三采攤位<br /><br />
+
+					板橋場：<br />
+					03/12(日) 下午15：00 <br />
+					板橋大遠百一樓米蘭廣場<br /><br />
+
+					高雄場：<br />
+					03/19(日)下午14：00 <br />
+					高雄金石堂左營店(環球百貨)二樓室內大廳<br /><br />
+
+					台中場：<br />
+					03/26(日)下午15：00 <br />
+					台中大遠百一樓戶外場地<br />
+				</p>-->
 			</div>
 		</div>
 
-		<div class="aboutBox">
-			<div class="aboutBoxImg"><img src="{% static "img/0213.jpg"%}" /></div>
+		<div class="aboutBox" id="anchor5">
+			<div class="aboutBoxImg"><img src="{% static "img/0221.jpg"%}" /></div>
 			<div class="aboutBoxTxt">
 				<h2>關於那對夫妻</h2>
 				<p>
@@ -185,10 +252,7 @@
 				</p>
 			</div>
 		</div>
-		<div class="bannerBox">
-			<div class="bannerBoxImg"><a href="http://nicokim.cc" target="_blank"><img src="{% static "img/mv.png"%}" /></a></div>
-		</div>
-		<div class="shareBox">
+		<div class="shareBox" id="anchor6">
 			<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F1006nk%2F%3Ffref%3Dts&tabs&width=250&height=130&small_header=false&adapt_container_width=false&hide_cover=false&show_facepile=false&appId=1705033186453307" width="250" height="130" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
 			<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F%E9%82%A3%E5%B0%8D%E5%A4%AB%E5%A6%BB-Kim%E4%BA%AC%E7%87%81-1717090055218199%2F&tabs&width=250&height=130&small_header=false&adapt_container_width=false&hide_cover=false&show_facepile=false&appId=1705033186453307" width="250" height="130" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
 			<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F%E9%82%A3%E5%B0%8D%E5%A4%AB%E5%A6%BBNico%E5%93%81%E7%AD%A0-195295667610836%2F&tabs&width=250&height=130&small_header=false&adapt_container_width=false&hide_cover=false&show_facepile=false&appId=1705033186453307" width="250" height="130" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
@@ -202,8 +266,11 @@
 			</div>
 
 		</div>
+		<div class="bannerBox">
+			<div class="bannerBoxImg"><a href="http://nicokim.cc" target="_blank"><img src="{% static "img/mv.png"%}" /></a></div>
+		</div>
 	</div>
 </div>
-<!--<footer>copyright©那對夫妻nicokim.cc版權所有</footer>-->
+<footer>copyright©那對夫妻nicokim.cc版權所有</footer>
 </body>
 </html>

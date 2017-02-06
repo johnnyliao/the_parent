@@ -28,7 +28,7 @@ p{
     margin:10px 0px;
 }
 .wrap{
-    max-width: 600px;
+    max-width: 640px;
     margin: 0 auto;
     background-color: #f6f7f9;
     padding-bottom: 20px;
@@ -39,19 +39,31 @@ p{
 header{
     height: 65px;
     text-align: center;
-    border-bottom: 1px solid #e8e8e8;
     margin-bottom: 15px;
+    position: fixed;
+    top: 0px;
+    z-index: 999999;
+    background: #fff;
+    width: 100% !important;
+    max-width: 640px;
+    margin: 0 auto;
+    float: none !important;
 }
 header img{
     height: 50px;
+}
+header .menuBox li{
+    display: inline-block;
+    font-size: 12px;
 }
 .wrap .logoBox{
     padding:5px;
     position: relative;
     z-index: 999;
+    border-bottom: 1px solid #e8e8e8;
 }
 .wrap .container{
-    padding:0px 15px;
+    padding:120px 15px 0px 15px;
 }
 .wrap .container #amazingslider-wrapper-1{
     margin: 0px auto 20px !important;
@@ -182,6 +194,12 @@ header #loginBox a{
     padding: 5%;
     display: block;
     border-radius: 4px;
+}
+.amazingslider-space-1{
+    height: 380px!important;
+}
+.amazingslider-text-box-1{
+    display:none!important;
 }
 footer{
     background: #e8e8e8;
