@@ -50,6 +50,9 @@ def home(request):
 def login(request):
 	return render_to_response("main/login.html", locals(), context_instance=RequestContext(request))
 
+def action(request):
+	return render_to_response("main/action.html", locals(), context_instance=RequestContext(request))
+
 def register(request):
 	return render_to_response("main/register.html", locals(), context_instance=RequestContext(request))
 
