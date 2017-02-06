@@ -46,6 +46,20 @@
      js.src = "http://connect.facebook.net/zh_TW/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
+
+  function fb_share() {
+		//強制更新內容
+		$.ajax({
+		  type: 'GET',
+		  url: "https://graph.facebook.com/?id=http://nicokim.cc&amp;scrape=true&amp;method=post",
+		  success: function(data) {
+		    console.log(data)
+		    window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent('http://nicokim.cc/')))
+		  }
+		});
+
+
+	}
 </script>
 <!--FB留言用 End-->
 </head>
