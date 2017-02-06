@@ -63,11 +63,7 @@ $(function(){
 		$('#loading').fadeIn("fast");
 	});
 	/*loading icon End*/
-	$( ".dropdownIcon" ).click(function() {
-	  $( ".logoinMenu" ).slideToggle( "fast", function() {
-	    // Animation complete.
-	  });
-	});
+
 
 	$( ".loginBox" ).click(function() {
 	   $( ".logoinMenu" ).slideToggle( "fast", function() {
