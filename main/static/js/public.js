@@ -69,4 +69,10 @@ $(function(){
 	  });
 	});
 
+	$( ".dropdownIcon" ).click(function() {
+	   $( ".logoinMenu" ).slideToggle( "fast", function() {
+	     // Animation complete.
+	   });
+	 });
+
 });

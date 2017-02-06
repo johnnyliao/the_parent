@@ -60,10 +60,14 @@
 	<header>
 		<div class="logoBox">
 			<a href="http://nicokim.cc" target="_blank"><img src="{% static "img/logo.png"%}" /></a>
-			<div id="loginBox">
+			<div id="loginBox" {% if not request.user.is_authenticated %}style=
+			"display:inline-block;"{% else %}style=
+			"display:none;" {% endif %}>
 				<a id="facebook_login" href="/account/facebook/login">登入</a>
 			</div>
-			<div id="logoutBox">
+			<div id="logoutBox" {% if request.user.is_authenticated %}style=
+			"display:inline-block;"{% else %}style=
+			"display:none;" {% endif %}>
 				<div class="loginBox">
 					<div>
 						<img src="{{pic_url}}" />
