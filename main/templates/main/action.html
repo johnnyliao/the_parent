@@ -87,20 +87,24 @@
 	<header>
 		<div class="logoBox">
 			<a href="http://nicokim.cc" target="_blank"><img src="{% static "img/logo.png"%}" /></a>
-			<div id="loginBox">
+			<div id="loginBox" {% if not request.user.is_authenticated %}style=
+			"display:inline-block;"{% else %}style=
+			"display:none;" {% endif %}>
 				<a id="facebook_login" href="/account/facebook/login">登入</a>
 			</div>
-			<div id="logoutBox">
+			<div id="logoutBox" {% if request.user.is_authenticated %}style=
+			"display:inline-block;"{% else %}style=
+			"display:none;" {% endif %}>
 				<div class="loginBox">
 					<div>
-						<img src="{% static "https://scontent.xx.fbcdn.net/v/t1.0-1/p50x50/10377369_10205776664924228_8903470177486218162_n.jpg?oh=708afd165eb07384094a7e6e394e6ec9&oe=5941121B"%}" />
+						<img src="{{pic_url}}" />
 						<sapn class="dropdownIcon"></sapn>
 					</div>
 				</div>
 				<div class="logoinMenu">
 					<ul>
-						<li><span class="fbUserName">Jamie Lin</span></li>
-						<li><a href="#">登出</a></li>
+						<li><span class="fbUserName">{{name}}</span></li>
+						<li><a href="/account/user_logout">登出</a></li>
 					</ul>
 				</div>
 			</div>
