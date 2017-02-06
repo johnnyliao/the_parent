@@ -69,7 +69,7 @@ $(function(){
 	  });
 	});
 
-	$( ".dropdownIcon" ).click(function() {
+	$( ".loginBox" ).click(function() {
 	   $( ".logoinMenu" ).slideToggle( "fast", function() {
 	     // Animation complete.
 	   });
