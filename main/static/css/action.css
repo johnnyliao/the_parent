@@ -112,7 +112,7 @@ header .menuBox li{
     text-decoration: none;
 }
 .container .bookBox .bookBoxTxt a{
-    color: #E91E63;
+    /*color: #E91E63;*/
     font-weight: bold;
     text-decoration: none;
 }
