@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -11,14 +13,14 @@
 <meta property="og:description" content="Your description" />
 <meta property="og:image" content="http://www.your-domain.com/path/image.jpg" />
 <title>那對夫妻Nico & Kim</title>
-<link href="css/reset.css" rel="stylesheet" type="text/css" />
-<link href="css/public.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
-<script type="text/javascript" src="js/public.js"></script>
+<link href="{% static "css/reset.css"%}" rel="stylesheet" type="text/css" />
+<link href="{% static "css/action.css"%}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{% static "js/jquery-1.8.2.min.js"%}"></script>
+<script type="text/javascript" src="{% static "js/public.js"%}"></script>
 <!--輪播專用 start-->
-	<script src="js/amazingslider.js"></script>
-	<link rel="stylesheet" type="text/css" href="js/amazingslider-1.css">
-	<script src="js/initslider-1.js"></script>
+	<script src="{% static "js/amazingslider.js"%}"></script>
+	<link rel="stylesheet" type="text/css" href="{% static "js/amazingslider-1.css"%}">
+	<script src="{% static "js/initslider-1.js"%}"></script>
 <!--輪播專用 End-->
 
 <!--FB留言用 start-->

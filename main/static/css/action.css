@@ -1,0 +1,112 @@
+@charset "utf-8";
+/* 載入 */
+body{
+    background: #FFF;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: auto;
+    color: #858585;
+}
+h2{
+    display: block;
+    margin: 0;
+    padding: 0;
+    color: #202020;
+    font-family: Helvetica;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 125%;
+    letter-spacing: normal;
+    text-align: left;
+}
+a{
+    color: #f38daf;
+    font-weight: bold;
+    text-decoration: none;
+}
+p{
+    margin:10px 0px;
+}
+.wrap{
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #f6f7f9;
+    padding-bottom: 20px;
+    border-top: 0;
+    border-bottom: 0;
+    padding-top: 0;
+}
+header{
+    height: 65px;
+    text-align: center;
+    border-bottom: 1px solid #e8e8e8;
+    margin-bottom: 15px;
+}
+header img{
+    height: 50px;
+}
+.wrap .logoBox{
+    padding:5px;
+}
+.wrap .container{
+    padding:0px 15px;
+}
+.wrap .container #amazingslider-wrapper-1{
+    margin: 0px auto 20px !important;
+}
+.wrap .container .amazingslider-bottom-shadow-1 img{
+    display: none!important;
+}
+.wrap .container .amazingslider-bullet-1{
+    display: none;
+}
+.wrap .container .visitEventBox{
+    background: #fff;
+    padding: 15px;
+}
+.wrap .container .btnBox .visitBox{
+    display: inline-block;
+    padding: 5px;
+    width: 80%;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: super;
+    border-radius: 4px;
+    background: #f390b1;
+    color: #FFF;
+    font-size: 18px;
+}
+.wrap .container .ringBox,.wrap .container .musicBox,.wrap .container .bookBox,.wrap .container .aboutBox,.wrap .container .bannerBox,.wrap .container .shareBox{
+    background: #FFF;
+    margin: 20px 0px;
+}
+.wrap .container .ringBox h3,.wrap .container .musicBox h3,.wrap .container .bookBox h3,.wrap .container .aboutBox h3,.wrap .container .bannerBox h3,.wrap .container .shareBox h3{
+    margin: 10px 0px;
+}
+.wrap .container .ringBox .ringBoxImg img,.wrap .container .musicBox .musicBoxImg img,.wrap .container .bookBox .bookBoxImg img,.wrap .container .aboutBox .aboutBoxImg img,.wrap .container .bannerBox .bannerBoxImg img,.wrap .container .shareBox .shareBoxImg img{
+    width: 100%;
+}
+.wrap .container .ringBox .ringBoxTxt,.wrap .container .musicBox .musicBoxTxt,.wrap .container .bookBox .bookBoxTxt,.wrap .container .aboutBox .aboutBoxTxt,.wrap .container .bannerBox .bannerBoxTxt,.wrap .container .shareBox .shareBoxTxt{
+    font-size: 16px;
+    line-height: 150%;
+    padding: 10px;
+    margin-top: 10px;
+}
+.container .musicBox .musicBoxTxt a{
+    color: #f38daf;
+    font-weight: bold;
+    text-decoration: none;
+}
+.container .bookBox .bookBoxTxt a{
+    color: #E91E63;
+    font-weight: bold;
+    text-decoration: none;
+}
+footer{
+    background: #e8e8e8;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
