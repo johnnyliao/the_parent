@@ -56,8 +56,28 @@
 </head>
 <body>
 <div class="wrap">
+	<div class="wrap">
 	<header>
-		<div class="logoBox"><a href="http://nicokim.cc" target="_blank"><img src="{% static "img/logo.png"%}" /></a></div>
+		<div class="logoBox">
+			<a href="http://nicokim.cc" target="_blank"><img src="{% static "img/logo.png"%}" /></a>
+			<div id="loginBox">
+				<a id="facebook_login" href="/account/facebook/login">登入</a>
+			</div>
+			<div id="logoutBox">
+				<div class="loginBox">
+					<div>
+						<img src="{% static "https://scontent.xx.fbcdn.net/v/t1.0-1/p50x50/10377369_10205776664924228_8903470177486218162_n.jpg?oh=708afd165eb07384094a7e6e394e6ec9&oe=5941121B"%}" />
+						<sapn class="dropdownIcon"></sapn>
+					</div>
+				</div>
+				<div class="logoinMenu">
+					<ul>
+						<li><span class="fbUserName">Jamie Lin</span></li>
+						<li><a href="#">登出</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
 	</header>
 	<div class="container">
 		<div class="mvEvent">
@@ -65,15 +85,15 @@
 		    <div id="amazingslider-wrapper-1" style="display:block;position:relative;max-width:600px;margin:0px auto 56px;">
 		        <div id="amazingslider-1" style="display:block;position:relative;margin:0 auto;">
 		            <ul class="amazingslider-slides" style="display:none;">
-		                <li><img src="img/mv.png" alt="mv"  title="mv" />
+		                <li><img src="{% static "img/mv.png"%}" alt="mv"  title="mv" />
 		                </li>
-		                <li><img src="img/7aZZ945rgVA.jpg" />
+		                <li><img src="{% static "img/7aZZ945rgVA.jpg"%}" />
 		                <video preload="none" src="https://www.youtube.com/embed/7aZZ945rgVA?v=7aZZ945rgVA" ></video>
 		                </li>
 		            </ul>
 		            <ul class="amazingslider-thumbnails" style="display:none;">
-		                <li><img src="img/mv-tn.png" alt="mv" title="mv" /></li>
-		                <li><img src="img/7aZZ945rgVA-tn.jpg" /></li>
+		                <li><img src="{% static "img/mv-tn.png"%}" alt="mv" title="mv" /></li>
+		                <li><img src="{% static "img/7aZZ945rgVA-tn.jpg"%}" /></li>
 		            </ul>
 		        <div class="amazingslider-engine"><a href="http://amazingslider.com" title="Responsive Slider jQuery">Responsive Slider jQuery</a></div>
 		        </div>
@@ -83,7 +103,7 @@
 		    	<div class="visitEventBoxTxt"><p>活動內容活動內容</p></div>
 			    <div class="btnBox">
 			    	<a class="visitBox">參加活動抽新書</a>
-			    	<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.facebook.com%2F1006nk%2F&layout=button_count&size=small&mobile_iframe=true&width=92&height=20&appId" width="100" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+			    	<iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fnicokim.cc%2Fmain%2Faction%2F&layout=button_count&size=small&mobile_iframe=true&width=63&height=20&appId" width="100" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
 			    	<div class="fb-comments" data-href="http://nicokim.cc/action/comment" data-width="100%" data-numposts="15">
 
 			    	</div>
@@ -91,10 +111,10 @@
 		    </div>
 		</div>
 		<div class="ringBox">
-			<div class="ringBoxImg"><a href="http://bit.ly/Nini-FETnet" target="_blank"><img src="img/mv.png" /></a></div>
+			<div class="ringBoxImg"><a href="http://bit.ly/Nini-FETnet" target="_blank"><img src="{% static "img/mv.png"%}" /></a></div>
 		</div>
 		<div class="musicBox">
-			<div class="musicBoxImg"><img src="img/0213.jpg" /></div>
+			<div class="musicBoxImg"><img src="{% static "img/0213.jpg"%}" /></div>
 			<div class="musicBoxTxt">
 				<h2>最強網紅家庭那對夫妻KIM，終於圓了單曲夢</h2>
 				<h3>下載音樂：</h3>
@@ -117,7 +137,7 @@
 			</div>
 		</div>
 		<div class="bookBox">
-			<div class="bookBoxImg"><img src="img/FB.png" /></div>
+			<div class="bookBoxImg"><img src="{% static "img/FB.png"%}" /></div>
 			<div class="bookBoxTxt">
 				<h2>百萬台灣網紅【那對夫妻】出書了</h2>
 				<p>百萬粉絲的台灣網紅「那對夫妻」出書了!平時FB上恩愛的影片受到廣大粉絲喜愛，這次他們將12年一路走來的點滴故事集結成冊，用網路力量來感動更多粉絲！
@@ -139,7 +159,7 @@
 		</div>
 
 		<div class="aboutBox">
-			<div class="aboutBoxImg"><img src="img/0213.jpg" /></div>
+			<div class="aboutBoxImg"><img src="{% static "img/0213.jpg"%}" /></div>
 			<div class="aboutBoxTxt">
 				<h2>關於那對夫妻</h2>
 				<p>
@@ -153,10 +173,21 @@
 			</div>
 		</div>
 		<div class="bannerBox">
-			<div class="bannerBoxImg"><a href="http://nicokim.cc" target="_blank"><img src="img/mv.png" /></a></div>
+			<div class="bannerBoxImg"><a href="http://nicokim.cc" target="_blank"><img src="{% static "img/mv.png"%}" /></a></div>
 		</div>
 		<div class="shareBox">
-			<!--這裡放相關社群-->
+			<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F1006nk%2F%3Ffref%3Dts&tabs&width=250&height=130&small_header=false&adapt_container_width=false&hide_cover=false&show_facepile=false&appId=1705033186453307" width="250" height="130" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+			<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F%E9%82%A3%E5%B0%8D%E5%A4%AB%E5%A6%BB-Kim%E4%BA%AC%E7%87%81-1717090055218199%2F&tabs&width=250&height=130&small_header=false&adapt_container_width=false&hide_cover=false&show_facepile=false&appId=1705033186453307" width="250" height="130" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+			<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F%E9%82%A3%E5%B0%8D%E5%A4%AB%E5%A6%BBNico%E5%93%81%E7%AD%A0-195295667610836%2F&tabs&width=250&height=130&small_header=false&adapt_container_width=false&hide_cover=false&show_facepile=false&appId=1705033186453307" width="250" height="130" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+			<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fnimonicokim%2F&tabs&width=250&height=130&small_header=false&adapt_container_width=false&hide_cover=false&show_facepile=false&appId=1705033186453307" width="250" height="130" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+			<div class="shareOther">
+				<a href="http://bit.ly/2jdtTPs" target="_blank"><img src="{% static "img/youtube.png"%}"></a>
+				<a href="http://goo.gl/LvaEid" target="_blank"><img src="{% static "img/IG.png"%}"></a>
+				<a href="http://bit.ly/nikokimline"><img src="{% static "img/line.png"%}"></a>
+				<a href="http://www.meipai.com/user/46678953" target="_blank"><img src="{% static "img/vedio.png"%}"></a>
+				<a href="http://weibo.com/u/5525600359" target="_blank"><img src="{% static "img/weibo.png"%}"></a>
+			</div>
+
 		</div>
 	</div>
 </div>
