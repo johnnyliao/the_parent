@@ -44,13 +44,32 @@ from account.views import login as main_login
 
 def home(request):
 	brand_index = BrandIndex.objects.all()[0]
+	if request.user.is_authenticated():
+		if request.user.socialaccount_set.all():
+			fb_id = request.user.socialaccount_set.all()[0].extra_data["id"]
+			pic_url = "http://graph.facebook.com/v2.8/%s/picture" % fb_id
+			name = request.user.socialaccount_set.all()[0].extra_data["name"]
+		else:
+			pic_url = False
+	else:
+		pic_url = False
 
-	return render_to_response("main/index.html", locals(), context_instance=RequestContext(request))
+	return render_to_response("main/action.html", locals(), context_instance=RequestContext(request))
 
 def login(request):
 	return render_to_response("main/login.html", locals(), context_instance=RequestContext(request))
 
 def action(request):
+	if request.user.is_authenticated():
+		if request.user.socialaccount_set.all():
+			fb_id = request.user.socialaccount_set.all()[0].extra_data["id"]
+			pic_url = "http://graph.facebook.com/v2.8/%s/picture" % fb_id
+			name = request.user.socialaccount_set.all()[0].extra_data["name"]
+		else:
+			pic_url = False
+	else:
+		pic_url = False
+
 	return render_to_response("main/action.html", locals(), context_instance=RequestContext(request))
 
 def register(request):

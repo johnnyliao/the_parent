@@ -93,7 +93,7 @@ ADMIN_THUMB_SIZE = "100x100"
 USE_SOUTH = True
 
 
-LOGIN_REDIRECT_URL = "/main/member"
+LOGIN_REDIRECT_URL = "/main/action"
 ########################
 # MAIN DJANGO SETTINGS #
 ########################
@@ -455,4 +455,4 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 
-LOGIN_URL = '/main/login/'
+LOGIN_URL = '/main/action/'
