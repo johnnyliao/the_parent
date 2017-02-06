@@ -196,10 +196,13 @@ header #loginBox a{
     border-radius: 4px;
 }
 .amazingslider-space-1{
-    height: 380px!important;
+    /*height: 380px!important;*/
 }
 .amazingslider-text-box-1{
     display:none!important;
+}
+.amazingslider-play-1{
+    vertical-align: middle;
 }
 footer{
     background: #e8e8e8;
