@@ -171,25 +171,67 @@
 		    <div class="visitEventBox">
 		    	<div class="visitEventBoxTitle"><h2 class="actionTitle">情人節甜蜜告白三部曲</h2></div>
 		    	<div class="visitEventBoxTxt">
-		    		<h3>抽獎贈品</h3>
-		    		<!--你可能會喜歡 start-->
+		    		<h3 class="giftBoxTitle">抽獎贈品</h3>
+		    		<!--giftBox start-->
 					<div id="container" class="cf expertBox">
-						<h3><a href="#">你可能會喜歡</a></h3>
+						<h3><a href="#"></a></h3>
 						<div id="main" role="main">
 						  <section class="slider expertCon">
 							<div class="flexslider carousel expertArea">
 							  <ul class="slides">
 								<li>
-									<div class="experImg"><img src="img/001.jpg" /></div>
+									<div class="experImg"><img src="{% static "img/A001.png"%}" /></div>
+									<div class="giftNameBox">
+										<h3>那對夫妻x山本富也禮盒</h3>
+									</div>
+									<div class="giftQuantityBox">
+										<p>數量:1</p>
+									</div>
 								</li>
 								<li>
-									<div class="experImg"><img src="img/002.jpg" /></div>
+									<div class="experImg"><img src="{% static "img/A002.png"%}" /></div>
+									<div class="giftNameBox">
+										<h3>那對夫妻x奇檬子香氛洗衣精</h3>
+									</div>
+									<div class="giftQuantityBox">
+										<p>數量:2</p>
+									</div>
 								</li>
 								<li>
-									<div class="experImg"><img src="img/003.jpg" /></div>
+									<div class="experImg"><img src="{% static "img/A003.png"%}" /></div>
+									<div class="giftNameBox">
+										<h3>那對夫妻x山本富也禮盒</h3>
+									</div>
+									<div class="giftQuantityBox">
+										<p>數量:1</p>
+									</div>
 								</li>
 								<li>
-									<div class="experImg"><img src="img/004.jpg" /></div>
+									<div class="experImg"><img src="{% static "img/A004.png"%}" /></div>
+									<div class="giftNameBox">
+										<h3>那對夫妻x奇檬子香氛洗衣精</h3>
+									</div>
+									<div class="giftQuantityBox">
+										<p>數量:2</p>
+									</div>
+								</li>
+								<li>
+									<div class="experImg"><img src="{% static "img/A005.png"%}" /></div>
+									<div class="giftNameBox">
+										<h3>那對夫妻x限量夫妻紅包袋</h3>
+									</div>
+									<div class="giftQuantityBox">
+										<p>數量:100</p>
+									</div>
+								</li>
+								<li>
+									<div class="experImg"><img src="{% static "img/A006.png"%}" /></div>
+									<div class="giftNameBox">
+										<h3>那對夫妻x限量手機防水袋</h3>
+									</div>
+									<div class="giftQuantityBox">
+										<p>數量:50</p>
+									</div>
 								</li>
 
 							  </ul>
@@ -197,16 +239,40 @@
 						  </section>
 						</div>
 					</div>
-					<!--你可能會喜歡 End-->
+					<!--giftBox End-->
 		    	</div>
-			    <div class="btnBox">
-			    	<div class="shareFB">
-			    		<a href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent('http://nicokim.cc'))));"><img src="{% static "img/fb_share.png"%}" width="40" height="40" /></a>
-			    	</div>
-			    	<div class="fb-comments" data-href="http://nicokim.cc/action/comment" data-width="100%" data-numposts="15">
-
-			    	</div>
-			    </div>
+		    	<div class="actionBox">
+		    		<div class="actionTitleBox">
+		    			<h3>活動期間</h3>
+		    			<p>即日起～2016-03-14 23:59</p>
+		    		</div>
+		    		<div class="actionTitleBox"><h3>活動辦法</h3></div>
+		    		<div class="actionTxtBox">
+		    			<h4>【那對夫妻】情人節甜蜜告白活動正式開跑囉！</h4>
+		    			<p>
+		    				即日起只要參加那對夫妻官方網站活動就有機會抽得大獎！
+		    			</p>
+		    			<div class="step1">
+		    				<h5>Step1.</h5>
+			    			<p>
+			    				<a href="">登入/註冊</a>成為那對夫妻網站會員。
+			    			</p>
+		    			</div>
+		    			<div class="step2">
+		    				<h5>Step2.</h5>
+			    			<p>
+			    				在活動頁面下分點選分享TAG一位告白對象，並留下甜蜜告白。
+			    			</p>
+		    			</div>
+		    			<div class="step3">
+		    				<h5>Step3.</h5>
+			    			<p>
+			    				把留言分享到自己的<a href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent('http://nicokim.cc'))));"><img src="{% static "img/fb_share.png"%}" width="30" height="30" /></a>，並設定公開。
+			    			</p>
+		    			</div>
+		    			<div class="finishBox"><p>完成以上三個動作即可參加抽獎活動。</p></div>
+		    		</div>
+		    	</div>
 		    </div>
 		</div>
 		<div class="ringBox" id="anchor2">
@@ -334,7 +400,7 @@
 	</div>
 </div>
 <footer>copyright©那對夫妻nicokim.cc版權所有</footer>
-<!--你可能會喜歡 start-->
+<!--giftBox start-->
 	<script defer src="{% static "js/jquery.flexslider.js"%}"></script>
 	<div id="fb-root"></div>
 	<script type="text/javascript">
@@ -343,7 +409,7 @@
 	        animation: "slide",
 	        animationLoop: true,
 	        itemWidth: 150,
-	        itemMargin: 50,
+	        itemMargin: 20,
 	        minItems: 1,
 	        maxItems: 3,
 			keyboardNav: true,
@@ -353,6 +419,6 @@
       	});
     });
   	</script>
-  	<!--你可能會喜歡 End-->
+  	<!--giftBox End-->
 </body>
 </html>

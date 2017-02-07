@@ -220,7 +220,22 @@ footer{
 .slides li{
     border:1px solid #e8e8e8;
 }
-
+.visitEventBoxTxt .giftBoxTitle{
+    margin-top: 20px;
+    line-height: 30px;
+}
+.visitEventBoxTxt .giftNameBox{
+    font-size: 14px;
+    text-align: left;
+    padding: 0px 10px;
+    line-height: 24px;
+}
+.visitEventBoxTxt .giftQuantityBox{
+    font-size: 14px;
+    text-align: center;
+    padding: 0px 10px;
+    line-height: 24px;
+}
 @media screen and (max-width:640px){
 .wrap .container .btnBox .visitBox{
     width: 72%;
