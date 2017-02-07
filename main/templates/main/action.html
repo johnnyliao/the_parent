@@ -149,7 +149,7 @@
 	  		<a href="#anchor2" class="tab">來電答鈴</a>｜
 	  		<a href="#anchor3" class="tab">新書介紹</a>｜
 	  		<a href="#anchor5" class="tab">關於我們</a>｜
-	  		<a href="#anchor6" class="tab">相關社群</a>
+	  		<a href="#anchor6" class="tab">社群</a>
 		</div>
 	</header>
 	<div class="container" id="anchor1">
@@ -158,7 +158,7 @@
 		    <div id="amazingslider-wrapper-1" style="display:block;position:relative;max-width:600px;margin:0px auto 56px;">
 		        <div id="amazingslider-1" style="display:block;position:relative;margin:0 auto;">
 		            <ul class="amazingslider-slides" style="display:none;">
-		                <li><img src="{% static "img/banner.jpg"%}" alt="mv"  title="mv" />
+		                <li><img src="{% static "img/banner.png"%}" alt="mv"  title="mv" />
 		                </li>
 		                <li><img src="{% static "img/7aZZ945rgVA.jpg"%}" />
 		                <video preload="none" src="https://www.youtube.com/embed/7aZZ945rgVA?v=7aZZ945rgVA" ></video>
@@ -174,8 +174,17 @@
 		    <!-- ＭＶ輪播 End-->
 		    <div class="visitEventBox">
 		    	<div class="visitEventBoxTitle"><h2 class="actionTitle">情人節甜蜜告白三部曲</h2></div>
+		    	<div class="actionMenu">
+		    		<ul>
+		    			<li><a href="">抽獎贈品</a> | </li>
+		    			<li><a href="">活動辦法</a> | </li>
+		    			<li><a href="#">活動時間</a> | </li>
+		    			<li><a href="#" id="html-privacy">注意事項</a> | </li>
+		    			<li><a href="" id="">開獎辦法</a></li>
+		    		</ul>
+		    	</div>
 		    	<div class="visitEventBoxTxt">
-		    		<h3 class="giftBoxTitle">抽獎贈品</h3>
+		    		<h3 class="giftBoxTitle"><span class="colorBoxR"></span>抽獎贈品</h3>
 		    		<!--giftBox start-->
 					<div id="container" class="cf expertBox">
 						<h3><a href="#"></a></h3>
@@ -193,13 +202,14 @@
 									</div>
 								</li>
 								<li>
-									<div class="experImg"><img src="{% static "img/A002.png"%}" /></div>
+									<a href="https://shopee.tw/%E5%B1%B1%E6%9C%AC%E5%AF%8C%E4%B9%9F-%E9%82%A3%E5%B0%8D%E5%A4%AB%E5%A6%BB%E4%BB%A3%E8%A8%80-%E6%97%A5%E5%BC%8F%E7%9A%87%E5%AE%B6%E7%B3%BB%E5%88%97%E7%A6%AE%E7%9B%92%E7%B5%84-i.2040063.130109167"><div class="experImg"><img src="{% static "img/A002.png"%}" /></div>
 									<div class="giftNameBox">
 										<h3>那對夫妻x奇檬子香氛洗衣精</h3>
 									</div>
 									<div class="giftQuantityBox">
 										<p>數量:2</p>
 									</div>
+									</a>
 								</li>
 								<li>
 									<div class="experImg"><img src="{% static "img/A003.png"%}" /></div>
@@ -247,7 +257,7 @@
 		    	</div>
 		    	<div class="actionBox">
 		    		<div class="actionTitleBox">
-		    			<h3>活動期間</h3>
+		    			<h3><span class="colorBoxR"></span>活動期間</h3>
 		    			<p>即日起～2016-03-14 23:59</p>
 		    		</div>
 		    		<div class="actionTitleBox"><h3>活動辦法</h3></div>
@@ -259,7 +269,7 @@
 		    			<div class="step1">
 		    				<h5>Step1.</h5>
 			    			<p>
-			    				<a href="">登入/註冊</a>成為那對夫妻網站會員。
+			    				<a href="/account/facebook/login">登入/註冊</a>成為那對夫妻網站會員。
 			    			</p>
 		    			</div>
 		    			<div class="step2">
