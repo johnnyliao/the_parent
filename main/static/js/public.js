@@ -15,6 +15,12 @@ $(function(){
 	$( ".changeBtn" ).click(function() {
 
 	});
+	$( "#actionNotice" ).click(function() {
+	  $.sweetModal({
+		title: '注意事項與寄送辦法',
+		content: ''
+		});
+	});
 	/*彈窗使用 End*/
 
 	/*清除欄位值 start*/
