@@ -50,6 +50,7 @@ class CommentPostView(generics.GenericAPIView):
         留言
         """
         serializer = self.serializer_class(data=request.DATA)
+        #import pdb;pdb.set_trace()
         if serializer.is_valid():
             serializer.save()
             #import pdb;pdb.set_trace()

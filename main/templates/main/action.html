@@ -49,6 +49,18 @@
 		console.log("comment_create");
 		console.log(url);
 		console.log(html_element);
+		{% if request.user.is_authenticated %}
+		$.ajax({
+		  type: 'POST',
+		  url: "/action/comment_post/",
+		  data: JSON.stringify({"user":"{{request.user.id}}", "content":url.message, "comment_id":url.commentID, "href":url.href}),
+		  success: function(data) {
+		    console.log(data)
+		  },
+		  dataType: "json",
+		  contentType: "application/json"
+		});
+		{% endif %}
 	}
 
 	// In your onload handler
