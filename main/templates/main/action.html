@@ -38,6 +38,22 @@
       xfbml      : true,
       version    : 'v2.4'
     });
+
+    var comment_onload = function(url, html_element) {
+		console.log("comment_onload");
+		console.log(url);
+		console.log(html_element);
+	}
+
+	var comment_create = function(url, html_element) {
+		console.log("comment_create");
+		console.log(url);
+		console.log(html_element);
+	}
+
+	// In your onload handler
+	FB.Event.subscribe("xfbml.render", comment_onload);
+	FB.Event.subscribe("comment.create", comment_create);
   };
 
   (function(d, s, id){
@@ -61,6 +77,9 @@
 
 
 	}
+
+
+	//FB.Event.subscribe('edge.remove', page_like_or_unlike_callback);
 </script>
 <!--FB留言用 End-->
 <!--a 錨點滑動 start-->

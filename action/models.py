@@ -16,11 +16,13 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.sites.models import Site
 import urlparse, settings
 
-
+#for facebook comment plugin record
 class Comment(models.Model):
     user = models.ForeignKey(User, related_name='user_comment')
     content = models.CharField(_(u"留言內容"), max_length=100)
+    comment_id = models.CharField(_(u"留言id"), max_length=100)
     date = models.DateTimeField(_(u"留言時間"), auto_now=True)
+    href = models.CharField(_(u"留言連結"), max_length=100)
 
     class Meta:
         verbose_name = _(u'留言')
