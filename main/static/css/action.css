@@ -236,6 +236,12 @@ footer{
     padding: 0px 10px;
     line-height: 24px;
 }
+.sweet-modal-box {
+    overflow-y: scroll!important;
+}
+.sweet-modal-overlay{
+    z-index: 999999!important;
+}
 @media screen and (max-width:640px){
 .wrap .container .btnBox .visitBox{
     width: 72%;
