@@ -169,8 +169,36 @@
 		    </div>
 		    <!-- ＭＶ輪播 End-->
 		    <div class="visitEventBox">
-		    	<div class="visitEventBoxTitle"><h2>情人節甜蜜告白三部曲</h2></div>
-		    	<div class="visitEventBoxTxt"><p></p></div>
+		    	<div class="visitEventBoxTitle"><h2 class="actionTitle">情人節甜蜜告白三部曲</h2></div>
+		    	<div class="visitEventBoxTxt">
+		    		<h3>抽獎贈品</h3>
+		    		<!--你可能會喜歡 start-->
+					<div id="container" class="cf expertBox">
+						<h3><a href="#">你可能會喜歡</a></h3>
+						<div id="main" role="main">
+						  <section class="slider expertCon">
+							<div class="flexslider carousel expertArea">
+							  <ul class="slides">
+								<li>
+									<div class="experImg"><img src="img/001.jpg" /></div>
+								</li>
+								<li>
+									<div class="experImg"><img src="img/002.jpg" /></div>
+								</li>
+								<li>
+									<div class="experImg"><img src="img/003.jpg" /></div>
+								</li>
+								<li>
+									<div class="experImg"><img src="img/004.jpg" /></div>
+								</li>
+
+							  </ul>
+							</div>
+						  </section>
+						</div>
+					</div>
+					<!--你可能會喜歡 End-->
+		    	</div>
 			    <div class="btnBox">
 			    	<div class="shareFB">
 			    		<a href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent('http://nicokim.cc'))));"><img src="{% static "img/fb_share.png"%}" width="40" height="40" /></a>
@@ -306,5 +334,25 @@
 	</div>
 </div>
 <footer>copyright©那對夫妻nicokim.cc版權所有</footer>
+<!--你可能會喜歡 start-->
+	<script defer src="{% static "js/jquery.flexslider.js"%}"></script>
+	<div id="fb-root"></div>
+	<script type="text/javascript">
+	$(window).load(function(){
+    	$('.flexslider').flexslider({
+	        animation: "slide",
+	        animationLoop: true,
+	        itemWidth: 150,
+	        itemMargin: 50,
+	        minItems: 1,
+	        maxItems: 3,
+			keyboardNav: true,
+	        start: function(slider){
+	          $('body').removeClass('loading');
+	        }
+      	});
+    });
+  	</script>
+  	<!--你可能會喜歡 End-->
 </body>
 </html>
