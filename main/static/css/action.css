@@ -217,6 +217,10 @@ footer{
     font-weight: bold;
     color: #E91E63;
 }
+.slides li{
+    border:1px solid #e8e8e8;
+}
+
 @media screen and (max-width:640px){
 .wrap .container .btnBox .visitBox{
     width: 72%;
