@@ -220,6 +220,7 @@ footer p{
     margin: 0 10px;
     text-align: center;
     color: #858585;
+    font-weight: bold;
 }
 footer span{
     display: inline-block;
@@ -230,7 +231,7 @@ footer .lineMiddle{
 }
 footer a{
     color: #858585;
-    font-weight:100;
+    font-weight:bold;
     display: inline-block;
 }
 /*活動辦法*/
