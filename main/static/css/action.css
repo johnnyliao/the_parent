@@ -2,7 +2,7 @@
 /* 載入 */
 body{
     background: #FFF;
-    font-family: Arial, Helvetica, sans-serif,Microsoft JhengHei,Apple LiSung Light;
+    font-family: Arial, Helvetica, sans-serif,Microsoft JhengHei,Heiti TC;
     cursor: auto;
     color: #858585;
 }
@@ -219,11 +219,19 @@ footer{
 footer p{
     margin: 0 10px;
     text-align: center;
-
+    color: #858585;
+}
+footer span{
+    display: inline-block;
+}
+footer .lineMiddle{
+    margin: -1.5px 5px 0px 5px;
+    vertical-align: top;
 }
 footer a{
     color: #858585;
     font-weight:100;
+    display: inline-block;
 }
 /*活動辦法*/
 .actionTitle{
