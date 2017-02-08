@@ -211,10 +211,17 @@ footer{
     text-align: center;
     max-width: 640px;
     margin: 0 auto;
-    font-weight: bold;
+    font-weight: 100;
+    font-size: 14px;
+}
+footer p{
+    margin: 0 10px;
+    text-align: center;
+
 }
 footer a{
     color: #858585;
+    font-weight:100;
 }
 /*活動辦法*/
 .actionTitle{
@@ -309,7 +316,7 @@ footer a{
 video{
     width: 100%;
     height: 100%;
-    background: transparent url(../img/7aZZ945rgVA.jpg) no-repeat 0 0;
+    background: transparent url(../img/mvBanner.png) no-repeat 0 0;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
