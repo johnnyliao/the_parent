@@ -2,7 +2,7 @@
 /* 載入 */
 body{
     background: #FFF;
-    font-family: Arial, Helvetica, sans-serif,Microsoft JhengHei;
+    font-family: Arial, Helvetica, sans-serif,Microsoft JhengHei,Apple LiSung Light;
     cursor: auto;
     color: #858585;
 }
@@ -194,6 +194,8 @@ header #loginBox a{
     padding: 5%;
     display: block;
     border-radius: 4px;
+    background: #f38daf;
+    color: #FFF;
 }
 .amazingslider-space-1{
     /*height: 380px!important;*/
@@ -302,6 +304,15 @@ footer a{
     width: 60px;
     display: block;
     text-align: center;
+}
+.step1 a{
+    margin-right: 5px;
+    border: 1px solid #f38daf;
+    padding: 0px 5px;
+    display: inline-block;
+    border-radius: 4px;
+    background: #f38daf;
+    color: #FFF;
 }
 .step2 p{
     margin: 20px 0px;
