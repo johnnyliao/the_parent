@@ -211,6 +211,10 @@ footer{
     text-align: center;
     max-width: 640px;
     margin: 0 auto;
+    font-weight: bold;
+}
+footer a{
+    color: #858585;
 }
 /*活動辦法*/
 .actionTitle{
@@ -292,9 +296,27 @@ footer{
     display: block;
     text-align: center;
 }
+.step2 p{
+    margin: 20px 0px;
+}
 .sweet-modal-overlay.open .sweet-modal-box .sweet-modal-content, .sweet-modal-overlay.open .sweet-modal-box .sweet-modal-buttons{
     line-height: 30px;
     font-family: Arial, Helvetica, sans-serif,Microsoft JhengHei;
+}
+.amazingslider-arrow-left-1,.amazingslider-arrow-right-1{
+    display: none!important;
+}
+video{
+    width: 100%;
+    height: 100%;
+    background: transparent url(../img/7aZZ945rgVA.jpg) no-repeat 0 0;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+video[poster]{
+    z-index: 999999999
 }
 @media screen and (max-width:640px){
 .wrap .container .btnBox .visitBox{
