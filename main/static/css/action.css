@@ -186,7 +186,7 @@ header #loginBox{
     display: inline-block;
     position: absolute;
     right: 15px;
-    top: 25px;
+    top: 20px;
     width: 59px;
 }
 header #loginBox a{
