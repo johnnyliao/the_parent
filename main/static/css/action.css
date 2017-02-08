@@ -349,6 +349,9 @@ video[poster]{
 .wrap .container .btnBox .visitBox{
     width: 72%;
 }
+.mvIframe{
+    height: 380px;
+}
 }
 @media screen and (max-width:440px){
 .wrap .container .btnBox .visitBox{
