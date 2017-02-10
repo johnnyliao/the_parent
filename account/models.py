@@ -39,6 +39,16 @@ class User(AbstractUser):
 	city = models.CharField(_(u"縣市"), max_length=60)
 	district = models.CharField(_(u"行政區"), max_length=60)
 
+	def image_tag(self):
+		if self.socialaccount_set.all():
+			fb_id = self.socialaccount_set.all()[0].extra_data["id"]
+			pic_url = "http://graph.facebook.com/v2.8/%s/picture" % fb_id
+			return '<img style="width:50pax;height:50px" src="' + pic_url + '" />'
+		else:
+			return ''
+
+	image_tag.allow_tags = True
+
 	def save(self, *args, **kwargs):
 		try:
 			old_email = User.objects.get(id=self.id).email

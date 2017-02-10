@@ -27,7 +27,7 @@ class UserCreationForm(DjangoUserCreationForm):
 class UserAdmin(SalmonellaMixin, DjangoUserAdmin):
 	add_form = UserCreationForm
 	form = UserChangeForm
-	list_display = ['username', 'nickname']
+	list_display = ['username', 'nickname', 'image_tag']
 
 def send_to_all_user(modeladmin, request, queryset):
 	for obj in User.objects.all():
