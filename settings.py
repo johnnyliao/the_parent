@@ -448,7 +448,7 @@ ACCOUNT_EMAIL_REQUIRED = False
 SOCIALACCOUNT_AUTO_SIGNUP = True
 SOCIALACCOUNT_PROVIDERS = {
     'facebook': {
-        'SCOPE': ['user_friends','public_profile','email','user_about_me'],
+        'SCOPE': ['user_friends','public_profile','email','user_about_me', 'publish_actions'],
         'METHOD': 'js_sdk',  # instead of 'oauth2'
         'VERSION': 'v2.7'
     }
