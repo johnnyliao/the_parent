@@ -1,0 +1,100 @@
+{% load staticfiles %}
+
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>roduct Details | Unify - Responsive Website Template</title>
+<meta name="Keywords" content="那對夫妻">
+<meta name="Description" content="那對夫妻">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, maximum-scale=1.0" />
+<!--匯入JSJQ -->
+	<script src="{% static "js/jquery-1.8.2.min.js"%}"></script>
+    <script src="{% static "js/jquery.min.js"%}"></script>
+    <script src="{% static "js/modernizr.js"%}"></script>
+    <script src="{% static "js/headroom.js"%}"></script>
+    <script src="{% static "js/main.js"%}"></script>
+    <script src="{% static "js/jquery.menu-aim.js"%}"></script>
+
+    <style type="text/css">
+
+    }
+	</style>
+	<script type="text/javascript">
+
+
+	var user_accessToken = "{{token}}";
+      	$("document").ready(function(){
+
+      		var message = "hihi ";
+      		$.ajaxSetup({ cache: true });
+			  $.getScript('//connect.facebook.net/zh_tw/sdk.js', function(){
+				    FB.init({
+				      appId: '1818112675107606',
+				      version: 'v2.7' // or v2.1, v2.2, v2.3, ...
+				    });
+
+				    FB.login(function(response) {
+					    if (response.authResponse) {
+					        // The person logged into your app
+					        console.log("The person logged into your app")
+					        var access_token =   FB.getAuthResponse()['accessToken'];
+					        console.log("accesstoken " + access_token)
+					        $("#token").text(access_token)
+					    } else {
+					        // The person cancelled the login dialog
+					        console.log("The person login dialog");
+					    }
+					}, {scope: 'user_about_me, email, user_likes, publish_actions'});
+
+				    /*
+					FB.api('245700295862265_263516084080686/comments', 'get', { access_token: user_accessToken }, function(response) {
+						if (!response.error) {
+						for(data in response["data"]) {
+							var comment_id = response["data"][data]["id"];
+							check_is_replied(comment_id)
+							}
+						}
+					});*/
+				});
+
+
+
+			  //});
+       	 });
+
+      	function check_is_replied(comment_id) {
+      		FB.api(comment_id + '/comments', 'get', { access_token: user_accessToken }, function(response) {
+				if (!response.error) {
+					if (response["data"].length == 0) {
+						//還沒回覆
+						console.log("not reply")
+						reply_comment(comment_id);
+					} else {
+						console.log("reply")
+						return;
+					}
+				}
+			});
+      	}
+
+      	function reply_comment(comment_id) {
+	  		FB.api(comment_id + '/comments', 'post', { access_token: user_accessToken, message: "aaa" }, function(response) {
+				if (!response.error) {
+					console.log("replied")
+				} else {
+					console.log(response.error)
+				}
+			});
+      	}
+
+    </script>
+<!--header隱藏css js End-->
+<!--撐開頁面使用 start-->
+<!--撐開頁面使用 End-->
+</head>
+
+<body>
+	<div id="token"></div>
+</body>
