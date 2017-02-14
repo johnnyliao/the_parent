@@ -42,6 +42,7 @@ import pytz
 from allauth.socialaccount.models import *
 from account.views import login as main_login
 import facebook
+import base64
 
 def home(request):
 	brand_index = BrandIndex.objects.all()[0]
@@ -61,7 +62,14 @@ def login(request):
 	return render_to_response("main/login.html", locals(), context_instance=RequestContext(request))
 
 def auto_reply(request):
-	token = "EAACEdEose0cBAJF2eAmZAe3MzQ39hAvNERFlQtz4rdEViZCZBkAkLJhH3udNoM1oa7ahVZBAZAVfQLVaKO3hwo8OtZBbteq38kfpdJlti5SW7ycKZAZB01vRE4aM0oI7XgCkfe05izd49ilez2VJw8GLKK2ug3aJvcAAkHmBXZAPzBdqV3aS3PtqFjnpVlXmlwxXDKk5YaFnD0AZDZD"
+	account = SocialAccount.objects.get(user_id=23)
+	pic_url = "http://graph.facebook.com/v2.8/%s/picture" % account.extra_data["id"]
+	opener = urllib2.build_opener()
+	result = opener.open(pic_url)
+	token = "EAACEdEose0cBAHBxUfYcQQkCm6gV3NkgWZAXtEHXc6ZAtHiZBZCHjgYykXjMOAGyZAah7Umcgwv6CWYMnXMzr1AFxJCiCQZBfZAa59ioZAnYTWkpJAAgFf8EVJNKePYlHA5w5zgiMBKkQlaewPTZC83uyD0sYRll9PGrHh7n0M2ZA7SgRG2VNhMNsCYwjKkH8yHqpuUZC53BOnQxQZDZD"
+
+	encoded_string = base64.b64encode(result.read())
+	print encoded_string
 	return render_to_response("main/auto_reply.html", locals(), context_instance=RequestContext(request))
 
 	account = SocialAccount.objects.get(user_id=23)

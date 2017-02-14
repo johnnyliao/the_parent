@@ -52,15 +52,16 @@
 					});
 
 
-				    /*
-					FB.api('245700295862265_263516084080686/comments', 'get', { access_token: user_accessToken }, function(response) {
+
+					FB.api('245700295862265_263956147370013/comments', 'get', { access_token: user_accessToken }, function(response) {
 						if (!response.error) {
 						for(data in response["data"]) {
 							var comment_id = response["data"][data]["id"];
-							check_is_replied(comment_id)
+								check_is_replied(comment_id)
+								return;
 							}
 						}
-					});*/
+					});
 				});
 
 
@@ -73,10 +74,11 @@
 				if (!response.error) {
 					if (response["data"].length == 0) {
 						//還沒回覆
-						console.log("not reply")
+
 						reply_comment(comment_id);
 					} else {
-						console.log("reply")
+
+						reply_comment(comment_id);
 						return;
 					}
 				}
@@ -84,7 +86,10 @@
       	}
 
       	function reply_comment(comment_id) {
-	  		FB.api(comment_id + '/comments', 'post', { access_token: user_accessToken, message: "aaa" }, function(response) {
+	  		FB.api(comment_id + '/comments', 'post', {
+	  			access_token: user_accessToken,
+	  			 //source: "data:image/png;base64,{{encoded_string}}"}, function(response) {
+	  			 attachment_url:"http://i.ndtvimg.com/i/2016-06/wolf_650x400_61465560359.jpg" }, function(response) {
 				if (!response.error) {
 					console.log("replied")
 				} else {
@@ -101,4 +106,5 @@
 
 <body>
 	<div id="token"></div>
+	<img src="data:image/png;base64,{{encoded_string}}" />
 </body>
