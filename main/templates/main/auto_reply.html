@@ -52,7 +52,7 @@
 					});
 
 					FB.api(
-					    "/10206123870615326/permissions",
+					    "/10206123870615326/permissions",{ access_token: user_accessToken },
 					    function (response) {
 					      if (response && !response.error) {
 					        /* handle the result */
