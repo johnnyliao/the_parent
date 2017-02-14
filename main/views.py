@@ -41,6 +41,7 @@ from django.db.models import Q
 import pytz
 from allauth.socialaccount.models import *
 from account.views import login as main_login
+import facebook
 
 def home(request):
 	brand_index = BrandIndex.objects.all()[0]
@@ -58,6 +59,43 @@ def home(request):
 
 def login(request):
 	return render_to_response("main/login.html", locals(), context_instance=RequestContext(request))
+
+def auto_reply(request):
+	token = "EAACEdEose0cBAJF2eAmZAe3MzQ39hAvNERFlQtz4rdEViZCZBkAkLJhH3udNoM1oa7ahVZBAZAVfQLVaKO3hwo8OtZBbteq38kfpdJlti5SW7ycKZAZB01vRE4aM0oI7XgCkfe05izd49ilez2VJw8GLKK2ug3aJvcAAkHmBXZAPzBdqV3aS3PtqFjnpVlXmlwxXDKk5YaFnD0AZDZD"
+	return render_to_response("main/auto_reply.html", locals(), context_instance=RequestContext(request))
+
+	account = SocialAccount.objects.get(user_id=23)
+	token = SocialToken.objects.get(account=account)
+	graph = facebook.GraphAPI(access_token = token.token)
+	post_ids = '736429766525018_752835134884481'
+	posts = graph.get_connections(post_ids, 'comments', limit=1000)
+	Jstr = json.dumps(posts)
+	#所有此貼文的留言
+	obj = json.loads(Jstr)
+	#import pdb;pdb.set_trace()
+	print "obj count "
+	print len(obj['data'])
+	for data in obj['data']:
+		if not commet_is_reply(data['id']):
+			posts = graph.put_comment(object_id=data['id'], message='Great post...')
+
+
+#判斷是否回覆留言
+def commet_is_reply(comment_id):
+	print comment_id
+	account = SocialAccount.objects.get(user_id=23)
+	token = SocialToken.objects.get(account=account)
+	graph = facebook.GraphAPI(access_token = token.token)
+	posts = graph.get_connections(comment_id, 'comments')
+	Jstr = json.dumps(posts)
+	obj = json.loads(Jstr)
+	if len(obj['data']) == 0:
+		#尚未回覆
+		return False
+	else:
+		#判斷是否指定人員回覆
+		print obj['data'][0]['from']['name']
+		return True
 
 def action(request):
 	if request.user.is_authenticated():
