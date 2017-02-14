@@ -51,17 +51,6 @@
 
 					});
 
-					FB.api(
-					    "/10206123870615326/permissions",{ access_token: user_accessToken },
-					    function (response) {
-					      if (response && !response.error) {
-					        /* handle the result */
-					        console.log(response)
-					      } else {
-					      	console.log(response.error)
-					      }
-					    }
-					);
 
 				    /*
 					FB.api('245700295862265_263516084080686/comments', 'get', { access_token: user_accessToken }, function(response) {
