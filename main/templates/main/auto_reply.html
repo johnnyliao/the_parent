@@ -46,7 +46,9 @@
 					        // The person cancelled the login dialog
 					        console.log("The person login dialog");
 					    }
-					}, {scope: 'publish_actions'});
+					}, {scope: 'publish_actions',
+						return_scopes: true
+					});
 
 				    /*
 					FB.api('245700295862265_263516084080686/comments', 'get', { access_token: user_accessToken }, function(response) {
