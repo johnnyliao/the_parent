@@ -1,11 +1,11 @@
-﻿@charset "utf-8";	
+﻿@charset "utf-8";
 /* 載入 */
 @media screen and (max-width:767px){
 .container_default {
     margin-top: 17px;
 }
 .container_defaultProduct{
-   margin-top: -18px; 
+   margin-top: -18px;
 }
 .shop{
     margin-top: -18px;
@@ -17,7 +17,7 @@
     padding: 20px;
     width: 85%;
     border: 1px solid #e8e8e8;
-    margin:0px 0px 15px 0px; 
+    margin:0px 0px 15px 0px;
 }
 .container_cart .cartConBox .invoiceBox #love_code_div a{
     right: 5%;
@@ -40,7 +40,7 @@
     right: 12%;
 }
 .container_default .videolistBox ul li .videoListTxtBox{
-    width: 75%;
+    width: 60%;
     font-size: 16px;
 }
 .container_default .messageBox .messInputBox{
@@ -85,7 +85,7 @@
     padding: 20px;
     width: 68%;
     border: 1px solid #e8e8e8;
-    margin:0px 0px 15px 0px; 
+    margin:0px 0px 15px 0px;
 }
 .container_cart .cartConBox .invoiceBox #love_code{
     width: 68%;
@@ -94,7 +94,7 @@
     right: 12%;
 }
 .container_default .videolistBox ul li .videoListTxtBox{
-    width: 65%;
+    width: 55%;
     font-size: 16px;
 }
 .container_default .messageBox .messInputBox{
@@ -128,13 +128,16 @@
     width: 70%;
 }
 .container_default .videolistBox ul li .videoListTxtBox{
-    width: 60%;
+    width: 50%;
     font-size: 16px;
 }
 }
 @media screen and (max-width:340px){
 .container_default .videolistBox ul li .videoListTxtBox{
     width: 55%;
+}
+.container_default .videolistBox .videoListImgBox img{
+    width: 120px !important;
 }
 }
 @media screen and (max-width:320px){

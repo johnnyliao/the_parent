@@ -140,12 +140,12 @@
 	<div class="videolistBox">
 		<div class="videolistTitleBox">
 			<div class="videolistBoxTitle"><h1>列表</h1></div>
-			<div class="videolistBoxMore">更多 > </div>
+			<div class="videolistBoxMore" id="more1">更多 > </div>
 		</div>
-		<ul>
+		<ul id="videoContBox">
 			<li>
 				<a href="#">
-					<div class="videoListImgBox"><img src="http://img.youtube.com/vi/4Lqz6zi8A5w/default.jpg" width="120" /></div>
+					<div class="videoListImgBox"><img src="{% static "img/001.png"%}" width="150" /></div>
 					<div class="videoListTxtBox"><h2>跟另一半玩遊戲，認真你就輸了-那對夫妻</h2>
 						<div class="viewQuanBox">
 							<i class="fa fa-eye" aria-hidden="true"></i>
@@ -156,7 +156,7 @@
 			</li>
 			<li>
 				<a href="#">
-					<div class="videoListImgBox"><img src="http://img.youtube.com/vi/lrCucVkCsqQ/default.jpg" width="120" /></div>
+					<div class="videoListImgBox"><img src="{% static "img/002.png"%}" width="150" /></div>
 					<div class="videoListTxtBox"><h2>爸爸教妮妮學英文</h2>
 						<div class="viewQuanBox">
 							<i class="fa fa-eye" aria-hidden="true"></i>
@@ -167,7 +167,7 @@
 			</li>
 			<li>
 				<a href="#">
-					<div class="videoListImgBox"><img src="http://img.youtube.com/vi/6yVC18WfwgI/default.jpg" width="120" /></div>
+					<div class="videoListImgBox"><img src="{% static "img/003.png"%}" width="150" /></div>
 					<div class="videoListTxtBox"><h2>吃火鍋一定有香菇，但沒有藍瘦啦～</h2>
 						<div class="viewQuanBox">
 							<i class="fa fa-eye" aria-hidden="true"></i>
@@ -178,30 +178,8 @@
 			</li>
 			<li>
 				<a href="#">
-					<div class="videoListImgBox"><img src="http://img.youtube.com/vi/wxpYotUidKk/default.jpg" width="120" /></div>
+					<div class="videoListImgBox"><img src="{% static "img/004.png"%}" width="150" /></div>
 					<div class="videoListTxtBox"><h2>老公~~你喜歡我哪一點??</h2>
-						<div class="viewQuanBox">
-							<i class="fa fa-eye" aria-hidden="true"></i>
-							<span>1,230</span>
-						</div>
-					</div>
-				</a>
-			</li>
-			<li>
-				<a href="#">
-					<div class="videoListImgBox"><img src="http://img.youtube.com/vi/d5ew0Hb0UQs/default.jpg" width="120" /></div>
-					<div class="videoListTxtBox"><h2>Nico品筠&Kim京燁 【那對夫妻】妮妮</h2>
-						<div class="viewQuanBox">
-							<i class="fa fa-eye" aria-hidden="true"></i>
-							<span>1,230</span>
-						</div>
-					</div>
-				</a>
-			</li>
-			<li>
-				<a href="#">
-					<div class="videoListImgBox"><img src="http://img.youtube.com/vi/pFiLART1tIE/default.jpg" width="120" /></div>
-					<div class="videoListTxtBox"><h2>妮妮為了爸爸跟Siri吵架</h2>
 						<div class="viewQuanBox">
 							<i class="fa fa-eye" aria-hidden="true"></i>
 							<span>1,230</span>
@@ -377,7 +355,7 @@
 			title: '分享',
 			type: '',
 			html:
-			'<div class="proShareBox"><a style=\"margin:0px 10px;\" href="javascript: void(window.open(\'http://www.facebook.com/share.php?u=\'.concat(encodeURIComponent(\'http://nicokim.cc\'))));\"><img src=\"img/fb_share.png\" width=\"40\" height=\"40\" /></a><div class=\"line-it-button\" style=\"display: none;\" data-type=\"share-c\" data-lang=\"zh-Hant\" ></div><script src=\"http://scdn.line-apps.com/n/line_it/thirdparty/loader.min.js\" async=\"async\" defer=\"defer\" ><\/script><script> LineIt.loadButton(); <\/script><a href=\"http://line.naver.jp/R/msg/text/?http://nicokim.cc\"><img src=\"img/line_share.png\" width=\"40\" /></a></div>',
+			'<div class="proShareBox"><a style=\"margin:0px 10px;\" href="javascript: void(window.open(\'http://www.facebook.com/share.php?u=\'.concat(encodeURIComponent(\'http://nicokim.cc\'))));\"><img src=\"/static/img/fb_share.png\" width=\"40\" height=\"40\" /></a><div class=\"line-it-button\" style=\"display: none;\" data-type=\"share-c\" data-lang=\"zh-Hant\" ></div><script src=\"http://scdn.line-apps.com/n/line_it/thirdparty/loader.min.js\" async=\"async\" defer=\"defer\" ><\/script><script> LineIt.loadButton(); <\/script><a href=\"http://line.naver.jp/R/msg/text/?http://nicokim.cc\"><img src=\"/static/img/line_share.png\" width=\"40\" /></a></div>',
 			showCloseButton: true,
 			showCancelButton: false,
 			confirmButtonText: 'OK',
@@ -460,4 +438,22 @@
 	    });
 	});
 	</script>
+	<!--更多影片start-->
+	<script>
+	$(document).ready(function() {
+    var data = {"data": [
+	            { "src": "001.png" }, { "src": "002.png" }, { 	"src": "003.png" }, { "src": "004.png" }
+	        ]};
+	        var str = "";
+	        $("#more1").click(function () {
+	         for(var i = 0; i < data.data.length; i++) {
+	        	var templ = "<li><a href=\"#\"><div class=\"videoListImgBox\"><img src=\"/static/img/"+data.data[i]['src']+"\" width=\"150\" /></div><div class=\"videoListTxtBox\"><h2>跟另一半玩遊戲，認真你就輸了-那對夫妻</h2><div class=\"viewQuanBox\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i><span>1,230</span></div></div></a></li>"
+	        		$("#videoContBox").append(templ);
+
+
+	        }
+	        });
+		});
+	</script>
+	<!--更多影片 End-->
 </body>

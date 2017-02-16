@@ -123,6 +123,7 @@ footer{
     line-height: 20px;
     font-size: 14px;
     bottom: 0px;
+    display: block;
 }
 .container {
     padding-right: 15px;
@@ -1162,6 +1163,9 @@ input[name="zipcode"]{
   width: 100%;
   height: 100%;
 }
+.video-contBox img{
+    width: 100%;
+}
 .container_default .videoBoxfixed{
     position: fixed;
     width: 100%;
@@ -1247,15 +1251,33 @@ input[name="zipcode"]{
 .container_default .videoBox1 .videoTitleTxt span{
     color: #ec7b88;
 }
+.container_default .videoBox1 .videoContImg img{
+    width: 100%;
+}
+.container_default .videoBox1 .videoTitleTxtBox{
+    width: 100%;
+}
+.container_default .videoBox1 .videoTitleTxtBox h2{
+    font-size: 16px;
+    color: #666666;
+    font-weight: 100;
+    /*多行文字限制*/
+    display: -webkit-box;
+    overflow:hidden;
+    text-overflow : ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    margin-top: 5px;
+}
 .container_default .videoBox1 .videoCont{
     margin:0px 15px;
     position: relative;
 }
 .container_default .videoBox1 .videoCont li{
-    width: 47%;
+    width: 46%;
     display: inline-block;
     vertical-align: top;
-    margin: 0px 5px;
+    margin: 0px 5px 15px 5px;
     overflow:hidden;
 }
 .container_default .videoBox1 .videoCont li:nth-child(even){
