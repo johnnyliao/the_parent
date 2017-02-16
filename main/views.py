@@ -46,9 +46,13 @@ import base64
 from user_agents import parse
 
 def check_user_agent(request):
+
 	ua_string = request.META.get('HTTP_USER_AGENT', '')
 	user_agent = parse(ua_string)
-	print user_agent.device.family
+	print '\n\n'
+	print 'is_pc'
+	print user_agent.is_pc
+
 	return user_agent.device.family
 
 def home(request):
