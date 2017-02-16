@@ -106,6 +106,10 @@ header .menuBox li{
     padding: 10px;
     margin-top: 10px;
 }
+.wrap .container .ringBoxTxt li{
+    display: inline-block;
+    vertical-align: top;
+}
 .container .musicBox .musicBoxTxt a{
     color: #f38daf;
     font-weight: bold;

@@ -1,7 +1,7 @@
-﻿@charset "utf-8";	
+﻿@charset "utf-8";
 /* 載入 */
 body{
-    font-family: "Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3",FontAwesome,sans-serif;
+    font-family: "Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3",FontAwesome,sans-serif,Microsoft JhengHei;
 }
 #loading {
    width: 100%;
@@ -476,7 +476,7 @@ input[name="zipcode"]{
     margin-top:37px;
 }
 .container_defaultProduct{
-   margin-top: -18px; 
+   margin-top: -18px;
 }
 .shop{
     margin-top: -18px;
@@ -1018,7 +1018,7 @@ input[name="zipcode"]{
     position: absolute;
     right: 2%;
     bottom: 7px;
-}    
+}
 .container_cart .cartConBox .cartProductBox .delectBox a{
     display: block;
     background: #e8e8e8;
@@ -1056,7 +1056,7 @@ input[name="zipcode"]{
     padding: 20px;
     width: 85%;
     border: 1px solid #e8e8e8;
-    margin:0px 0px 15px 0px; 
+    margin:0px 0px 15px 0px;
 }
 .container_cart .cartConBox .invoiceBox #love_code{
     width: 85%;
@@ -1175,7 +1175,7 @@ input[name="zipcode"]{
 .container_default .videoBox .videoTitleTxt h2{
     color: #666;
     /*多行文字限制*/
-    display: -webkit-box;  
+    display: -webkit-box;
     overflow:hidden;
     text-overflow : ellipsis;
     -webkit-line-clamp: 1;
@@ -1186,7 +1186,7 @@ input[name="zipcode"]{
     color: #b3b3b3;
     font-weight: 100;
     /*多行文字限制*/
-    display: -webkit-box;  
+    display: -webkit-box;
     overflow:hidden;
     text-overflow : ellipsis;
     -webkit-line-clamp: 1;
@@ -1200,19 +1200,19 @@ input[name="zipcode"]{
 .container_default .videoBox1 .videoTitleTxt h2{
     color: #666;
     /*多行文字限制*/
-    display: -webkit-box;  
+    display: -webkit-box;
     overflow:hidden;
     text-overflow : ellipsis;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
-    margin-bottom: 
+    margin-bottom:
 }
 .container_default .videoBox1 .videoTitleTxt h6{
     font-size: 12px;
     color: #b3b3b3;
     font-weight: 100;
     /*多行文字限制*/
-    display: -webkit-box;  
+    display: -webkit-box;
     overflow:hidden;
     text-overflow : ellipsis;
     -webkit-line-clamp: 1;
@@ -1222,7 +1222,7 @@ input[name="zipcode"]{
 .container_default .videoBox .videoTitleTxt h2{
     color: #666;
     /*多行文字限制*/
-    display: -webkit-box;  
+    display: -webkit-box;
     overflow:hidden;
     text-overflow : ellipsis;
     -webkit-line-clamp: 1;
@@ -1233,7 +1233,7 @@ input[name="zipcode"]{
     color: #b3b3b3;
     font-weight: 100;
     /*多行文字限制*/
-    display: -webkit-box;  
+    display: -webkit-box;
     overflow:hidden;
     text-overflow : ellipsis;
     -webkit-line-clamp: 1;
