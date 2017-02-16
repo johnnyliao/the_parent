@@ -61,6 +61,11 @@ def home(request):
 def login(request):
 	return render_to_response("main/login.html", locals(), context_instance=RequestContext(request))
 
+def index_video(request):
+	return render_to_response("main/index_video.html", locals(), context_instance=RequestContext(request))
+def videoDetails(request):
+	return render_to_response("main/videoDetails.html", locals(), context_instance=RequestContext(request))
+
 def auto_reply(request):
 	#account = SocialAccount.objects.get(user_id=23)
 	#pic_url = "http://graph.facebook.com/v2.8/%s/picture" % account.extra_data["id"]

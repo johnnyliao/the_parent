@@ -1,0 +1,463 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>roduct Details | Unify - Responsive Website Template</title>
+<meta name="Keywords" content="那對夫妻">
+<meta name="Description" content="那對夫妻">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, maximum-scale=1.0" />
+<!--匯入JSJQ -->
+	<script src="{% static "js/jquery-1.8.2.min.js"%}"></script>
+    <script src="{% static "js/jquery.min.js"%}"></script>
+    <script src="{% static "js/public.js"%}"></script>
+    <script src="{% static "js/main.js"%}"></script>
+    <script src="{% static "js/modernizr.js"%}"></script>
+    <script src="{% static "js/headroom.js"%}"></script>
+<!--匯入css -->
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css"%}">
+<!--header隱藏css js-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.3/headroom.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.3/jQuery.headroom.js"></script>
+    <style type="text/css">
+		.headroom {position: fixed;top: 0;left: 0;right: 0;transition: all .2s ease-in-out;}
+		.headroom--unpinned {top: -100px;transform: translateY(-100%);}
+		.headroom--pinned {transform: translateY(0%);z-index: 1;}
+    }
+	</style>
+	<script type="text/javascript">
+      	$("document").ready(function(){
+     		 $("#header").headroom();
+       	 });
+    </script>
+
+<!--header隱藏css js End-->
+<!--header類別滑動效果 start-->
+	<link rel="stylesheet" type="text/css" href="{% static "css/categorySlide.css"%}">
+<!--header類別滑動效果 End-->
+<!--share 彈窗 start-->
+	<script src="https://cdn.jsdelivr.net/sweetalert2/6.4.0/sweetalert2.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/6.4.0/sweetalert2.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/6.4.0/sweetalert2.css">
+	<script src="https://cdn.jsdelivr.net/sweetalert2/6.4.0/sweetalert2.js"></script>
+<!--share 彈窗 End-->
+<!--你可能會喜歡 start-->
+	<link rel="stylesheet" href="{% static "css/demo.css"%}" type="text/css" media="screen" />
+	<link rel="stylesheet" href="{% static "css/flexslider.css"%}" type="text/css" media="screen" />
+<!--你可能會喜歡 End-->
+</head>
+
+<body>
+<div class="" none="ture">
+	<header class="header" _height="none">
+		<article class="topnav">
+			<div class="cd-dropdown-wrapper">
+				<a class="cd-dropdown-trigger top" href="#0">
+					<span></span>
+				</a>
+			</div>
+			<div class="logo">
+				<a href="/index.html">
+					<img class="top_logo" src="{% static "img/thecouple_webpage_logo.png"%}">
+				</a>
+			</div>
+		</article>
+		<div class="tabs fixed show-tab dark abgne_tab" fixed-tabs="#tv-tabs" ng-class="{'show-tab' : showTabs}">
+	  		<a href="＃" target="_self" class="tab active">搞笑互整</a>
+	  		<a href="＃" target="_self" class="tab">精選內容</a>
+	  		<a href="＃" target="_self" class="tab">熱門點擊</a>
+	  		<a href="＃" target="_self" class="tab">溫馨家庭</a>
+	  		<a href="＃" target="_self" class="tab">最強小三</a>
+		</div>
+	</header>
+	<!--nav start-->
+	<div class="cd-dropdown-wrapper">
+		<!--<a class="cd-dropdown-trigger" href="#0">Dropdown</a>-->
+		<nav class="cd-dropdown">
+			<h2>那對夫妻</h2>
+			<a href="#0" class="cd-close">Close</a>
+			<ul class="cd-dropdown-content">
+				<li>
+					<form class="cd-search" method="get">
+						<input type="search" placeholder="Search..." class="searchlnput_text">
+						<input class="searchlnput_bnt" name="" type="submit" value="">
+					</form>
+				</li>
+				<li>
+					<a href="login.html">登入</a>
+				</li>
+				<li style="display: none;">
+					<a href="#">登出</a>
+				</li>
+				<li>
+					<a href="register.html">註冊</a>
+				</li>
+				<li class="has-children">
+					<a href="#">會員專區</a>
+					<ul class="cd-secondary-dropdown is-hidden">
+						<li class="go-back"><a href="#0">Menu</a></li>
+						<li>
+							<a href="member.html">會員資料</a>
+						</li>
+						<li>
+							<a href="changePassword.html">修改密碼</a>
+						</li>
+					</ul> <!-- .cd-secondary-dropdown -->
+				</li> <!-- .has-children -->
+			</ul> <!-- .cd-dropdown-content -->
+		</nav> <!-- .cd-dropdown -->
+	</div> <!-- .cd-dropdown-wrapper -->
+	<!--nav End-->
+
+	<div class="container_default" _height="auto">
+    <div class="videoBox videoBoxfixed">
+	    <div class="video-container">
+			<iframe src="https://www.youtube.com/embed/N1s6lzxTjIc" type="text/html" width="800" height="450" frameborder="0">
+			</iframe>
+		</div>
+		<div class="videoDetBox1">
+			<a class="videoDetBox1Img01" href="#"><img src="{% static "img/talk.png"%}" width="30" />評論：<span class="talkcount">80</span></a>
+			<a class="videoDetBox1Img02" id="videoDetLikeBtn" href="#"><img src="{% static "img/star.png"%}" width="30"></a>
+			<a class="videoDetBox1Img02 active" id="videoDetLikeBtn" href="#"><img src="{% static "img/star1.png"%}" width="30"></a>
+			<a class="videoDetBox1Img03" href="#"><img src="{% static "img/share1.png"%}" width="30"></a>
+		</div>
+	</div>
+	<div class="videoDetBox2">
+		<div class="videoDetTitle active"><h1>《江苏卫视元宵晚会》全程</h1></div>
+		<div class="accordionBox"><a href="" class="accordionBtn active"><img src="{% static "img/down.png"%}" width="30" /></a></div>
+		<div class="vedioViewBox">
+			<ul>
+				<li>播放：<span>12</span>萬次</li>
+				<li>彈幕：<span>89</span>條</li>
+				<li>類型：<span>看點</span></li>
+				<li>地區：<span>台灣</span></li>
+				<li><a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><span>1,230</span></a></li>
+				<li><a href=""><i class="fa fa-thumbs-o-down" aria-hidden="true"></i><span>12</span></a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="videolistBox">
+		<div class="videolistTitleBox">
+			<div class="videolistBoxTitle"><h1>列表</h1></div>
+			<div class="videolistBoxMore">更多 > </div>
+		</div>
+		<ul>
+			<li>
+				<a href="#">
+					<div class="videoListImgBox"><img src="http://img.youtube.com/vi/4Lqz6zi8A5w/default.jpg" width="120" /></div>
+					<div class="videoListTxtBox"><h2>跟另一半玩遊戲，認真你就輸了-那對夫妻</h2>
+						<div class="viewQuanBox">
+							<i class="fa fa-eye" aria-hidden="true"></i>
+							<span>1,230</span>
+						</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<div class="videoListImgBox"><img src="http://img.youtube.com/vi/lrCucVkCsqQ/default.jpg" width="120" /></div>
+					<div class="videoListTxtBox"><h2>爸爸教妮妮學英文</h2>
+						<div class="viewQuanBox">
+							<i class="fa fa-eye" aria-hidden="true"></i>
+							<span>1,230</span>
+						</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<div class="videoListImgBox"><img src="http://img.youtube.com/vi/6yVC18WfwgI/default.jpg" width="120" /></div>
+					<div class="videoListTxtBox"><h2>吃火鍋一定有香菇，但沒有藍瘦啦～</h2>
+						<div class="viewQuanBox">
+							<i class="fa fa-eye" aria-hidden="true"></i>
+							<span>1,230</span>
+						</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<div class="videoListImgBox"><img src="http://img.youtube.com/vi/wxpYotUidKk/default.jpg" width="120" /></div>
+					<div class="videoListTxtBox"><h2>老公~~你喜歡我哪一點??</h2>
+						<div class="viewQuanBox">
+							<i class="fa fa-eye" aria-hidden="true"></i>
+							<span>1,230</span>
+						</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<div class="videoListImgBox"><img src="http://img.youtube.com/vi/d5ew0Hb0UQs/default.jpg" width="120" /></div>
+					<div class="videoListTxtBox"><h2>Nico品筠&Kim京燁 【那對夫妻】妮妮</h2>
+						<div class="viewQuanBox">
+							<i class="fa fa-eye" aria-hidden="true"></i>
+							<span>1,230</span>
+						</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<div class="videoListImgBox"><img src="http://img.youtube.com/vi/pFiLART1tIE/default.jpg" width="120" /></div>
+					<div class="videoListTxtBox"><h2>妮妮為了爸爸跟Siri吵架</h2>
+						<div class="viewQuanBox">
+							<i class="fa fa-eye" aria-hidden="true"></i>
+							<span>1,230</span>
+						</div>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="messageBox">
+		<div class="speakBox">
+			<div class="speakBoxImg"><img src="{% static "img/people1.jpg"%}" width="50" /></div>
+			<div class="messInputBox">
+				<p class="notLoggedIn" style="margin-top: 15px;">欲留言請先<a href="#">登入</a></p>
+				<textarea class="signedIn" placeholder="留言"></textarea>
+				<button type="submit" class="messageBtn signedIn">留言</button>
+			</div>
+		</div>
+		<div class="messageBox1">
+			<div class="messageBox1Con">
+				<div class="messageBox1Img"><img src="{% static "img/person-icon.png"%}" width="50" /></div>
+				<div class="messageCon">
+					<div class="messageConTitle"><h2>四川迷</h2><span class="categoryBox">熱門</span></div>
+					<span class="timeBox">6天前</span>
+					<p class="messageTxt">還滿好看的～還滿好看的～還滿好看的～還滿好看的～還滿好看的～</p>
+					<div class="likeBox">
+						<span class="likeBtn"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><span class="likeQua">1,230</span></span>
+						<span class="likeBtn"><i class="fa fa-commenting-o" aria-hidden="true"></i><span class="likeQua">1</span></span>
+					</div>
+				</div>
+			</div>
+			<div class="messageBox1Con reply1">
+				<div class="messageBox1Img"><img src="{% static "img/person-icon.png"%}" width="50" /></div>
+				<div class="messageCon">
+					<div class="messageConTitle"><h2>四川迷</h2><span class="categoryBox">熱門</span></div>
+					<span class="timeBox">6天前</span>
+					<p class="messageTxt">還滿好看的～還滿好看的～還滿好看的～還滿好看的～還滿好看的～</p>
+					<div class="likeBox">
+						<span class="likeBtn"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><span class="likeQua">1,230</span></span>
+					</div>
+				</div>
+			</div>
+			<div class="messageBox1Con reply1">
+				<div class="messageBox1Img"><img src="{% static "img/people1.jpg"%}" width="50" /></div>
+				<div class="messageCon">
+					<div class="messageConTitle"><h2>四川迷</h2></div>
+					<textarea></textarea>
+					<div class="likeBox">
+						<button type="submit" class="messageBtn">留言</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--推薦給你 start-->
+	<div class="flexslider1">
+	  <h3>推薦影片</h3>
+	  <ul class="slides">
+	    <li>
+	      	<div class="videoImg"><img src="http://img.youtube.com/vi/4Lqz6zi8A5w/default.jpg" /></div>
+	      	<div class="videoTitle">跟另一半玩遊戲，認真你就輸了-那對夫妻</div>
+	    </li>
+	    <li>
+	      	<div class="videoImg"><img src="http://img.youtube.com/vi/lrCucVkCsqQ/default.jpg" /></div>
+	      	<div class="videoTitle">爸爸教妮妮學英文</div>
+	    </li>
+	    <li>
+	     	<div class="videoImg"><img src="http://img.youtube.com/vi/6yVC18WfwgI/default.jpg" /></div>
+	     	<div class="videoTitle">吃火鍋一定有香菇，但沒有藍瘦啦～</div>
+	    </li>
+	    <li>
+	      	<div class="videoImg"><img src="http://img.youtube.com/vi/wxpYotUidKk/default.jpg" /></div>
+	      	<div class="videoTitle">老公~~你喜歡我哪一點??</div>
+	    </li>
+	    <li>
+	      	<div class="videoImg"><img src="http://img.youtube.com/vi/d5ew0Hb0UQs/default.jpg" /></div>
+	      	<div class="videoTitle">Nico品筠&Kim京燁 【那對夫妻】妮妮</div>
+	    </li>
+	    <li>
+	      	<div class="videoImg"><img src="http://img.youtube.com/vi/pFiLART1tIE/default.jpg" /></div>
+	      	<div class="videoTitle">妮妮為了爸爸跟Siri吵架</div>
+	    </li>
+	    <li>
+	      	<div class="videoImg"><img src="http://img.youtube.com/vi/4Lqz6zi8A5w/default.jpg" /></div>
+	      	<div class="videoTitle">跟另一半玩遊戲，認真你就輸了-那對夫妻</div>
+	    </li>
+	    <li>
+	      	<div class="videoImg"><img src="http://img.youtube.com/vi/lrCucVkCsqQ/default.jpg" /></div>
+	      	<div class="videoTitle">爸爸教妮妮學英文</div>
+	    </li>
+	  </ul>
+	</div>
+	<!--推薦給你 End-->
+	<!--你可能會喜歡 start-->
+	<div id="container" class="cf expertBox">
+				<h3>你可能會喜歡</h3>
+				<div id="main" role="main">
+				  <section class="slider expertCon">
+					<div class="flexslider carousel expertArea">
+					  <ul class="slides">
+						<li>
+							<div class="experImg"><img src="{% static "img/001.jpg"%}" /></div>
+						</li>
+						<li>
+							<div class="experImg"><img src="{% static "img/002.jpg"%}" /></div>
+						</li>
+						<li>
+							<div class="experImg"><img src="{% static "img/003.jpg"%}" /></div>
+						</li>
+						<li>
+							<div class="experImg"><img src="{% static "img/004.jpg"%}" /></div>
+						</li>
+
+					  </ul>
+					</div>
+				  </section>
+				</div>
+			  </div>
+	<!--你可能會喜歡 End-->
+	<!--夫妻嚴選 start-->
+	<!-- Place somewhere in the <body> of your page -->
+	<div class="flexslider2">
+	  <h3>夫妻嚴選</h3>
+	  <ul class="slides">
+	    <li>
+	      <img src="{% static "img/product1.png"%}" />
+	    </li>
+	    <li>
+	      <img src="{% static "img/product2.png"%}" />
+	    </li>
+	    <li>
+	      <img src="{% static "img/product3.png"%}" />
+	    </li>
+	    <li>
+	      <img src="{% static "img/product4.png"%}" />
+	    </li>
+	  </ul>
+	</div>
+	<!--夫妻嚴選 End-->
+	</div>
+	<div class="under-nav" style="display: block;">
+	    <a href="#"><img src="{% static "img/home.png"%}" width="40" /></a>
+	    <a href="#"><img src="{% static "img/cart.png"%}" width="40" /></a>
+	    <a href="#"><img src="{% static "img/videoActive.png"%}" width="40" /></a>
+	    <a href="#"><img src="{% static "img/about.png"%}" width="40" /></a>
+	</div>
+	<footer _height="none">
+		<ul>
+			<li>copyright©那對夫妻nicokim.cc版權所有</li>
+		</ul>
+	</footer>
+</div>
+	<script src="{% static "js/jquery.menu-aim.js"%}"></script>
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-36251023-1']);
+	  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	</script>
+  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  	<!--share 彈窗 start-->
+  	<script type="text/javascript">
+
+	$('.videoDetBox1Img03').on('click', function () {
+		swal({
+			title: '分享',
+			type: '',
+			html:
+			'<div class="proShareBox"><a style=\"margin:0px 10px;\" href="javascript: void(window.open(\'http://www.facebook.com/share.php?u=\'.concat(encodeURIComponent(\'http://nicokim.cc\'))));\"><img src=\"img/fb_share.png\" width=\"40\" height=\"40\" /></a><div class=\"line-it-button\" style=\"display: none;\" data-type=\"share-c\" data-lang=\"zh-Hant\" ></div><script src=\"http://scdn.line-apps.com/n/line_it/thirdparty/loader.min.js\" async=\"async\" defer=\"defer\" ><\/script><script> LineIt.loadButton(); <\/script><a href=\"http://line.naver.jp/R/msg/text/?http://nicokim.cc\"><img src=\"img/line_share.png\" width=\"40\" /></a></div>',
+			showCloseButton: true,
+			showCancelButton: false,
+			confirmButtonText: 'OK',
+			cancelButtonText: '<i class="fa fa-thumbs-down"></i>'
+			}).catch(swal.noop)
+	})
+  	</script>
+  	<!--share 彈窗 End-->
+  	<!--標題手風琴 start-->
+  	<script>
+  		$(".accordionBtn").click(function(){
+        	event.preventDefault();
+        	 if ( $(".videoDetTitle").find("h1").hasClass( "active" ) ) {
+				 	$(".videoDetTitle").find("h1").removeClass('active');
+				 	$(".accordionBtn").addClass('active');
+			    }else{
+			    	$(".videoDetTitle").find("h1").addClass('active');
+			    	$(".accordionBtn").removeClass('active');
+			    }
+
+		});
+	</script>
+  	<!--標題手風琴 End-->
+  	<!--你可能會喜歡 start-->
+	<script defer src="{% static "js/jquery.flexslider.js"%}"></script>
+	<div id="fb-root"></div>
+	<script type="text/javascript">
+	$(window).load(function(){
+    	$('.flexslider').flexslider({
+	        animation: "slide",
+	        animationLoop: true,
+	        itemWidth: 150,
+	        itemMargin: 50,
+	        minItems: 1,
+	        maxItems: 3,
+	        slideshowSpeed: 5000,
+			keyboardNav: true,
+	        start: function(slider){
+	          $('body').removeClass('loading');
+	        }
+      	});
+    });
+	    // Can also be used with $(document).ready()
+	$(window).load(function() {
+	  $('.flexslider1').flexslider({
+	    	animation: "slide",
+	        animationLoop: true,
+	        itemWidth: 150,
+	        itemMargin: 5,
+	        minItems: 1,
+	        maxItems: 6,
+	        slideDirection:"vertical",
+	        slideshowSpeed: 10000,
+	  });
+	});
+	$(window).load(function() {
+	  $('.flexslider2').flexslider({
+	    	animation: "slide",
+	        animationLoop: true,
+	        itemWidth: 150,
+	        itemMargin: 0,
+	        minItems: 1,
+	        maxItems:1,
+	        slideDirection:"vertical",
+	        slideshowSpeed: 3000,
+	  });
+	});
+  	</script>
+  	<!--你可能會喜歡 End-->
+  	<!--取得影片高度 start-->
+  	<script type="text/javascript">
+  	$(function () {
+		$(window).load(function(){
+	    	var scrollVal = $(".videoBox").height();
+	    $(".videoDetBox2").css("margin-top",scrollVal+25);
+	    });
+	    $(window).resize(function(){
+	    	var scrollVal = $(".videoBox").height();
+	    $(".videoDetBox2").css("margin-top",scrollVal+25);
+	    });
+	});
+	</script>
+</body>

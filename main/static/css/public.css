@@ -1,4 +1,4 @@
-﻿@charset "utf-8";
+﻿@charset "utf-8";	
 /* 載入 */
 body{
     font-family: "Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3",FontAwesome,sans-serif;
@@ -28,6 +28,7 @@ header, .header{
     height: 65px;
     overflow: hidden;
     display: flex;
+    z-index: 999;
 }
 header .topnav, .header .topnav{
     background-color: #FFF;
@@ -134,15 +135,20 @@ footer{
     background: #e8e8e8;
     width: 100%;
     text-align: center;
-    height: 40px;
-    line-height: 40px;
+    height: 45px;
+    line-height: 45px;
     font-size: 24px;
     display: none;
+    z-index: 9999;
 }
 .under-nav a{
     color: #e18293;
+    width: 22%;
+    display: inline-block;
 }
-
+.under-nav a img{
+    width: 30%;
+}
 /*會員資料*/
 .container .memberBox{
     border: 1px solid #e8e8e8;
@@ -470,7 +476,7 @@ input[name="zipcode"]{
     margin-top:37px;
 }
 .container_defaultProduct{
-   margin-top: -18px;
+   margin-top: -18px; 
 }
 .shop{
     margin-top: -18px;
@@ -1012,7 +1018,7 @@ input[name="zipcode"]{
     position: absolute;
     right: 2%;
     bottom: 7px;
-}
+}    
 .container_cart .cartConBox .cartProductBox .delectBox a{
     display: block;
     background: #e8e8e8;
@@ -1050,7 +1056,7 @@ input[name="zipcode"]{
     padding: 20px;
     width: 85%;
     border: 1px solid #e8e8e8;
-    margin:0px 0px 15px 0px;
+    margin:0px 0px 15px 0px; 
 }
 .container_cart .cartConBox .invoiceBox #love_code{
     width: 85%;
@@ -1140,12 +1146,412 @@ input[name="zipcode"]{
 .sweet-modal-box{
     overflow-y: scroll!important ;
 }
-/*選單隱藏search*/
-.cd-search{
-    display:none;
+
+/*---------------影音首頁---------------------*/
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; height: 0; overflow: hidden;
+}
+.video-container iframe,
+.video-container object,
+.video-container embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.container_default .videoBoxfixed{
+    position: fixed;
+    width: 100%;
+    top: 100px;
+    z-index: 999;
+    margin-top: 20px;
+}
+.container_default .videoBox .videoTitleTxt{
+    margin:15px;
+}
+.container_default .videoBox .videoTitleTxt h2{
+    color: #666;
+    /*多行文字限制*/
+    display: -webkit-box;  
+    overflow:hidden;
+    text-overflow : ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.container_default .videoBox .videoTitleTxt h6{
+    font-size: 12px;
+    color: #b3b3b3;
+    font-weight: 100;
+    /*多行文字限制*/
+    display: -webkit-box;  
+    overflow:hidden;
+    text-overflow : ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    margin-top: 5px;
+}
+.container_default .videoBox1 .videoTitleTxt{
+    text-align: left;
+    margin:10px 0px;
+}
+.container_default .videoBox1 .videoTitleTxt h2{
+    color: #666;
+    /*多行文字限制*/
+    display: -webkit-box;  
+    overflow:hidden;
+    text-overflow : ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    margin-bottom: 
+}
+.container_default .videoBox1 .videoTitleTxt h6{
+    font-size: 12px;
+    color: #b3b3b3;
+    font-weight: 100;
+    /*多行文字限制*/
+    display: -webkit-box;  
+    overflow:hidden;
+    text-overflow : ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    margin-top: 5px;
+}
+.container_default .videoBox .videoTitleTxt h2{
+    color: #666;
+    /*多行文字限制*/
+    display: -webkit-box;  
+    overflow:hidden;
+    text-overflow : ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.container_default .videoBox .videoTitleTxt h6{
+    font-size: 12px;
+    color: #b3b3b3;
+    font-weight: 100;
+    /*多行文字限制*/
+    display: -webkit-box;  
+    overflow:hidden;
+    text-overflow : ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    margin-top: 5px;
+}
+.container_default .videoBox1 .videoTitleTxt .fa-clock-o{
+    color: #ec7b88;
+    margin-right: 5px;
+}
+.container_default .videoBox1 .videoTitleTxt span{
+    color: #ec7b88;
+}
+.container_default .videoBox1 .videoCont{
+    margin:0px 15px;
+    position: relative;
+}
+.container_default .videoBox1 .videoCont li{
+    width: 47%;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0px 5px;
+    overflow:hidden;
+}
+.container_default .videoBox1 .videoCont li:nth-child(even){
+    margin-left:1.5%;
+}
+.container_default .videoBox1 .videoCont li:nth-child(odd){
+    margin-right:1.5%;
+}
+.content_box{
+    display: inline-block;
+    border: 1px dotted #4F4F4F;
+    padding: 10px;
+    margin: 5px 5px 5px 0;
+    overflow:hidden;
+    width:337px;
 }
 
-/*隱私權政策捲軸*/
-.sweet-modal-box{
-    overflow-y: scroll!important ;
+/*影片內頁*/
+.container_default .videoBox .videoDetBox1{
+    background: #f1f1f1;
+    padding: 2.5%;
+    position: relative;
+    border-bottom: 1px solid #c7c7c7;
+}
+.container_default .videoBox .videoDetBox1 a{
+    color: #666;
+}
+.container_default .videoBox .videoDetBox1 .videoDetBox1Img01 img{
+    margin-right: 5px;
+}
+.container_default .videoBox .videoDetBox1 .videoDetBox1Img02{
+    float: right;
+    margin: 0px 5px;
+}
+.container_default .videoBox .videoDetBox1 .videoDetBox1Img02,.container_default .videoBox .videoDetBox1 .videoDetBox1Img03{
+    float: right;
+    margin: 0px 5px;
+}
+.container_default .videoBox .videoDetBox1 .active{
+    display: none;
+}
+.container_default .videoDetBox2{
+    margin: 15px 15px;
+    position: relative;
+}
+.container_default .videoDetBox2 .videoDetTitle{
+    width: 90%;
+    display: inline-block;
+    vertical-align: top;
+}
+.container_default .videoDetBox2 .videoDetTitle h1{
+    color: #666;
+    max-height: 80px;
+    overflow: hidden;
+    line-height: 28px;
+}
+.container_default .videoDetBox2 .videoDetTitle .active{
+    max-height: none;
+    overflow: auto;
+}
+.container_default .videoDetBox2 .accordionBox{
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    transform: rotate(-0deg);
+}
+.container_default .videoDetBox2 .accordionBox .active{
+    transform: rotate(-270deg);
+    display: block;
+    transition-duration: 2s;
+}
+.container_default .vedioViewBox{
+    margin-top: 15px;
+}
+.container_default .vedioViewBox li{
+    display: inline-block;
+    width: 49%;
+    color: #666;
+    line-height: 30px;
+}
+.container_default .vedioViewBox li:nth-child(5),.container_default .vedioViewBox li:nth-child(6){
+    width: 28%;
+}
+.container_default .vedioViewBox .fa-thumbs-o-up,.container_default .vedioViewBox .fa-thumbs-o-down{
+    font-size: 24px;
+    margin-right: 5px;
+    margin-top: 15px;
+}
+.container_default .videolistBox{
+    margin:15px 15px;
+}
+.container_default .videolistBox .videolistTitleBox{
+    position: relative;
+    border-top: 1px solid #e8e8e8;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.container_default .videolistBox .videolistTitleBox .videolistBoxTitle{
+    display: inline-block;
+    width: 90%;
+    vertical-align: top;
+}
+.container_default .videolistBox .videolistTitleBox .videolistBoxTitle h1{
+    color: #666;
+}
+.container_default .videolistBox .videolistTitleBox .videolistBoxMore{
+    display: inline-block;
+    position: absolute;
+    color: #666;
+    font-size: 14px;
+    right: 0px;
+}
+.container_default .videolistBox ul li{
+    position: relative;
+    border-bottom: 1px solid #e8e8e8;
+    padding: 15px 0px;
+}
+.container_default .videolistBox ul li .videoListImgBox{
+    display: inline-block;
+}
+.container_default .videolistBox ul li .videoListTxtBox{
+    display: inline-block;
+    vertical-align: top;
+    width: 79%;
+    margin-bottom: 15px;
+    color: #666;
+}
+.container_default .videolistBox ul li .videoListTxtBox .viewQuanBox{
+    position: absolute;
+    bottom: 15px;
+    font-size: 14px;
+}
+.container_default .messageBox{
+    margin: 15px 15px;
+    border-bottom: 1px solid #e8e8e8;
+    padding-bottom: 15px;
+}
+.container_default .messageBox .speakBox{
+
+}
+.container_default .messageBox .speakBoxImg{
+    display: inline-block;
+}
+.container_default .messageBox .speakBoxImg img{
+    border-radius: 40px;
+}
+.container_default .messageBox .messInputBox{
+    width: 90%;
+    display: inline-block;
+    vertical-align: top;
+}
+.container_default .messageBox textarea{
+    width: 100%;
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+    display: inline-block;
+    vertical-align: top;
+    height: 50px;
+    padding: 5px;
+}
+.container_default .messageBox .signedIn{
+    display: block;
+}
+.container_default .messageBox .notLoggedIn{
+    display: none;
+}
+.container_default .messageBox .messInputBox .messageBtn{
+    border: 1px solid #ca526a;
+    padding: 5px;
+    margin: 15px 0px;
+    float: right;
+    border-radius: 4px;
+    color: #FFF;
+    background: #df8396;
+}
+.container_default .messageBox1 .messageBox1Con{
+    margin-top: 20px;
+}
+.container_default .messageBox1 .messageBox1Con .messageBox1Img{
+    display: inline-block;
+}
+.container_default .messageBox1 .messageBox1Con .messageCon{
+    display: inline-block;
+    vertical-align: top;
+    width: 80%;
+}
+.container_default .messageBox1 .messageBox1Con .messageCon .messageConTitle h2{
+    display: inline-block;
+    margin-right: 10px;
+    color: #666;
+    margin-bottom: 2px;
+}
+.container_default .messageBox1 .messageBox1Con .messageCon .messageConTitle .categoryBox{
+    padding: 1%;
+    background: #dd8395;
+    border-radius: 4px;
+    color: #FFF;
+}
+.container_default .messageBox1 .messageBox1Con .messageCon .timeBox{
+    color: #b5b5b5;
+    font-size: 14px;
+}
+.container_default .messageBox1 .messageBox1Con .messageCon .messageTxt{
+    margin:10px 0px;
+    line-height: 26px;
+}
+.container_default .messageBox1 .messageBox1Con .messageCon .likeBox{
+    float: right;
+}
+.container_default .messageBox1 .messageBox1Con .messageCon .likeBox .likeQua{
+    vertical-align: super;
+}
+.container_default .messageBox1 .messageBox1Con .messageCon .likeBox .messageBtn{
+    border: 1px solid #ca526a;
+    padding: 5px;
+    margin: 15px 0px;
+    float: right;
+    border-radius: 4px;
+    color: #FFF;
+    background: #df8396;
+}
+.container_default .messageBox1 .messageBox1Con .messageCon .likeBox .fa{
+    font-size: 30px;
+    color: #ec7b88;
+    margin: 0px 5px;
+}
+.container_default .messageBox1 .reply1{
+    margin-left: 50px;
+}
+.messageBox1Img img{
+    border-radius: 40px;
+}
+.container_default .flexslider1{
+    margin-bottom: 20px;
+}
+.container_default .flexslider2{
+    margin-bottom: 20px;
+}
+.container_default .flexslider2 li{
+    text-align: center;
+}
+.container_default .flexslider2 img{
+    width: 80%;
+
+}
+.container_default .flexslider1 .videoTitle{
+    width: 100px;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-left: 5px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 14px;
+}
+.container_default .flexslider1 li img{
+    border:1px solid #e8e8e8;
+    padding:5px;
+    box-shadow: 1px 1px 4px #AAA;
+}
+.flexslider1 .flex-direction-nav,.flexslider2 .flex-direction-nav{
+    display: none;
+}
+.container_default #container h3{
+   margin: 15px;
+   color: #8e2b40;
+   font-size: 20px;
+}
+.container_default .flexslider1 h3,.container_default .flexslider2 h3{
+    color: #666;
+    margin:15px;
+    font-size: 20px;
+}
+.swal2-confirm{
+    color:#fff!important;
+    border: 1px solid #df8396!important;
+    background: #ca526a!important;
+    margin: 10px 5px 0px 5px!important;
+    padding: 5px 20px!important;
+}
+.swal2-container h2:before, .swal2-container h2:after {
+    content: ' ';
+    width: 15%;
+    position: absolute;
+    border-width: 1px;
+    border-color: #bbb;
+    top: 15px;
+    height: 6px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+
+}
+.swal2-container h2:before{
+    right:25%;
+}
+.swal2-container h2:after{
+    left:25%;
 }
