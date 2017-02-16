@@ -43,8 +43,16 @@ from allauth.socialaccount.models import *
 from account.views import login as main_login
 import facebook
 import base64
+from user_agents import parse
+
+def check_user_agent(request):
+	ua_string = request.META.get('HTTP_USER_AGENT', '')
+	user_agent = parse(ua_string)
+	print user_agent.device.family
+	return user_agent.device.family
 
 def home(request):
+	check_user_agent(request)
 	brand_index = BrandIndex.objects.all()[0]
 	if request.user.is_authenticated():
 		if request.user.socialaccount_set.all():
@@ -59,14 +67,19 @@ def home(request):
 	return render_to_response("main/action.html", locals(), context_instance=RequestContext(request))
 
 def login(request):
+	check_user_agent(request)
 	return render_to_response("main/login.html", locals(), context_instance=RequestContext(request))
 
 def index_video(request):
+	check_user_agent(request)
 	return render_to_response("main/index_video.html", locals(), context_instance=RequestContext(request))
+
 def videoDetails(request):
+	check_user_agent(request)
 	return render_to_response("main/videoDetails.html", locals(), context_instance=RequestContext(request))
 
 def auto_reply(request):
+	check_user_agent(request)
 	#account = SocialAccount.objects.get(user_id=23)
 	#pic_url = "http://graph.facebook.com/v2.8/%s/picture" % account.extra_data["id"]
 	#opener = urllib2.build_opener()
@@ -95,6 +108,7 @@ def auto_reply(request):
 
 #判斷是否回覆留言
 def commet_is_reply(comment_id):
+	check_user_agent(request)
 	print comment_id
 	account = SocialAccount.objects.get(user_id=23)
 	token = SocialToken.objects.get(account=account)
@@ -111,6 +125,7 @@ def commet_is_reply(comment_id):
 		return True
 
 def action(request):
+	check_user_agent(request)
 	if request.user.is_authenticated():
 		if request.user.socialaccount_set.all():
 			fb_id = request.user.socialaccount_set.all()[0].extra_data["id"]
@@ -124,14 +139,17 @@ def action(request):
 	return render_to_response("main/action.html", locals(), context_instance=RequestContext(request))
 
 def register(request):
+	check_user_agent(request)
 	return render_to_response("main/register.html", locals(), context_instance=RequestContext(request))
 
 @login_required
 def pay_success(request):
+	check_user_agent(request)
 	records = PayMentRecord.objects.filter(user=request.user)
 	return render_to_response("main/pay_success.html", locals(), context_instance=RequestContext(request))
 
 def cart_final(request):
+	check_user_agent(request)
 	username = request.POST.get("username")
 	ship_time = request.POST.get("ship_time")
 	if ship_time == "morning":
@@ -183,11 +201,13 @@ def cart_final(request):
 	return render_to_response("main/cart_final.html", locals(), context_instance=RequestContext(request))
 
 def index(request):
+	check_user_agent(request)
 	brand_index = BrandIndex.objects.all()[0]
 
 	return render_to_response("main/index.html", locals(), context_instance=RequestContext(request))
 
 def cart_check(request):
+	check_user_agent(request)
 	brand_index = BrandIndex.objects.all()[0]
 
 	return render_to_response("main/cart_check.html", locals(), context_instance=RequestContext(request))
@@ -207,6 +227,7 @@ def now_cart(request):
 	return render_to_response("main/now_cart.html", locals(), context_instance=RequestContext(request))
 
 def product_detail(request, pk):
+	check_user_agent(request)
 	#product_id = request.GET.get("product_id")
 	#import pdb;pdb.set_trace()
 	product_obj = ProductInfo.objects.get(id=pk)
@@ -219,6 +240,7 @@ def product_detail(request, pk):
 	return render_to_response("main/product_detail.html", locals(), context_instance=RequestContext(request))
 
 def indexshop(request):
+	check_user_agent(request)
 	brand_id = request.GET.get("brand_id")
 	brand_id1 = int(brand_id)
 	brand_obj = Brand.objects.get(id=brand_id)
@@ -227,6 +249,7 @@ def indexshop(request):
 	return render_to_response("main/index_shop.html", locals(), context_instance=RequestContext(request))
 
 def forget_password(request):
+	check_user_agent(request)
 	if is_social_account(request.user):
 		social_account = "yes"
 	else:
@@ -235,6 +258,7 @@ def forget_password(request):
 
 @login_required
 def member(request):
+	check_user_agent(request)
 	social_account = False
 	if is_social_account(request.user):
 		social_account = True
@@ -249,6 +273,7 @@ def member(request):
 
 @login_required
 def change_password(request):
+	check_user_agent(request)
 	if is_social_account(request.user):
 		social_account = "yes"
 	else:
@@ -258,6 +283,7 @@ def change_password(request):
 
 @login_required
 def register_success(request):
+	check_user_agent(request)
 	user = request.user
 	socail_result = request.GET.get("socail", None)
 	if socail_result:
