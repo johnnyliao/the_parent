@@ -62,14 +62,14 @@ def login(request):
 	return render_to_response("main/login.html", locals(), context_instance=RequestContext(request))
 
 def auto_reply(request):
-	account = SocialAccount.objects.get(user_id=23)
-	pic_url = "http://graph.facebook.com/v2.8/%s/picture" % account.extra_data["id"]
-	opener = urllib2.build_opener()
-	result = opener.open(pic_url)
-	token = "EAACEdEose0cBAHBxUfYcQQkCm6gV3NkgWZAXtEHXc6ZAtHiZBZCHjgYykXjMOAGyZAah7Umcgwv6CWYMnXMzr1AFxJCiCQZBfZAa59ioZAnYTWkpJAAgFf8EVJNKePYlHA5w5zgiMBKkQlaewPTZC83uyD0sYRll9PGrHh7n0M2ZA7SgRG2VNhMNsCYwjKkH8yHqpuUZC53BOnQxQZDZD"
+	#account = SocialAccount.objects.get(user_id=23)
+	#pic_url = "http://graph.facebook.com/v2.8/%s/picture" % account.extra_data["id"]
+	#opener = urllib2.build_opener()
+	#result = opener.open(pic_url)
+	token = "EAACEdEose0cBADKcStzDIQZBE9OqTL5SBMeePZAMonV0DBlphoCNKbla6PGCQhll2c2EPBZCbSwZCGVubZC2jZCY3rKu5566AVzThhwDMF53YR6uBRAwZA9KbFC8pbzPMYXBHDZC0c6YlBwTJtaVXdZCpyHsMBORvlTyqAxfEbR8yb1AvxZCyJ4AFo"
 
-	encoded_string = base64.b64encode(result.read())
-	print encoded_string
+	#encoded_string = base64.b64encode(result.read())
+	#print encoded_string
 	return render_to_response("main/auto_reply.html", locals(), context_instance=RequestContext(request))
 
 	account = SocialAccount.objects.get(user_id=23)

@@ -31,10 +31,10 @@
       		$.ajaxSetup({ cache: true });
 			  $.getScript('//connect.facebook.net/zh_tw/sdk.js', function(){
 				    FB.init({
-				      appId: '1818112675107606',
+				      appId: '245700295862265',
 				      version: 'v2.7' // or v2.1, v2.2, v2.3, ...
 				    });
-
+				    /*
 				    FB.login(function(response) {
 					    if (response.authResponse) {
 					        // The person logged into your app
@@ -50,15 +50,15 @@
 						return_scopes: false
 
 					});
+	*/
 
 
-
-					FB.api('245700295862265_263956147370013/comments', 'get', { access_token: user_accessToken }, function(response) {
+					FB.api('1210196415762549_1210196542429203/comments', 'get', { access_token: user_accessToken }, function(response) {
 						if (!response.error) {
 						for(data in response["data"]) {
 							var comment_id = response["data"][data]["id"];
-								check_is_replied(comment_id)
-								return;
+							var msg = response["data"][data]["message"];
+								check_is_replied(comment_id, msg)
 							}
 						}
 					});
@@ -69,27 +69,42 @@
 			  //});
        	 });
 
-      	function check_is_replied(comment_id) {
+      	function check_is_replied(comment_id, msg) {
       		FB.api(comment_id + '/comments', 'get', { access_token: user_accessToken }, function(response) {
 				if (!response.error) {
 					if (response["data"].length == 0) {
 						//還沒回覆
-
-						reply_comment(comment_id);
+						console.log("not reply")
+						reply_comment(comment_id, msg);
 					} else {
-
-						reply_comment(comment_id);
-						return;
+						console.log("reply")
+						reply_comment(comment_id, msg);
+						//return;
 					}
 				}
 			});
       	}
 
-      	function reply_comment(comment_id) {
+      	function reply_comment(comment_id, msg) {
+      		console.log(msg)
+      		if(msg == "A" || msg == "a") {
+      			var reply = "◎吸引人指數80分\r\n\r\n你散發出來正派的味道，通常選擇這個配色的人，感覺就是很正派，很有正義感，不容易被收買，講話很直接，很開朗，所以人家知道，你不是用錢可以賄賂的。";
+      		} else if( msg == "B" || msg == 'b') {
+      			var reply = "◎吸引人指數60分 \r\n\r\n你整個人散發出來就是金錢的味道，愛錢、喜歡賺錢，對錢很在意，然後也很捨得花錢，但只花在他認為捨得的事情上，其實這個也是不錯，代表說如果你要做生意投資，你自己本身比較不會做生意，你可以找這樣的人合夥。";
+      		} else if( msg == "C" || msg =='c') {
+      			var reply = "◎吸引人指數100分 \r\n\r\n散發出來的味道是開朗的味道，通常選擇這個就是沒有什麼心眼，心思比較單純一點，直來直往，但是要小心，通常比較容易被騙，要小心被很好的朋友騙。";
+      		} else if( msg == "D" || msg == 'd') {
+				var reply = "◎吸引人指數40分 \r\n\r\n是情慾的味道，代表不管你年紀多大，老公都愛你，因為你全身有那種性愛的魅力，所以這個是非常非常不錯的，而且在愛情方面，你也是很懂得製造浪漫的。";
+      		} else if( msg == "E" || msg == 'e') {
+      			var reply = "◎吸引人指數20分 \r\n\r\n辛苦的味道，如果你選到這個，代表說你做事情很認真、很打拼，大部分都為別人犧牲，有一點點阿信，過於勤勞然後都沒有心思去做別的事情，所以你是一個辛苦的一個味道";
+      		} else {
+      			var reply = "留言格式不正確，請重新留言輸入正確格式謝謝。";
+      		}
+      		console.log(reply)
 	  		FB.api(comment_id + '/comments', 'post', {
 	  			access_token: user_accessToken,
-	  			 //source: "data:image/png;base64,{{encoded_string}}"}, function(response) {
-	  			 attachment_url:"http://i.ndtvimg.com/i/2016-06/wolf_650x400_61465560359.jpg" }, function(response) {
+	  			 message: reply
+	  			}, function(response) {
 				if (!response.error) {
 					console.log("replied")
 				} else {
@@ -106,5 +121,4 @@
 
 <body>
 	<div id="token"></div>
-	<img src="data:image/png;base64,{{encoded_string}}" />
 </body>

@@ -448,11 +448,22 @@ ACCOUNT_EMAIL_REQUIRED = False
 SOCIALACCOUNT_AUTO_SIGNUP = True
 SOCIALACCOUNT_PROVIDERS = {
     'facebook': {
-        'SCOPE': ['user_friends','public_profile','email','user_about_me', 'publish_actions', 'manage_pages', 'user_posts'],
+        'SCOPE': ['user_friends','public_profile','email','user_about_me', 'publish_actions', 'user_posts'],
         'METHOD': 'js_sdk',  # instead of 'oauth2'
-        'VERSION': 'v2.7'
+        'VERSION': 'v2.7',
+        'FIELDS': [
+        'id',
+        'email',
+        'name',
+        'first_name',
+        'last_name',
+        'likes',      #This is the one you want
+        'friends',
+        # user_interests is deprecated
+    ],
     }
 }
 
+FACEBOOK_EXTENDED_PERMISSIONS = ['publish_actions']
 
 LOGIN_URL = '/main/action/'
