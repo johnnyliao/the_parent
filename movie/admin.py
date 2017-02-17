@@ -8,7 +8,7 @@ from movie.models import Movie
 from salmonella.admin import SalmonellaMixin
 
 class MovieAdmin(SalmonellaMixin, admin.ModelAdmin):
-    list_display = ["title", "description", "movie_type"]
+    list_display = ["image_tag", "title", "movie_type"]
     search_fields = ["title"]
     list_filter  = ["movie_type"]
 

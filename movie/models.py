@@ -31,9 +31,14 @@ class Movie(models.Model):
     title = models.CharField(_(u"標題"), max_length=100)
     description = RichTextField(_(u"簡介"), max_length=2000)
     movie_type = models.CharField(_(u"分類"), max_length=100, choices=TYPE_CHOICES)
+    photo = models.ImageField(_(u"預覽圖"), upload_to='main/video_pre_image')
 
     class Meta:
         verbose_name = _(u'影片')
         verbose_name_plural = _(u'影片列表')
 
 
+    def image_tag(self):
+        return '<img style="width:100px;height:100px" src="' + self.photo.url + '" />'
+
+    image_tag.allow_tags = True
