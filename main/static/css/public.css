@@ -1223,6 +1223,35 @@ input[name="zipcode"]{
     -webkit-box-orient: vertical;
     margin-top: 5px;
 }
+.container_default .videoBox .video-contBox{
+    position: relative;
+}
+.container_default .videoBox .video-contBox .videoTitleTxt{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    margin: 0px;
+
+}
+.container_default .videoBox .video-contBox .videoTitleTxt:before{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 6.6rem;
+    background-image: -webkit-linear-gradient(top,rgba(0,0,0,0) 0,rgba(0,0,0,.8) 100%);
+    background-image: linear-gradient(-180deg,rgba(0,0,0,0) 0,rgba(0,0,0,.8) 100%);
+    z-index: 9;
+}
+.container_default .videoBox .video-contBox .videoTitleTxt h2{
+    color: #fff;
+    padding: 0px 15px;
+    display: block;
+    position: absolute;
+    bottom: 10px;
+    z-index: 10;
+}
+.container_default .videoBox .video-contBox
 .container_default .videoBox .videoTitleTxt h2{
     color: #666;
     /*多行文字限制*/
@@ -1244,6 +1273,9 @@ input[name="zipcode"]{
     -webkit-box-orient: vertical;
     margin-top: 5px;
 }
+.container_default .videoBox1{
+    margin: 15px 0px;
+}
 .container_default .videoBox1 .videoTitleTxt .fa-clock-o{
     color: #ec7b88;
     margin-right: 5px;
@@ -1259,7 +1291,7 @@ input[name="zipcode"]{
 }
 .container_default .videoBox1 .videoTitleTxtBox h2{
     font-size: 16px;
-    color: #666666;
+    color: #666;
     font-weight: 100;
     /*多行文字限制*/
     display: -webkit-box;
@@ -1270,21 +1302,16 @@ input[name="zipcode"]{
     margin-top: 5px;
 }
 .container_default .videoBox1 .videoCont{
-    margin:0px 15px;
     position: relative;
+    padding-right: .8rem;
+    padding-left: .6rem;
 }
 .container_default .videoBox1 .videoCont li{
-    width: 46%;
+    width: 49%;
     display: inline-block;
     vertical-align: top;
-    margin: 0px 5px 15px 5px;
     overflow:hidden;
-}
-.container_default .videoBox1 .videoCont li:nth-child(even){
-    margin-left:1.5%;
-}
-.container_default .videoBox1 .videoCont li:nth-child(odd){
-    margin-right:1.5%;
+    margin-bottom: 10px;
 }
 .content_box{
     display: inline-block;
