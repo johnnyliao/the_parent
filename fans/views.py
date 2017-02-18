@@ -49,3 +49,63 @@ def process_number(string):
 		result += item
 
 	return int(result)
+
+def fans_report(request):
+	wwwttshow = FansPage.objects.filter(fans_type="wwwttshow").order_by("-date").reverse()[:7]
+	ttshowpet = FansPage.objects.filter(fans_type="ttshowpet").order_by("-date").reverse()[:7]
+	draw_fans = FansPage.objects.filter(fans_type="draw.fans").order_by("-date").reverse()[:7]
+	TTShowMusic = FansPage.objects.filter(fans_type="TTShowMusic").order_by("-date").reverse()[:7]
+	GoodNews_FANS = FansPage.objects.filter(fans_type="GoodNews.FANS").order_by("-date").reverse()[:7]
+	data =[
+		{"name":u"台灣達人秀", "data":wwwttshow},
+		{"name":u"達人秀寵物", "data":ttshowpet},
+		{"name":u"達人秀插畫", "data":draw_fans},
+		{"name":u"達人秀音樂", "data":TTShowMusic},
+		{"name":u"達人秀趣味新聞", "data":GoodNews_FANS},
+	]
+
+	return render_to_response("fans/fans_report.html", locals(), context_instance=RequestContext(request))
+
+def group_up(request):
+	wwwttshow = FansPage.objects.filter(fans_type="wwwttshow").order_by("-date").reverse()[:8]
+	ttshowpet = FansPage.objects.filter(fans_type="ttshowpet").order_by("-date").reverse()[:8]
+	draw_fans = FansPage.objects.filter(fans_type="draw.fans").order_by("-date").reverse()[:8]
+	TTShowMusic = FansPage.objects.filter(fans_type="TTShowMusic").order_by("-date").reverse()[:8]
+	GoodNews_FANS = FansPage.objects.filter(fans_type="GoodNews.FANS").order_by("-date").reverse()[:8]
+	group_up_handle(wwwttshow)
+	group_up_handle(ttshowpet)
+	group_up_handle(draw_fans)
+	group_up_handle(TTShowMusic)
+	group_up_handle(GoodNews_FANS)
+	return HttpResponse("ok")
+
+def group_up_handle(data):
+	pre_talk_about_is = 0
+	pre_total_like_count = 0
+	pre_total_fans = 0
+	for item in data:
+		print "\n\n\n"
+		print pre_talk_about_is
+		print pre_total_like_count
+		print pre_total_fans
+		if pre_talk_about_is == 0:
+			item.talk_about_is_group = 0
+			item.total_like_count_group = 0
+			item.total_fans_group = 0
+			item.save()
+			pre_talk_about_is = item.talk_about_is
+			pre_total_like_count = item.total_like_count
+			pre_total_fans = item.total_fans
+		else:
+			item.talk_about_is_group = (item.talk_about_is - pre_talk_about_is) / (pre_talk_about_is + 0.0) * 100
+			item.total_like_count_group = (item.total_like_count - pre_total_like_count) / (pre_total_like_count +0.0) * 100
+			item.total_fans_group = (item.total_fans - pre_total_fans) / (pre_total_fans + 0.0) * 100
+			item.save()
+			print "save data"
+			print item.talk_about_is_group
+			print item.total_like_count_group
+			print item.total_fans_group
+			pre_talk_about_is = item.talk_about_is
+			pre_total_like_count = item.total_like_count
+			pre_total_fans = item.total_fans
+
