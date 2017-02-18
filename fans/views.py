@@ -14,32 +14,32 @@ from django.http import HttpResponse
 from selenium import webdriver
 import platform
 
-class get_fans(APIView):
-	#serializer_class = FansPageSerializer
-	permission_classes = (IsAuthenticated, )
+def get_fans(request):
+	"""
+    取得粉絲頁資訊
+    fans_type -- 粉絲頁名稱
+    talk_about_is -- 粉絲頁名稱
+    total_like_count -- 粉絲頁名稱
+    total_fans -- 粉絲頁名稱
+    """
+	fans_type = request.GET.get('fans_type')
+	talk_about_is = request.GET.get('talk_about_is')
+	total_like_count = request.GET.get('total_like_count')
+	total_fans = request.GET.get('total_fans')
 
-	def get(self, request, format=None):
-		"""
-        取得粉絲頁資訊
-        fans_type -- 粉絲頁名稱
-        """
-		fans_type = request.QUERY_PARAMS.get('fans_type')
-		talk_about_is = request.QUERY_PARAMS.get('talk_about_is')
-		total_like_count = request.QUERY_PARAMS.get('total_like_count')
-		total_fans = request.QUERY_PARAMS.get('total_fans')
+	try:
+		fans = FansPage.objects.get(date=datetime.date.today())
+		fans.total_fans = total_fans
+		fans.total_like_count = total_like_count
+		fans.talk_about_is = talk_about_is
+		fans.fans_type = fans_type
+	except:
+		fans = FansPage(talk_about_is=talk_about_is, total_like_count=total_like_count, total_fans=total_fans, fans_type=fans_type)
 
-		try:
-			fans = FansPage.objects.get(date=datetime.date.today())
-			fans.total_fans = total_fans
-			fans.total_like_count = total_like_count
-			fans.talk_about_is = talk_about_is
-			fans.fans_type = fans_type
-		except:
-			fans = FansPage(talk_about_is=talk_about_is, total_like_count=total_like_count, total_fans=total_fans, fans_type=fans_type)
-
-		fans.save()
-		serializer = FansPageSerializer(fans)
-		return Response(serializer.data)
+	fans.save()
+	serializer = FansPageSerializer(fans)
+	print serializer.data
+	return HttpResponse(serializer.data)
 
 
 def process_number(string):
