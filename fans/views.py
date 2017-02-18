@@ -24,23 +24,10 @@ class get_fans(APIView):
         fans_type -- 粉絲頁名稱
         """
 		fans_type = request.QUERY_PARAMS.get('fans_type')
-		chrome_path = "C:\chrome_driver\chromedriver.exe" #chromedriver.exe執行檔所存在的路徑
-		phantomjs = "/home/ubuntu/phantomjs" #chromedriver.exe執行檔所存在的路徑
-		if platform.system() == "Windows":
-			web = webdriver.Chrome(chrome_path)
-		else:
-			web = webdriver.PhantomJS(phantomjs)
+		talk_about_is = request.QUERY_PARAMS.get('talk_about_is')
+		total_like_count = request.QUERY_PARAMS.get('total_like_count')
+		total_fans = request.QUERY_PARAMS.get('total_fans')
 
-		fburl = "https://www.facebook.com/pg/"+fans_type+"/likes/?ref=page_internal"
-		web.get(fburl)
-
-		talk_about_is = web.find_elements_by_class_name("_50f6")[0].text
-		total_like_count = web.find_elements_by_class_name("_50f6")[1].text
-		total_fans = web.find_elements_by_class_name("_50f6")[3].text
-		talk_about_is = process_number(talk_about_is)
-		total_like_count = process_number(total_like_count)
-		total_fans = process_number(total_fans)
-		web.close()
 		try:
 			fans = FansPage.objects.get(date=datetime.date.today())
 			fans.total_fans = total_fans
