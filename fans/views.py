@@ -28,7 +28,7 @@ def get_fans(request):
 	total_fans = request.GET.get('total_fans')
 
 	try:
-		fans = FansPage.objects.get(date=datetime.date.today())
+		fans = FansPage.objects.get(date=datetime.date.today(), fans_type=fans_type)
 		fans.total_fans = total_fans
 		fans.total_like_count = total_like_count
 		fans.talk_about_is = talk_about_is
