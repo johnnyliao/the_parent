@@ -44,6 +44,7 @@ from account.views import login as main_login
 import facebook
 import base64
 from user_agents import parse
+from movie.models import Movie
 
 def check_user_agent(request):
 	ua_string = request.META.get('HTTP_USER_AGENT', '')
@@ -75,10 +76,24 @@ def login(request):
 
 def index_video(request):
 	is_mobile = check_user_agent(request)
+
+	movie_type =  request.GET.get("type", None)
+	if page_type:
+		videos = Movie.objects.all().filter(movie_type=movie_type)
+	else:
+		videos = Movie.objects.all().filter(movie_type="new")
+
 	return render_to_response("main/index_video.html", locals(), context_instance=RequestContext(request))
 
 def videoDetails(request):
 	is_mobile = check_user_agent(request)
+
+	movie_type =  request.GET.get("type", None)
+	if page_type:
+		videos = Movie.objects.all().filter(movie_type=movie_type)
+	else:
+		videos = Movie.objects.all().filter(movie_type="new")
+
 	return render_to_response("main/videoDetails.html", locals(), context_instance=RequestContext(request))
 
 def auto_reply(request):

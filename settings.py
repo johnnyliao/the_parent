@@ -27,7 +27,7 @@ ADMIN_MENU_ORDER = (
     (_(u"購物車設定"), ("cart.ProductInfo", "cart.CartItem", "cart.PayMentRecord", "cart.PayMentInvoice", "cart.Brand", "cart.BrandBanner", "cart.BrandMovie", "cart.ProductImage")),
     (_(u"活動設定"), ("action.Comment")),
     (_(u"商家首頁設定"), ("main.BrandIndex", "main.BrandIndexBanner", "main.BrandIndexMovie")),
-    (_(u"影片設定"), ("movie.Movie")),
+    (_(u"影片設定"), ("movie.Movie", "movie.Comment", "movie.ReComment")),
 )
 
 
@@ -226,6 +226,7 @@ TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, "templates"),)
 INSTALLED_APPS = (
     "account",
     "cart",
+    "fans",
     "main",
     "movie",
     "action",

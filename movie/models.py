@@ -12,7 +12,7 @@ from django.utils import timezone
 from django.contrib.contenttypes import generic
 
 from django.core.exceptions import ObjectDoesNotExist
-
+#from account.models import User
 from django.contrib.sites.models import Site
 import urlparse, settings
 
@@ -37,8 +37,36 @@ class Movie(models.Model):
         verbose_name = _(u'影片')
         verbose_name_plural = _(u'影片列表')
 
+    def __unicode__(self):
+        return self.title
 
     def image_tag(self):
         return '<img style="width:100px;height:100px" src="' + self.photo.url + '" />'
 
     image_tag.allow_tags = True
+
+class Comment(models.Model):
+    user = models.ForeignKey("account.User", related_name='user_movie_comment')
+    content = models.CharField(_(u"影片留言內容"), max_length=100)
+    date = models.DateTimeField(_(u"影片留言時間"), auto_now=True)
+    movie = models.ForeignKey(Movie, related_name='movie_comments')
+
+    class Meta:
+        verbose_name = _(u'影片留言')
+        verbose_name_plural = _(u'影片留言列表')
+
+    def __unicode__(self):
+        return self.content
+
+class ReComment(models.Model):
+    user = models.ForeignKey("account.User", related_name='user_movie_re_comment')
+    content = models.CharField(_(u"影片留言內容"), max_length=100)
+    date = models.DateTimeField(_(u"影片留言時間"), auto_now=True)
+    re_comment = models.ForeignKey(Comment, related_name='movie_re_comments')
+
+    def __unicode__(self):
+        return self.content
+
+    class Meta:
+        verbose_name = _(u'影片回覆留言')
+        verbose_name_plural = _(u'影片回覆留言列表')
