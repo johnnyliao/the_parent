@@ -66,7 +66,6 @@ def fans_report(request):
 		{"name":u"達人秀趣味新聞", "data":GoodNews_FANS, "week":week_report_handle("GoodNews.FANS"), "month":month_report_handle("GoodNews.FANS")},
 	]
 
-	print data[0]["week"]
 	return render_to_response("fans/fans_report.html", locals(), context_instance=RequestContext(request))
 
 
@@ -117,9 +116,9 @@ def week_report_handle(fans_type):
 	start = fans_pages[0]
 	last = fans_pages[len(fans_pages) - 1]
 
-	talk_about_is = (start.talk_about_is - last.talk_about_is) / (last.talk_about_is + 0.0) * 100
-	total_like_count = (start.total_like_count - last.total_like_count) / (last.total_like_count + 0.0) * 100
-	total_fans = (start.total_fans - last.total_fans) / (last.total_fans + 0.0) * 100
+	talk_about_is = (last.talk_about_is - start.talk_about_is) / (start.talk_about_is + 0.0) * 100
+	total_like_count = (last.total_like_count - start.total_like_count) / (start.total_like_count + 0.0) * 100
+	total_fans = (last.total_fans - start.total_fans) / (start.total_fans + 0.0) * 100
 
 	return {"talk_about_is":talk_about_is, "total_like_count":total_like_count, "total_fans":total_fans, "start":start.date, "last":last.date}
 
@@ -133,9 +132,9 @@ def month_report_handle(fans_type):
 	start = fans_pages[0]
 	last = fans_pages[len(fans_pages) - 1]
 
-	talk_about_is = (start.talk_about_is - last.talk_about_is) / (last.talk_about_is + 0.0) * 100
-	total_like_count = (start.total_like_count - last.total_like_count) / (last.total_like_count + 0.0) * 100
-	total_fans = (start.total_fans - last.total_fans) / (last.total_fans + 0.0) * 100
+	talk_about_is = (last.talk_about_is - start.talk_about_is) / (start.talk_about_is + 0.0) * 100
+	total_like_count = (last.total_like_count - start.total_like_count) / (start.total_like_count + 0.0) * 100
+	total_fans = (last.total_fans - start.total_fans) / (start.total_fans + 0.0) * 100
 
 	return {"talk_about_is":talk_about_is, "total_like_count":total_like_count, "total_fans":total_fans, "start":start.date, "last":last.date}
 
