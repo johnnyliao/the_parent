@@ -75,7 +75,6 @@ def group_up(request):
 	draw_fans = FansPage.objects.filter(fans_type="draw.fans").order_by("-date")[:8][::-1]
 	TTShowMusic = FansPage.objects.filter(fans_type="TTShowMusic").order_by("-date")[:8][::-1]
 	GoodNews_FANS = FansPage.objects.filter(fans_type="GoodNews.FANS").order_by("-date")[:8][::-1]
-	#import pdb;pdb.set_trace()
 	group_up_handle(wwwttshow)
 	group_up_handle(ttshowpet)
 	group_up_handle(draw_fans)
@@ -98,9 +97,12 @@ def group_up_handle(data):
 			pre_total_like_count = item.total_like_count
 			pre_total_fans = item.total_fans
 		else:
-			item.talk_about_is_group = (item.talk_about_is - pre_talk_about_is) / (pre_talk_about_is + 0.0) * 100
-			item.total_like_count_group = (item.total_like_count - pre_total_like_count) / (pre_total_like_count +0.0) * 100
-			item.total_fans_group = (item.total_fans - pre_total_fans) / (pre_total_fans + 0.0) * 100
+			#item.talk_about_is_group = (item.talk_about_is - pre_talk_about_is) / (pre_talk_about_is + 0.0) * 100
+			item.talk_about_is_group = (item.talk_about_is - pre_talk_about_is)
+			#item.total_like_count_group = (item.total_like_count - pre_total_like_count) / (pre_total_like_count +0.0) * 100
+			item.total_like_count_group = (item.total_like_count - pre_total_like_count)
+			#item.total_fans_group = (item.total_fans - pre_total_fans) / (pre_total_fans + 0.0) * 100
+			item.total_fans_group = (item.total_fans - pre_total_fans)
 			item.save()
 			pre_talk_about_is = item.talk_about_is
 			pre_total_like_count = item.total_like_count
@@ -116,9 +118,12 @@ def week_report_handle(fans_type):
 	start = fans_pages[0]
 	last = fans_pages[len(fans_pages) - 1]
 
-	talk_about_is = (last.talk_about_is - start.talk_about_is) / (start.talk_about_is + 0.0) * 100
-	total_like_count = (last.total_like_count - start.total_like_count) / (start.total_like_count + 0.0) * 100
-	total_fans = (last.total_fans - start.total_fans) / (start.total_fans + 0.0) * 100
+	#talk_about_is = (last.talk_about_is - start.talk_about_is) / (start.talk_about_is + 0.0) * 100
+	talk_about_is = (last.talk_about_is - start.talk_about_is)
+	#total_like_count = (last.total_like_count - start.total_like_count) / (start.total_like_count + 0.0) * 100
+	total_like_count = (last.total_like_count - start.total_like_count)
+	#total_fans = (last.total_fans - start.total_fans) / (start.total_fans + 0.0) * 100
+	total_fans = (last.total_fans - start.total_fans)
 
 	return {"talk_about_is":talk_about_is, "total_like_count":total_like_count, "total_fans":total_fans, "start":start.date, "last":last.date}
 

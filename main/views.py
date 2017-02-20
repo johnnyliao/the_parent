@@ -78,7 +78,7 @@ def index_video(request):
 	is_mobile = check_user_agent(request)
 
 	movie_type =  request.GET.get("type", None)
-	if page_type:
+	if movie_type:
 		videos = Movie.objects.all().filter(movie_type=movie_type)
 	else:
 		videos = Movie.objects.all().filter(movie_type="new")
@@ -89,7 +89,7 @@ def videoDetails(request):
 	is_mobile = check_user_agent(request)
 
 	movie_type =  request.GET.get("type", None)
-	if page_type:
+	if movie_type:
 		videos = Movie.objects.all().filter(movie_type=movie_type)
 	else:
 		videos = Movie.objects.all().filter(movie_type="new")
