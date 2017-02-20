@@ -39,6 +39,6 @@ class FansPage(models.Model):
         verbose_name_plural = _(u'留言列表')
 
     def save(self, *args, **kwargs):
-    	if not self.date:
-        	self.date = datetime.date.today()
+        if not self.date:
+            self.date = datetime.date.today()
         super(FansPage, self).save(*args, **kwargs)

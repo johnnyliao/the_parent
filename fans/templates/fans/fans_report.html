@@ -64,6 +64,36 @@
             </tr>
             {% endfor %}
         </table>
+        <h4>週成長率資訊</h4>
+        <table class="table">
+            <tr>
+                <th>日期</th>
+                <th>談論這個的用戶成長率</th>
+                <th>粉絲專頁按讚總數成長率</th>
+                <th>粉絲專頁粉絲總人數成長率</th>
+            </tr>
+            <tr>
+                <td>{{item.week.start}}~{{item.week.last}}</td>
+                <td>{{item.week.talk_about_is}}%</td>
+                <td>{{item.week.total_like_count}}%</td>
+                <td>{{item.week.total_fans}}%</td>
+            </tr>
+        </table>
+        <h4>月成長率資訊</h4>
+        <table class="table">
+            <tr>
+                <th>日期</th>
+                <th>談論這個的用戶成長率</th>
+                <th>粉絲專頁按讚總數成長率</th>
+                <th>粉絲專頁粉絲總人數成長率</th>
+            </tr>
+            <tr>
+                <td>{{item.month.start}}~{{item.month.last}}</td>
+                <td>{{item.month.talk_about_is}}%</td>
+                <td>{{item.month.total_like_count}}%</td>
+                <td>{{item.month.total_fans}}%</td>
+            </tr>
+        </table>
          {% endfor %}
     </div>
 </body>
