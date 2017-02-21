@@ -129,9 +129,8 @@
 	    <div class="video-contBox" style="margin-top:78px;">
 			<!--<iframe src="https://www.youtube.com/embed/N1s6lzxTjIc" type="text/html" width="800" height="450" frameborder="0">
 			</iframe>-->
-			<a href="../videoDetails"><img src="{% static "img/0001.png"%}"></a>
 			<div class="videoTitleTxt">
-			<h2>試吃初水果～大家快去粉專抽好吃的水果禮盒喔～</h2>
+			<h2>{{videos.0.title}}</h2>
 			<!--<h6>試吃初水果～大家快去粉專抽好吃的水果禮盒喔～</h6>-->
 		</div>
 		</div>
@@ -139,62 +138,22 @@
 	</div>
 	<div class="videoBox1">
 		<ul class="videoCont" id="box" >
-			<li class="box">
-				<a href="../videoDetails">
-					<div class="videoContImg">
-						<img src="{% static "img/001.png"%}">
-					</div>
-					<div class="videoTitleTxtBox">
-						<!--<h4><i class="fa fa-clock-o" aria-hidden="true"></i>
-							<span>2017/02/06</span>
-						</h4>-->
-						 <h2>試吃初水果～大家快去粉專抽好吃的水果禮盒喔～</h2>
-						 <!--<h6>試吃初水果～大家快去粉專抽好吃的水果禮盒喔～</h6>-->
-					</div>
-				</a>
-			</li>
-			<li class="box">
-				<a href="../videoDetails">
-					<div class="videoContImg">
-						<img src="{% static "img/002.png"%}">
-					</div>
-					<div class="videoTitleTxtBox">
-						<!--<h4><i class="fa fa-clock-o" aria-hidden="true"></i>
-							<span>2017/02/06</span>
-						</h4>-->
-						 <h2>試吃初水果～大家快去粉專抽好吃的水果禮盒喔～</h2>
-						 <!--<h6>試吃初水果～大家快去粉專抽好吃的水果禮盒喔～</h6>-->
-					</div>
-				</a>
-			</li>
-			<li class="box">
-				<a href="../videoDetails">
-					<div class="videoContImg">
-						<img src="{% static "img/003.png"%}">
-					</div>
-					<div class="videoTitleTxtBox">
-						<!--<h4><i class="fa fa-clock-o" aria-hidden="true"></i>
-							<span>2017/02/06</span>
-						</h4>-->
-						 <h2>試吃初水果～大家快去粉專抽好吃的水果禮盒喔～</h2>
-						 <!--<h6>試吃初水果～大家快去粉專抽好吃的水果禮盒喔～</h6>-->
-					</div>
-				</a>
-			</li>
-			<li class="box">
-				<a href="../videoDetails">
-					<div class="videoContImg">
-						<img src="{% static "img/004.png"%}">
-					</div>
-					<div class="videoTitleTxtBox">
-						<!--<h4><i class="fa fa-clock-o" aria-hidden="true"></i>
-							<span>2017/02/06</span>
-						</h4>-->
-						 <h2>試吃初水果～大家快去粉專抽好吃的水果禮盒喔～</h2>
-						 <!--<h6>試吃初水果～大家快去粉專抽好吃的水果禮盒喔～</h6>-->
-					</div>
-				</a>
-			</li>
+			{% for item in videos %}
+				{% if not forloop.first %}
+					<li class="box">
+							<div class="videoContImg">
+								<img src="{{item.photo.url}}">
+							</div>
+							<div class="videoTitleTxtBox">
+								<!--<h4><i class="fa fa-clock-o" aria-hidden="true"></i>
+									<span>2017/02/06</span>
+								</h4>-->
+								 <!--<h6>試吃初水果～大家快去粉專抽好吃的水果禮盒喔～</h6>-->
+							</div>
+						</a>
+					</li>
+				{% endif %}
+			{% endfor %}
 		</ul>
 	</div>
     <!--分頁 start

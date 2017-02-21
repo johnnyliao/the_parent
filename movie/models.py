@@ -32,6 +32,7 @@ class Movie(models.Model):
     description = RichTextField(_(u"簡介"), max_length=2000)
     movie_type = models.CharField(_(u"分類"), max_length=100, choices=TYPE_CHOICES)
     photo = models.ImageField(_(u"預覽圖"), upload_to='main/video_pre_image')
+    date = models.DateTimeField(_(u"加入時間"), auto_now=True)
 
     class Meta:
         verbose_name = _(u'影片')
