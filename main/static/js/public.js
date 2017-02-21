@@ -13,16 +13,16 @@ $(function(){
 		});
 	});
 	$( ".changeBtn" ).click(function() {
-	  
+
 	});
 	/*彈窗使用 End*/
-	
+
 	/*清除欄位值 start*/
 	$( ".clearBtn" ).click(function() {
 		$( ".sky-form" ).find( "input" ).attr("value", "");
 	});
 	/*清除欄位值 End*/
-	
+
 	/*確認欄位是否未填 start*/
 	$('.changeBtn').click(function(){
         var passwdO=$(".passwordOld").val(), passwdN=$(".passwordNew").val(), passwdC=$(".passwordCon").val();
@@ -75,5 +75,9 @@ $(function(){
 		event.preventDefault();
 	});
 	/*愛心onclick 換圖 End*/
-
+	/*留言區回覆 start*/
+	$(".reply2").click(function () {
+		$(this).parents(".messageBox1").children(".reply1").css("display","block");
+	});
+	/*留言區回覆 End*/
 });

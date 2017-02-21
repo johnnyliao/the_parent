@@ -63,7 +63,7 @@
 				</a>
 			</div>
 		</article>
-		<div class="tabs fixed show-tab dark abgne_tab" fixed-tabs="#tv-tabs" ng-class="{'show-tab' : showTabs}">
+		<div class="tabs fixed show-tab dark abgne_tab" fixed-tabs="#tv-tabs" ng-class="{'show-tab' : showTabs}" id="headerMenu">
 	  		<a href="＃" target="_self" class="tab active">搞笑互整</a>
 	  		<a href="＃" target="_self" class="tab">精選內容</a>
 	  		<a href="＃" target="_self" class="tab">熱門點擊</a>
@@ -117,10 +117,10 @@
 			</iframe>
 		</div>
 		<div class="videoDetBox1">
-			<a class="videoDetBox1Img01" href="#"><img src="{% static "img/talk.png"%}" width="30" />評論：<span class="talkcount">80</span></a>
-			<a class="videoDetBox1Img02" id="videoDetLikeBtn" href="#"><img src="{% static "img/star.png"%}" width="30"></a>
-			<a class="videoDetBox1Img02 active" id="videoDetLikeBtn" href="#"><img src="{% static "img/star1.png"%}" width="30"></a>
-			<a class="videoDetBox1Img03" href="#"><img src="{% static "img/share1.png"%}" width="30"></a>
+			<a class="videoDetBox1Img01" href="#"><img src="{% static "img/talk.png"%}" width="25" />評論：<span class="talkcount">80</span></a>
+			<a class="videoDetBox1Img02" id="videoDetLikeBtn" href="#"><img src="{% static "img/star.png"%}" width="25"></a>
+			<a class="videoDetBox1Img02 active" id="videoDetLikeBtn" href="#"><img src="{% static "img/star1.png"%}" width="25"></a>
+			<a class="videoDetBox1Img03" id="share" href="#"><img src="{% static "img/share1.png"%}" width="25"></a>
 		</div>
 	</div>
 	<div class="videoDetBox2">
@@ -191,7 +191,7 @@
 	</div>
 	<div class="messageBox">
 		<div class="speakBox">
-			<div class="speakBoxImg"><img src="{% static "img/people1.jpg"%}" width="50" /></div>
+			<div class="speakBoxImg"><img src="{% static "img/people1.jpg"%}" width="40" /></div>
 			<div class="messInputBox">
 				<p class="notLoggedIn" style="margin-top: 15px;">欲留言請先<a href="#">登入</a></p>
 				<textarea class="signedIn" placeholder="留言"></textarea>
@@ -200,19 +200,19 @@
 		</div>
 		<div class="messageBox1">
 			<div class="messageBox1Con">
-				<div class="messageBox1Img"><img src="{% static "img/person-icon.png"%}" width="50" /></div>
+				<div class="messageBox1Img"><img src="{% static "img/person-icon.png"%}" width="40" /></div>
 				<div class="messageCon">
 					<div class="messageConTitle"><h2>四川迷</h2><span class="categoryBox">熱門</span></div>
 					<span class="timeBox">6天前</span>
 					<p class="messageTxt">還滿好看的～還滿好看的～還滿好看的～還滿好看的～還滿好看的～</p>
 					<div class="likeBox">
 						<span class="likeBtn"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><span class="likeQua">1,230</span></span>
-						<span class="likeBtn"><i class="fa fa-commenting-o" aria-hidden="true"></i><span class="likeQua">1</span></span>
+						<span class="likeBtn"><i class="fa fa-commenting-o reply2" aria-hidden="true"></i><span class="likeQua">1</span></span>
 					</div>
 				</div>
 			</div>
 			<div class="messageBox1Con reply1">
-				<div class="messageBox1Img"><img src="{% static "img/person-icon.png"%}" width="50" /></div>
+				<div class="messageBox1Img"><img src="{% static "img/person-icon.png"%}" width="40" /></div>
 				<div class="messageCon">
 					<div class="messageConTitle"><h2>四川迷</h2><span class="categoryBox">熱門</span></div>
 					<span class="timeBox">6天前</span>
@@ -222,39 +222,40 @@
 					</div>
 				</div>
 			</div>
-			<div class="messageBox1Con reply1">
-				<div class="messageBox1Img"><img src="{% static "img/people1.jpg"%}" width="50" /></div>
-				<div class="messageCon">
-					<div class="messageConTitle"><h2>四川迷</h2></div>
-					<textarea></textarea>
-					<div class="likeBox">
-						<button type="submit" class="messageBtn">留言</button>
+			<div class="messageBox reply1">
+				<div class="speakBox">
+					<div class="speakBoxImg"><img src="{% static "img/people1.jpg"%}" width="40" /></div>
+					<div class="messInputBox">
+						<textarea class="signedIn" placeholder="留言"></textarea>
+						<button type="submit" class="messageBtn signedIn">留言</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!--推薦給你 start-->
+	<!--即時熱門 start-->
 	<div class="flexslider1">
-	  <h3>推薦影片</h3>
+	  <h3>即時熱門</h3>
 	  <ul class="slides">
 	    <li>
-	      	<div class="videoImg"><img src="http://img.youtube.com/vi/4Lqz6zi8A5w/default.jpg" /></div>
-	      	<div class="videoTitle">跟另一半玩遊戲，認真你就輸了-那對夫妻</div>
+	      	<a href=""><img src="{% static "img/001.png"%}" width="150"></a>
 	    </li>
 	    <li>
-	      	<div class="videoImg"><img src="http://img.youtube.com/vi/lrCucVkCsqQ/default.jpg" /></div>
-	      	<div class="videoTitle">爸爸教妮妮學英文</div>
+	      	<a href=""><img src="{% static "img/002.png"%}" width="150"></a>
 	    </li>
 	    <li>
-	     	<div class="videoImg"><img src="http://img.youtube.com/vi/6yVC18WfwgI/default.jpg" /></div>
-	     	<div class="videoTitle">吃火鍋一定有香菇，但沒有藍瘦啦～</div>
+	     	<a href=""><img src="{% static "img/003.png"%}" width="150"></a>
 	    </li>
 	    <li>
-	      	<div class="videoImg"><img src="http://img.youtube.com/vi/wxpYotUidKk/default.jpg" /></div>
-	      	<div class="videoTitle">老公~~你喜歡我哪一點??</div>
+	      	<a href=""><img src="{% static "img/004.png"%}" width="150"></a>
 	    </li>
 	    <li>
+	      	<a href=""><img src="{% static "img/001.png"%}" width="150"></a>
+	    </li>
+	    <li>
+	      	<a href=""><img src="{% static "img/002.png"%}" width="150"></a>
+	    </li>
+	    <!--<li>
 	      	<div class="videoImg"><img src="http://img.youtube.com/vi/d5ew0Hb0UQs/default.jpg" /></div>
 	      	<div class="videoTitle">Nico品筠&Kim京燁 【那對夫妻】妮妮</div>
 	    </li>
@@ -269,56 +270,117 @@
 	    <li>
 	      	<div class="videoImg"><img src="http://img.youtube.com/vi/lrCucVkCsqQ/default.jpg" /></div>
 	      	<div class="videoTitle">爸爸教妮妮學英文</div>
-	    </li>
+	    </li>-->
 	  </ul>
 	</div>
-	<!--推薦給你 End-->
+	<!--即時熱門 End-->
 	<!--你可能會喜歡 start-->
 	<div id="container" class="cf expertBox">
-				<h3>你可能會喜歡</h3>
-				<div id="main" role="main">
-				  <section class="slider expertCon">
-					<div class="flexslider carousel expertArea">
-					  <ul class="slides">
-						<li>
-							<div class="experImg"><img src="{% static "img/001.jpg"%}" /></div>
-						</li>
-						<li>
-							<div class="experImg"><img src="{% static "img/002.jpg"%}" /></div>
-						</li>
-						<li>
-							<div class="experImg"><img src="{% static "img/003.jpg"%}" /></div>
-						</li>
-						<li>
-							<div class="experImg"><img src="{% static "img/004.jpg"%}" /></div>
-						</li>
-
-					  </ul>
-					</div>
-				  </section>
-				</div>
-			  </div>
+	<h3>你可能會喜歡</h3>
+	<div id="main" role="main">
+	    <section class="slider expertCon">
+		  <div class="flexslider carousel expertArea">
+		    <ul class="slides">
+		    	<li>
+	      			<a href=""><img src="{% static "img/001.png"%}" width="150"></a>
+				    </li>
+			    <li>
+			      	<a href=""><img src="{% static "img/002.png"%}" width="150"></a>
+			    </li>
+			    <li>
+			     	<a href=""><img src="{% static "img/003.png"%}" width="150"></a>
+			    </li>
+			    <li>
+			      	<a href=""><img src="{% static "img/004.png"%}" width="150"></a>
+			    </li>
+			    <li>
+			      	<a href=""><img src="{% static "img/001.png"%}" width="150"></a>
+			    </li>
+			    <li>
+			      	<a href=""><img src="{% static "img/002.png"%}" width="150"></a>
+			    </li>
+		    </ul>
+		  </div>
+	    </section>
+	</div>
+    </div>
 	<!--你可能會喜歡 End-->
-	<!--夫妻嚴選 start-->
+	<!--合作品牌 start-->
 	<!-- Place somewhere in the <body> of your page -->
 	<div class="flexslider2">
-	  <h3>夫妻嚴選</h3>
+	    <h3>合作品牌</h3>
+	    <ul class="slides">
+	        <li>
+			    <div class="experImg"><img src="{% static "img/001.png"%}" /></div>
+		    </li>
+		    <li>
+			    <div class="experImg"><img src="{% static "img/002.png"%}" /></div>
+		    </li>
+		    <li>
+			    <div class="experImg"><img src="{% static "img/003.png"%}" /></div>
+		    </li>
+		    <li>
+			    <div class="experImg"><img src="{% static "img/004.png"%}" /></div>
+		    </li>
+	    </ul>
+	</div>
+	<!--合作品牌 End-->
+	<!--電商 start-->
+	<!-- Place somewhere in the <body> of your page -->
+	<div class="flexslider3">
+	  <h3>相關商品</h3>
 	  <ul class="slides">
 	    <li>
-	      <img src="{% static "img/product1.png"%}" />
-	    </li>
-	    <li>
-	      <img src="{% static "img/product2.png"%}" />
-	    </li>
-	    <li>
-	      <img src="{% static "img/product3.png"%}" />
-	    </li>
-	    <li>
-	      <img src="{% static "img/product4.png"%}" />
-	    </li>
+			<div class="experImg"><img src="{% static "img/001.jpg"%}" /></div>
+		</li>
+		<li>
+			<div class="experImg"><img src="{% static "img/002.jpg"%}" /></div>
+		</li>
+		<li>
+			<div class="experImg"><img src="{% static "img/003.jpg"%}" /></div>
+		</li>
+		<li>
+			<div class="experImg"><img src="{% static "img/004.jpg"%}" /></div>
+		</li>
 	  </ul>
 	</div>
-	<!--夫妻嚴選 End-->
+	<!--電商 End-->
+	<!--分享 start-->
+
+	<div class="shareBox1" onclick="f2(event);">
+	<div class="sharexCont1" id="share2" onclick="f1(event);">
+		<ul>
+			<li><a href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent('http://nicokim.cc'))));"><img src="/static/img/fb_share.png" width="30" height="30" /></a></li>
+			<li><a href="http://line.naver.jp/R/msg/text/?http://nicokim.cc"><img src="/static/img/line_share.png" width="30" /></a></li>
+			<li>
+				<a href="http://service.weibo.com/share/share.php?url=<?php the_permalink() ?>" target="_blank">
+				<img style="border: 0;" src="{% static "img/weibo.png"%}" alt="sina-weibo" width="30" height="30" />
+				</a>
+			</li>
+			<li>
+				<a href="http://service.weibo.com/share/share.php?url=<?php the_permalink() ?>" target="_blank">
+				<img style="border: 0;" src="{% static "img/weibo.png"%}" alt="sina-weibo" width="30" height="30" />
+				</a>
+			</li>
+			<li>
+				<a href="http://service.weibo.com/share/share.php?url=<?php the_permalink() ?>" target="_blank">
+				<img style="border: 0;" src="{% static "img/weibo.png"%}" alt="sina-weibo" width="30" height="30" />
+				</a>
+			</li>
+			<li>
+				<a href="http://service.weibo.com/share/share.php?url=<?php the_permalink() ?>" target="_blank">
+				<img style="border: 0;" src="{% static "img/weibo.png"%}" alt="sina-weibo" width="30" height="30" />
+				</a>
+			</li>
+			<li>
+				<a href="http://service.weibo.com/share/share.php?url=<?php the_permalink() ?>" target="_blank">
+				<img style="border: 0;" src="{% static "img/weibo.png"%}" alt="sina-weibo" width="30" height="30" />
+				</a>
+			</li>
+		</ul>
+	</div>
+	</div>
+	<!--分享 End-->
 	</div>
 	<div class="under-nav" style="display: block;">
 	    <a href="#"><img src="{% static "img/home.png"%}" width="40" /></a>
@@ -350,7 +412,7 @@
   	<!--share 彈窗 start-->
   	<script type="text/javascript">
 
-	$('.videoDetBox1Img03').on('click', function () {
+	$('.videoDetBox1Img031').on('click', function () {
 		swal({
 			title: '分享',
 			type: '',
@@ -364,6 +426,36 @@
 	})
   	</script>
   	<!--share 彈窗 End-->
+
+  <!--淡入淡出 start-->
+  <script type="text/javascript">
+  function f1(e){
+
+	        //取消冒泡
+	        e.cancelBubble = true;
+	    }
+	    function f2(e){
+	        $(".shareBox1").css("z-index","-1");
+	    }
+   $("#share").click(function () {
+
+   	event.preventDefault();
+	 if ( $(".shareBox1").hasClass( "fadeIn" )) {
+	 		$(".shareBox1").removeClass('fadeIn').css("z-index","-1");
+	 		$(".sharexCont1").removeClass('fadeIn').css("z-index","-1");
+	    }else{
+	    	$(".shareBox1").addClass('fadeIn').css("z-index","999");
+	    	$(".sharexCont1").addClass('fadeIn').css("z-index","999");
+	    }
+	 $(".shareBox1").click(function(){
+	 		$(".shareBox1").removeClass('fadeIn');
+	 		$(".sharexCont1").removeClass('fadeIn');
+	 	});
+
+	 });
+
+    </script>
+  <!--淡入淡出 End-->
   	<!--標題手風琴 start-->
   	<script>
   		$(".accordionBtn").click(function(){
@@ -379,7 +471,7 @@
 		});
 	</script>
   	<!--標題手風琴 End-->
-  	<!--你可能會喜歡 start-->
+  	<!--下方輪播 start-->
 	<script defer src="{% static "js/jquery.flexslider.js"%}"></script>
 	<div id="fb-root"></div>
 	<script type="text/javascript">
@@ -391,7 +483,7 @@
 	        itemMargin: 50,
 	        minItems: 1,
 	        maxItems: 3,
-	        slideshowSpeed: 5000,
+	        slideshowSpeed: 8000,
 			keyboardNav: true,
 	        start: function(slider){
 	          $('body').removeClass('loading');
@@ -406,9 +498,12 @@
 	        itemWidth: 150,
 	        itemMargin: 5,
 	        minItems: 1,
-	        maxItems: 6,
-	        slideDirection:"vertical",
+	        maxItems: 3,
 	        slideshowSpeed: 10000,
+			keyboardNav: true,
+	        start: function(slider){
+	          $('body').removeClass('loading');
+	        }
 	  });
 	});
 	$(window).load(function() {
@@ -417,25 +512,41 @@
 	        animationLoop: true,
 	        itemWidth: 150,
 	        itemMargin: 0,
-	        minItems: 1,
-	        maxItems:1,
+	        minItems: 2,
+	        maxItems:3,
 	        slideDirection:"vertical",
-	        slideshowSpeed: 3000,
+	        slideshowSpeed: 2000,
+	  });
+	});
+	$(window).load(function() {
+	  $('.flexslider3').flexslider({
+	    	animation: "slide",
+	        animationLoop: true,
+	        itemWidth: 150,
+	        itemMargin: 5,
+	        minItems: 3,
+	        maxItems:5,
+	        slideDirection:"vertical",
+	        slideshowSpeed: 6000,
 	  });
 	});
   	</script>
-  	<!--你可能會喜歡 End-->
+  	<!--下方輪播 End-->
   	<!--取得影片高度 start-->
   	<script type="text/javascript">
   	$(function () {
 		$(window).load(function(){
-	    	var scrollVal = $(".videoBox").height();
+	    	var scrollVal = $(".videoBox").height()+70;
 	    $(".videoDetBox2").css("margin-top",scrollVal+25);
 	    });
 	    $(window).resize(function(){
-	    	var scrollVal = $(".videoBox").height();
+	    	var scrollVal = $(".videoBox").height()+70;
 	    $(".videoDetBox2").css("margin-top",scrollVal+25);
 	    });
+	    $(window).scroll(function() {
+	    	var scrollVal = $(".videoBox").height()+70;
+	    	$(".videoDetBox2").css("margin-top",scrollVal+25);
+		});
 	});
 	</script>
 	<!--更多影片start-->
@@ -456,4 +567,30 @@
 		});
 	</script>
 	<!--更多影片 End-->
+	<!--往下滑隱藏header start-->
+	<script type="text/javascript">
+		var $ViewportHeight=$(window).height();
+		//偵測目前捲軸頂點
+		var ScrollTop=$(this).scrollTop();
+		var bodyClass = document.body.classList,
+	    lastScrollY = 0;
+		window.addEventListener('scroll', function(){
+		  var st = this.scrollY;
+		  // 判斷是向上捲動，而且捲軸超過 200px
+
+		  if(st<5) {
+		  	//alert(ScrollTop)
+		    bodyClass.remove('hideUp');
+		    $("#headerMenu").removeClass("show-tabTop");
+		    $(".videoBoxfixed").removeClass("videoTop");
+
+		  }else{
+		  	bodyClass.add('hideUp');
+		    $("#headerMenu").addClass("show-tabTop");
+		    $(".videoBoxfixed").addClass("videoTop");
+		  }
+		  lastScrollY = st;
+		});
+	</script>
+	<!--往下滑隱藏header End-->
 </body>

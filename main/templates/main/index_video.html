@@ -122,7 +122,7 @@
 	<div class="container_default" _height="auto">
 
     <div class="videoBox">
-	    <div class="video-contBox">
+	    <div class="video-contBox" style="margin-top:78px;">
 			<!--<iframe src="https://www.youtube.com/embed/N1s6lzxTjIc" type="text/html" width="800" height="450" frameborder="0">
 			</iframe>-->
 			<a href="../videoDetails"><img src="{% static "img/0001.png"%}"></a>
@@ -278,4 +278,22 @@
 		});
 	</script>-->
 	<!--瀑布流使用 End-->
+	<!--取得影片高度 start
+  	<script type="text/javascript">
+  	$(function () {
+		$(window).load(function(){
+	    	var scrollVal = $(".header").height();
+	    	$(".videoBox").css("margin-top",scrollVal);
+	    });
+	    $(window).resize(function(){
+	    	var scrollVal = $(".videoBox").height();
+	    	$(".videoBox").css("margin-top",scrollVal);
+	    });
+	    $(window).scroll(function() {
+	    	var scrollVal = $(".videoBox").height();
+	    	$(".videoBox").css("margin-top",scrollVal);
+		});
+	});
+	</script>
+	更多影片start-->
 </body>
