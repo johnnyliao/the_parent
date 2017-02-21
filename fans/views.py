@@ -110,6 +110,7 @@ def group_up_handle(data):
 
 
 def week_report_handle(fans_type):
+	"""
 	last_week=datetime.date.today()-timedelta(days=7)
 	#import pdb;pdb.set_trace()
 	#fans_list = ["wwwttshow", "ttshowpet", "draw.fans", "TTShowMusic", "GoodNews.FANS"]
@@ -124,11 +125,27 @@ def week_report_handle(fans_type):
 	total_like_count = (last.total_like_count - start.total_like_count)
 	#total_fans = (last.total_fans - start.total_fans) / (start.total_fans + 0.0) * 100
 	total_fans = (last.total_fans - start.total_fans)
+	"""
+	#import pdb;pdb.set_trace()
+	last_day = datetime.date.today()-timedelta(days=datetime.datetime.today().weekday() + 1)
+	today = datetime.date.today()
 
+	fans_pages = FansPage.objects.filter(fans_type=fans_type, date__gte=last_day, date__lte=today).order_by("date")
+
+	start = fans_pages[0]
+	last = fans_pages[len(fans_pages) - 1]
+
+	#talk_about_is = (last.talk_about_is - start.talk_about_is) / (start.talk_about_is + 0.0) * 100
+	talk_about_is = (last.talk_about_is - start.talk_about_is)
+	#total_like_count = (last.total_like_count - start.total_like_count) / (start.total_like_count + 0.0) * 100
+	total_like_count = (last.total_like_count - start.total_like_count)
+	#total_fans = (last.total_fans - start.total_fans) / (start.total_fans + 0.0) * 100
+	total_fans = (last.total_fans - start.total_fans)
 	return {"talk_about_is":talk_about_is, "total_like_count":total_like_count, "total_fans":total_fans, "start":start.date, "last":last.date}
 
 
 def month_report_handle(fans_type):
+	"""
 	last_week=datetime.date.today()-timedelta(days=30)
 	#import pdb;pdb.set_trace()
 	#fans_list = ["wwwttshow", "ttshowpet", "draw.fans", "TTShowMusic", "GoodNews.FANS"]
@@ -140,6 +157,18 @@ def month_report_handle(fans_type):
 	talk_about_is = (last.talk_about_is - start.talk_about_is)
 	total_like_count = (last.total_like_count - start.total_like_count)
 	total_fans = (last.total_fans - start.total_fans)
+	"""
+	start = datetime.date.today() - timedelta(days=datetime.date.today().day - 1)
+	today = datetime.date.today()
+	#import pdb;pdb.set_trace()
+	#fans_list = ["wwwttshow", "ttshowpet", "draw.fans", "TTShowMusic", "GoodNews.FANS"]
+	fans_pages = FansPage.objects.filter(fans_type=fans_type, date__gte=start, date__lte=today).order_by("date")
 
+	start = fans_pages[0]
+	last = fans_pages[len(fans_pages) - 1]
+
+	talk_about_is = (last.talk_about_is - start.talk_about_is)
+	total_like_count = (last.total_like_count - start.total_like_count)
+	total_fans = (last.total_fans - start.total_fans)
 	return {"talk_about_is":talk_about_is, "total_like_count":total_like_count, "total_fans":total_fans, "start":start.date, "last":last.date}
 
