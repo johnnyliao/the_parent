@@ -44,6 +44,7 @@ from account.views import login as main_login
 import facebook
 import base64
 from user_agents import parse
+from movie.models import Movie
 
 def check_user_agent(request):
 	ua_string = request.META.get('HTTP_USER_AGENT', '')
@@ -75,61 +76,28 @@ def login(request):
 
 def index_video(request):
 	is_mobile = check_user_agent(request)
+	movie_type =  request.GET.get("type", "new")
+	if movie_type:
+		videos = Movie.objects.all().filter(movie_type=movie_type)
+	else:
+		videos = Movie.objects.all().filter(movie_type="new")
+
 	return render_to_response("main/index_video.html", locals(), context_instance=RequestContext(request))
 
 def videoDetails(request):
 	is_mobile = check_user_agent(request)
+	movie_type =  request.GET.get("type", "new")
+	if movie_type:
+		videos = Movie.objects.all().filter(movie_type=movie_type)
+	else:
+		videos = Movie.objects.all().filter(movie_type="new")
+
 	return render_to_response("main/videoDetails.html", locals(), context_instance=RequestContext(request))
 
 def index_home(request):
 	is_mobile = check_user_agent(request)
 	return render_to_response("main/index1.html", locals(), context_instance=RequestContext(request))
 
-def auto_reply(request):
-	is_mobile = check_user_agent(request)
-	#account = SocialAccount.objects.get(user_id=23)
-	#pic_url = "http://graph.facebook.com/v2.8/%s/picture" % account.extra_data["id"]
-	#opener = urllib2.build_opener()
-	#result = opener.open(pic_url)
-	token = "EAACEdEose0cBADKcStzDIQZBE9OqTL5SBMeePZAMonV0DBlphoCNKbla6PGCQhll2c2EPBZCbSwZCGVubZC2jZCY3rKu5566AVzThhwDMF53YR6uBRAwZA9KbFC8pbzPMYXBHDZC0c6YlBwTJtaVXdZCpyHsMBORvlTyqAxfEbR8yb1AvxZCyJ4AFo"
-
-	#encoded_string = base64.b64encode(result.read())
-	#print encoded_string
-	return render_to_response("main/auto_reply.html", locals(), context_instance=RequestContext(request))
-
-	account = SocialAccount.objects.get(user_id=23)
-	token = SocialToken.objects.get(account=account)
-	graph = facebook.GraphAPI(access_token = token.token)
-	post_ids = '736429766525018_752835134884481'
-	posts = graph.get_connections(post_ids, 'comments', limit=1000)
-	Jstr = json.dumps(posts)
-	#所有此貼文的留言
-	obj = json.loads(Jstr)
-	#import pdb;pdb.set_trace()
-	print "obj count "
-	print len(obj['data'])
-	for data in obj['data']:
-		if not commet_is_reply(data['id']):
-			posts = graph.put_comment(object_id=data['id'], message='Great post...')
-
-
-#判斷是否回覆留言
-def commet_is_reply(comment_id):
-	is_mobile = check_user_agent(request)
-	print comment_id
-	account = SocialAccount.objects.get(user_id=23)
-	token = SocialToken.objects.get(account=account)
-	graph = facebook.GraphAPI(access_token = token.token)
-	posts = graph.get_connections(comment_id, 'comments')
-	Jstr = json.dumps(posts)
-	obj = json.loads(Jstr)
-	if len(obj['data']) == 0:
-		#尚未回覆
-		return False
-	else:
-		#判斷是否指定人員回覆
-		print obj['data'][0]['from']['name']
-		return True
 
 def action(request):
 	is_mobile = check_user_agent(request)
