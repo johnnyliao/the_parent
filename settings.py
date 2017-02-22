@@ -229,6 +229,7 @@ INSTALLED_APPS = (
     "fans",
     "main",
     "movie",
+    "report",
     "action",
     "rest_framework",
     "rest_framework_swagger",
