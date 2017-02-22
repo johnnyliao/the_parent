@@ -7,5 +7,5 @@ urlpatterns = patterns(".views",
 	url('^add_inner/', AddInner.as_view()),
 	url('^day_record/', day_record),
 	url('^day_group_up/', day_group_up),
-	url('^group_report/', group_report),
+	url('^report/', group_report),
 )
