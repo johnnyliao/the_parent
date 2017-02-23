@@ -58,11 +58,13 @@ class AddInner(generics.GenericAPIView):
 #每日排程
 def day_record(request):
 	tia_inner = Register.objects.all().filter(name="TIA")
+	amy_inner = Register.objects.all().filter(name="AMY")
 	annie_inner = Register.objects.all().filter(name="ANNIE")
 	zoey_inner = Register.objects.all().filter(name="ZOEY")
 	mandy_inner = Register.objects.all().filter(name="MANDY")
 	richard_inner = Register.objects.all().filter(name="RICHARD")
 	get_new_hit_count(tia_inner, "TIA")
+	get_new_hit_count(amy_inner, "AMY")
 	get_new_hit_count(annie_inner, "ANNIE")
 	get_new_hit_count(zoey_inner, "ZOEY")
 	get_new_hit_count(mandy_inner, "MANDY")
@@ -87,11 +89,13 @@ def get_new_hit_count(register_list, name):
 #每日排程 計算成長值
 def day_group_up(request):
 	tia_inner_id = Register.objects.all().filter(name="TIA")
+	amy_inner_id = Register.objects.all().filter(name="AMY")
 	annie_inner_id  = Register.objects.all().filter(name="ANNIE")
 	zoey_inner_id  = Register.objects.all().filter(name="ZOEY")
 	mandy_inner_id  = Register.objects.all().filter(name="MANDY")
 	richard_inner_id  = Register.objects.all().filter(name="RICHARD")
 	get_group_by_name_inner_id(tia_inner_id, "TIA")
+	get_group_by_name_inner_id(amy_inner_id, "AMY")
 	get_group_by_name_inner_id(annie_inner_id, "ANNIE")
 	get_group_by_name_inner_id(zoey_inner_id, "ZOEY")
 	get_group_by_name_inner_id(mandy_inner_id, "MANDY")
@@ -120,10 +124,15 @@ def get_group_up(every_day, base_count):
 
 def group_report(request):
 	tia_inner_id = Register.objects.all().filter(name="TIA")
+	amy_inner_id = Register.objects.all().filter(name="AMY")
 	annie_inner_id  = Register.objects.all().filter(name="ANNIE")
 	zoey_inner_id  = Register.objects.all().filter(name="ZOEY")
 	mandy_inner_id  = Register.objects.all().filter(name="MANDY")
 	richard_inner_id  = Register.objects.all().filter(name="RICHARD")
+
+	week_start = datetime.date.today() - timedelta(days=datetime.datetime.today().weekday() + 1)
+	today = datetime.date.today()
+	month_start = datetime.date.today() - timedelta(days=datetime.date.today().day - 1)
 
 	return render_to_response("report/group_report.html", locals(), context_instance=RequestContext(request))
 

@@ -40,103 +40,193 @@
 </head>
 
 <body>
-    <h3>TIA</h3>
-    {% for item in tia_inner_id %}
-        <div style="text-align: center;"><span>文章 <a href="http://ttshow.tw/inner.php?page_id={{item.inner_id}}">http://ttshow.tw/inner.php?page_id={{item.inner_id}}</a></span></div>
-        <table class="table">
-            <tr>
-                <td>日期</td>
-                <td>點擊數</td>
-                <td>成長數</td>
-            </tr>
-        {% for obj in item.every_day_data.all %}
-            <tr>
-                <td>{{obj.date}}</td>
-                <td>{{obj.hit_count}}</td>
-                <td>{{obj.group}}</td>
-            </tr>
-        {% endfor %}
-        </table>
-         <div style="text-align: right;margin-right:10%"><h6>總成長 {{item.every_day_data.all|running_total}}</h6></div>
-    {% endfor %}
+    <div><span><h3>TIA</h3></span></div>
 
-    <h3>ANNIE</h3>
-    {% for item in annie_inner_id %}
-        <div style="text-align: center;"><span>文章 <a href="http://ttshow.tw/inner.php?page_id={{item.inner_id}}">http://ttshow.tw/inner.php?page_id={{item.inner_id}}</a></span></div>
-        <table class="table">
-            <tr>
-                <td>日期</td>
-                <td>點擊數</td>
-                <td>成長數</td>
-            </tr>
-        {% for obj in item.every_day_data.all %}
-            <tr>
-                <td>{{obj.date}}</td>
-                <td>{{obj.hit_count}}</td>
-                <td>{{obj.group}}</td>
-            </tr>
-        {% endfor %}
-        </table>
-         <div style="text-align: right;margin-right:10%"><h6>總成長 {{item.every_day_data.all|running_total}}</h6></div>
-    {% endfor %}
+    <div class="accordion" id="accordion2">
+        {% for item in tia_inner_id %}
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <div style="display: inline-block;">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion{{ forloop.counter }}" href="#collapse{{ forloop.counter }}">
+                            http://ttshow.tw/inner.php?page_id={{item.inner_id}}
+                        </a>
+                    </div>
 
-    <h3>ZOEY</h3>
-    {% for item in zoey_inner_id %}
-        <div style="text-align: center;"><span>文章 <a href="http://ttshow.tw/inner.php?page_id={{item.inner_id}}">http://ttshow.tw/inner.php?page_id={{item.inner_id}}</a></span></div>
-        <table class="table">
-            <tr>
-                <td>日期</td>
-                <td>點擊數</td>
-                <td>成長數</td>
-            </tr>
-        {% for obj in item.every_day_data.all %}
-            <tr>
-                <td>{{obj.date}}</td>
-                <td>{{obj.hit_count}}</td>
-                <td>{{obj.group}}</td>
-            </tr>
+                    <div style="display: inline-block;">成長值 {{item.every_day_data.all|running_total}}</div>
+                </div>
+                <div id="collapse{{ forloop.counter }}" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <table class="table">
+                            <tr>
+                                <td>日期</td>
+                                <td>點擊數</td>
+                                <td>成長數</td>
+                            </tr>
+                        {% for obj in item.every_day_data.all %}
+                            <tr>
+                                <td>{{obj.date}}</td>
+                                <td>{{obj.hit_count}}</td>
+                                <td>{{obj.group}}</td>
+                            </tr>
+                        {% endfor %}
+                        </table>
+                        <div style="display: inline-block;">月成長{{item.every_day_data.all|month_report:month_start}}</div>
+                        <div style="display: inline-block;">週成長{{item.every_day_data.all|week_report:week_start}}</div>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
-        </table>
-         <div style="text-align: right;margin-right:10%"><h6>總成長 {{item.every_day_data.all|running_total}}</h6></div>
-    {% endfor %}
+    </div>
 
-    <h3>MANDY</h3>
-    {% for item in mandy_inner_id %}
-        <div style="text-align: center;"><span>文章 <a href="http://ttshow.tw/inner.php?page_id={{item.inner_id}}">http://ttshow.tw/inner.php?page_id={{item.inner_id}}</a></span></div>
-        <table class="table">
-            <tr>
-                <td>日期</td>
-                <td>點擊數</td>
-                <td>成長數</td>
-            </tr>
-        {% for obj in item.every_day_data.all %}
-            <tr>
-                <td>{{obj.date}}</td>
-                <td>{{obj.hit_count}}</td>
-                <td>{{obj.group}}</td>
-            </tr>
-        {% endfor %}
-        </table>
-         <div style="text-align: right;margin-right:10%"><h6>總成長 {{item.every_day_data.all|running_total}}</h6></div>
-    {% endfor %}
+    <div><span><h3>ANNIE</h3></span></div>
 
-    <!--<h3>RICHARD</h3>
-    {% for item in richard_inner_id %}
-        <div style="text-align: center;"><span>文章 <a href="http://ttshow.tw/inner.php?page_id={{item.inner_id}}">http://ttshow.tw/inner.php?page_id={{item.inner_id}}</a></span></div>
-        <table class="table">
-            <tr>
-                <td>日期</td>
-                <td>點擊數</td>
-                <td>成長數</td>
-            </tr>
-        {% for obj in item.every_day_data.all %}
-            <tr>
-                <td>{{obj.date}}</td>
-                <td>{{obj.hit_count}}</td>
-                <td>{{obj.group}}</td>
-            </tr>
+    <div class="accordion" id="accordion2">
+        {% for item in annie_inner_id %}
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <div style="display: inline-block;">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion{{ forloop.counter }}" href="#collapse{{ forloop.counter }}">
+                            http://ttshow.tw/inner.php?page_id={{item.inner_id}}
+                        </a>
+                    </div>
+
+                    <div style="display: inline-block;">成長值 {{item.every_day_data.all|running_total}}</div>
+                </div>
+                <div id="collapse{{ forloop.counter }}" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <table class="table">
+                            <tr>
+                                <td>日期</td>
+                                <td>點擊數</td>
+                                <td>成長數</td>
+                            </tr>
+                        {% for obj in item.every_day_data.all %}
+                            <tr>
+                                <td>{{obj.date}}</td>
+                                <td>{{obj.hit_count}}</td>
+                                <td>{{obj.group}}</td>
+                            </tr>
+                        {% endfor %}
+                        </table>
+                        <div style="display: inline-block;">月成長{{item.every_day_data.all|month_report:month_start}}</div>
+                        <div style="display: inline-block;">週成長{{item.every_day_data.all|week_report:week_start}}</div>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
-        </table>
-         <div style="text-align: right;margin-right:10%"><h6>總成長 {{item.every_day_data.all|running_total}}</h6></div>
-    {% endfor %}-->
+    </div>
+
+    <div><span><h3>AMY</h3></span></div>
+
+    <div class="accordion" id="accordion2">
+        {% for item in amy_inner_id %}
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <div style="display: inline-block;">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion{{ forloop.counter }}" href="#collapse{{ forloop.counter }}">
+                            http://ttshow.tw/inner.php?page_id={{item.inner_id}}
+                        </a>
+                    </div>
+
+                    <div style="display: inline-block;">成長值 {{item.every_day_data.all|running_total}}</div>
+                </div>
+                <div id="collapse{{ forloop.counter }}" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <table class="table">
+                            <tr>
+                                <td>日期</td>
+                                <td>點擊數</td>
+                                <td>成長數</td>
+                            </tr>
+                        {% for obj in item.every_day_data.all %}
+                            <tr>
+                                <td>{{obj.date}}</td>
+                                <td>{{obj.hit_count}}</td>
+                                <td>{{obj.group}}</td>
+                            </tr>
+                        {% endfor %}
+                        </table>
+                        <div style="display: inline-block;">月成長{{item.every_day_data.all|month_report:month_start}}</div>
+                        <div style="display: inline-block;">週成長{{item.every_day_data.all|week_report:week_start}}</div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div><span><h3>ZOEY</h3></span></div>
+
+    <div class="accordion" id="zoey_inner_id">
+        {% for item in annie_inner_id %}
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <div style="display: inline-block;">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion{{ forloop.counter }}" href="#collapse{{ forloop.counter }}">
+                            http://ttshow.tw/inner.php?page_id={{item.inner_id}}
+                        </a>
+                    </div>
+
+                    <div style="display: inline-block;">成長值 {{item.every_day_data.all|running_total}}</div>
+                </div>
+                <div id="collapse{{ forloop.counter }}" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <table class="table">
+                            <tr>
+                                <td>日期</td>
+                                <td>點擊數</td>
+                                <td>成長數</td>
+                            </tr>
+                        {% for obj in item.every_day_data.all %}
+                            <tr>
+                                <td>{{obj.date}}</td>
+                                <td>{{obj.hit_count}}</td>
+                                <td>{{obj.group}}</td>
+                            </tr>
+                        {% endfor %}
+                        </table>
+                        <div style="display: inline-block;">月成長{{item.every_day_data.all|month_report:month_start}}</div>
+                        <div style="display: inline-block;">週成長{{item.every_day_data.all|week_report:week_start}}</div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div><span><h3>MANDY</h3></span></div>
+
+    <div class="accordion" id="accordion2">
+        {% for item in mandy_inner_id %}
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <div style="display: inline-block;">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion{{ forloop.counter }}" href="#collapse{{ forloop.counter }}">
+                            http://ttshow.tw/inner.php?page_id={{item.inner_id}}
+                        </a>
+                    </div>
+
+                    <div style="display: inline-block;">成長值 {{item.every_day_data.all|running_total}}</div>
+                </div>
+                <div id="collapse{{ forloop.counter }}" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <table class="table">
+                            <tr>
+                                <td>日期</td>
+                                <td>點擊數</td>
+                                <td>成長數</td>
+                            </tr>
+                        {% for obj in item.every_day_data.all %}
+                            <tr>
+                                <td>{{obj.date}}</td>
+                                <td>{{obj.hit_count}}</td>
+                                <td>{{obj.group}}</td>
+                            </tr>
+                        {% endfor %}
+                        </table>
+                        <div style="display: inline-block;">月成長{{item.every_day_data.all|month_report:month_start}}</div>
+                        <div style="display: inline-block;">週成長{{item.every_day_data.all|week_report:week_start}}</div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 </body>

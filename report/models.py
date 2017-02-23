@@ -18,6 +18,7 @@ import urlparse, settings
 
 NANE_CHOICES = (
     ("TIA", _(u'TIA')),
+    ("AMY", _(u'AMY')),
     ("ANNIE", _(u'ANNIE')),
     ("ZOEY", _(u'ZOEY')),
     ("MANDY", _(u'MANDY')),
