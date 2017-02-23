@@ -46,11 +46,15 @@
 	<link rel="stylesheet" href="{% static "css/demo.css"%}" type="text/css" media="screen" />
 	<link rel="stylesheet" href="{% static "css/flexslider.css"%}" type="text/css" media="screen" />
 <!--你可能會喜歡 End-->
+
+<!--動畫效果 start-->
+	<link rel="stylesheet" type="text/css" href="{% static "css/animate.css"%}">
+<!--動畫效果 End-->
 </head>
 
 <body>
 <div class="" none="ture">
-	<header class="header" _height="none">
+	<header class="header animated" _height="none">
 		<article class="topnav">
 			<div class="cd-dropdown-wrapper">
 				<a class="cd-dropdown-trigger top" href="#0">
@@ -63,7 +67,7 @@
 				</a>
 			</div>
 		</article>
-		<div class="tabs fixed show-tab dark abgne_tab" fixed-tabs="#tv-tabs" ng-class="{'show-tab' : showTabs}" id="headerMenu">
+		<div class="tabs fixed show-tab dark abgne_tab animated" fixed-tabs="#tv-tabs" ng-class="{'show-tab' : showTabs}" id="headerMenu">
 	  		<a href="＃" target="_self" class="tab active">搞笑互整</a>
 	  		<a href="＃" target="_self" class="tab">精選內容</a>
 	  		<a href="＃" target="_self" class="tab">熱門點擊</a>
@@ -117,7 +121,7 @@
 			</iframe>
 		</div>
 		<div class="videoDetBox1">
-			<a class="videoDetBox1Img01" href="#"><img src="{% static "img/talk.png"%}" width="25" />評論：<span class="talkcount">80</span></a>
+			<a class="videoDetBox1Img01" href="#speakBox"><img src="{% static "img/talk.png"%}" width="25" />評論：<span class="talkcount">80</span></a>
 			<a class="videoDetBox1Img02" id="videoDetLikeBtn" href="#"><img src="{% static "img/star.png"%}" width="25"></a>
 			<a class="videoDetBox1Img02 active" id="videoDetLikeBtn" href="#"><img src="{% static "img/star1.png"%}" width="25"></a>
 			<a class="videoDetBox1Img03" id="share" href="#"><img src="{% static "img/share1.png"%}" width="25"></a>
@@ -125,13 +129,14 @@
 	</div>
 	<div class="videoDetBox2">
 		<div class="videoDetTitle active"><h1>《江苏卫视元宵晚会》全程</h1></div>
-		<div class="accordionBox"><a href="" class="accordionBtn active"><img src="{% static "img/down.png"%}" width="30" /></a></div>
+		<div class="videoDetTitdel active animated slideInDown"><h2>《江苏卫视元宵晚会》全程《江苏卫视元宵晚会》全程《江苏卫视元宵晚会》全程《江苏卫视元宵晚会》全程《江苏卫视元宵晚会》全程《江苏卫视元宵晚会》全程</h2></div>
+		<div class="accordionBox"><a href="" class="accordionBtn active" id="accordionBtn"><img src="{% static "img/down.png"%}" width="30" /></a></div>
+		<div class="hiddenBox" id="accordionBtn1"><span class="show"><i class="fa fa-angle-down" aria-hidden="true"></i>展開</span></div>
 		<div class="vedioViewBox">
 			<ul>
 				<li>播放：<span>12</span>萬次</li>
-				<li>彈幕：<span>89</span>條</li>
 				<li>類型：<span>看點</span></li>
-				<li>地區：<span>台灣</span></li>
+				<li>地區：<span>台灣</span></li><br />
 				<li><a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><span>1,230</span></a></li>
 				<li><a href=""><i class="fa fa-thumbs-o-down" aria-hidden="true"></i><span>12</span></a></li>
 			</ul>
@@ -189,7 +194,7 @@
 			</li>
 		</ul>
 	</div>
-	<div class="messageBox">
+	<div class="messageBox" id="speakBox">
 		<div class="speakBox">
 			<div class="speakBoxImg"><img src="{% static "img/people1.jpg"%}" width="40" /></div>
 			<div class="messInputBox">
@@ -346,47 +351,33 @@
 	</div>
 	<!--電商 End-->
 	<!--分享 start-->
-
-	<div class="shareBox1" onclick="f2(event);">
-	<div class="sharexCont1" id="share2" onclick="f1(event);">
-		<ul>
-			<li><a href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent('http://nicokim.cc'))));"><img src="/static/img/fb_share.png" width="30" height="30" /></a></li>
-			<li><a href="http://line.naver.jp/R/msg/text/?http://nicokim.cc"><img src="/static/img/line_share.png" width="30" /></a></li>
-			<li>
-				<a href="http://service.weibo.com/share/share.php?url=<?php the_permalink() ?>" target="_blank">
-				<img style="border: 0;" src="{% static "img/weibo.png"%}" alt="sina-weibo" width="30" height="30" />
-				</a>
-			</li>
-			<li>
-				<a href="http://service.weibo.com/share/share.php?url=<?php the_permalink() ?>" target="_blank">
-				<img style="border: 0;" src="{% static "img/weibo.png"%}" alt="sina-weibo" width="30" height="30" />
-				</a>
-			</li>
-			<li>
-				<a href="http://service.weibo.com/share/share.php?url=<?php the_permalink() ?>" target="_blank">
-				<img style="border: 0;" src="{% static "img/weibo.png"%}" alt="sina-weibo" width="30" height="30" />
-				</a>
-			</li>
-			<li>
-				<a href="http://service.weibo.com/share/share.php?url=<?php the_permalink() ?>" target="_blank">
-				<img style="border: 0;" src="{% static "img/weibo.png"%}" alt="sina-weibo" width="30" height="30" />
-				</a>
-			</li>
-			<li>
-				<a href="http://service.weibo.com/share/share.php?url=<?php the_permalink() ?>" target="_blank">
-				<img style="border: 0;" src="{% static "img/weibo.png"%}" alt="sina-weibo" width="30" height="30" />
-				</a>
-			</li>
-		</ul>
 	</div>
+	<div class="shareArea animated">
+		<div class="shareAreaCon">
+			<ul>
+				<li>
+					<a style="margin:0px 10px;" href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent('http://nicokim.cc'))));"><img src="/static/img/fb_share.png" width="30" height="30" /></a>
+				</li>
+				<li>
+					<a href="http://line.naver.jp/R/msg/text/?http://nicokim.cc"><img src="/static/img/line_share.png" width="30" /></a>
+				</li>
+				<li>
+
+				</li>
+				<li>
+
+				</li>
+			</ul>
+		</div>
 	</div>
 	<!--分享 End-->
-	</div>
 	<div class="under-nav" style="display: block;">
-	    <a href="#"><img src="{% static "img/home.png"%}" width="40" /></a>
-	    <a href="#"><img src="{% static "img/cart.png"%}" width="40" /></a>
-	    <a href="#"><img src="{% static "img/videoActive.png"%}" width="40" /></a>
-	    <a href="#"><img src="{% static "img/about.png"%}" width="40" /></a>
+	    <ul>
+		     <li><a href="#"><img src="{% static "img/index.png"%}" width="40" /></a><p>首頁</p></li>
+		    <li><a href="#"><img src="{% static "img/cartIcon.png"%}" width="40" /></a><p>夫妻嚴選</p></li>
+		    <li><a href="/main/index_video"><img src="{% static "img/videoActive.png"%}"  width="40" /></a><p class="active">影音專區</p></li>
+		    <li><a href="#"><img src="{% static "img/aboutIcon.png"%}" width="40" /></a><p>關於我們</p></li>
+	    </ul>
 	</div>
 	<footer _height="none">
 		<ul>
@@ -409,56 +400,31 @@
 	  })();
 	</script>
   	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  	<!--share 彈窗 start-->
-  	<script type="text/javascript">
+    <!--淡入淡出 start-->
+    <script type="text/javascript">
+    function f1(e){
 
-	$('.videoDetBox1Img031').on('click', function () {
-		swal({
-			title: '分享',
-			type: '',
-			html:
-			'<div class="proShareBox"><a style=\"margin:0px 10px;\" href="javascript: void(window.open(\'http://www.facebook.com/share.php?u=\'.concat(encodeURIComponent(\'http://nicokim.cc\'))));\"><img src=\"/static/img/fb_share.png\" width=\"40\" height=\"40\" /></a><div class=\"line-it-button\" style=\"display: none;\" data-type=\"share-c\" data-lang=\"zh-Hant\" ></div><script src=\"http://scdn.line-apps.com/n/line_it/thirdparty/loader.min.js\" async=\"async\" defer=\"defer\" ><\/script><script> LineIt.loadButton(); <\/script><a href=\"http://line.naver.jp/R/msg/text/?http://nicokim.cc\"><img src=\"/static/img/line_share.png\" width=\"40\" /></a></div>',
-			showCloseButton: true,
-			showCancelButton: false,
-			confirmButtonText: 'OK',
-			cancelButtonText: '<i class="fa fa-thumbs-down"></i>'
-			}).catch(swal.noop)
-	})
-  	</script>
-  	<!--share 彈窗 End-->
-
-  <!--淡入淡出 start-->
-  <script type="text/javascript">
-  function f1(e){
-
-	        //取消冒泡
-	        e.cancelBubble = true;
-	    }
-	    function f2(e){
-	        $(".shareBox1").css("z-index","-1");
-	    }
+	    //取消冒泡
+	    e.cancelBubble = true;
+	}
+	function f2(e){
+	    $(".shareBox1").css("z-index","-1");
+	}
    $("#share").click(function () {
 
    	event.preventDefault();
-	 if ( $(".shareBox1").hasClass( "fadeIn" )) {
-	 		$(".shareBox1").removeClass('fadeIn').css("z-index","-1");
-	 		$(".sharexCont1").removeClass('fadeIn').css("z-index","-1");
+	 if ( $(".shareArea").hasClass( "slideInUp" )) {
+	 		$(".shareArea").removeClass('slideInUp').addClass("slideOutDown");
 	    }else{
-	    	$(".shareBox1").addClass('fadeIn').css("z-index","999");
-	    	$(".sharexCont1").addClass('fadeIn').css("z-index","999");
+	    	$(".shareArea").removeClass('slideOutDown').addClass("slideInUp").show();
 	    }
-	 $(".shareBox1").click(function(){
-	 		$(".shareBox1").removeClass('fadeIn');
-	 		$(".sharexCont1").removeClass('fadeIn');
-	 	});
-
 	 });
 
     </script>
   <!--淡入淡出 End-->
   	<!--標題手風琴 start-->
   	<script>
-  		$(".accordionBtn").click(function(){
+  		$("#accordionBtn").click(function(){
         	event.preventDefault();
         	 if ( $(".videoDetTitle").find("h1").hasClass( "active" ) ) {
 				 	$(".videoDetTitle").find("h1").removeClass('active');
@@ -466,6 +432,24 @@
 			    }else{
 			    	$(".videoDetTitle").find("h1").addClass('active');
 			    	$(".accordionBtn").removeClass('active');
+			    }
+
+		});
+		$("#accordionBtn1").click(function(){
+        	event.preventDefault();
+			 if ( $(".videoDetTitdel").find("h2").hasClass( "active" ) ) {
+				 	$(".videoDetTitdel").find("h2").removeClass('active');
+				 	$('.hiddenBox').empty();
+			    	$( ".hiddenBox" ).append("<span class=\"show\"><i class=\"fa fa-angle-down\" aria-hidden=\"true\"></i>展開</span>");
+			    	$( ".videoDetTitdel" ).find("h2").addClass("box-close").removeClass("box-open");
+			    }else{
+			    	$(".videoDetTitdel").find("h2").addClass('active');
+			    	$( ".hidden" ).css("display","block");
+			    	$('.hiddenBox').empty();
+			    	$( ".hiddenBox" ).append("<span class=\"hidden\"><i class=\"fa fa-angle-up\" aria-hidden=\"true\"></i>收起</span>");
+			    	$( ".videoDetTitdel" ).find("h2").addClass("box-open").removeClass("box-close");
+
+
 			    }
 
 		});
@@ -480,7 +464,7 @@
 	        animation: "slide",
 	        animationLoop: true,
 	        itemWidth: 150,
-	        itemMargin: 50,
+	        itemMargin: 4,
 	        minItems: 1,
 	        maxItems: 3,
 	        slideshowSpeed: 8000,
@@ -523,7 +507,7 @@
 	    	animation: "slide",
 	        animationLoop: true,
 	        itemWidth: 150,
-	        itemMargin: 5,
+	        itemMargin: 0,
 	        minItems: 3,
 	        maxItems:5,
 	        slideDirection:"vertical",
@@ -569,25 +553,26 @@
 	<!--更多影片 End-->
 	<!--往下滑隱藏header start-->
 	<script type="text/javascript">
-		var $ViewportHeight=$(window).height();
+		/*var $ViewportHeight=$(window).height();
 		//偵測目前捲軸頂點
 		var ScrollTop=$(this).scrollTop();
 		var bodyClass = document.body.classList,
-	    lastScrollY = 0;
+	    lastScrollY = 0;*/
 		window.addEventListener('scroll', function(){
 		  var st = this.scrollY;
 		  // 判斷是向上捲動，而且捲軸超過 200px
 
 		  if(st<5) {
-		  	//alert(ScrollTop)
-		    bodyClass.remove('hideUp');
-		    $("#headerMenu").removeClass("show-tabTop");
+		    $("#headerMenu",".header").addClass("slideInDown").removeClass("slideOutUp");
+		    $(".header").addClass("slideInDown").removeClass("slideOutUp");
 		    $(".videoBoxfixed").removeClass("videoTop");
+		    //$("#headerMenu").addClass("slideInDown");
 
 		  }else{
-		  	bodyClass.add('hideUp');
-		    $("#headerMenu").addClass("show-tabTop");
+		    //$("#headerMenu").addClass("slideInDown");
 		    $(".videoBoxfixed").addClass("videoTop");
+		    $("#headerMenu",".header").addClass("slideOutUp").removeClass("slideInDown");
+		    $(".header").addClass("slideOutUp").removeClass("slideInDown");
 		  }
 		  lastScrollY = st;
 		});
