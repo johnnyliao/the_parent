@@ -123,13 +123,15 @@ def get_group_up(every_day, base_count):
 
 
 def group_report(request):
-	tia_inner_id = Register.objects.all().filter(name="TIA")
+	name = request.GET.get("name", "TIA")
+	inner_id_list = Register.objects.all().filter(name=name)
+	"""
 	amy_inner_id = Register.objects.all().filter(name="AMY")
 	annie_inner_id  = Register.objects.all().filter(name="ANNIE")
 	zoey_inner_id  = Register.objects.all().filter(name="ZOEY")
 	mandy_inner_id  = Register.objects.all().filter(name="MANDY")
 	richard_inner_id  = Register.objects.all().filter(name="RICHARD")
-
+	"""
 	week_start = datetime.date.today() - timedelta(days=datetime.datetime.today().weekday() + 1)
 	today = datetime.date.today()
 	month_start = datetime.date.today() - timedelta(days=datetime.date.today().day - 1)

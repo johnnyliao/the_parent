@@ -68,7 +68,6 @@ def fans_report(request):
 
 	return render_to_response("fans/fans_report.html", locals(), context_instance=RequestContext(request))
 
-
 def group_up(request):
 	wwwttshow = FansPage.objects.filter(fans_type="wwwttshow").order_by("-date")[:8][::-1]
 	ttshowpet = FansPage.objects.filter(fans_type="ttshowpet").order_by("-date")[:8][::-1]
