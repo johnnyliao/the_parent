@@ -70,8 +70,8 @@
                             </tr>
                         {% endfor %}
                         </table>
-                        <div style="display: inline-block;">月成長{{item.every_day_data.all|month_report:month_start}}</div>
-                        <div style="display: inline-block;">週成長{{item.every_day_data.all|week_report:week_start}}</div>
+                        <div style="display: inline-block;">月成長{{item|month_report:month_start}}</div>
+                        <div style="display: inline-block;">週成長{{item|week_report:week_start}}</div>
                     </div>
                 </div>
             </div>
