@@ -564,6 +564,7 @@
 		  console.log("\h\h")
 		  console.log(lastScrollY)
 		  console.log("\g\g")
+		  if(lastScrollY > st || st<5) {
 		    $("#headerMenu",".header").addClass("slideInDown").removeClass("slideOutUp");
 		    $(".header").addClass("slideInDown").removeClass("slideOutUp");
 		    $(".videoBoxfixed").removeClass("videoTop");
