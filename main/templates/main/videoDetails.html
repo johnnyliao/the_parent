@@ -555,13 +555,15 @@
 		/*var $ViewportHeight=$(window).height();
 		//偵測目前捲軸頂點
 		var ScrollTop=$(this).scrollTop();
-		var bodyClass = document.body.classList,
-	    lastScrollY = 0;*/
+		var bodyClass = document.body.classList,*/
+	    lastScrollY = 0;
 		window.addEventListener('scroll', function(){
 		  var st = this.scrollY;
 		  // 判斷是向上捲動，而且捲軸超過 200px
-
-		  if(st<5) {
+		  console.log(st)
+		  console.log("\h\h")
+		  console.log(lastScrollY)
+		  console.log("\g\g")
 		    $("#headerMenu",".header").addClass("slideInDown").removeClass("slideOutUp");
 		    $(".header").addClass("slideInDown").removeClass("slideOutUp");
 		    $(".videoBoxfixed").removeClass("videoTop");
