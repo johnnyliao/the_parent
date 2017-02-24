@@ -47,14 +47,14 @@
             <div class="accordion-group">
                 <div class="accordion-heading">
                     <div style="display: inline-block;">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion{{ forloop.counter }}" href="#collapse{{ forloop.counter }}">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion{{ forloop.counter }}" href="#collapse_tia{{ forloop.counter }}">
                             http://ttshow.tw/inner.php?page_id={{item.inner_id}}
                         </a>
                     </div>
 
                     <div style="display: inline-block;">成長值 {{item.every_day_data.all|running_total}}</div>
                 </div>
-                <div id="collapse{{ forloop.counter }}" class="accordion-body collapse">
+                <div id="collapse_tia{{ forloop.counter }}" class="accordion-body collapse">
                     <div class="accordion-inner">
                         <table class="table">
                             <tr>
@@ -85,14 +85,14 @@
             <div class="accordion-group">
                 <div class="accordion-heading">
                     <div style="display: inline-block;">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion{{ forloop.counter }}" href="#collapse{{ forloop.counter }}">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion{{ forloop.counter }}" href="#collapse_annie{{ forloop.counter }}">
                             http://ttshow.tw/inner.php?page_id={{item.inner_id}}
                         </a>
                     </div>
 
                     <div style="display: inline-block;">成長值 {{item.every_day_data.all|running_total}}</div>
                 </div>
-                <div id="collapse{{ forloop.counter }}" class="accordion-body collapse">
+                <div id="collapse_annie{{ forloop.counter }}" class="accordion-body collapse">
                     <div class="accordion-inner">
                         <table class="table">
                             <tr>
@@ -123,14 +123,14 @@
             <div class="accordion-group">
                 <div class="accordion-heading">
                     <div style="display: inline-block;">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion{{ forloop.counter }}" href="#collapse{{ forloop.counter }}">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion{{ forloop.counter }}" href="#collapse_amy{{ forloop.counter }}">
                             http://ttshow.tw/inner.php?page_id={{item.inner_id}}
                         </a>
                     </div>
 
                     <div style="display: inline-block;">成長值 {{item.every_day_data.all|running_total}}</div>
                 </div>
-                <div id="collapse{{ forloop.counter }}" class="accordion-body collapse">
+                <div id="collapse_amy{{ forloop.counter }}" class="accordion-body collapse">
                     <div class="accordion-inner">
                         <table class="table">
                             <tr>
@@ -157,18 +157,18 @@
     <div><span><h3>ZOEY</h3></span></div>
 
     <div class="accordion" id="zoey_inner_id">
-        {% for item in annie_inner_id %}
+        {% for item in zoey_inner_id %}
             <div class="accordion-group">
                 <div class="accordion-heading">
                     <div style="display: inline-block;">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion{{ forloop.counter }}" href="#collapse{{ forloop.counter }}">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion{{ forloop.counter }}" href="#collapse_zoey{{ forloop.counter }}">
                             http://ttshow.tw/inner.php?page_id={{item.inner_id}}
                         </a>
                     </div>
 
                     <div style="display: inline-block;">成長值 {{item.every_day_data.all|running_total}}</div>
                 </div>
-                <div id="collapse{{ forloop.counter }}" class="accordion-body collapse">
+                <div id="collapse_zoey{{ forloop.counter }}" class="accordion-body collapse">
                     <div class="accordion-inner">
                         <table class="table">
                             <tr>
@@ -199,14 +199,14 @@
             <div class="accordion-group">
                 <div class="accordion-heading">
                     <div style="display: inline-block;">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion{{ forloop.counter }}" href="#collapse{{ forloop.counter }}">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion{{ forloop.counter }}" href="#collapse_mandy{{ forloop.counter }}">
                             http://ttshow.tw/inner.php?page_id={{item.inner_id}}
                         </a>
                     </div>
 
                     <div style="display: inline-block;">成長值 {{item.every_day_data.all|running_total}}</div>
                 </div>
-                <div id="collapse{{ forloop.counter }}" class="accordion-body collapse">
+                <div id="collapse_mandy{{ forloop.counter }}" class="accordion-body collapse">
                     <div class="accordion-inner">
                         <table class="table">
                             <tr>

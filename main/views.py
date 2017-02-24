@@ -85,7 +85,7 @@ def index_video(request):
 	return render_to_response("main/index_video.html", locals(), context_instance=RequestContext(request))
 
 def videoDetails(request):
-	is_mobile = check_user_agent(request)
+	is_mobile = True
 	movie_type =  request.GET.get("type", "new")
 	if movie_type:
 		videos = Movie.objects.all().filter(movie_type=movie_type)
