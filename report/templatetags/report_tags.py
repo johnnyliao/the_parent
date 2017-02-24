@@ -1,5 +1,5 @@
 from django import template
-import datetime
+from django.db.models import Sum
 
 register = template.Library()
 
@@ -54,3 +54,12 @@ def get_list_last(list_data, start):
 		return list_datas[len(list_datas) - 1].date
 	else:
 		return ""
+
+@register.filter
+def get_week_total(date, list_data):
+	#import pdb;pdb.set_trace()
+	sum_data = list_data.filter(date=date).aggregate(Sum("group"))
+	if not sum_data["group__sum"]:
+		return 0
+	else:
+		return sum_data["group__sum"]

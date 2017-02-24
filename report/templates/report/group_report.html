@@ -41,54 +41,17 @@
 
 <body>
     <div><span><h3>{{name}}</h3></span></div>
-
-    <div class="accordion" id="accordion2">
-        {% for item in inner_id_list %}
-            <div class="accordion-group">
-                <div class="accordion-heading">
-                    <div style="display: inline-block;">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion{{ forloop.counter }}" href="#collapse_tia{{ forloop.counter }}">
-                            http://ttshow.tw/inner.php?page_id={{item.inner_id}}
-                        </a>
-                    </div>
-
-                    <div style="display: inline-block;">成長值 {{item.every_day_data.all|running_total}} </div>
-                </div>
-                <div id="collapse_tia{{ forloop.counter }}" class="accordion-body collapse">
-                    <div class="accordion-inner">
-                        <table class="table">
-                            <tr>
-                                <td>日期</td>
-                                <td>點擊數</td>
-                                <td>成長數</td>
-                            </tr>
-                        {% for obj in item.every_day_data.all %}
-                            <tr>
-                                <td>{{obj.date}}</td>
-                                <td>{{obj.hit_count}}</td>
-                                <td>{{obj.group}}</td>
-                            </tr>
-                        {% endfor %}
-                        </table>
-                        <table class="table">
-                            <tr>
-                                <td>月成長</td>
-                                <td>日期</td>
-                                <td>週成長</td>
-                                <td>日期</td>
-                            </tr>
-                            <tr>
-                                <td>{{item|month_report:month_start}}</td>
-                                <td>{{item|get_list_first:month_start}} ~ {{item|get_list_last:month_start}}</td>
-                                <td>{{item|week_report:week_start}}</td>
-                                <td>{{item|get_list_first:week_start}} ~ {{item|get_list_last:week_start}}</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
-
+    <table class="table">
+        <tr>
+            <td>日期</td>
+            <td>成長數</td>
+        </tr>
+    {% for item in date_list %}
+        <tr>
+            <td>{{item}}</td>
+            <td>{{item|get_week_total:inner_id_list}}</td>
+        </tr>
+    {% endfor %}
+    </table>
 
 </body>
