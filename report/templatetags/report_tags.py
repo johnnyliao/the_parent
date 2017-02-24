@@ -36,3 +36,21 @@ def month_report(list_data, start):
 		return last_date.hit_count - start_count
 	else:
 		return ""
+
+@register.filter
+def get_list_first(list_data, start):
+	if list_data.every_day_data.all().count():
+		today = datetime.date.today()
+		list_datas = list_data.every_day_data.all().filter(date__gte=start,date__lte=today).order_by("-date")[::-1]
+		return list_datas[0].date
+	else:
+		return ""
+
+@register.filter
+def get_list_last(list_data, start):
+	if list_data.every_day_data.all().count():
+		today = datetime.date.today()
+		list_datas = list_data.every_day_data.all().filter(date__gte=start,date__lte=today).order_by("-date")[::-1]
+		return list_datas[len(list_datas) - 1].date
+	else:
+		return ""

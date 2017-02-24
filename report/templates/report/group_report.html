@@ -52,7 +52,7 @@
                         </a>
                     </div>
 
-                    <div style="display: inline-block;">成長值 {{item.every_day_data.all|running_total}}  從{% if forloop.first %}{{item.date}}{% endif %}到{% if forloop.last %}{{item.date}}{% endif %}</div>
+                    <div style="display: inline-block;">成長值 {{item.every_day_data.all|running_total}} </div>
                 </div>
                 <div id="collapse_tia{{ forloop.counter }}" class="accordion-body collapse">
                     <div class="accordion-inner">
@@ -70,8 +70,20 @@
                             </tr>
                         {% endfor %}
                         </table>
-                        <div style="display: inline-block;">月成長{{item|month_report:month_start}}</div>
-                        <div style="display: inline-block;">週成長{{item|week_report:week_start}}</div>
+                        <table class="table">
+                            <tr>
+                                <td>月成長</td>
+                                <td>日期</td>
+                                <td>週成長</td>
+                                <td>日期</td>
+                            </tr>
+                            <tr>
+                                <td>{{item|month_report:month_start}}</td>
+                                <td>{{item|get_list_first:month_start}} ~ {{item|get_list_last:month_start}}</td>
+                                <td>{{item|week_report:week_start}}</td>
+                                <td>{{item|get_list_first:week_start}} ~ {{item|get_list_last:week_start}}</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
