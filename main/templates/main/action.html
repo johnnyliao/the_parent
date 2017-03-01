@@ -467,22 +467,22 @@
       	$( "#winners" ).click(function() {
       		var html = "<div><table><tr><td><h1>那對夫妻x山本富也禮盒<br>(共2名)</h1></td></tr><tr><td><ul>"
       			{% for obj_1 in yamahoume_lists %}
-      			"<li>{{ forloop.counter }}. <a target=\"_blank\" href=\"{{obj_1.user.socialaccount_set.all.0|get_fb_link}}\">{{obj_1.user.socialaccount_set.all.0|get_name}}</a></li>"
+      				html += "<li>{{ forloop.counter }}. <a target=\"_blank\" href=\"{{obj_1.user.socialaccount_set.all.0|get_fb_link}}\">{{obj_1.user.socialaccount_set.all.0|get_name}}</a></li>"
       			{% endfor %}
 	      	html += "</ul></td></tr></table>";
       		html += "<table><tr><td><h1>那對夫妻x奇檬子香氛洗衣精<br>(共2名)</h1></td></tr><tr><td><ul>"
       			{% for obj_1 in detergent_lists %}
-      		html += "<li>{{ forloop.counter }}. <a target=\"_blank\" href=\"{{obj_1.user.socialaccount_set.all.0|get_fb_link}}\">{{obj_1.user.socialaccount_set.all.0|get_name}}</a></li>"
+      				html += "<li>{{ forloop.counter }}. <a target=\"_blank\" href=\"{{obj_1.user.socialaccount_set.all.0|get_fb_link}}\">{{obj_1.user.socialaccount_set.all.0|get_name}}</a></li>"
       			{% endfor %}
       		html += "</ul></td></tr></table>"
       		html += "<table><tr><td><h1>那對夫妻x限量夫妻紅包袋<br>(共100名)</h1></td></tr><tr><td><ul>"
-      		html +={% for obj_1 in nicokimred_lists %}
-					"<li>{{ forloop.counter }}. <a target=\"_blank\" href=\"{{obj_1.user.socialaccount_set.all.0|get_fb_link}}\">{{obj_1.user.socialaccount_set.all.0|get_name}}</a></li>"
+      			{% for obj_1 in nicokimred_lists %}
+					html +="<li>{{ forloop.counter }}. <a target=\"_blank\" href=\"{{obj_1.user.socialaccount_set.all.0|get_fb_link}}\">{{obj_1.user.socialaccount_set.all.0|get_name}}</a></li>"
 					{% endfor %}
 			html +=	"</ul></td></tr></table>"
 			html += "<table><tr><td><h1>那對夫妻x限量手機防水袋<br>(共50名)</h1></td></tr><tr><td><ul>"
-			html += {% for obj_1 in phone_lists %}
-					"<li>{{ forloop.counter }}. <a target=\"_blank\" href=\"{{obj_1.user.socialaccount_set.all.0|get_fb_link}}\">{{obj_1.user.socialaccount_set.all.0|get_name}}</a></li>"
+					{% for obj_1 in phone_lists %}
+					html += "<li>{{ forloop.counter }}. <a target=\"_blank\" href=\"{{obj_1.user.socialaccount_set.all.0|get_fb_link}}\">{{obj_1.user.socialaccount_set.all.0|get_name}}</a></li>"
 					{% endfor %}
 			html += "</ul></td></tr></table></div>"
 		  $.sweetModal({
