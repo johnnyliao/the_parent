@@ -74,6 +74,10 @@ def login(request):
 	is_mobile = check_user_agent(request)
 	return render_to_response("main/login.html", locals(), context_instance=RequestContext(request))
 
+def winners(request):
+	is_mobile = check_user_agent(request)
+	return render_to_response("main/winners.html", locals(), context_instance=RequestContext(request))
+
 def index_video(request):
 	is_mobile = True
 	movie_type =  request.GET.get("type", "new")
