@@ -298,7 +298,7 @@ footer a{
     margin-bottom: 8px;
 }
 .sweet-modal-box {
-    overflow-y: scroll!important;
+    overflow-y: hidden!important;
 }
 .sweet-modal-overlay{
     z-index: 999999!important;
@@ -309,6 +309,9 @@ footer a{
 .actionMenu ul li{
     display: inline-block;
     line-height: 30px;
+}
+.sweet-modal-content iframe{
+    padding-bottom: 20px;
 }
 .step1 h5,.step2 h5,.step3 h5,.step4 h5{
     border-radius: 4px;
@@ -347,6 +350,9 @@ footer a{
 }
 .sweet-modal-overlay.open .sweet-modal-box{
     height: 100%!important;
+}
+.sweet-modal-box{
+    margin-top: 0px!important;
 }
 td{
     font-size: 12px;
