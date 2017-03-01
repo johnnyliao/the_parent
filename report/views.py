@@ -145,7 +145,7 @@ def get_report(request):
 	end_date = request.GET.get("end", datetime.date.today())
 	start_date = parser.parse(start_date)
 	end_date = parser.parse(end_date)
-	inner_id_list = DayInnerCount.objects.all().filter(register__name=name, date__gte=start_date, date__lte=end_date)
+	inner_id_list = DayInnerCount.objects.all().filter(register__name=name, date__gte=start_date, date__lte=end_date).order_by("date")
 
 	seralizer = DayInnerCountSerializer(inner_id_list, many=True)
 
