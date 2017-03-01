@@ -33,7 +33,7 @@
 			<td>
 				<ul>
 					{% for obj_1 in yamahoume_lists %}
-					<li>{{ forloop.counter }}. {{obj_1.user.socialaccount_set.all.0|get_name}}</li>
+					<li>{{ forloop.counter }}. <a target="_blank" href="{{obj_1.user.socialaccount_set.all.0|get_fb_link}}">{{obj_1.user.socialaccount_set.all.0|get_name}}</a></li>
 					{% endfor %}
 				</ul>
 			</td>
@@ -47,7 +47,7 @@
 			<td>
 				<ul>
 					{% for obj_1 in detergent_lists %}
-					<li>{{ forloop.counter }}. {{obj_1.user.socialaccount_set.all.0|get_name}}</li>
+					<li>{{ forloop.counter }}. <a target="_blank" href="{{obj_1.user.socialaccount_set.all.0|get_fb_link}}">{{obj_1.user.socialaccount_set.all.0|get_name}}</a></li>
 					{% endfor %}
 				</ul>
 			</td>
@@ -61,7 +61,7 @@
 			<td>
 				<ul>
 					{% for obj_1 in nicokimred_lists %}
-					<li>{{ forloop.counter }}. {{obj_1.user.socialaccount_set.all.0|get_name}}</li>
+					<li>{{ forloop.counter }}. <a target="_blank" href="{{obj_1.user.socialaccount_set.all.0|get_fb_link}}">{{obj_1.user.socialaccount_set.all.0|get_name}}</a></li>
 					{% endfor %}
 				</ul>
 			</td>
@@ -75,7 +75,7 @@
 			<td>
 				<ul>
 					{% for obj_1 in phone_lists %}
-					<li>{{ forloop.counter }}. {{obj_1.user.socialaccount_set.all.0|get_name}}</li>
+					<li>{{ forloop.counter }}. <a target="_blank" href="{{obj_1.user.socialaccount_set.all.0|get_fb_link}}">{{obj_1.user.socialaccount_set.all.0|get_name}}</a></li>
 					{% endfor %}
 				</ul>
 			</td>
