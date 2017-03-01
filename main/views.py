@@ -68,6 +68,12 @@ def home(request):
 	else:
 		pic_url = False
 
+	detergent_lists = WinningUser.objects.filter(prize="detergent")
+	yamahoume_lists = WinningUser.objects.filter(prize="yamahoume")
+	nicokimred_lists = WinningUser.objects.filter(prize="nicokimred")
+	phone_lists = WinningUser.objects.filter(prize="phone")
+
+
 	return render_to_response("main/action.html", locals(), context_instance=RequestContext(request))
 
 def login(request):
@@ -120,6 +126,12 @@ def action(request):
 			pic_url = False
 	else:
 		pic_url = False
+
+	detergent_lists = WinningUser.objects.filter(prize="detergent")
+	yamahoume_lists = WinningUser.objects.filter(prize="yamahoume")
+	nicokimred_lists = WinningUser.objects.filter(prize="nicokimred")
+	phone_lists = WinningUser.objects.filter(prize="phone")
+
 
 	return render_to_response("main/action.html", locals(), context_instance=RequestContext(request))
 
