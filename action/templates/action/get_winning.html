@@ -21,11 +21,10 @@
 </head>
 
 <script type="text/javascript">
-
-  {% if no_get %}
-    //alert("您沒有中獎")
-  {% endif %}
   $("document").ready(function(){
+         {% if no_get %}
+          alert("您沒有中獎")
+        {% endif %}
         $("#submit").click(function(){
           if($("#name").val() == "") {
             alert("請填寫姓名");
@@ -62,16 +61,16 @@
   </div>
   <div class=>
     <div class="">姓名</div>
-    <div class=""><input id="name"/></div>
+    <div class=""><input id="name" {% if no_get %}disabled{% endif %}/></div>
   </div>
   <div class=>
     <div class="">電話</div>
-    <div class=""><input id="phone"/></div>
+    <div class=""><input id="phone" {% if no_get %}disabled{% endif %}/></div>
   </div>
   <div class=>
     <div class="">地址</div>
-    <div class=""><input id="address"/></div>
+    <div class=""><input id="address" {% if no_get %}disabled{% endif %}/></div>
   </div>
-  <button id="submit">送出</button>
+  <button id="submit" {% if no_get %}disabled{% endif %}>送出</button>
 </body>
 </html>
