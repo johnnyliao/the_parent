@@ -380,9 +380,11 @@ table{
 }
 table li{
     display: inline-block;
-    min-width: 17%;
+    min-width: 22%;
     max-width: 22%;
     margin-right: 5px;
+    min-height: 40px;
+    vertical-align: top;
 }
 .sweet-modal-overlay.open .sweet-modal-box .sweet-modal-content, .sweet-modal-overlay.open .sweet-modal-box .sweet-modal-buttons{
     height: 100%!important;
