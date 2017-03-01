@@ -28,6 +28,13 @@ SEX_CHOICES = (
     ("women", _(u"女"))
 )
 
+WINNING_CHOICES = (
+    ("detergent", _(u"洗衣精")),
+    ("yamahoume", _(u"山本富也禮盒組")),
+    ("nicokimred", _(u"那對夫妻紅包袋")),
+    ("phone", _(u"防水袋"))
+)
+
 class User(AbstractUser):
 	nickname = models.CharField(_(u"名稱"), max_length=30, null=True, blank=True)
 	phone_number = models.CharField(_(u"電話號碼"), max_length=30, null=True, blank=True)
@@ -187,3 +194,13 @@ class UserMsg(models.Model):
 	msg = models.ForeignKey(Message, related_name='user_msg_msg')
 	is_read = models.BooleanField(_(u"已讀"), default=False)
 	time = models.DateTimeField(_(u"時間"), auto_now=True)
+
+class WinningUser(models.Model):
+	user = models.ForeignKey(User, related_name='user_winnging')
+	prize = models.CharField(_(u"獎品"), choices=WINNING_CHOICES, max_length=10)
+
+class WinningData(models.Model):
+	prize = models.CharField(_(u"獎品"), choices=WINNING_CHOICES, max_length=10)
+	address = models.CharField(_(u"地址"), max_length=150)
+	phone = models.CharField(_(u"phone"), max_length=50)
+	name = models.CharField(_(u"姓名"), max_length=50, unique=True)

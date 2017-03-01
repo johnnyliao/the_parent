@@ -19,3 +19,8 @@ class ReCommentSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = ReComment
+
+class WinningDataSerializer(serializers.Serializer):
+	name = serializers.CharField()
+	phone = serializers.IntegerField()
+	address = serializers.CharField()

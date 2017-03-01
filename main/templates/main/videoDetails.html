@@ -54,19 +54,7 @@
 
 <body>
 <div class="" none="ture">
-	<header class="header animated" _height="none">
-		<article class="topnav">
-			<div class="cd-dropdown-wrapper">
-				<a class="cd-dropdown-trigger top" href="#0">
-					<span></span>
-				</a>
-			</div>
-			<div class="logo">
-				<a href="/index.html">
-					<img class="top_logo" src="{% static "img/thecouple_webpage_logo.png"%}">
-				</a>
-			</div>
-		</article>
+	<header class="header animated">
 		<div class="tabs fixed show-tab dark abgne_tab animated" fixed-tabs="#tv-tabs" ng-class="{'show-tab' : showTabs}" id="headerMenu">
 	  		<a href="＃" target="_self" class="tab active">搞笑互整</a>
 	  		<a href="＃" target="_self" class="tab">精選內容</a>
@@ -559,18 +547,14 @@
 	    lastScrollY = 0;
 		window.addEventListener('scroll', function(){
 		  var st = this.scrollY;
-		  // 判斷是向上捲動，而且捲軸超過 200px
-		  console.log(st)
-		  console.log("\h\h")
-		  console.log(lastScrollY)
-		  console.log("\g\g")
-		  if(lastScrollY > st || st<5) {
+
+		  if(lastScrollY > st || st < 5) {
 		    $("#headerMenu",".header").addClass("slideInDown").removeClass("slideOutUp");
 		    $(".header").addClass("slideInDown").removeClass("slideOutUp");
 		    $(".videoBoxfixed").removeClass("videoTop");
 		    //$("#headerMenu").addClass("slideInDown");
 
-		  }else{
+		  } else{
 		    //$("#headerMenu").addClass("slideInDown");
 		    $(".videoBoxfixed").addClass("videoTop");
 		    $("#headerMenu",".header").addClass("slideOutUp").removeClass("slideInDown");

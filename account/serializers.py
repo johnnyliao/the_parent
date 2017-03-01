@@ -28,6 +28,10 @@ class UserViewLoSerializer(serializers.ModelSerializer):
 		instance.save()
 		return instance
 
+class UserWinningSerializer(serializers.Serializer):
+	winning_type = serializers.CharField()
+	count = serializers.IntegerField()
+
 class UserRegisterSerializer(serializers.Serializer):
 	username = serializers.CharField()
 	nickname = serializers.CharField()

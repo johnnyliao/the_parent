@@ -8,6 +8,8 @@ from account.views import *
 urlpatterns = format_suffix_patterns(patterns('',
 	url('^facebook_connect/', FacebookConnectView.as_view()),
 	url('^user_login/', UserLoginView.as_view()),
+	url('^get_winning/', UserWinningView.as_view()),
+	url('^check/', CheckItemInListView.as_view()),
 	url('^/social/signup/', social_login),
 	url('^user_logout/', UserLogoutView),
 	url('^user_register/', UserRegisterView.as_view()),

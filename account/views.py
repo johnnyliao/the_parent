@@ -6,8 +6,8 @@ from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly, IsAu
 from rest_framework import serializers
 from rest_framework.renderers import JSONRenderer
 from django.contrib.auth.decorators import login_required
-from account.models import User, UserVerify
-from account.serializers import FacebookConnectSerializer, UserInfoSerializer, UserLoginSerializer, UserRegisterSerializer, UserChangePasswordSerializer, UserModifySerializer, UserForgetPasswordSerializer, UserViewLoSerializer
+from account.models import User, UserVerify, WinningUser
+from account.serializers import FacebookConnectSerializer, UserInfoSerializer, UserLoginSerializer, UserRegisterSerializer, UserChangePasswordSerializer, UserModifySerializer, UserForgetPasswordSerializer, UserViewLoSerializer, UserWinningSerializer
 from django.http import HttpResponse
 import urllib, urllib2, json, simplejson
 
@@ -31,7 +31,7 @@ from allauth.socialaccount.models import (SocialLogin, SocialToken, SocialAccoun
 from allauth.socialaccount.helpers import complete_social_login, render_authentication_error
 
 from django.contrib.auth import get_user_model
-
+from action.models import Comment
 from django.contrib.auth import authenticate, login, logout
 import settings, random
 from django.contrib import auth
@@ -83,6 +83,51 @@ class UserLoginView(generics.GenericAPIView):
             return Response({"status":True}, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class UserWinningView(generics.GenericAPIView):
+    serializer_class = UserWinningSerializer
+    permission_classes = (AllowAny, )
+
+    def post(self, request, format=None):
+        """
+        抽獎
+        """
+        serializer = self.serializer_class(data=request.DATA)
+        if serializer.is_valid():
+            winning_type = serializer.data.get('winning_type')
+            count = serializer.data.get('count')
+            base = 0
+            while base < int(count):
+                #import pdb;pdb.set_trace()
+                user = Comment.objects.all().order_by("?").first().user
+                print user
+                winning = WinningUser(user=user, prize=winning_type)
+                winning.save()
+                base += 1
+
+            return Response({"status":True}, status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class CheckItemInListView(generics.GenericAPIView):
+    serializer_class = UserWinningSerializer
+    permission_classes = (AllowAny, )
+
+    def get(self, request, format=None):
+        """
+        """
+        all_item = WinningUser.objects.all()
+        id_list = []
+        for item in all_item:
+            if item.user.id in all_item:
+                print "in list "
+                import pdb;pdb.set_trace()
+            else:
+                id_list.append(item.user.id)
+
+        return Response({"status":True}, status=status.HTTP_200_OK)
+
+
 
 class UserRegisterView(generics.GenericAPIView):
     serializer_class = UserRegisterSerializer
