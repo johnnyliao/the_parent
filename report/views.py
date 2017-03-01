@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly, IsAuthenticated
 import requests
-from report.serializers import addRegisterSerializer
+from report.serializers import addRegisterSerializer, DayInnerCountSerializer
 from rest_framework import generics, status
 import json, requests, urllib, urllib2, re, base64, os, datetime
 import urlparse, time, cookielib, hashlib, time
@@ -17,7 +17,8 @@ from selenium import webdriver
 import platform
 from datetime import timedelta
 import MySQLdb
-
+from dateutil import parser
+import json
 def register(request):
 
 	return render_to_response("report/register.html", locals(), context_instance=RequestContext(request))
@@ -127,6 +128,7 @@ def group_report(request):
 
 	inner_id_list = Register.objects.all().filter(name=name)
 	inner_id_list = DayInnerCount.objects.all().filter(register__name=name)
+	print inner_id_list
 	"""
 	amy_inner_id = Register.objects.all().filter(name="AMY")
 	annie_inner_id  = Register.objects.all().filter(name="ANNIE")
@@ -134,24 +136,20 @@ def group_report(request):
 	mandy_inner_id  = Register.objects.all().filter(name="MANDY")
 	richard_inner_id  = Register.objects.all().filter(name="RICHARD")
 	"""
-	date_list = []
-	week_start = datetime.date.today() - timedelta(days=datetime.datetime.today().weekday())
-	today = datetime.date.today()
-	date_list.append(week_start)
-	stop = False
-	days = 1
-	while not stop:
-		date = week_start + timedelta(days=days)
-		if date > today:
-			stop = True
-		else:
-			date_list.append(date)
-			days += 1
-
-	print date_list
-	month_start = datetime.date.today() - timedelta(days=datetime.date.today().day - 1)
 
 	return render_to_response("report/group_report.html", locals(), context_instance=RequestContext(request))
+
+def get_report(request):
+	name = request.GET.get("name", "TIA")
+	start_date = request.GET.get("start", datetime.date.today())
+	end_date = request.GET.get("end", datetime.date.today())
+	start_date = parser.parse(start_date)
+	end_date = parser.parse(end_date)
+	inner_id_list = DayInnerCount.objects.all().filter(register__name=name, date__gte=start_date, date__lte=end_date)
+
+	seralizer = DayInnerCountSerializer(inner_id_list, many=True)
+
+	return HttpResponse(json.dumps(seralizer.data))
 
 def return_each_data(inner_id_list, name):
 	result = {}

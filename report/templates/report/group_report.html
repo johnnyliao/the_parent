@@ -19,6 +19,8 @@
 <!--匯入css -->
     <link rel="shortcut icon" href="images/favicon.ico"/>
 <!--header隱藏css js-->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.3/headroom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.3/jQuery.headroom.js"></script>
     <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
@@ -31,9 +33,32 @@
     <script type="text/javascript">
         $("document").ready(function(){
 
+        });
 
-         });
-
+        function search() {
+            console.log("click")
+            start = $("#start").val()
+            end = $("#end").val()
+            name = $("#name").val()
+            $.get("/report/get_report?start="+start+"&end="+end+"&name="+name,
+            function(data){
+                var total = 0;
+                $("#report_table").empty();
+                html = "<tr><td>日期</td><td>成長數</td></tr>";
+                $("#report_table").append(html);
+                json_data = JSON.parse(data);
+                for(item in json_data) {
+                    var group = json_data[item].group;
+                    if(group < 0) {
+                        group = 0
+                    }
+                    total += group;
+                    html = "<tr><td>"+json_data[item].date+"</td><td>"+group+"</td></tr>"
+                    $("#report_table").append(html)
+                }
+                $("#total").text(total)
+            });
+        }
 
     </script>
 <!--header隱藏css js End-->
@@ -41,17 +66,25 @@
 
 <body>
     <div><span><h3>{{name}}</h3></span></div>
-    <table class="table">
+    <div>起始日期<input type="date" id="start" /></div>
+    <div>結束日期<input type="date" id="end" /></div>
+    <div>人名<select id="name">
+                <option value="TIA">TIA</option>
+                <option value="AMY">AMY</option>
+                <option value="ANNIE">ANNIE</option>
+                <option value="ZOEY">ZOEY</option>
+                <option value="MANDY">MANDY</option>
+                <option value="RICHARD">RICHARD</option>
+            </select>
+    </div>
+    <div><button class="btn btn-primary" onclick="search()">查詢</button></div>
+
+    <table class="table" id="report_table">
         <tr>
             <td>日期</td>
             <td>成長數</td>
         </tr>
-    {% for item in date_list %}
-        <tr>
-            <td>{{item}}</td>
-            <td>{{item|get_week_total:inner_id_list}}</td>
-        </tr>
-    {% endfor %}
-    </table>
 
+    </table>
+    <div>加總<span id="total"></span></div>
 </body>

@@ -8,4 +8,5 @@ urlpatterns = patterns(".views",
 	url('^day_record/', day_record),
 	url('^day_group_up/', day_group_up),
 	url('^report/', group_report),
+	url('^get_report/', get_report),
 )
