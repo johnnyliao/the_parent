@@ -94,20 +94,20 @@
   </div>-->
     <h1 style="text-align: center;font-size: 20px;margin-top:0px">獎品寄送相關資料填寫</h1>
     <div class="winnerForm">
-      <span style="font-size: 14px;color: #c6c6c6;margin-bottom: 15px;display: block;">※已下欄位皆為必填，請確實詳細填寫中獎人相關真實資料，以利獎項寄送</span>
+      <span style="font-size: 14px;color: #c6c6c6;margin-bottom: 15px;display: block;">※請先登入後確認中獎資格<br/>已下欄位皆為必填，請確實詳細填寫中獎人相關真實資料，以利獎項寄送</span>
       <div class="">
         <div class="inline">姓名</div>
-        <div class="inline"><input id="name" {% if no_get %}disabled{% endif %}/></div>
+        <div class="inline"><input id="name" {% if no_get or not request.user.is_authenticated %}disabled{% endif %}/></div>
       </div>
       <div class=>
         <div class="inline">電話</div>
-        <div class="inline"><input id="phone" {% if no_get %}disabled{% endif %}/></div>
+        <div class="inline"><input id="phone" {% if no_get or not request.user.is_authenticated %}disabled{% endif %}/></div>
       </div>
       <div class="inline">
         <div class="inline">地址</div>
-        <div class="inline"><input id="address" {% if no_get %}disabled{% endif %}/></div>
+        <div class="inline"><input id="address" {% if no_get or not request.user.is_authenticated %}disabled{% endif %}/></div>
       </div>
-      <button class="inline" id="submit" {% if no_get %}disabled{% endif %}>送出</button>
+      <button class="inline" id="submit" {% if no_get or not request.user.is_authenticated %}disabled{% endif %}>送出</button>
     </div>
   </div>
 </div>
