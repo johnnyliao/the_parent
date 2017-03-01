@@ -90,26 +90,26 @@ class WinningDataView(generics.GenericAPIView):
         serializer = self.serializer_class(data=request.DATA)
         #import pdb;pdb.set_trace()
         if serializer.is_valid():
-            """
+
             try:
                 obj = WinningUser.objects.get(user=request.user)
-                WinningData()
+                name = serializer.data.get('name')
+                phone = serializer.data.get('phone')
+                address = serializer.data.get('address')
+                print phone
+                try:
+                    data = WinningData.objects.get(name=name)
+                    data.phone = phone
+                    data.address = address
+                    data.prize = obj.prize
+                    data.save()
+                except:
+                    data = WinningData(name=name, phone=phone, address=address, prize=obj.prize)
+                    data.save()
             except:
                 return Response(u"您沒有中獎", status=status.HTTP_200_OK)
-            """
 
-            name = serializer.data.get('name')
-            phone = serializer.data.get('phone')
-            address = serializer.data.get('address')
-            print phone
-            try:
-                data = WinningData.objects.get(name=name)
-                data.phone = phone
-                data.address = address
-                data.save()
-            except:
-                data = WinningData(name=name, phone=phone, address=address)
-                data.save()
+
 
             return Response(u"以完成登記", status=status.HTTP_200_OK)
         else:
