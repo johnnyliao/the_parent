@@ -78,9 +78,9 @@ def winners(request):
 	is_mobile = check_user_agent(request)
 
 	detergent_lists = WinningUser.objects.filter(prize="detergent")
-	#yamahoume_lists = WinningUser.objects.filter(prize="yamahoume")
-	#nicokimred_lists = WinningUser.objects.filter(prize="nicokimred")
-	#phone_lists = WinningUser.objects.filter(prize="phone")
+	yamahoume_lists = WinningUser.objects.filter(prize="yamahoume")
+	nicokimred_lists = WinningUser.objects.filter(prize="nicokimred")
+	phone_lists = WinningUser.objects.filter(prize="phone")
 
 	return render_to_response("main/winners.html", locals(), context_instance=RequestContext(request))
 
