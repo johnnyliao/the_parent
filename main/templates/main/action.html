@@ -467,25 +467,25 @@
       	$( "#winners" ).click(function() {
       		var html = "<div><table><tr><td><h1>那對夫妻x山本富也禮盒<br>(共2名)</h1></td></tr><tr><td><ul>"
       			{% for obj_1 in yamahoume_lists %}
-      				html += "<li>{{ forloop.counter }}. <a target=\"_blank\" href=\"{{obj_1.user.socialaccount_set.all.0|get_fb_link}}\">{{obj_1.user.socialaccount_set.all.0|get_name}}</a></li>"
+      				html += "<li>{{ forloop.counter }}. {{obj_1.user.socialaccount_set.all.0|get_name}}</li>"
       			{% endfor %}
 	      	html += "</ul></td></tr></table>";
       		html += "<table><tr><td><h1>那對夫妻x奇檬子香氛洗衣精<br>(共2名)</h1></td></tr><tr><td><ul>"
       			{% for obj_1 in detergent_lists %}
-      				html += "<li>{{ forloop.counter }}. <a target=\"_blank\" href=\"{{obj_1.user.socialaccount_set.all.0|get_fb_link}}\">{{obj_1.user.socialaccount_set.all.0|get_name}}</a></li>"
+      				html += "<li>{{ forloop.counter }}. {{obj_1.user.socialaccount_set.all.0|get_name}}</li>"
       			{% endfor %}
       		html += "</ul></td></tr></table>"
       		html += "<table><tr><td><h1>那對夫妻x限量夫妻紅包袋<br>(共100名)</h1></td></tr><tr><td><ul>"
       			{% for obj_1 in nicokimred_lists %}
-					html +="<li>{{ forloop.counter }}. <a target=\"_blank\" href=\"{{obj_1.user.socialaccount_set.all.0|get_fb_link}}\">{{obj_1.user.socialaccount_set.all.0|get_name}}</a></li>"
+					html +="<li>{{ forloop.counter }}. {{obj_1.user.socialaccount_set.all.0|get_name}}</li>"
 					{% endfor %}
 			html +=	"</ul></td></tr></table>"
 			html += "<table><tr><td><h1>那對夫妻x限量手機防水袋<br>(共50名)</h1></td></tr><tr><td><ul>"
 					{% for obj_1 in phone_lists %}
-					html += "<li>{{ forloop.counter }}. <a target=\"_blank\" href=\"{{obj_1.user.socialaccount_set.all.0|get_fb_link}}\">{{obj_1.user.socialaccount_set.all.0|get_name}}</a></li>"
+					html += "<li>{{ forloop.counter }}. {{obj_1.user.socialaccount_set.all.0|get_name}}</li>"
 					{% endfor %}
 			html += "</ul></td></tr></table></div>"
-			html += "<div style=\"text-align: center;\">得獎者請在2017/3/10日前，進入下面連結後登入並留下基本資料，才允受理。</div><div style=\"text-align: center;\"><a href=\"/action/get_winning\">得獎者基本資料登錄</a></div></diV>"
+			html += "<div style=\"text-align: center;\">得獎者請在2017/3/9日前，收信email並點擊連結填寫基本資料送出後，才允受理。</div></diV>"
 
 		  $.sweetModal({
 			title: '得獎名單',
