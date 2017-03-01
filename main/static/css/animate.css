@@ -3120,8 +3120,8 @@
 .slideInDown {
   -webkit-animation-name: slideInDown;
   animation-name: slideInDown;
-   -webkit-animation-duration: 0s;
-  animation-duration: 0s;
+   -webkit-animation-duration: 0.25s;
+  animation-duration: 0.25s;
 }
 
 

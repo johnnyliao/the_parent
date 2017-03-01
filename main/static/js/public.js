@@ -80,4 +80,61 @@ $(function(){
 		$(this).parents(".messageBox1").children(".reply1").css("display","block");
 	});
 	/*留言區回覆 End*/
+
+	/*影片內頁分享 start*/
+	$("#messenger").click(function () {
+		$("#fbMessenger").fadeIn(500);
+	});
+	$("#fbMessenger").click(function () {
+		if ($("#fbMessenger").not("iframe")) {
+			$('#fbMessenger').fadeOut(500);
+		}
+	});
+	 $(document).ready(function(){
+	 	$(window).scroll(function(){
+		    console.log( )
+	      });
+	   });
+	/*影片內頁分享 End*/
+
+	/*影片內頁往上下滑動 顯示隱藏 header footer start*/
+	 var previousScroll = 0;
+	 var thescrollVal = 0;
+     $(document).ready(function(){
+	   $(window).scroll(function(){
+	     //var scrollPosCur = this.scrollY;]
+	     var currentScroll = this.scrollY;
+	     var window_height = $( window ).height();
+	     var window_scrollTop = $(window).scrollTop();
+	     var document_height = $( document ).height();
+	     if(currentScroll <= 0){
+
+	     }
+	     else{
+	     	if (currentScroll > previousScroll){
+			//down
+			$(".header").addClass("slideOutUp").removeClass("slideInDown");
+			$("#headerMenu").addClass("slideOutUp").removeClass("slideInDown").parent().addClass("videoTop");
+			//console.log("down");
+	       } else {
+	       	//up
+	       	$(".header").removeClass("slideOutUp").addClass("slideInDown");
+	       	$("#headerMenu").removeClass("slideOutUp").addClass("slideInDown").parent().removeClass("videoTop");
+	       	//console.log("up");
+	       }
+	       if(window_height + window_scrollTop == document_height){
+	       	//到底部
+	       }
+	     }
+
+
+	     //scrollPos = scrollPosCur;
+	     previousScroll = currentScroll;
+	   });
+
+	 });
+	/*影片內頁往上下滑動 顯示隱藏 header footer End*/
+	// Hide Header on on scroll down
+
+
 });
