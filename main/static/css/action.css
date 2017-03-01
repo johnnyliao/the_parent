@@ -345,6 +345,9 @@ footer a{
 .amazingslider-arrow-left-1,.amazingslider-arrow-right-1{
     display: none!important;
 }
+.sweet-modal-overlay.open .sweet-modal-box{
+    height: 100%!important;
+}
 td{
     font-size: 12px;
 }
