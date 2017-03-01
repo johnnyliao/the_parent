@@ -1,4 +1,6 @@
-{% load staticfiles %}
+{% load staticfiles  %}
+{% load main_tags %}
+
 <!doctype html>
 <html>
 <head>
@@ -30,8 +32,9 @@
 		<tr>
 			<td>
 				<ul>
-					<li>1.林O婷</li>
-					<li>2.陳OO米</li>
+					{% for obj_1 in yamahoume_lists %}
+					<li>{{ forloop.counter }}. {{obj_1.user.socialaccount_set.all.0|get_name}}</li>
+					{% endfor %}
 				</ul>
 			</td>
 		</tr>
@@ -43,8 +46,9 @@
 		<tr>
 			<td>
 				<ul>
-					<li>1.Hoi Kit Li</li>
-					<li>2.陳OO米</li>
+					{% for obj_1 in detergent_lists %}
+					<li>{{ forloop.counter }}. {{obj_1.user.socialaccount_set.all.0|get_name}}</li>
+					{% endfor %}
 				</ul>
 			</td>
 		</tr>
@@ -55,149 +59,11 @@
 		</tr>
 		<tr>
 			<td>
-				<table>
-					<tr>
-						<td>Hoi Kit Li</td>
-						<td>Jamie</td>
-						<td>Hoi Kit Li</td>
-						<td>Jamie Lin</td>
-						<td>Hoi Kit Li</td>
-					</tr>
-					<tr>
-						<td>Hoi Kit Li</td>
-						<td>Jamie</td>
-						<td>Fentin Huang</td>
-						<td>Hsu Mandy</td>
-						<td>Yu Pei</td>
-					</tr>
-					<tr>
-						<td>Fentin Huang</td>
-						<td>Hoi Kit Li</td>
-						<td>Jamie</td>
-						<td>Yu Pei</td>
-						<td>Hsu Mandy</td>
-					</tr>
-					<tr>
-						<td>Hoi Kit Li</td>
-						<td>Fentin Huang</td>
-						<td>Jamie</td>
-						<td>Hsu Mandy</td>
-						<td>Yu Pei</td>
-					</tr>
-					<tr>
-						<td>Hoi Kit Li</td>
-						<td>Jamie</td>
-						<td>Hoi Kit Li</td>
-						<td>Jamie Lin</td>
-						<td>Hoi Kit Li</td>
-					</tr>
-					<tr>
-						<td>Hoi Kit Li</td>
-						<td>Jamie</td>
-						<td>Hoi Kit Li</td>
-						<td>Jamie Lin</td>
-						<td>Hoi Kit Li</td>
-					</tr>
-					<tr>
-						<td>Hoi Kit Li</td>
-						<td>Jamie</td>
-						<td>Fentin Huang</td>
-						<td>Hsu Mandy</td>
-						<td>Yu Pei</td>
-					</tr>
-					<tr>
-						<td>Fentin Huang</td>
-						<td>Hoi Kit Li</td>
-						<td>Jamie</td>
-						<td>Yu Pei</td>
-						<td>Hsu Mandy</td>
-					</tr>
-					<tr>
-						<td>Hoi Kit Li</td>
-						<td>Fentin Huang</td>
-						<td>Jamie</td>
-						<td>Hsu Mandy</td>
-						<td>Yu Pei</td>
-					</tr>
-					<tr>
-						<td>Hoi Kit Li</td>
-						<td>Jamie</td>
-						<td>Hoi Kit Li</td>
-						<td>Jamie Lin</td>
-						<td>Hoi Kit Li</td>
-					</tr>
-					<tr>
-						<td>Hoi Kit Li</td>
-						<td>Jamie</td>
-						<td>Hoi Kit Li</td>
-						<td>Jamie Lin</td>
-						<td>Hoi Kit Li</td>
-					</tr>
-					<tr>
-						<td>Hoi Kit Li</td>
-						<td>Jamie</td>
-						<td>Fentin Huang</td>
-						<td>Hsu Mandy</td>
-						<td>Yu Pei</td>
-					</tr>
-					<tr>
-						<td>Fentin Huang</td>
-						<td>Hoi Kit Li</td>
-						<td>Jamie</td>
-						<td>Yu Pei</td>
-						<td>Hsu Mandy</td>
-					</tr>
-					<tr>
-						<td>Hoi Kit Li</td>
-						<td>Fentin Huang</td>
-						<td>Jamie</td>
-						<td>Hsu Mandy</td>
-						<td>Yu Pei</td>
-					</tr>
-					<tr>
-						<td>Hoi Kit Li</td>
-						<td>Jamie</td>
-						<td>Hoi Kit Li</td>
-						<td>Jamie Lin</td>
-						<td>Hoi Kit Li</td>
-					</tr>
-					<tr>
-						<td>Hoi Kit Li</td>
-						<td>Jamie</td>
-						<td>Hoi Kit Li</td>
-						<td>Jamie Lin</td>
-						<td>Hoi Kit Li</td>
-					</tr>
-					<tr>
-						<td>Hoi Kit Li</td>
-						<td>Jamie</td>
-						<td>Fentin Huang</td>
-						<td>Hsu Mandy</td>
-						<td>Yu Pei</td>
-					</tr>
-					<tr>
-						<td>Fentin Huang</td>
-						<td>Hoi Kit Li</td>
-						<td>Jamie</td>
-						<td>Yu Pei</td>
-						<td>Hsu Mandy</td>
-					</tr>
-					<tr>
-						<td>Hoi Kit Li</td>
-						<td>Fentin Huang</td>
-						<td>Jamie</td>
-						<td>Hsu Mandy</td>
-						<td>Yu Pei</td>
-					</tr>
-					<tr>
-						<td>Hoi Kit Li</td>
-						<td>Jamie</td>
-						<td>Hoi Kit Li</td>
-						<td>Jamie Lin</td>
-						<td>Hoi Kit Li</td>
-					</tr>
-				</table>
-
+				<ul>
+					{% for obj_1 in nicokimred_lists %}
+					<li>{{ forloop.counter }}. {{obj_1.user.socialaccount_set.all.0|get_name}}</li>
+					{% endfor %}
+				</ul>
 			</td>
 		</tr>
 	</table>
@@ -207,80 +73,16 @@
 		</tr>
 		<tr>
 			<td>
-				<table>
-					<tr>
-						<td>Hoi Kit Li</td>
-						<td>Jamie</td>
-						<td>Hoi Kit Li</td>
-						<td>Jamie Lin</td>
-						<td>Hoi Kit Li</td>
-					</tr>
-					<tr>
-						<td>Hoi Kit Li</td>
-						<td>Jamie</td>
-						<td>Fentin Huang</td>
-						<td>Hsu Mandy</td>
-						<td>Yu Pei</td>
-					</tr>
-					<tr>
-						<td>Fentin Huang</td>
-						<td>Hoi Kit Li</td>
-						<td>Jamie</td>
-						<td>Yu Pei</td>
-						<td>Hsu Mandy</td>
-					</tr>
-					<tr>
-						<td>Hoi Kit Li</td>
-						<td>Fentin Huang</td>
-						<td>Jamie</td>
-						<td>Hsu Mandy</td>
-						<td>Yu Pei</td>
-					</tr>
-					<tr>
-						<td>Hoi Kit Li</td>
-						<td>Jamie</td>
-						<td>Hoi Kit Li</td>
-						<td>Jamie Lin</td>
-						<td>Hoi Kit Li</td>
-					</tr>
-					<tr>
-						<td>Hoi Kit Li</td>
-						<td>Jamie</td>
-						<td>Hoi Kit Li</td>
-						<td>Jamie Lin</td>
-						<td>Hoi Kit Li</td>
-					</tr>
-					<tr>
-						<td>Hoi Kit Li</td>
-						<td>Jamie</td>
-						<td>Fentin Huang</td>
-						<td>Hsu Mandy</td>
-						<td>Yu Pei</td>
-					</tr>
-					<tr>
-						<td>Fentin Huang</td>
-						<td>Hoi Kit Li</td>
-						<td>Jamie</td>
-						<td>Yu Pei</td>
-						<td>Hsu Mandy</td>
-					</tr>
-					<tr>
-						<td>Hoi Kit Li</td>
-						<td>Fentin Huang</td>
-						<td>Jamie</td>
-						<td>Hsu Mandy</td>
-						<td>Yu Pei</td>
-					</tr>
-					<tr>
-						<td>Hoi Kit Li</td>
-						<td>Jamie</td>
-						<td>Hoi Kit Li</td>
-						<td>Jamie Lin</td>
-						<td>Hoi Kit Li</td>
-					</tr>
-				</table>
+				<ul>
+					{% for obj_1 in phone_lists %}
+					<li>{{ forloop.counter }}. {{obj_1.user.socialaccount_set.all.0|get_name}}</li>
+					{% endfor %}
+				</ul>
 			</td>
 		</tr>
 	</table>
+
+	<div>得獎者請在2017/3/10日前，進入下面連結後登入並留下基本資料，才允受理。</div>
+	<div style="text-align: center;"><a href="/action/get_winning">得獎者基本資料登錄</a></div>
 </diV>
 </body>

@@ -30,7 +30,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 import settings, random
-from account.models import User, UserVerify
+from account.models import User, UserVerify, WinningData, WinningUser
 from cart.models import Brand, ProductInfo
 from rest_framework.views import APIView
 from django.shortcuts import render_to_response, redirect, render, get_object_or_404
@@ -76,6 +76,12 @@ def login(request):
 
 def winners(request):
 	is_mobile = check_user_agent(request)
+
+	detergent_lists = WinningUser.objects.filter(prize="detergent")
+	#yamahoume_lists = WinningUser.objects.filter(prize="yamahoume")
+	#nicokimred_lists = WinningUser.objects.filter(prize="nicokimred")
+	#phone_lists = WinningUser.objects.filter(prize="phone")
+
 	return render_to_response("main/winners.html", locals(), context_instance=RequestContext(request))
 
 def index_video(request):
