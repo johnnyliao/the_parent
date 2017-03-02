@@ -20,9 +20,15 @@ NANE_CHOICES = (
     ("TIA", _(u'TIA')),
     ("AMY", _(u'AMY')),
     ("ANNIE", _(u'ANNIE')),
+    ("Connie", _(u'Connie')),
     ("ZOEY", _(u'ZOEY')),
     ("MANDY", _(u'MANDY')),
     ("RICHARD", _(u'RICHARD')),
+)
+
+WEB_CHOICES = (
+    ("ttshow", _(u'ttshow')),
+    ("funnyking", _(u'funnyking')),
 )
 
 class Register(models.Model):
@@ -30,6 +36,7 @@ class Register(models.Model):
     inner_id = models.CharField(_(u"文章id"), max_length=20, unique=True)
     base_count = models.IntegerField(_(u"基準點擊數"))
     date = models.DateTimeField(_(u"日期"), auto_now=True)
+    web_type = models.CharField(_(u"網站"), max_length=20, choices=WEB_CHOICES, default="ttshow")
 
     class Meta:
         verbose_name = _(u"增加文章")

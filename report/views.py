@@ -19,6 +19,8 @@ from datetime import timedelta
 import MySQLdb
 from dateutil import parser
 import json
+from bs4 import BeautifulSoup
+
 def register(request):
 
 	return render_to_response("report/register.html", locals(), context_instance=RequestContext(request))
@@ -35,38 +37,53 @@ class AddInner(generics.GenericAPIView):
 		if serializer.is_valid():
 			name = serializer.data.get('name')
 			inner_id = serializer.data.get('inner_id')
-			db = MySQLdb.connect(host="188.166.233.109", user="foyoko_remote", passwd="Xc7YMW4tXRcEbUch", db="ttshow")
-			cursor = db.cursor()
-			sql = "SELECT `c_num_click` FROM page WHERE `page_id` = " + inner_id
-			cursor.execute(sql)
-			try:
-				count = cursor.fetchall()[0][0]
-			except:
-				return Response({"result":False, "msg":u"文章ID輸入錯誤"})
+			web_type = serializer.data.get('web_type')
+			if web_type == "ttshow":
+				db = MySQLdb.connect(host="188.166.233.109", user="foyoko_remote", passwd="Xc7YMW4tXRcEbUch", db="ttshow")
+				cursor = db.cursor()
+				sql = "SELECT `c_num_click` FROM page WHERE `page_id` = " + inner_id
+				cursor.execute(sql)
+				try:
+					count = cursor.fetchall()[0][0]
+				except:
+					return Response({"result":False, "msg":u"文章ID輸入錯誤"})
+			else:
+				try:
+					web = requests.get("http://fun.ttshow.tw/?p=" + str(inner_id))
+					soup = BeautifulSoup(web.text, "lxml")
+					count = soup.findAll("p", { "class" : "bawpvc-ajax-counter" })[0].text
+				except:
+					return Response({"result":False, "msg":u"文章ID輸入錯誤"})
 			try:
 				register = Register.objects.get(inner_id=inner_id, name=name)
+				if web_type == "funnyking":
+					register.web_type = "funnyking"
 				register.base_count = count
 				register.save()
 				return Response({"result":True, "msg":u"更新文章ID點擊數成功"})
 			except ObjectDoesNotExist:
 				try:
 					register = Register(name=name, inner_id=inner_id, base_count=count)
+					if web_type == "funnyking":
+						register.web_type = "funnyking"
+
 					register.save()
 					return Response({"result":True, "msg":u"新增文章ID成功"})
 				except IntegrityError:
 					return Response({"result":False, "msg":u"已經有相同的文章ID"})
-
 #每日排程
 def day_record(request):
 	tia_inner = Register.objects.all().filter(name="TIA")
 	amy_inner = Register.objects.all().filter(name="AMY")
 	annie_inner = Register.objects.all().filter(name="ANNIE")
+	connie_inner = Register.objects.all().filter(name="Connie")
 	zoey_inner = Register.objects.all().filter(name="ZOEY")
 	mandy_inner = Register.objects.all().filter(name="MANDY")
 	richard_inner = Register.objects.all().filter(name="RICHARD")
 	get_new_hit_count(tia_inner, "TIA")
 	get_new_hit_count(amy_inner, "AMY")
 	get_new_hit_count(annie_inner, "ANNIE")
+	get_new_hit_count(connie_inner, "Connie")
 	get_new_hit_count(zoey_inner, "ZOEY")
 	get_new_hit_count(mandy_inner, "MANDY")
 	get_new_hit_count(richard_inner, "RICHARD")
@@ -75,29 +92,41 @@ def day_record(request):
 
 def get_new_hit_count(register_list, name):
 	for item in register_list:
-		db = MySQLdb.connect(host="188.166.233.109", user="foyoko_remote", passwd="Xc7YMW4tXRcEbUch", db="ttshow")
-		cursor = db.cursor()
-		sql = "SELECT `c_num_click` FROM page WHERE `page_id` = " + item.inner_id
-		cursor.execute(sql)
-		try:
-			count = cursor.fetchall()[0][0]
-		#import pdb;pdb.set_trace()
-			day_count = DayInnerCount(name=name, hit_count=count, register=item)
-			day_count.save()
-		except:
-			continue
+		if item.web_type == "ttshow":
+			db = MySQLdb.connect(host="188.166.233.109", user="foyoko_remote", passwd="Xc7YMW4tXRcEbUch", db="ttshow")
+			cursor = db.cursor()
+			sql = "SELECT `c_num_click` FROM page WHERE `page_id` = " + item.inner_id
+			cursor.execute(sql)
+			try:
+				count = cursor.fetchall()[0][0]
+			#import pdb;pdb.set_trace()
+				day_count = DayInnerCount(name=name, hit_count=count, register=item)
+				day_count.save()
+			except:
+				continue
+		else:
+			try:
+				web = requests.get("http://fun.ttshow.tw/?p=" + str(inner_id))
+				soup = BeautifulSoup(web.text, "lxml")
+				count = soup.findAll("p", { "class" : "bawpvc-ajax-counter" })[0].text
+				day_count = DayInnerCount(name=name, hit_count=count, register=item)
+				day_count.save()
+			except:
+				continue
 
 #每日排程 計算成長值
 def day_group_up(request):
 	tia_inner_id = Register.objects.all().filter(name="TIA")
 	amy_inner_id = Register.objects.all().filter(name="AMY")
 	annie_inner_id  = Register.objects.all().filter(name="ANNIE")
+	connie_inner_id  = Register.objects.all().filter(name="Connie")
 	zoey_inner_id  = Register.objects.all().filter(name="ZOEY")
 	mandy_inner_id  = Register.objects.all().filter(name="MANDY")
 	richard_inner_id  = Register.objects.all().filter(name="RICHARD")
 	get_group_by_name_inner_id(tia_inner_id, "TIA")
 	get_group_by_name_inner_id(amy_inner_id, "AMY")
 	get_group_by_name_inner_id(annie_inner_id, "ANNIE")
+	get_group_by_name_inner_id(connie_inner_id, "Connie")
 	get_group_by_name_inner_id(zoey_inner_id, "ZOEY")
 	get_group_by_name_inner_id(mandy_inner_id, "MANDY")
 	get_group_by_name_inner_id(richard_inner_id, "RICHARD")

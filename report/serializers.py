@@ -13,6 +13,7 @@ from django.contrib.sites.models import Site
 class addRegisterSerializer(serializers.Serializer):
 	name = serializers.CharField()
 	inner_id = serializers.CharField()
+	web_type = serializers.CharField()
 
 class DayInnerCountSerializer(serializers.ModelSerializer):
 	date = serializers.SerializerMethodField('convert_date')
