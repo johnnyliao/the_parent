@@ -43,29 +43,37 @@ def comment(request):
 
 def send_mail(request):
     all_people = WinningUser.objects.all()
+    #import pdb;pdb.set_trace()
     for people in all_people:
-        mail = people.user.socialaccount_set.all()[0].extra_data["email"]
-        smtp_obj = smtplib.SMTP('smtp.gmail.com', 587)
-        smtp_obj.starttls()
-        smtp_obj.login("candywang@supermedia.cool","ttshow321")
-        print 222222222
-        #import pdb;pdb.set_trace()
-        print 3333333333
-        #import pdb;pdb.set_trace()
-        html_text = "恭喜您中獎，獎品為 "+people.get_prize_display().encode('utf-8')+"<br/><br/>請點以下連結進行個人資訊填寫以利獎品寄送<br/><br/><a href=\"nicokim.cc/action/get_winning\">中獎人資訊</a><br/><br/>注意請於2017/3/9前填寫完成資料，逾期將不受理，請勿回覆本信件，謝謝。"
-        print 4444444
-        msg = MIMEText(html_text,_subtype='html',_charset='utf8')
-        msg['Subject'] = '那對夫妻帳號認證'
-        me = '超人氣娛樂<candywang@supermedia.cool>'
-        msg['From'] = me
-        msg['To'] = mail
-        print 5555555
-        smtp_obj.sendmail(me,mail,msg.as_string())
-        print 6666666
-        print "send verify email "
+        try:
+            mail = people.user.socialaccount_set.all()[0].extra_data["email"]
+        except:
+            mail = people.user.email
+        print mail
+        if mail and mail != "a35565801@yahoo.com.tw" and mail != "hsaoyi750217@yahoo.com.tw":
+            smtp_obj = smtplib.SMTP('smtp.gmail.com', 587)
+            smtp_obj.starttls()
+            smtp_obj.login("candywang@supermedia.cool","ttshow321")
+            print 222222222
+            #import pdb;pdb.set_trace()
+            print 3333333333
+            #import pdb;pdb.set_trace()
+            html_text = "恭喜您中獎，獎品為 "+people.get_prize_display().encode('utf-8')+"<br/><br/>請點以下連結進行個人資訊填寫以利獎品寄送<br/><br/><a href=\"nicokim.cc/action/get_winning\">中獎人資訊</a><br/><br/>注意請於2017/3/9前填寫完成資料，逾期將不受理，請勿回覆本信件，謝謝。"
+            print 4444444
+            msg = MIMEText(html_text,_subtype='html',_charset='utf8')
+            msg['Subject'] = '那對夫妻帳號認證'
+            me = '超人氣娛樂<candywang@supermedia.cool>'
+            msg['From'] = me
+            msg['To'] = mail
+            print 5555555
+            smtp_obj.sendmail(me,mail,msg.as_string())
+            print 6666666
+            print "send verify email "
 
-        smtp_obj.close()
-        return HttpResponse("ok")
+            smtp_obj.close()
+        else:
+            print "no mail"
+    return HttpResponse("ok")
 
 def get_winning(request):
     if request.user.is_authenticated():

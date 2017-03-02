@@ -204,3 +204,4 @@ class WinningData(models.Model):
 	address = models.CharField(_(u"地址"), max_length=150)
 	phone = models.CharField(_(u"phone"), max_length=50)
 	name = models.CharField(_(u"姓名"), max_length=50, unique=True)
+	is_check = models.BooleanField(_(u"已處理"), default=False)
