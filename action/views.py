@@ -5,8 +5,8 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly, IsAuthenticated
 from rest_framework import serializers
 from rest_framework.renderers import JSONRenderer
-
-
+from email.mime.text import MIMEText
+from django.http import HttpResponse
 import urllib, urllib2, json, simplejson
 
 from django.core.exceptions import ObjectDoesNotExist
@@ -27,10 +27,10 @@ from allauth.socialaccount.models import (SocialLogin, SocialToken, SocialAccoun
 from allauth.socialaccount.helpers import complete_social_login, render_authentication_error
 
 from django.contrib.auth import get_user_model
-
+import smtplib
 from django.contrib.auth import authenticate, login, logout
 import settings, random
-
+from account.models import WinningUser
 from rest_framework.views import APIView
 from django.shortcuts import render_to_response, redirect, render, get_object_or_404
 from django.template import RequestContext
@@ -40,6 +40,32 @@ import pytz
 
 def comment(request):
     return render_to_response("action/comment.html", locals(), context_instance=RequestContext(request))
+
+def send_mail(request):
+    all_people = WinningUser.objects.all()
+    for people in all_people:
+        mail = people.user.socialaccount_set.all()[0].extra_data["email"]
+        smtp_obj = smtplib.SMTP('smtp.gmail.com', 587)
+        smtp_obj.starttls()
+        smtp_obj.login("candywang@supermedia.cool","ttshow321")
+        print 222222222
+        #import pdb;pdb.set_trace()
+        print 3333333333
+        #import pdb;pdb.set_trace()
+        html_text = "恭喜您中獎，獎品為 "+people.get_prize_display().encode('utf-8')+"<br/><br/>請點以下連結進行個人資訊填寫以利獎品寄送<br/><br/><a href=\"nicokim.cc/action/get_winning\">中獎人資訊</a><br/><br/>注意請於2017/3/9前填寫完成資料，逾期將不受理，請勿回覆本信件，謝謝。"
+        print 4444444
+        msg = MIMEText(html_text,_subtype='html',_charset='utf8')
+        msg['Subject'] = '那對夫妻帳號認證'
+        me = '超人氣娛樂<candywang@supermedia.cool>'
+        msg['From'] = me
+        msg['To'] = "epyonss@gmail.com"
+        print 5555555
+        smtp_obj.sendmail(me,"epyonss@gmail.com",msg.as_string())
+        print 6666666
+        print "send verify email "
+
+        smtp_obj.close()
+        return HttpResponse("ok")
 
 def get_winning(request):
     if request.user.is_authenticated():

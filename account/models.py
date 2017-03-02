@@ -29,10 +29,10 @@ SEX_CHOICES = (
 )
 
 WINNING_CHOICES = (
-    ("detergent", _(u"洗衣精")),
-    ("yamahoume", _(u"山本富也禮盒組")),
-    ("nicokimred", _(u"那對夫妻紅包袋")),
-    ("phone", _(u"防水袋"))
+    ("detergent", _(u"那對夫妻x奇檬子香氛洗衣精")),
+    ("yamahoume", _(u"那對夫妻x山本富也禮盒")),
+    ("nicokimred", _(u"那對夫妻x限量夫妻紅包袋")),
+    ("phone", _(u"那對夫妻x限量手機防水袋"))
 )
 
 class User(AbstractUser):
