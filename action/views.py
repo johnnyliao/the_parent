@@ -58,9 +58,9 @@ def send_mail(request):
         msg['Subject'] = '那對夫妻帳號認證'
         me = '超人氣娛樂<candywang@supermedia.cool>'
         msg['From'] = me
-        msg['To'] = "epyonss@gmail.com"
+        msg['To'] = mail
         print 5555555
-        smtp_obj.sendmail(me,"epyonss@gmail.com",msg.as_string())
+        smtp_obj.sendmail(me,mail,msg.as_string())
         print 6666666
         print "send verify email "
 
