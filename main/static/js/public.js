@@ -154,7 +154,7 @@ $(function(){
 		event.preventDefault();
 	});
 	/*影片來源切換 End*/
-/*影片內頁往上下滑動 顯示隱藏 header footer start*/
+/*影片內頁往上下滑動 顯示隱藏 header footer start
 	 var previousScroll = 0;
 	 var thescrollVal = 0;
      $(document).ready(function(){
@@ -192,5 +192,5 @@ $(function(){
 	   });
 
 	 });
-	/*影片內頁往上下滑動 顯示隱藏 header footer End*/
+	影片內頁往上下滑動 顯示隱藏 header footer End*/
 });
