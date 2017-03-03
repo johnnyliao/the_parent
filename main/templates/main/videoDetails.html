@@ -28,7 +28,7 @@
 	</style>
 	<script type="text/javascript">
       	$("document").ready(function(){
-     		 $("#headerMenu").headroom();
+     		 $("#header").headroom();
        	});
 
       	function like_video() {
@@ -182,11 +182,15 @@ youtube手機版自動撥放 End-->
 	<!--nav End-->
 
 	<div class="container_default" _height="auto">
-    <div class="videoBox videoBoxfixed">
-    	<div class="animated prevPage" id="headerMenu">
-	  		<i class="fa fa-chevron-left tab" aria-hidden="true" style="line-height:40px;"></i>
+	<div class="animated prevPage" id="headerMenu">
+  		<div class="goBack"><i class="fa fa-chevron-left tab" aria-hidden="true" style="line-height:40px;"></i></div>
+  		<div class="dropDownList">
+			<a class="cd-dropdown-trigger1 top" href="#0">
+				<span></span>
+			</a>
 		</div>
-
+	</div>
+    <div class="videoBox">
 	    <div class="video-container">
 			<iframe src="{{video_obj.link}}" type="text/html" width="100%" height="450" frameborder="0" allowfullscree>
 			</iframe>
@@ -284,14 +288,6 @@ youtube手機版自動撥放 End-->
 			</ul>
 		</div>
 		<div class="messageBox" id="speakBox">
-			<div class="speakBox">
-				<div class="speakBoxImg"><img src="{% static "img/people1.jpg"%}" width="40" /></div>
-				<div class="messInputBox">
-					<p class="notLoggedIn" style="margin-top: 15px;">欲留言請先<a href="#">登入</a></p>
-					<textarea class="signedIn" placeholder="留言"></textarea>
-					<button type="submit" class="messageBtn signedIn">留言</button>
-				</div>
-			</div>
 			<div class="messageBox1">
 				<div class="messageBox1Con">
 					<div class="messageBox1Img"><img src="{% static "img/person-icon.png"%}" width="40" /></div>
@@ -305,14 +301,52 @@ youtube手機版自動撥放 End-->
 						</div>
 					</div>
 				</div>
-				<div class="messageBox1Con reply1">
+				<ul class="reply1">
+					<li class="messageBox1Con">
+						<div class="messageBox1Img"><img src="{% static "img/person-icon.png"%}" width="40" /></div>
+						<div class="messageCon">
+							<div class="messageConTitle"><h2>四川迷</h2><span class="categoryBox">熱門</span></div>
+							<span class="timeBox">6天前</span>
+							<p class="messageTxt">還滿好看的～還滿好看的～還滿好看的～還滿好看的～還滿好看的～</p>
+							<div class="likeBox">
+								<span class="likeBtn"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><span class="likeQua">1,230</span></span>
+							</div>
+						</div>
+					</li>
+					<li class="messageBox1Con">
+						<div class="messageBox1Img"><img src="{% static "img/person-icon.png"%}" width="40" /></div>
+						<div class="messageCon">
+							<div class="messageConTitle"><h2>四川迷</h2><span class="categoryBox">熱門</span></div>
+							<span class="timeBox">6天前</span>
+							<p class="messageTxt">還滿好看的～還滿好看的～還滿好看的～還滿好看的～還滿好看的～</p>
+							<div class="likeBox">
+								<span class="likeBtn"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><span class="likeQua">1,230</span></span>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<div class="messageBox reply1">
+					<div class="speakBox">
+						<div class="speakBoxImg"><img src="{% static "img/people1.jpg"%}" width="40" /></div>
+						<div class="messInputBox">
+							<textarea class="signedIn" placeholder="留言"></textarea>
+							<button type="submit" class="messageBtn signedIn">留言</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="messageBox" id="speakBox">
+			<div class="messageBox1">
+				<div class="messageBox1Con">
 					<div class="messageBox1Img"><img src="{% static "img/person-icon.png"%}" width="40" /></div>
 					<div class="messageCon">
-						<div class="messageConTitle"><h2>四川迷</h2><span class="categoryBox">熱門</span></div>
+						<div class="messageConTitle"><h2>北京迷</h2><span class="categoryBox">熱門</span></div>
 						<span class="timeBox">6天前</span>
 						<p class="messageTxt">還滿好看的～還滿好看的～還滿好看的～還滿好看的～還滿好看的～</p>
 						<div class="likeBox">
 							<span class="likeBtn"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><span class="likeQua">1,230</span></span>
+							<span class="likeBtn"><i class="fa fa-commenting-o reply2" aria-hidden="true"></i><span class="likeQua">0</span></span>
 						</div>
 					</div>
 				</div>
@@ -388,6 +422,16 @@ youtube手機版自動撥放 End-->
 		</div>
 	</div>
 	<!--分享 End-->
+	<div class="videoBottomBar">
+		<div class="message">
+			<div class="messageCon">
+				<input id="" type="text" class="input1" placeholder="請先登入後再留言"><button class="sendMessage">傳送</button>
+			</div>
+		</div>
+		<div class="like"><img src="/static/img/like.png"></div>
+		<div class="like" style="display:none;"><img src="/static/img/like_h.png"></div>
+		<div class="share"><img src="/static/img/share_b.png"></div>
+	</div>
 </div>
 	<script src="{% static "js/jquery.menu-aim.js"%}"></script>
 	<script type="text/javascript">
@@ -461,33 +505,7 @@ youtube手機版自動撥放 End-->
       	});
     });
 	    // Can also be used with $(document).ready()
-	$(window).load(function() {
-	  $('.flexslider1').flexslider({
-	    	animation: "slide",
-	        animationLoop: true,
-	        itemWidth: 150,
-	        itemMargin: 5,
-	        minItems: 1,
-	        maxItems: 3,
-	        slideshowSpeed: 10000,
-			keyboardNav: true,
-	        start: function(slider){
-	          $('body').removeClass('loading');
-	        }
-	  });
-	});
-	$(window).load(function() {
-	  $('.flexslider2').flexslider({
-	    	animation: "slide",
-	        animationLoop: true,
-	        itemWidth: 150,
-	        itemMargin: 0,
-	        minItems: 2,
-	        maxItems:3,
-	        slideDirection:"vertical",
-	        slideshowSpeed: 2000,
-	  });
-	});
+
 	$(window).load(function() {
 	  $('.flexslider3').flexslider({
 	    	animation: "slide",
@@ -502,7 +520,7 @@ youtube手機版自動撥放 End-->
 	});
   	</script>
   	<!--下方輪播 End-->
-  	<!--取得影片高度 start-->
+  	<!--取得影片高度 start
   	<script type="text/javascript">
   	$(function () {
 		$(window).load(function(){
@@ -526,7 +544,7 @@ youtube手機版自動撥放 End-->
 		});
 	});
 	</script>
-	<!--更多影片start-->
+	更多影片start-->
 	<script>
 	$(document).ready(function() {
     var data = {"data": [
