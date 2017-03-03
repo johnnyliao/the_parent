@@ -1218,6 +1218,7 @@ input[name="zipcode"]{
     position: relative;
     padding-bottom: 56.25%;
     padding-top: 30px; height: 0; overflow: hidden;
+    transition: all 0.2s ease-in-out;
 }
 .video-container iframe,
 .video-container object,
@@ -1397,6 +1398,11 @@ input[name="zipcode"]{
     padding:1.5% 2.5%;
     position: relative;
     border-bottom: 1px solid #c7c7c7;
+     transition: all 0.2s ease-in-out;
+}
+.container_default .videoBox .videoDetBox1.active{
+    transition: all 0.025s ease-in-out;
+    transform: translateY(-40px);
 }
 .container_default .videoBox .videoDetBox1 a{
     color: #666;
@@ -1411,6 +1417,9 @@ input[name="zipcode"]{
 .container_default .videoBox .videoDetBox1 .videoDetBox1Img02,.container_default .videoBox .videoDetBox1 .videoDetBox1Img03{
     float: right;
     margin: 0px 10px;
+}
+.container_default .videoBox .videoDetBox1 .videoDetBox1Img05{
+    margin: 0px 5px 0px 20px;
 }
 .container_default .videoBox .videoDetBox1 .active{
     display: none;
@@ -1464,9 +1473,9 @@ input[name="zipcode"]{
 .container_default .shareBox1 li{
     display: inline-block;
 }
-.container_default .videoTop{
-    top:0px;
-    transition: top 0.025s ease-in-out;
+.container_default .video-container.active{
+    transition: all .2s ease-in-out;
+    transform: translateY(-40px);
 }
 .container_default .videoDetBox2{
     margin: 15px 15px;
@@ -1582,6 +1591,9 @@ input[name="zipcode"]{
     border-bottom: 1px solid #e8e8e8;
     padding: 5px 0px;
 }
+.container_default .videolistBox ul li:last-of-type{
+    border-bottom:0px;
+}
 .container_default .videolistBox ul li .videoListImgBox{
     display: inline-block;
 }
@@ -1591,6 +1603,11 @@ input[name="zipcode"]{
     width: 79%;
     margin-bottom: 15px;
     color: #666;
+    margin-left: 5px;
+    margin: 0px 0px 15px 5px;
+}
+.container_default .videolistBox ul li .videoListTxtBox h2{
+    line-height: 24px;
 }
 .container_default .videolistBox ul li .videoListTxtBox .viewQuanBox{
     position: absolute;

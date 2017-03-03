@@ -28,7 +28,7 @@
 	</style>
 	<script type="text/javascript">
       	$("document").ready(function(){
-     		 $("#header").headroom();
+     		 $("#headerMenu").headroom();
        	 });
     </script>
 <!--視頻彈窗js css start-->
@@ -55,6 +55,51 @@
 <!--動畫效果 start-->
 	<link rel="stylesheet" type="text/css" href="{% static "css/animate.css"%}">
 <!--動畫效果 End-->
+
+<!--youtube手機版自動撥放 start
+<script>
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '100%',
+          width: '640',
+          videoId: 'M7lc1UVf-VE',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          //setTimeout(stopVideo, 6000);
+          done = true;
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }
+    </script>
+youtube手機版自動撥放 End-->
 </head>
 
 <body>
@@ -119,12 +164,14 @@
 		</div>
 
 	    <div class="video-container">
-			<iframe src="https://www.youtube.com/embed/N1s6lzxTjIc" type="text/html" width="800" height="450" frameborder="0" allowfullscree>
+			<iframe src="http://www.youtube.com/embed/xHMkBFreJLA?hd=1&autoplay=1&loop=1&playlist=xHMkBFreJLA" type="text/html" width="100%" height="450" frameborder="0" allowfullscree>
 			</iframe>
+			<!--<div id="player"></div>-->
 		</div>
 		<div class="videoDetBox1">
 			<a class="videoDetBox1Img01" href="#speakBox"><i class="fa fa-commenting-o" aria-hidden="true"></i>評論：<span class="talkcount">80</span></a>
-			<a id="video_img" class="fancybox-media float_r" href="https://www.honhe.com">11</a>
+			<a class="videoDetBox1Img05"><img id="youtubeImg" src="{% static "img/youtube_h.png"%}" width="30"></a>
+			<a id="video_img" class="fancybox-media float_r videoDetBox1Img06" href="https://www.honhe.com"><img id="youkuImg" src="{% static "img/youku.png"%}" width="30"></a>
 			<a class="videoDetBox1Img02" id="videoDetLikeBtn" href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
 			<a class="videoDetBox1Img02 active" id="videoDetLikeBtn" href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
 			<a class="videoDetBox1Img03" id="share" href="#"><i class="fa fa-share-square-o" aria-hidden="true"></i></a>
@@ -149,7 +196,48 @@
 		</div>
 		<div class="videolistBox">
 			<div class="videolistTitleBox">
-				<div class="videolistBoxTitle"><h1>列表</h1></div>
+				<div class="videolistBoxTitle"><h1>你可能會喜歡</h1></div>
+				<div class="videolistBoxMore" id="more1">更多 > </div>
+			</div>
+			<ul id="videoContBox">
+				<li>
+					<a href="#">
+						<div class="videoListImgBox"><img src="{% static "img/001.png"%}" width="150" /></div>
+						<div class="videoListTxtBox"><h2>跟另一半玩遊戲，認真你就輸了-那對夫妻</h2>
+							<div class="viewQuanBox">
+								<i class="fa fa-eye" aria-hidden="true"></i>
+								<span>1,230</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<div class="videoListImgBox"><img src="{% static "img/002.png"%}" width="150" /></div>
+						<div class="videoListTxtBox"><h2>爸爸教妮妮學英文</h2>
+							<div class="viewQuanBox">
+								<i class="fa fa-eye" aria-hidden="true"></i>
+								<span>1,230</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<div class="videoListImgBox"><img src="{% static "img/003.png"%}" width="150" /></div>
+						<div class="videoListTxtBox"><h2>吃火鍋一定有香菇，但沒有藍瘦啦～</h2>
+							<div class="viewQuanBox">
+								<i class="fa fa-eye" aria-hidden="true"></i>
+								<span>1,230</span>
+							</div>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="videolistBox">
+			<div class="videolistTitleBox">
+				<div class="videolistBoxTitle"><h1>即時熱門</h1></div>
 				<div class="videolistBoxMore" id="more1">更多 > </div>
 			</div>
 			<ul id="videoContBox">
@@ -190,6 +278,58 @@
 					<a href="#">
 						<div class="videoListImgBox"><img src="{% static "img/004.png"%}" width="150" /></div>
 						<div class="videoListTxtBox"><h2>老公~~你喜歡我哪一點??</h2>
+							<div class="viewQuanBox">
+								<i class="fa fa-eye" aria-hidden="true"></i>
+								<span>1,230</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<div class="videoListImgBox"><img src="{% static "img/001.png"%}" width="150" /></div>
+						<div class="videoListTxtBox"><h2>老公~~你喜歡我哪一點??</h2>
+							<div class="viewQuanBox">
+								<i class="fa fa-eye" aria-hidden="true"></i>
+								<span>1,230</span>
+							</div>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="videolistBox">
+			<div class="videolistTitleBox">
+				<div class="videolistBoxTitle"><h1>合作品牌</h1></div>
+				<div class="videolistBoxMore" id="more1">更多 > </div>
+			</div>
+			<ul id="videoContBox">
+				<li>
+					<a href="#">
+						<div class="videoListImgBox"><img src="{% static "img/001.png"%}" width="150" /></div>
+						<div class="videoListTxtBox"><h2>跟另一半玩遊戲，認真你就輸了-那對夫妻</h2>
+							<div class="viewQuanBox">
+								<i class="fa fa-eye" aria-hidden="true"></i>
+								<span>1,230</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<div class="videoListImgBox"><img src="{% static "img/002.png"%}" width="150" /></div>
+						<div class="videoListTxtBox"><h2>爸爸教妮妮學英文</h2>
+							<div class="viewQuanBox">
+								<i class="fa fa-eye" aria-hidden="true"></i>
+								<span>1,230</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<div class="videoListImgBox"><img src="{% static "img/003.png"%}" width="150" /></div>
+						<div class="videoListTxtBox"><h2>吃火鍋一定有香菇，但沒有藍瘦啦～</h2>
 							<div class="viewQuanBox">
 								<i class="fa fa-eye" aria-hidden="true"></i>
 								<span>1,230</span>
@@ -243,80 +383,8 @@
 				</div>
 			</div>
 		</div>
-		<!--即時熱門 start-->
-		<div class="flexslider1">
-		  <h3>即時熱門</h3>
-		  <ul class="slides">
-		    <li>
-		      	<a href=""><img src="{% static "img/001.png"%}" width="150"></a>
-		    </li>
-		    <li>
-		      	<a href=""><img src="{% static "img/002.png"%}" width="150"></a>
-		    </li>
-		    <li>
-		     	<a href=""><img src="{% static "img/003.png"%}" width="150"></a>
-		    </li>
-		    <li>
-		      	<a href=""><img src="{% static "img/004.png"%}" width="150"></a>
-		    </li>
-		    <li>
-		      	<a href=""><img src="{% static "img/001.png"%}" width="150"></a>
-		    </li>
-		    <li>
-		      	<a href=""><img src="{% static "img/002.png"%}" width="150"></a>
-		    </li>
-		    <!--<li>
-		      	<div class="videoImg"><img src="http://img.youtube.com/vi/d5ew0Hb0UQs/default.jpg" /></div>
-		      	<div class="videoTitle">Nico品筠&Kim京燁 【那對夫妻】妮妮</div>
-		    </li>
-		    <li>
-		      	<div class="videoImg"><img src="http://img.youtube.com/vi/pFiLART1tIE/default.jpg" /></div>
-		      	<div class="videoTitle">妮妮為了爸爸跟Siri吵架</div>
-		    </li>
-		    <li>
-		      	<div class="videoImg"><img src="http://img.youtube.com/vi/4Lqz6zi8A5w/default.jpg" /></div>
-		      	<div class="videoTitle">跟另一半玩遊戲，認真你就輸了-那對夫妻</div>
-		    </li>
-		    <li>
-		      	<div class="videoImg"><img src="http://img.youtube.com/vi/lrCucVkCsqQ/default.jpg" /></div>
-		      	<div class="videoTitle">爸爸教妮妮學英文</div>
-		    </li>-->
-		  </ul>
-		</div>
-		<!--即時熱門 End-->
-		<!--你可能會喜歡 start-->
-		<div id="container" class="cf expertBox">
-		<h3>你可能會喜歡</h3>
-		<div id="main" role="main">
-		    <section class="slider expertCon">
-			  <div class="flexslider carousel expertArea">
-			    <ul class="slides">
-			    	<li>
-		      			<a href=""><img src="{% static "img/001.png"%}" width="150"></a>
-					    </li>
-				    <li>
-				      	<a href=""><img src="{% static "img/002.png"%}" width="150"></a>
-				    </li>
-				    <li>
-				     	<a href=""><img src="{% static "img/003.png"%}" width="150"></a>
-				    </li>
-				    <li>
-				      	<a href=""><img src="{% static "img/004.png"%}" width="150"></a>
-				    </li>
-				    <li>
-				      	<a href=""><img src="{% static "img/001.png"%}" width="150"></a>
-				    </li>
-				    <li>
-				      	<a href=""><img src="{% static "img/002.png"%}" width="150"></a>
-				    </li>
-			    </ul>
-			  </div>
-		    </section>
-		</div>
-	    </div>
-		<!--你可能會喜歡 End-->
 		<!--合作品牌 start-->
-		<!-- Place somewhere in the <body> of your page -->
+		<!-- Place somewhere in the <body> of your page
 		<div class="flexslider2">
 		    <h3>合作品牌</h3>
 		    <ul class="slides">
@@ -334,11 +402,11 @@
 			    </li>
 		    </ul>
 		</div>
-		<!--合作品牌 End-->
+		合作品牌 End-->
 		<!--電商 start-->
-		<!-- Place somewhere in the <body> of your page -->
+		<!-- Place somewhere in the <body> of your page
 		<div class="flexslider3">
-		  <h3>相關商品</h3>
+		  <h3>商城</h3>
 		  <ul class="slides">
 		    <li>
 				<div class="experImg"><img src="{% static "img/001.jpg"%}" /></div>
@@ -354,7 +422,7 @@
 			</li>
 		  </ul>
 		</div>
-		<!--電商 End-->
+		電商 End-->
 	</div>
 	<!--分享 start-->
 	<div class="shareArea animated">
@@ -367,6 +435,7 @@
 					<a href="http://line.naver.jp/R/msg/text/?http://nicokim.cc"><img src="/static/img/line_share.png" width="30" /></a>
 				</li>
 				<li>
+					<a href="whatsapp://send?text=The text to share!" data-action="share/whatsapp/share">Share via Whatsapp</a>
 				</li>
 				<li>
 
@@ -375,19 +444,6 @@
 		</div>
 	</div>
 	<!--分享 End-->
-	<div class="under-nav" style="display: block;">
-	    <ul>
-		     <li><a href="#"><img src="{% static "img/index.png"%}" width="40" /></a><p>首頁</p></li>
-		    <li><a href="#"><img src="{% static "img/cartIcon.png"%}" width="40" /></a><p>夫妻嚴選</p></li>
-		    <li><a href="/main/index_video"><img src="{% static "img/videoActive.png"%}"  width="40" /></a><p class="active">影音專區</p></li>
-		    <li><a href="#"><img src="{% static "img/aboutIcon.png"%}" width="40" /></a><p>關於我們</p></li>
-	    </ul>
-	</div>
-	<footer _height="none">
-		<ul>
-			<li>copyright©那對夫妻nicokim.cc版權所有</li>
-		</ul>
-	</footer>
 </div>
 	<script src="{% static "js/jquery.menu-aim.js"%}"></script>
 	<script type="text/javascript">

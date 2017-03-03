@@ -104,7 +104,7 @@ $(function(){
 	   });
 	/*影片內頁分享 End*/
 
-	/*影片內頁往上下滑動 顯示隱藏 header footer start*/
+	/*影片內頁往上下滑動 顯示隱藏 header footer start
 	 var previousScroll = 0;
 	 var thescrollVal = 0;
      $(document).ready(function(){
@@ -140,8 +140,57 @@ $(function(){
 	   });
 
 	 });
-	/*影片內頁往上下滑動 顯示隱藏 header footer End*/
+	影片內頁往上下滑動 顯示隱藏 header footer End*/
 	// Hide Header on on scroll down
+	/*影片來源切換 start*/
+	 $(".videoDetBox1Img05").click(function () {
+		$("#youtubeImg").attr("src","/static/img/youtube_h.png");
+		$("#youkuImg").attr("src","/static/img/youku.png");
+		event.preventDefault();
+	});
+	$(".videoDetBox1Img06").click(function () {
+		$("#youtubeImg").attr("src","/static/img/youtube.png");
+		$("#youkuImg").attr("src","/static/img/youku_h.png");
+		event.preventDefault();
+	});
+	/*影片來源切換 End*/
+/*影片內頁往上下滑動 顯示隱藏 header footer start*/
+	 var previousScroll = 0;
+	 var thescrollVal = 0;
+     $(document).ready(function(){
+	   $(window).scroll(function(){
+	     //var scrollPosCur = this.scrollY;]
+	     var currentScroll = this.scrollY;
+	     var window_height = $( window ).height();
+	     var window_scrollTop = $(window).scrollTop();
+	     var document_height = $( document ).height();
+	     if(currentScroll <= 0){
+
+	     }
+	     else{
+	     	if (currentScroll > previousScroll){
+			//down
+			$(".video-container").addClass("active");
+			$(".videoDetBox1").addClass("active");
+			//console.log("down");
+	       } else {
+	       	//up
+	       	$(".video-container").removeClass("active");
+			$(".videoDetBox1").removeClass("active");
+	       	//console.log("up");
+	       }
+	       if(document_height==(window_height+window_scrollTop)){
+	       	//到底部
+	       	$(".video-container").show();
+			$(".videoDetBox1").show();
+	       }
+	     }
 
 
+	     //scrollPos = scrollPosCur;
+	     previousScroll = currentScroll;
+	   });
+
+	 });
+	/*影片內頁往上下滑動 顯示隱藏 header footer End*/
 });
