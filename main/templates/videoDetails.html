@@ -29,8 +29,37 @@
 	<script type="text/javascript">
       	$("document").ready(function(){
      		 $("#header").headroom();
-       	 });
+       	});
+
+      	function like_video() {
+      		$.ajax({
+				type: "POST",
+				url: "/movie/like_video/",
+				data: {"video_id":"{{video_obj.id}}"},
+				success: function(data){
+					$("#like_count").text(data)
+				},
+				dataType: "json"
+			});
+      	}
+
+      	function unlike_video() {
+      		$.ajax({
+				type: "POST",
+				url: "/movie/unlike_video/",
+				data: {"video_id":"{{video_obj.id}}"},
+				success: function(data){
+					$("#like_count").text(data)
+				},
+				dataType: "json"
+			});
+      	}
     </script>
+<!--視頻彈窗js css start-->
+	<link rel="stylesheet" type="text/css" href="{% static "css/jquery.fancybox.css"%}" media="screen" /> <!--视频弹窗样式-->
+	<script src="{% static "js/jquery.fancybox.js"%}"></script>
+	<script src="{% static "js/jquery.media.js"%}"></script>
+<!--視頻彈窗js css End-->
 
 <!--header隱藏css js End-->
 <!--header類別滑動效果 start-->
@@ -50,11 +79,56 @@
 <!--動畫效果 start-->
 	<link rel="stylesheet" type="text/css" href="{% static "css/animate.css"%}">
 <!--動畫效果 End-->
+
+<!--youtube手機版自動撥放 start
+<script>
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '100%',
+          width: '640',
+          videoId: 'M7lc1UVf-VE',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          //setTimeout(stopVideo, 6000);
+          done = true;
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }
+    </script>
+youtube手機版自動撥放 End-->
 </head>
 
 <body>
-<div class="" none="ture" >
-	<header class="header nav-down animate" _height="none">
+<div class="" none="ture">
+	<header class="header animated hideHeader" _height="none">
 		<article class="topnav">
 			<div class="cd-dropdown-wrapper">
 				<a class="cd-dropdown-trigger top" href="#0">
@@ -67,13 +141,6 @@
 				</a>
 			</div>
 		</article>
-		<div class="tabs fixed show-tab dark abgne_tab animated" fixed-tabs="#tv-tabs" ng-class="{'show-tab' : showTabs}" id="headerMenu">
-	  		<a href="＃" target="_self" class="tab active">搞笑互整</a>
-	  		<a href="＃" target="_self" class="tab">精選內容</a>
-	  		<a href="＃" target="_self" class="tab">熱門點擊</a>
-	  		<a href="＃" target="_self" class="tab">溫馨家庭</a>
-	  		<a href="＃" target="_self" class="tab">最強小三</a>
-		</div>
 	</header>
 	<!--nav start-->
 	<div class="cd-dropdown-wrapper">
@@ -114,94 +181,113 @@
 	</div> <!-- .cd-dropdown-wrapper -->
 	<!--nav End-->
 
-	<div class="container_default" _height="auto" >
-    <div class="videoBox videoBoxfixed">
+	<div class="container_default" _height="auto">
+	<div class="animated prevPage" id="headerMenu">
+  		<div class="goBack"><i class="fa fa-chevron-left tab" aria-hidden="true" style="line-height:40px;"></i></div>
+  		<div class="dropDownList">
+			<a class="cd-dropdown-trigger1 top" href="#0">
+				<span></span>
+			</a>
+		</div>
+	</div>
+    <div class="videoBox">
 	    <div class="video-container">
-			<iframe src="{{video_obj.link}}" type="text/html" width="800" height="450" frameborder="0">
+			<iframe src="{{video_obj.link}}" type="text/html" width="100%" height="450" frameborder="0" allowfullscree>
 			</iframe>
+			<!--<div id="player"></div>-->
 		</div>
 		<div class="videoDetBox1">
-			<a class="videoDetBox1Img01" href="#speakBox"><i class="fa fa-commenting-o" aria-hidden="true"></i>評論：<span class="talkcount">80</span></a>
-			<a class="videoDetBox1Img02" id="videoDetLikeBtn" href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-			<a class="videoDetBox1Img02 active" id="videoDetLikeBtn" href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
+			<a class="videoDetBox1Img01" href="#speakBox"><i class="fa fa-commenting-o" aria-hidden="true"></i></a>
+			<a class="videoDetBox1Img05">影音來源：<img id="youtubeImg" src="{% static "img/youtube_h.png"%}" width="30"></a>
+			<a id="video_img" class="fancybox-media float_r videoDetBox1Img06" href="https://www.honhe.com"><img id="youkuImg" src="{% static "img/youku.png"%}" width="30"></a>
+			<a class="videoDetBox1Img02" id="videoDetLikeBtn" onclick="return like_video();">
+				<i class="fa fa-heart-o" aria-hidden="true"></i>
+			</a>
+			<a class="videoDetBox1Img02 active" id="videoDetLikeBtn" onclick="return unlike_video();"><i class="fa fa-heart" aria-hidden="true"></i></a>
 			<a class="videoDetBox1Img03" id="share" href="#"><i class="fa fa-share-square-o" aria-hidden="true"></i></a>
 		</div>
 	</div>
-	<div id="test">
+	<div class="box2">
 		<div class="videoDetBox2">
 			<div class="videoDetTitle active"><h1>{{video_obj.title}}</h1></div>
-			<div class="videoDetTitdel active animated slideInDown"><h2>{{video_obj.description}}</h2></div>
-			<div class="accordionBox"><a href="" class="accordionBtn active" id="accordionBtn"><img src="{% static "img/down.png"%}" width="30" /></a></div>
-			<div class="hiddenBox" id="accordionBtn1"><span class="show"><i class="fa fa-angle-down" aria-hidden="true"></i>展開</span></div>
+			<div class="accordionBox"><a href="" class="accordionBtn1" id="accordionBtn1"><i class="fa fa-caret-down" aria-hidden="true"></i></div>
 			<div class="vedioViewBox">
 				<ul>
-					<li>播放：<span>{{video_boj.watch_count}}</span>次</li>
-					<li>類型：<span>{{video_boj.get_movie_type_display}}</span></li>
-					<li><a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><span>{{video_boj.like}}</span></a></li>
+					<li>播放：<span>{{video_obj.watch_count}}</span>次</li>
+					<li>類型：<span>{{video_obj.get_movie_type_display}}</span></li>
+					<li><a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><span id="like_count">{{video_obj.like}}</span></a></li>
 				</ul>
 			</div>
 		</div>
+		<div class="introductionBox">
+			<h2>{{video_obj.description}}</h2>
+		</div>
 		<div class="videolistBox">
 			<div class="videolistTitleBox">
-				<div class="videolistBoxTitle"><h1>列表</h1></div>
+				<div class="videolistBoxTitle"><h1>你可能會喜歡</h1></div>
 				<div class="videolistBoxMore" id="more1">更多 > </div>
 			</div>
 			<ul id="videoContBox">
+				{% for item in maybe_likes %}
 				<li>
-					<a href="#">
-						<div class="videoListImgBox"><img src="{% static "img/001.png"%}" width="150" /></div>
-						<div class="videoListTxtBox"><h2>跟另一半玩遊戲，認真你就輸了-那對夫妻</h2>
+					<a href="/movie/videoDetails/?video_id={{item.id}}">
+						<div class="videoListImgBox"><img src="{{item.photo.url}}" width="150" /></div>
+						<div class="videoListTxtBox"><h2>{{item.title}}</h2>
 							<div class="viewQuanBox">
 								<i class="fa fa-eye" aria-hidden="true"></i>
-								<span>1,230</span>
+								<span>{{item.watch_count}}</span>
 							</div>
 						</div>
 					</a>
 				</li>
-				<li>
-					<a href="#">
-						<div class="videoListImgBox"><img src="{% static "img/002.png"%}" width="150" /></div>
-						<div class="videoListTxtBox"><h2>爸爸教妮妮學英文</h2>
-							<div class="viewQuanBox">
-								<i class="fa fa-eye" aria-hidden="true"></i>
-								<span>1,230</span>
-							</div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<div class="videoListImgBox"><img src="{% static "img/003.png"%}" width="150" /></div>
-						<div class="videoListTxtBox"><h2>吃火鍋一定有香菇，但沒有藍瘦啦～</h2>
-							<div class="viewQuanBox">
-								<i class="fa fa-eye" aria-hidden="true"></i>
-								<span>1,230</span>
-							</div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<div class="videoListImgBox"><img src="{% static "img/004.png"%}" width="150" /></div>
-						<div class="videoListTxtBox"><h2>老公~~你喜歡我哪一點??</h2>
-							<div class="viewQuanBox">
-								<i class="fa fa-eye" aria-hidden="true"></i>
-								<span>1,230</span>
-							</div>
-						</div>
-					</a>
-				</li>
+				{% endfor %}
 			</ul>
 		</div>
-		<div class="messageBox" id="speakBox1">
-			<div class="speakBox">
-				<div class="speakBoxImg"><img src="{% static "img/people1.jpg"%}" width="40" /></div>
-				<div class="messInputBox">
-					<p class="notLoggedIn" style="margin-top: 15px;">欲留言請先<a href="#">登入</a></p>
-					<textarea class="signedIn" placeholder="留言"></textarea>
-					<button type="submit" class="messageBtn signedIn">留言</button>
-				</div>
+		<div class="videolistBox">
+			<div class="videolistTitleBox">
+				<div class="videolistBoxTitle"><h1>即時熱門</h1></div>
+				<div class="videolistBoxMore" id="more1">更多 > </div>
 			</div>
+			<ul id="videoContBox">
+				{% for hot in hot_now %}
+				<li>
+					<a href="/movie/videoDetails/?video_id={{hot.id}}">
+						<div class="videoListImgBox"><img src="{{hot.photo.url}}" width="150" /></div>
+						<div class="videoListTxtBox"><h2>{{hot.title}}</h2>
+							<div class="viewQuanBox">
+								<i class="fa fa-eye" aria-hidden="true"></i>
+								<span>{{hot.watch_count}}</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="videolistBox">
+			<div class="videolistTitleBox">
+				<div class="videolistBoxTitle"><h1>合作品牌</h1></div>
+				<div class="videolistBoxMore" id="more1">更多 > </div>
+			</div>
+			<ul id="videoContBox">
+
+				{% for brand in brands %}
+				<li>
+					<a href="/movie/videoDetails/?video_id={{brand.id}}">
+						<div class="videoListImgBox"><img src="{{brand.photo.url}}" width="150" /></div>
+						<div class="videoListTxtBox"><h2>{{brand.title}}</h2>
+							<div class="viewQuanBox">
+								<i class="fa fa-eye" aria-hidden="true"></i>
+								<span>{{brand.watch_count}}</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				{% endfor %}
+
+			</ul>
+		</div>
+		<div class="messageBox" id="speakBox">
 			<div class="messageBox1">
 				<div class="messageBox1Con">
 					<div class="messageBox1Img"><img src="{% static "img/person-icon.png"%}" width="40" /></div>
@@ -215,14 +301,52 @@
 						</div>
 					</div>
 				</div>
-				<div class="messageBox1Con reply1">
+				<ul class="reply1">
+					<li class="messageBox1Con">
+						<div class="messageBox1Img"><img src="{% static "img/person-icon.png"%}" width="40" /></div>
+						<div class="messageCon">
+							<div class="messageConTitle"><h2>四川迷</h2><span class="categoryBox">熱門</span></div>
+							<span class="timeBox">6天前</span>
+							<p class="messageTxt">還滿好看的～還滿好看的～還滿好看的～還滿好看的～還滿好看的～</p>
+							<div class="likeBox">
+								<span class="likeBtn"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><span class="likeQua">1,230</span></span>
+							</div>
+						</div>
+					</li>
+					<li class="messageBox1Con">
+						<div class="messageBox1Img"><img src="{% static "img/person-icon.png"%}" width="40" /></div>
+						<div class="messageCon">
+							<div class="messageConTitle"><h2>四川迷</h2><span class="categoryBox">熱門</span></div>
+							<span class="timeBox">6天前</span>
+							<p class="messageTxt">還滿好看的～還滿好看的～還滿好看的～還滿好看的～還滿好看的～</p>
+							<div class="likeBox">
+								<span class="likeBtn"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><span class="likeQua">1,230</span></span>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<div class="messageBox reply1">
+					<div class="speakBox">
+						<div class="speakBoxImg"><img src="{% static "img/people1.jpg"%}" width="40" /></div>
+						<div class="messInputBox">
+							<textarea class="signedIn" placeholder="留言"></textarea>
+							<button type="submit" disabled class="messageBtn signedIn">留言</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="messageBox" id="speakBox">
+			<div class="messageBox1">
+				<div class="messageBox1Con">
 					<div class="messageBox1Img"><img src="{% static "img/person-icon.png"%}" width="40" /></div>
 					<div class="messageCon">
-						<div class="messageConTitle"><h2>四川迷</h2><span class="categoryBox">熱門</span></div>
+						<div class="messageConTitle"><h2>北京迷</h2><span class="categoryBox">熱門</span></div>
 						<span class="timeBox">6天前</span>
 						<p class="messageTxt">還滿好看的～還滿好看的～還滿好看的～還滿好看的～還滿好看的～</p>
 						<div class="likeBox">
 							<span class="likeBtn"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><span class="likeQua">1,230</span></span>
+							<span class="likeBtn"><i class="fa fa-commenting-o reply2" aria-hidden="true"></i><span class="likeQua">0</span></span>
 						</div>
 					</div>
 				</div>
@@ -237,80 +361,8 @@
 				</div>
 			</div>
 		</div>
-		<!--即時熱門 start-->
-		<div class="flexslider1">
-		  <h3>即時熱門</h3>
-		  <ul class="slides">
-		    <li>
-		      	<a href=""><img src="{% static "img/001.png"%}" width="150"></a>
-		    </li>
-		    <li>
-		      	<a href=""><img src="{% static "img/002.png"%}" width="150"></a>
-		    </li>
-		    <li>
-		     	<a href=""><img src="{% static "img/003.png"%}" width="150"></a>
-		    </li>
-		    <li>
-		      	<a href=""><img src="{% static "img/004.png"%}" width="150"></a>
-		    </li>
-		    <li>
-		      	<a href=""><img src="{% static "img/001.png"%}" width="150"></a>
-		    </li>
-		    <li>
-		      	<a href=""><img src="{% static "img/002.png"%}" width="150"></a>
-		    </li>
-		    <!--<li>
-		      	<div class="videoImg"><img src="http://img.youtube.com/vi/d5ew0Hb0UQs/default.jpg" /></div>
-		      	<div class="videoTitle">Nico品筠&Kim京燁 【那對夫妻】妮妮</div>
-		    </li>
-		    <li>
-		      	<div class="videoImg"><img src="http://img.youtube.com/vi/pFiLART1tIE/default.jpg" /></div>
-		      	<div class="videoTitle">妮妮為了爸爸跟Siri吵架</div>
-		    </li>
-		    <li>
-		      	<div class="videoImg"><img src="http://img.youtube.com/vi/4Lqz6zi8A5w/default.jpg" /></div>
-		      	<div class="videoTitle">跟另一半玩遊戲，認真你就輸了-那對夫妻</div>
-		    </li>
-		    <li>
-		      	<div class="videoImg"><img src="http://img.youtube.com/vi/lrCucVkCsqQ/default.jpg" /></div>
-		      	<div class="videoTitle">爸爸教妮妮學英文</div>
-		    </li>-->
-		  </ul>
-		</div>
-		<!--即時熱門 End-->
-		<!--你可能會喜歡 start-->
-		<div id="container" class="cf expertBox">
-		<h3>你可能會喜歡</h3>
-		<div id="main" role="main">
-		    <section class="slider expertCon">
-			  <div class="flexslider carousel expertArea">
-			    <ul class="slides">
-			    	<li>
-		      			<a href=""><img src="{% static "img/001.png"%}" width="150"></a>
-					    </li>
-				    <li>
-				      	<a href=""><img src="{% static "img/002.png"%}" width="150"></a>
-				    </li>
-				    <li>
-				     	<a href=""><img src="{% static "img/003.png"%}" width="150"></a>
-				    </li>
-				    <li>
-				      	<a href=""><img src="{% static "img/004.png"%}" width="150"></a>
-				    </li>
-				    <li>
-				      	<a href=""><img src="{% static "img/001.png"%}" width="150"></a>
-				    </li>
-				    <li>
-				      	<a href=""><img src="{% static "img/002.png"%}" width="150"></a>
-				    </li>
-			    </ul>
-			  </div>
-		    </section>
-		</div>
-	    </div>
-		<!--你可能會喜歡 End-->
 		<!--合作品牌 start-->
-		<!-- Place somewhere in the <body> of your page -->
+		<!-- Place somewhere in the <body> of your page
 		<div class="flexslider2">
 		    <h3>合作品牌</h3>
 		    <ul class="slides">
@@ -328,11 +380,11 @@
 			    </li>
 		    </ul>
 		</div>
-		<!--合作品牌 End-->
+		合作品牌 End-->
 		<!--電商 start-->
-		<!-- Place somewhere in the <body> of your page -->
+		<!-- Place somewhere in the <body> of your page
 		<div class="flexslider3">
-		  <h3>相關商品</h3>
+		  <h3>商城</h3>
 		  <ul class="slides">
 		    <li>
 				<div class="experImg"><img src="{% static "img/001.jpg"%}" /></div>
@@ -348,50 +400,38 @@
 			</li>
 		  </ul>
 		</div>
-		<!--電商 End-->
-		<!--分享 start-->
-		<div id="fbMessenger">
-			<iframe style="" src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F1006nk%2F%3Ffref%3Dts&tabs=messages&width=300&height=300&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="300" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-		</div>
+		電商 End-->
+	</div>
+	<!--分享 start-->
+	<div class="shareAreaBox">
 		<div class="shareArea animated">
 			<div class="shareAreaCon">
 				<ul>
+					<div>分享至</div>
 					<li>
-						<a href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent('http://nicokim.cc'))));"><img src="/static/img/fb_share.png" width="30" height="30" /></a>
+						<a style="margin:0px 10px;" href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent('http://nicokim.cc'))));"><img src="/static/img/fb_share.png" width="40" height="40" /></a>
 					</li>
 					<li>
-						<a href="http://line.naver.jp/R/msg/text/?http://nicokim.cc"><img src="/static/img/line_share.png" width="30" /></a>
+						<a href="http://line.naver.jp/R/msg/text/?http://nicokim.cc"><img src="/static/img/line_share.png" width="40" /></a>
 					</li>
 					<li>
-						<div class="buttonss fb-like" id="messenger">
-	                        <div class="buttons" id="messenger">
-	                          <div class="buttonss button-fb">
-	                            <img style="position: relative;" src="/static/img/messenger-logo2.png" alt="那對夫妻" width="30">
-	                          </div>
-	                        </div>
-	                    </div>
-					</li>
-					<li>
-
+						<a href="http://line.naver.jp/R/msg/text/?http://nicokim.cc"><img src="/static/img/line_share.png" width="40" /></a>
 					</li>
 				</ul>
 			</div>
 		</div>
-		<!--分享 End-->
-		<div class="under-nav" style="display: block;">
-		    <ul>
-			     <li><a href="#"><img src="{% static "img/index.png"%}" width="40" /></a><p>首頁</p></li>
-			    <li><a href="#"><img src="{% static "img/cartIcon.png"%}" width="40" /></a><p>夫妻嚴選</p></li>
-			    <li><a href="/main/index_video"><img src="{% static "img/videoActive.png"%}"  width="40" /></a><p class="active">影音專區</p></li>
-			    <li><a href="#"><img src="{% static "img/aboutIcon.png"%}" width="40" /></a><p>關於我們</p></li>
-		    </ul>
-		</div>
 	</div>
-	<footer _height="none">
-		<ul>
-			<li>copyright©那對夫妻nicokim.cc版權所有</li>
-		</ul>
-	</footer>
+	<!--分享 End-->
+	<div class="videoBottomBar">
+		<div class="message">
+			<div class="messageCon">
+				<input id="" type="text" class="input1" placeholder="請先登入後再留言"><button class="sendMessage">傳送</button>
+			</div>
+		</div>
+		<div class="like"><img src="/static/img/like.png"></div>
+		<div class="like" style="display:none;"><img src="/static/img/like_h.png"></div>
+		<div class="share"><img src="/static/img/share_b.png"></div>
+	</div>
 </div>
 	<script src="{% static "js/jquery.menu-aim.js"%}"></script>
 	<script type="text/javascript">
@@ -416,48 +456,44 @@
 	    e.cancelBubble = true;
 	}
 	function f2(e){
-	    $("#fbMessenger").css("display","none");
+	    $(".shareBox1").css("z-index","-1");
 	}
    $("#share").click(function () {
 
    	event.preventDefault();
 	 if ( $(".shareArea").hasClass( "slideInUp" )) {
 	 		$(".shareArea").removeClass('slideInUp').addClass("slideOutDown");
+	 		$(".shareAreaBox").fadeOut(200);
 	    }else{
 	    	$(".shareArea").removeClass('slideOutDown').addClass("slideInUp").show();
+	    	$(".shareAreaBox").fadeIn(200);
 	    }
 	 });
+
     </script>
+    <!--錨點滑動效果 start-->
+    <script type="text/javascript">
+    $('a[href*=#]:not([href=#])').click(function() {
+	       var target = $(this.hash);
+	       $('html,body').animate({
+	           scrollTop: target.offset().top
+	       }, 1000);
+	       return false;
+	   	});
+    </script>
+    <!--錨點滑動效果 End-->
   <!--淡入淡出 End-->
   	<!--標題手風琴 start-->
   	<script>
-  		$("#accordionBtn").click(function(){
-        	event.preventDefault();
-        	 if ( $(".videoDetTitle").find("h1").hasClass( "active" ) ) {
-				 	$(".videoDetTitle").find("h1").removeClass('active');
-				 	$(".accordionBtn").addClass('active');
-			    }else{
-			    	$(".videoDetTitle").find("h1").addClass('active');
-			    	$(".accordionBtn").removeClass('active');
-			    }
-
-		});
 		$("#accordionBtn1").click(function(){
         	event.preventDefault();
-			 if ( $(".videoDetTitdel").find("h2").hasClass( "active" ) ) {
-				 	$(".videoDetTitdel").find("h2").removeClass('active');
-				 	$('.hiddenBox').empty();
-			    	$( ".hiddenBox" ).append("<span class=\"show\"><i class=\"fa fa-angle-down\" aria-hidden=\"true\"></i>展開</span>");
-			    	$( ".videoDetTitdel" ).find("h2").addClass("box-close").removeClass("box-open");
-			    }else{
-			    	$(".videoDetTitdel").find("h2").addClass('active');
-			    	$( ".hidden" ).css("display","block");
-			    	$('.hiddenBox').empty();
-			    	$( ".hiddenBox" ).append("<span class=\"hidden\"><i class=\"fa fa-angle-up\" aria-hidden=\"true\"></i>收起</span>");
-			    	$( ".videoDetTitdel" ).find("h2").addClass("box-open").removeClass("box-close");
-
-
-			    }
+			if($('.introductionBox').css('display') == 'none'){
+			 	$(".introductionBox").show(500);
+			 	$("#accordionBtn1").addClass("active");
+				}else{
+			  	$(".introductionBox").hide(500);
+			  	$("#accordionBtn1").removeClass("active");
+			}
 
 		});
 	</script>
@@ -482,33 +518,7 @@
       	});
     });
 	    // Can also be used with $(document).ready()
-	$(window).load(function() {
-	  $('.flexslider1').flexslider({
-	    	animation: "slide",
-	        animationLoop: true,
-	        itemWidth: 150,
-	        itemMargin: 5,
-	        minItems: 1,
-	        maxItems: 3,
-	        slideshowSpeed: 10000,
-			keyboardNav: true,
-	        start: function(slider){
-	          $('body').removeClass('loading');
-	        }
-	  });
-	});
-	$(window).load(function() {
-	  $('.flexslider2').flexslider({
-	    	animation: "slide",
-	        animationLoop: true,
-	        itemWidth: 150,
-	        itemMargin: 0,
-	        minItems: 2,
-	        maxItems:3,
-	        slideDirection:"vertical",
-	        slideshowSpeed: 2000,
-	  });
-	});
+
 	$(window).load(function() {
 	  $('.flexslider3').flexslider({
 	    	animation: "slide",
@@ -523,33 +533,32 @@
 	});
   	</script>
   	<!--下方輪播 End-->
-  	<!--取得影片高度 start-->
+  	<!--取得影片高度 start
   	<script type="text/javascript">
   	$(function () {
 		$(window).load(function(){
-	    	var scrollVal = $(".videoBox").height()+70;
-	    $(".videoDetBox2").css("margin-top",scrollVal+25);
+	    	var scrollVal = $(".videoBox").height();
+	    $(".box2").css("margin-top",scrollVal+50);
+	    $('a[href*=#]:not([href=#])').click(function() {
+	       var target = $(this.hash);
+	       $('html,body').animate({
+	           scrollTop: target.offset().top-1.1*scrollVal
+	       }, 1000);
+	       return false;
+	   	});
 	    });
 	    $(window).resize(function(){
-	    	var scrollVal = $(".videoBox").height()+70;
-	    $(".videoDetBox2").css("margin-top",scrollVal+25);
+	    	var scrollVal = $(".videoBox").height();
+	    $(".box2").css("margin-top",scrollVal+50);
 	    });
 	    $(window).scroll(function() {
-	    	var scrollVal = $(".videoBox").height()+70;
-	    	$(".videoDetBox2").css("margin-top",scrollVal+25);
+	    	var scrollVal = $(".videoBox").height();
+	    	$(".box2").css("margin-top",scrollVal+50);
 		});
-		$(function(){
-			// 幫 a.abgne_gotoheader 加上 click 事件
-			$('.videoDetBox1Img01').click(function(){
-				var scrollVal = $(".videoBox").height()+70;
-				 $('html,body').animate({scrollTop:$('.messageBox').offset().top}+scrollVal,800);
-				return false;
-			});
-		});
-
 	});
 	</script>
-	<!--更多影片start-->
+	取得影片高度 start-->
+	<!--更多影片start
 	<script>
 	$(document).ready(function() {
     var data = {"data": [
@@ -560,35 +569,32 @@
 	         for(var i = 0; i < data.data.length; i++) {
 	        	var templ = "<li><a href=\"#\"><div class=\"videoListImgBox\"><img src=\"/static/img/"+data.data[i]['src']+"\" width=\"150\" /></div><div class=\"videoListTxtBox\"><h2>跟另一半玩遊戲，認真你就輸了-那對夫妻</h2><div class=\"viewQuanBox\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i><span>1,230</span></div></div></a></li>"
 	        		$("#videoContBox").append(templ);
-
-
 	        }
 	        });
 		});
 	</script>
-	<!--更多影片 End-->
+	更多影片 End-->
+
+	<!--切換播放視頻 start-->
+	<script>
+        $(function(){
+		//视频
+         $('.fancybox-media')
+            .attr('rel', 'media-gallery')
+            .fancybox({
+                arrows : false,
+                helpers : {
+                    media : {},
+                    buttons : {}
+                },
+                iframe : {
+                    scrolling : 'no'
+                },
+            });
+         });
+    </script>
+	<!--切換播放視頻 End-->
 	<!--往下滑隱藏header start-->
-	<script type="text/javascript">
-		/*var $ViewportHeight=$(window).height();
-		//偵測目前捲軸頂點
-		var ScrollTop=$(this).scrollTop();
-		var bodyClass = document.body.classList,
-	    lastScrollY = 0;*/
-		/*window.addEventListener('scroll', function(){
-		  var st = this.scrollY;
-		  // 判斷是向上捲動，而且捲軸超過 200px
 
-		  if(st<5) {
-		    $(".videoBoxfixed").removeClass("videoTop");
-		    //$("#headerMenu").addClass("slideInDown");
-
-		  }else{
-		    //$("#headerMenu").addClass("slideInDown");
-		    $(".videoBoxfixed").addClass("videoTop");
-		  }
-		  lastScrollY = st;
-		});*/
-	</script>
 	<!--往下滑隱藏header End-->
-
 </body>

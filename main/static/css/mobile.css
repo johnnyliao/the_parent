@@ -1990,8 +1990,8 @@ input[name="zipcode"]{
     border-color: #27b0f9 transparent transparent transparent;
 }
 .shareArea{
-    background: rgba(0,0,0,0.7);
-    height: 38px;
+    background: rgba(255,255,255,1);
+    height: 80px;
     line-height: 34px;
     text-align: center;
     position: fixed;
@@ -2000,8 +2000,33 @@ input[name="zipcode"]{
     z-index: 99999;
     display: none;
 }
+.shareArea1{
+    background: rgba(255,255,255,1);
+    height: 80px;
+    line-height: 34px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    z-index: 99999;
+    display: none;
+}
+.container_default .shareAreaBox{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    background: rgba(0,0,0,0.7);
+    z-index: 9999;
+    display: none;
+}
 .shareArea li{
     display: inline-block;
+    width: 30%;
+}
+.shareArea1 li{
+    display: inline-block;
+    width: 30%;
 }
 #fbMessenger{
     position: fixed;
@@ -2255,7 +2280,7 @@ input[name="zipcode"]{
     font-size: 14px;
 }
 .container_default .messageBox1 .messageBox1Con .messageCon{
-    width: 70%;
+
 }
 .container_default .videolistBox ul li .videoListTxtBox{
     width: 50%;
