@@ -1660,6 +1660,13 @@ input[name="zipcode"]{
     color: #FFF;
     background: #df8396;
 }
+.container_default .messageBox .messInputBox .messageBtn:disabled{
+    background: #e8e8e8;
+    color: #666;
+    border: 1px solid #cac9c9;
+    cursor: not-allowed;
+    opacity: 0.65;
+}
 .container_default .messageBox1 .messageBox{
     margin: 15px 0px!important;
 }
