@@ -44,6 +44,8 @@ class MessageAdmin(admin.ModelAdmin):
 class WinningDataAdmin(admin.ModelAdmin):
 	list_display = ["name", "prize", "phone", "address", "is_check"]
 
+	list_display = ["user", "prize"]
+
 class UserMsgAdmin(admin.ModelAdmin):
 	list_display = ["user", "is_read", "time"]
 
@@ -51,3 +53,4 @@ admin.site.register(User, UserAdmin)
 admin.site.register(Message, MessageAdmin)
 admin.site.register(UserMsg, UserMsgAdmin)
 admin.site.register(WinningData, WinningDataAdmin)
+admin.site.register(WinningUser, WinningUserAdmin)
