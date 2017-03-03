@@ -144,7 +144,6 @@ class WinningDataView(generics.GenericAPIView):
                 return Response(u"您沒有中獎", status=status.HTTP_200_OK)
 
 
-
             return Response(u"以完成登記", status=status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

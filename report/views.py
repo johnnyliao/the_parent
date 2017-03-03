@@ -25,6 +25,10 @@ def register(request):
 
 	return render_to_response("report/register.html", locals(), context_instance=RequestContext(request))
 
+def login(request):
+
+	return render_to_response("report/login.html", locals(), context_instance=RequestContext(request))
+
 class AddInner(generics.GenericAPIView):
 	serializer_class = addRegisterSerializer
 	permission_classes = (AllowAny, )
@@ -155,9 +159,9 @@ def get_group_up(every_day, base_count):
 def group_report(request):
 	name = request.GET.get("name", "TIA")
 
-	inner_id_list = Register.objects.all().filter(name=name)
+	#inner_id_list = Register.objects.all().filter(name=name)
 	inner_id_list = DayInnerCount.objects.all().filter(register__name=name)
-	print inner_id_list
+
 	"""
 	amy_inner_id = Register.objects.all().filter(name="AMY")
 	annie_inner_id  = Register.objects.all().filter(name="ANNIE")

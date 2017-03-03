@@ -9,7 +9,7 @@ from salmonella.admin import SalmonellaMixin
 
 class CommentAdmin(SalmonellaMixin, admin.ModelAdmin):
     list_display = ["user", "content", "date"]
-    search_fields = ["user"]
+    search_fields = ["user__username"]
     salmonella_fields  = ["user"]
 
 

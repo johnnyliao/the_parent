@@ -33,6 +33,8 @@ class Movie(models.Model):
     movie_type = models.CharField(_(u"分類"), max_length=100, choices=TYPE_CHOICES)
     photo = models.ImageField(_(u"預覽圖"), upload_to='main/video_pre_image')
     date = models.DateTimeField(_(u"加入時間"), auto_now=True)
+    watch_count = models.IntegerField(_(u"觀看次數"), default=0)
+    like = models.IntegerField(_(u"喜歡"), default=0)
 
     class Meta:
         verbose_name = _(u'影片')
@@ -51,6 +53,7 @@ class Comment(models.Model):
     content = models.CharField(_(u"影片留言內容"), max_length=100)
     date = models.DateTimeField(_(u"影片留言時間"), auto_now=True)
     movie = models.ForeignKey(Movie, related_name='movie_comments')
+    like = models.IntegerField(_(u"喜歡"), default=0)
 
     class Meta:
         verbose_name = _(u'影片留言')
@@ -64,6 +67,7 @@ class ReComment(models.Model):
     content = models.CharField(_(u"影片留言內容"), max_length=100)
     date = models.DateTimeField(_(u"影片留言時間"), auto_now=True)
     re_comment = models.ForeignKey(Comment, related_name='movie_re_comments')
+    like = models.IntegerField(_(u"喜歡"), default=0)
 
     def __unicode__(self):
         return self.content

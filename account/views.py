@@ -55,6 +55,36 @@ def UserLogoutView(request):
     auth.logout(request)
     return redirect(home_view)
 
+class ReportLoginView(generics.GenericAPIView):
+    serializer_class = UserLoginSerializer
+    permission_classes = (AllowAny, )
+
+    def post(self, request, format=None):
+        """
+        建立 網站 報表系統
+        """
+        serializer = self.serializer_class(data=request.DATA)
+        if serializer.is_valid():
+            username = serializer.data.get('username')
+            password = serializer.data.get('password')
+            try:
+                User.objects.get(username=username)
+                user = authenticate(username=username, password=password)
+                if user is not None:
+                    if user.is_active:
+                        #import pdb;pdb.set_trace()
+                        login(request, user)
+                else:
+                    return Response({"status":False, "msg":u"錯誤的帳號或密碼"}, status=status.HTTP_200_OK)
+            except User.DoesNotExist:
+                return Response({"status":False, "msg":u"使用者帳號錯誤"}, status=status.HTTP_200_OK)
+
+            serializer = UserInfoSerializer(request.user, context={'request': request})
+            return Response({"status":True}, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 class UserLoginView(generics.GenericAPIView):
     serializer_class = UserLoginSerializer
     permission_classes = (AllowAny, )

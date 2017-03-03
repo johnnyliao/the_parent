@@ -29,7 +29,31 @@
 	<script type="text/javascript">
       	$("document").ready(function(){
      		 $("#headerMenu").headroom();
-       	 });
+       	});
+
+      	function like_video() {
+      		$.ajax({
+				type: "POST",
+				url: "/movie/like_video/",
+				data: {"video_id":"{{video_obj.id}}"},
+				success: function(data){
+					$("#like_count").text(data)
+				},
+				dataType: "json"
+			});
+      	}
+
+      	function unlike_video() {
+      		$.ajax({
+				type: "POST",
+				url: "/movie/unlike_video/",
+				data: {"video_id":"{{video_obj.id}}"},
+				success: function(data){
+					$("#like_count").text(data)
+				},
+				dataType: "json"
+			});
+      	}
     </script>
 <!--視頻彈窗js css start-->
 	<link rel="stylesheet" type="text/css" href="{% static "css/jquery.fancybox.css"%}" media="screen" /> <!--视频弹窗样式-->
@@ -164,7 +188,7 @@ youtube手機版自動撥放 End-->
 		</div>
 
 	    <div class="video-container">
-			<iframe src="http://www.youtube.com/embed/xHMkBFreJLA?hd=1&autoplay=1&loop=1&playlist=xHMkBFreJLA" type="text/html" width="100%" height="450" frameborder="0" allowfullscree>
+			<iframe src="{{video_obj.link}}" type="text/html" width="100%" height="450" frameborder="0" allowfullscree>
 			</iframe>
 			<!--<div id="player"></div>-->
 		</div>
@@ -172,27 +196,27 @@ youtube手機版自動撥放 End-->
 			<a class="videoDetBox1Img01" href="#speakBox"><i class="fa fa-commenting-o" aria-hidden="true"></i>評論：<span class="talkcount">80</span></a>
 			<a class="videoDetBox1Img05"><img id="youtubeImg" src="{% static "img/youtube_h.png"%}" width="30"></a>
 			<a id="video_img" class="fancybox-media float_r videoDetBox1Img06" href="https://www.honhe.com"><img id="youkuImg" src="{% static "img/youku.png"%}" width="30"></a>
-			<a class="videoDetBox1Img02" id="videoDetLikeBtn" href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-			<a class="videoDetBox1Img02 active" id="videoDetLikeBtn" href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
+			<a class="videoDetBox1Img02" id="videoDetLikeBtn" onclick="return like_video();">
+				<i class="fa fa-heart-o" aria-hidden="true"></i>
+			</a>
+			<a class="videoDetBox1Img02 active" id="videoDetLikeBtn" onclick="return unlike_video();"><i class="fa fa-heart" aria-hidden="true"></i></a>
 			<a class="videoDetBox1Img03" id="share" href="#"><i class="fa fa-share-square-o" aria-hidden="true"></i></a>
 		</div>
 	</div>
 	<div class="box2">
 		<div class="videoDetBox2">
-			<div class="videoDetTitle active"><h1>《江苏卫视元宵晚会》全程</h1></div>
+			<div class="videoDetTitle active"><h1>{{video_obj.title}}</h1></div>
 			<div class="accordionBox"><a href="" class="accordionBtn1" id="accordionBtn1"><i class="fa fa-caret-down" aria-hidden="true"></i></div>
 			<div class="vedioViewBox">
 				<ul>
-					<li>播放：<span>12</span>萬次</li>
-					<li>類型：<span>看點</span></li>
-					<li>地區：<span>台灣</span></li><br />
-					<li><a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><span>1,230</span></a></li>
-					<li><a href=""><i class="fa fa-thumbs-o-down" aria-hidden="true"></i><span>12</span></a></li>
+					<li>播放：<span>{{video_obj.watch_count}}</span>次</li>
+					<li>類型：<span>{{video_obj.get_movie_type_display}}</span></li>
+					<li><a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><span id="like_count">{{video_obj.like}}</span></a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="introductionBox">
-			<h2>《江苏卫视元宵晚会》全程《江苏卫视元宵晚会》全程《江苏卫视元宵晚会》全程《江苏卫视元宵晚会》全程《江苏卫视元宵晚会》全程《江苏卫视元宵晚会》全程</h2>
+			<h2>{{video_obj.description}}</h2>
 		</div>
 		<div class="videolistBox">
 			<div class="videolistTitleBox">
@@ -200,39 +224,19 @@ youtube手機版自動撥放 End-->
 				<div class="videolistBoxMore" id="more1">更多 > </div>
 			</div>
 			<ul id="videoContBox">
+				{% for item in maybe_likes %}
 				<li>
-					<a href="#">
-						<div class="videoListImgBox"><img src="{% static "img/001.png"%}" width="150" /></div>
-						<div class="videoListTxtBox"><h2>跟另一半玩遊戲，認真你就輸了-那對夫妻</h2>
+					<a href="/movie/videoDetails/?video_id={{item.id}}">
+						<div class="videoListImgBox"><img src="{{item.photo.url}}" width="150" /></div>
+						<div class="videoListTxtBox"><h2>{{item.title}}</h2>
 							<div class="viewQuanBox">
 								<i class="fa fa-eye" aria-hidden="true"></i>
-								<span>1,230</span>
+								<span>{{item.watch_count}}</span>
 							</div>
 						</div>
 					</a>
 				</li>
-				<li>
-					<a href="#">
-						<div class="videoListImgBox"><img src="{% static "img/002.png"%}" width="150" /></div>
-						<div class="videoListTxtBox"><h2>爸爸教妮妮學英文</h2>
-							<div class="viewQuanBox">
-								<i class="fa fa-eye" aria-hidden="true"></i>
-								<span>1,230</span>
-							</div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<div class="videoListImgBox"><img src="{% static "img/003.png"%}" width="150" /></div>
-						<div class="videoListTxtBox"><h2>吃火鍋一定有香菇，但沒有藍瘦啦～</h2>
-							<div class="viewQuanBox">
-								<i class="fa fa-eye" aria-hidden="true"></i>
-								<span>1,230</span>
-							</div>
-						</div>
-					</a>
-				</li>
+				{% endfor %}
 			</ul>
 		</div>
 		<div class="videolistBox">
@@ -241,61 +245,19 @@ youtube手機版自動撥放 End-->
 				<div class="videolistBoxMore" id="more1">更多 > </div>
 			</div>
 			<ul id="videoContBox">
+				{% for hot in hot_now %}
 				<li>
-					<a href="#">
-						<div class="videoListImgBox"><img src="{% static "img/001.png"%}" width="150" /></div>
-						<div class="videoListTxtBox"><h2>跟另一半玩遊戲，認真你就輸了-那對夫妻</h2>
+					<a href="/movie/videoDetails/?video_id={{hot.id}}">
+						<div class="videoListImgBox"><img src="{{hot.photo.url}}" width="150" /></div>
+						<div class="videoListTxtBox"><h2>{{hot.title}}</h2>
 							<div class="viewQuanBox">
 								<i class="fa fa-eye" aria-hidden="true"></i>
-								<span>1,230</span>
+								<span>{{hot.watch_count}}</span>
 							</div>
 						</div>
 					</a>
 				</li>
-				<li>
-					<a href="#">
-						<div class="videoListImgBox"><img src="{% static "img/002.png"%}" width="150" /></div>
-						<div class="videoListTxtBox"><h2>爸爸教妮妮學英文</h2>
-							<div class="viewQuanBox">
-								<i class="fa fa-eye" aria-hidden="true"></i>
-								<span>1,230</span>
-							</div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<div class="videoListImgBox"><img src="{% static "img/003.png"%}" width="150" /></div>
-						<div class="videoListTxtBox"><h2>吃火鍋一定有香菇，但沒有藍瘦啦～</h2>
-							<div class="viewQuanBox">
-								<i class="fa fa-eye" aria-hidden="true"></i>
-								<span>1,230</span>
-							</div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<div class="videoListImgBox"><img src="{% static "img/004.png"%}" width="150" /></div>
-						<div class="videoListTxtBox"><h2>老公~~你喜歡我哪一點??</h2>
-							<div class="viewQuanBox">
-								<i class="fa fa-eye" aria-hidden="true"></i>
-								<span>1,230</span>
-							</div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<div class="videoListImgBox"><img src="{% static "img/001.png"%}" width="150" /></div>
-						<div class="videoListTxtBox"><h2>老公~~你喜歡我哪一點??</h2>
-							<div class="viewQuanBox">
-								<i class="fa fa-eye" aria-hidden="true"></i>
-								<span>1,230</span>
-							</div>
-						</div>
-					</a>
-				</li>
+				{% endfor %}
 			</ul>
 		</div>
 		<div class="videolistBox">
@@ -304,39 +266,21 @@ youtube手機版自動撥放 End-->
 				<div class="videolistBoxMore" id="more1">更多 > </div>
 			</div>
 			<ul id="videoContBox">
+
+				{% for brand in brands %}
 				<li>
-					<a href="#">
-						<div class="videoListImgBox"><img src="{% static "img/001.png"%}" width="150" /></div>
-						<div class="videoListTxtBox"><h2>跟另一半玩遊戲，認真你就輸了-那對夫妻</h2>
+					<a href="/movie/videoDetails/?video_id={{brand.id}}">
+						<div class="videoListImgBox"><img src="{{brand.photo.url}}" width="150" /></div>
+						<div class="videoListTxtBox"><h2>{{brand.title}}</h2>
 							<div class="viewQuanBox">
 								<i class="fa fa-eye" aria-hidden="true"></i>
-								<span>1,230</span>
+								<span>{{brand.watch_count}}</span>
 							</div>
 						</div>
 					</a>
 				</li>
-				<li>
-					<a href="#">
-						<div class="videoListImgBox"><img src="{% static "img/002.png"%}" width="150" /></div>
-						<div class="videoListTxtBox"><h2>爸爸教妮妮學英文</h2>
-							<div class="viewQuanBox">
-								<i class="fa fa-eye" aria-hidden="true"></i>
-								<span>1,230</span>
-							</div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<div class="videoListImgBox"><img src="{% static "img/003.png"%}" width="150" /></div>
-						<div class="videoListTxtBox"><h2>吃火鍋一定有香菇，但沒有藍瘦啦～</h2>
-							<div class="viewQuanBox">
-								<i class="fa fa-eye" aria-hidden="true"></i>
-								<span>1,230</span>
-							</div>
-						</div>
-					</a>
-				</li>
+				{% endfor %}
+
 			</ul>
 		</div>
 		<div class="messageBox" id="speakBox">
