@@ -54,6 +54,42 @@
 				dataType: "json"
 			});
       	}
+
+      	function comment() {
+      		var content = $("#comment_text").val()
+      		$.ajax({
+				type: "POST",
+				url: "/movie/comment/",
+				data: {"user":"{{request.user.id}}", "content":content, "movie":"{{video_obj.id}}"},
+				success: function(data){
+					var html = "<div class=\"messageBox\" id=\"speakBox\"><div class=\"messageBox1\"><div class=\"messageBox1Con\"><div class=\"messageBox1Img\"><img src=\"{% static "img/person-icon.png"%}\" width=\"40\" /></div><div class=\"messageCon\"><div class=\"messageConTitle\"><h2>"+data.user.username+"</h2></div><span class=\"timeBox\">"+data.date+"</span><p class=\"messageTxt\">"+data.content+"</p><div class=\"likeBox\"><span class=\"likeBtn\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i><span class=\"likeQua\">"+data.like+"</span></span><span class=\"likeBtn\"><i class=\"fa fa-commenting-o reply2\" aria-hidden=\"true\"></i><span class=\"likeQua\">0</span></span></div></div></div><ul class=\"reply1\" id=\"reply_"+data.id+"\">"
+					html += "</ul><div class=\"messageBox reply1\"><div class=\"speakBox\"><div class=\"speakBoxImg\"><img src=\"{% static "img/people1.jpg"%}\" width=\"40\" /></div><div class=\"messInputBox\"><textarea {% if not request.user.is_authenticated %}disabled{% endif %} id=\"re_comment_"+data.id+"\" class=\"signedIn\" placeholder=\"留言\"></textarea><button type=\"submit\" {% if not request.user.is_authenticated %}disabled{% endif %} onclick=\"return re_comment('"+data.id+"')\" class=\"messageBtn signedIn\">留言</button></div></div></div></div></div>"
+
+
+					$("#comment_block").append(html);
+					$("#comment_text").val("");
+					$(".reply2").click(function () {
+						$(this).parents(".messageBox1").children(".reply1").css("display","block");
+					});
+				},
+				dataType: "json"
+			});
+      	}
+
+      	function re_comment(re_comment_id) {
+      		var content = $("#re_comment_"+re_comment_id).val()
+      		$.ajax({
+				type: "POST",
+				url: "/movie/re_comment/",
+				data: {"user":"{{request.user.id}}", "content":content, "re_comment":re_comment_id},
+				success: function(data){
+					html = "<li class=\"messageBox1Con\"><div class=\"messageBox1Img\"><img src=\"{% static "img/person-icon.png"%}\" width=\"40\" /></div><div class=\"messageCon\"><div class=\"messageConTitle\"><h2>"+data.user.username+"</h2></div><span class=\"timeBox\">"+data.date+"</span><p class=\"messageTxt\">"+data.content+"</p><div class=\"likeBox\"><span class=\"likeBtn\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i><span class=\"likeQua\">"+data.like+"</span></span></div></div></li>";
+					$("#reply_"+re_comment_id).append(html);
+					$("#re_comment_"+re_comment_id).val("");
+				},
+				dataType: "json"
+			});
+      	}
     </script>
 <!--視頻彈窗js css start-->
 	<link rel="stylesheet" type="text/css" href="{% static "css/jquery.fancybox.css"%}" media="screen" /> <!--视频弹窗样式-->
@@ -283,83 +319,53 @@ youtube手機版自動撥放 End-->
 						</div>
 					</a>
 				</li>
-				{% endfor %}
+				{% endfor %}e
 
 			</ul>
 		</div>
+		<div id="comment_block">
+		{% for comment in comments %}
 		<div class="messageBox" id="speakBox">
 			<div class="messageBox1">
 				<div class="messageBox1Con">
 					<div class="messageBox1Img"><img src="{% static "img/person-icon.png"%}" width="40" /></div>
 					<div class="messageCon">
-						<div class="messageConTitle"><h2>四川迷</h2><span class="categoryBox">熱門</span></div>
-						<span class="timeBox">6天前</span>
-						<p class="messageTxt">還滿好看的～還滿好看的～還滿好看的～還滿好看的～還滿好看的～</p>
+						<div class="messageConTitle"><h2>{{comment.user.username}}</h2><!--<span class="categoryBox">熱門</span>--></div>
+						<span class="timeBox">{{comment.date}}</span>
+						<p class="messageTxt">{{comment.content}}</p>
 						<div class="likeBox">
-							<span class="likeBtn"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><span class="likeQua">1,230</span></span>
-							<span class="likeBtn"><i class="fa fa-commenting-o reply2" aria-hidden="true"></i><span class="likeQua">1</span></span>
+							<span class="likeBtn"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><span class="likeQua">{{comment.like}}</span></span>
+							<span class="likeBtn"><i class="fa fa-commenting-o reply2" aria-hidden="true"></i><span class="likeQua">{{comment.movie_re_comments.all.count}}</span></span>
 						</div>
 					</div>
 				</div>
-				<ul class="reply1">
-					<li class="messageBox1Con">
-						<div class="messageBox1Img"><img src="{% static "img/person-icon.png"%}" width="40" /></div>
-						<div class="messageCon">
-							<div class="messageConTitle"><h2>四川迷</h2><span class="categoryBox">熱門</span></div>
-							<span class="timeBox">6天前</span>
-							<p class="messageTxt">還滿好看的～還滿好看的～還滿好看的～還滿好看的～還滿好看的～</p>
-							<div class="likeBox">
-								<span class="likeBtn"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><span class="likeQua">1,230</span></span>
+				<ul class="reply1" id="reply_{{comment.id}}">
+					{% for re_comment in comment.movie_re_comments.all %}
+						<li class="messageBox1Con">
+							<div class="messageBox1Img"><img src="{% static "img/person-icon.png"%}" width="40" /></div>
+							<div class="messageCon">
+								<div class="messageConTitle"><h2>{{re_comment.user.username}}</h2><!--<span class="categoryBox">熱門</span>--></div>
+								<span class="timeBox">{{re_comment.date}}</span>
+								<p class="messageTxt">{{re_comment.content}}</p>
+								<div class="likeBox">
+									<span class="likeBtn"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><span class="likeQua">{{re_comment.like}}</span></span>
+								</div>
 							</div>
-						</div>
-					</li>
-					<li class="messageBox1Con">
-						<div class="messageBox1Img"><img src="{% static "img/person-icon.png"%}" width="40" /></div>
-						<div class="messageCon">
-							<div class="messageConTitle"><h2>四川迷</h2><span class="categoryBox">熱門</span></div>
-							<span class="timeBox">6天前</span>
-							<p class="messageTxt">還滿好看的～還滿好看的～還滿好看的～還滿好看的～還滿好看的～</p>
-							<div class="likeBox">
-								<span class="likeBtn"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><span class="likeQua">1,230</span></span>
-							</div>
-						</div>
-					</li>
+						</li>
+					{% endfor %}
 				</ul>
 				<div class="messageBox reply1">
 					<div class="speakBox">
 						<div class="speakBoxImg"><img src="{% static "img/people1.jpg"%}" width="40" /></div>
 						<div class="messInputBox">
-							<textarea class="signedIn" placeholder="留言"></textarea>
-							<button type="submit" class="messageBtn signedIn">留言</button>
+							<textarea {% if not request.user.is_authenticated %}disabled{% endif %} id="re_comment_{{comment.id}}" class="signedIn" placeholder="留言"></textarea>
+							<button type="submit" {% if not request.user.is_authenticated %}disabled{% endif %} onclick="return re_comment('{{comment.id}}')" class="messageBtn signedIn">留言</button>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="messageBox" id="speakBox">
-			<div class="messageBox1">
-				<div class="messageBox1Con">
-					<div class="messageBox1Img"><img src="{% static "img/person-icon.png"%}" width="40" /></div>
-					<div class="messageCon">
-						<div class="messageConTitle"><h2>北京迷</h2><span class="categoryBox">熱門</span></div>
-						<span class="timeBox">6天前</span>
-						<p class="messageTxt">還滿好看的～還滿好看的～還滿好看的～還滿好看的～還滿好看的～</p>
-						<div class="likeBox">
-							<span class="likeBtn"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><span class="likeQua">1,230</span></span>
-							<span class="likeBtn"><i class="fa fa-commenting-o reply2" aria-hidden="true"></i><span class="likeQua">0</span></span>
-						</div>
-					</div>
-				</div>
-				<div class="messageBox reply1">
-					<div class="speakBox">
-						<div class="speakBoxImg"><img src="{% static "img/people1.jpg"%}" width="40" /></div>
-						<div class="messInputBox">
-							<textarea class="signedIn" placeholder="留言"></textarea>
-							<button type="submit" class="messageBtn signedIn">留言</button>
-						</div>
-					</div>
-				</div>
-			</div>
+		{% endfor %}
 		</div>
 		<!--合作品牌 start-->
 		<!-- Place somewhere in the <body> of your page
@@ -425,7 +431,8 @@ youtube手機版自動撥放 End-->
 	<div class="videoBottomBar">
 		<div class="message">
 			<div class="messageCon">
-				<input id="" type="text" class="input1" placeholder="請先登入後再留言"><button class="sendMessage">傳送</button>
+				<input id="comment_text" type="text" class="input1" {% if not request.user.is_authenticated %}disabled{% endif %} placeholder="留言">
+				<button {% if not request.user.is_authenticated %}disabled{% endif %} class="sendMessage" onclick="return comment();">傳送</button>
 			</div>
 		</div>
 		<div class="like"><img src="/static/img/like.png"></div>

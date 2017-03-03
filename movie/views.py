@@ -12,7 +12,7 @@ import urllib, urllib2, json, simplejson
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils import timezone
 from django.middleware.csrf import get_token
-from movie.serializers import CommentLikeSerializer, CommentSerializer, ReCommentSerializer, VideoLikeSerializer
+from movie.serializers import CommentLikeSerializer, CommentSerializer, ReCommentSerializer, VideoLikeSerializer, ReCommentWebSerializer, CommentWebSerializer
 import requests
 from allauth.socialaccount import providers
 from allauth.socialaccount.providers.facebook.provider import FacebookProvider
@@ -49,6 +49,8 @@ class CommentPostView(generics.GenericAPIView):
         #import pdb;pdb.set_trace()
         if serializer.is_valid():
             serializer.save()
+            comment = Comment.objects.get(id=serializer.data["id"])
+            serializer = CommentWebSerializer(comment)
             #import pdb;pdb.set_trace()
             #serializer = self.serializer_class(serializer)
             return Response(serializer.data, status=status.HTTP_200_OK)
@@ -67,8 +69,8 @@ class ReCommentPostView(generics.GenericAPIView):
         serializer = self.serializer_class(data=request.DATA)
         if serializer.is_valid():
             serializer.save()
-            #import pdb;pdb.set_trace()
-            #serializer = self.serializer_class(serializer)
+            re_comment = ReComment.objects.get(id=serializer.data["id"])
+            serializer = ReCommentWebSerializer(re_comment)
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

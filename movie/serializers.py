@@ -2,9 +2,8 @@
 
 from django.utils.translation import ugettext_lazy as _
 from movie.models import Comment, ReComment
-
+from account.serializers import UserInfoSerializer
 from rest_framework import serializers
-
 from datetime import datetime,timedelta
 from django.utils import timezone
 import urlparse
@@ -26,3 +25,15 @@ class CommentLikeSerializer(serializers.Serializer):
 
 class VideoLikeSerializer(serializers.Serializer):
 	video_id = serializers.IntegerField()
+
+class ReCommentWebSerializer(serializers.ModelSerializer):
+	user = UserInfoSerializer()
+
+	class Meta:
+		model = ReComment
+
+class CommentWebSerializer(serializers.ModelSerializer):
+	user = UserInfoSerializer()
+
+	class Meta:
+		model = Comment
