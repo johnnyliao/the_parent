@@ -44,7 +44,9 @@ class MessageAdmin(admin.ModelAdmin):
 class WinningDataAdmin(admin.ModelAdmin):
 	list_display = ["name", "prize", "phone", "address", "is_check"]
 
+class WinningUserAdmin(SalmonellaMixin, admin.ModelAdmin):
 	list_display = ["user", "prize"]
+	salmonella_fields  = ["user"]
 
 class UserMsgAdmin(admin.ModelAdmin):
 	list_display = ["user", "is_read", "time"]
