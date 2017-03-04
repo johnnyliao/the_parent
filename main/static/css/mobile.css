@@ -1,6 +1,6 @@
 ﻿@charset "utf-8";
 /* 載入 */
-@media screen and (max-width:1024px){
+@media screen and (max-width:1920px){
 header, .header[_height="none"]{
     display: block;
 }
@@ -2127,7 +2127,7 @@ input[name="zipcode"]{
     margin: 9px 5px 0px 10px;
     border: 1px solid #c4c4c4;
     background: #c4c4c4;
-    padding: 1%;
+    padding: 5px;
     border-radius: 4px;
     color: #515151;
     font-weight: bold;
@@ -2179,6 +2179,9 @@ input[name="zipcode"]{
 }
 .container_default .videoBoxfixed{
     margin-top:0px;
+}
+.container_default .videolistBox ul li .videoListTxtBox{
+    width: 75%;
 }
 }
 @media screen and (max-width:640px){

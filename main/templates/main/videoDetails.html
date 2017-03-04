@@ -102,7 +102,13 @@
 					$("#comment_block").append(html);
 					$("#comment_text").val("");
 					$(".reply2").click(function () {
-						$(this).parents(".messageBox1").children(".reply1").css("display","block");
+						//$(this).parents(".messageBox1").children(".reply1").css("display","block");
+						event.preventDefault();
+						 if ( $(this).parents(".messageBox1").children(".reply1").hasClass( "slideInUp" )) {
+						 		$(this).parents(".messageBox1").children(".reply1").removeClass('slideInUp').addClass("slideOutDown");
+						    }else{
+						    	$(this).parents(".messageBox1").children(".reply1").removeClass('slideOutDown').addClass("slideInUp").show();
+						    }
 					});
 					$('html, body').animate({
 				        scrollTop: $("#speakBox_"+data.id).offset().top
@@ -276,7 +282,7 @@ youtube手機版自動撥放 End-->
 				<i class="fa fa-heart-o" aria-hidden="true"></i>
 			</a>
 			<a class="videoDetBox1Img02 active" id="videoDetLikeBtn" onclick="return unlike_video();"><i class="fa fa-heart" aria-hidden="true"></i></a>
-			<a class="videoDetBox1Img03" id="share" href="#"><i class="fa fa-share-square-o" aria-hidden="true"></i></a>
+			<a class="videoDetBox1Img03 shareBox" id="share" href="#"><i class="fa fa-share-square-o" aria-hidden="true"></i></a>
 		</div>
 	</div>
 	<div class="box2">
@@ -378,7 +384,7 @@ youtube手機版自動撥放 End-->
 						</div>
 					</div>
 				</div>
-				<ul class="reply1" id="reply_{{comment.id}}">
+				<ul class="animated reply1" id="reply_{{comment.id}}">
 					{% for re_comment in comment.movie_re_comments.all %}
 						<li class="messageBox1Con">
 							<div class="messageBox1Img"><img src="{% static "img/person-icon.png"%}" width="40" /></div>
@@ -393,7 +399,7 @@ youtube手機版自動撥放 End-->
 						</li>
 					{% endfor %}
 				</ul>
-				<div id="reply_position_{{comment.id}}" class="messageBox reply1">
+				<div id="reply_position_{{comment.id}}" class="messageBox animated reply1">
 					<div class="speakBox">
 						<div class="speakBoxImg"><img src="{% static "img/people1.jpg"%}" width="40" /></div>
 						<div class="messInputBox">
@@ -476,7 +482,7 @@ youtube手機版自動撥放 End-->
 		</div>
 		<div class="like"><img src="/static/img/like.png"></div>
 		<div class="like" style="display:none;"><img src="/static/img/like_h.png"></div>
-		<div class="share"><img src="/static/img/share_b.png"></div>
+		<div class="share shareBox"><img src="/static/img/share_b.png"></div>
 	</div>
 </div>
 	<script src="{% static "js/jquery.menu-aim.js"%}"></script>
@@ -504,13 +510,26 @@ youtube手機版自動撥放 End-->
 	function f2(e){
 	    $(".shareBox1").css("z-index","-1");
 	}
-   $("#share").click(function () {
+   $(".shareBox").click(function () {
 
    	event.preventDefault();
 	 if ( $(".shareArea").hasClass( "slideInUp" )) {
 	 		$(".shareArea").removeClass('slideInUp').addClass("slideOutDown");
+	 		$(".shareAreaBox").fadeOut(200);
 	    }else{
 	    	$(".shareArea").removeClass('slideOutDown').addClass("slideInUp").show();
+	    	$(".shareAreaBox").fadeIn(200);
+	    }
+	 });
+   $(".dropDownList").click(function () {
+
+   	event.preventDefault();
+	 if ( $(".shareArea1").hasClass( "slideInUp" )) {
+	 		$(".shareArea1").removeClass('slideInUp').addClass("slideOutDown");
+	 		$(".shareAreaBox").fadeOut(200);
+	    }else{
+	    	$(".shareArea1").removeClass('slideOutDown').addClass("slideInUp").show();
+	    	$(".shareAreaBox").fadeIn(200);
 	    }
 	 });
 
