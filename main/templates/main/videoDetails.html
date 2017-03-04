@@ -31,6 +31,39 @@
      		 $("#header").headroom();
        	});
 
+       	function comment_unlike(type, comment_id) {
+       		$.ajax({
+				type: "POST",
+				url: "/movie/unlike_comment/",
+				data: {"comment_id":comment_id,"comment_type":type},
+				success: function(data){
+					$("#comment_like_count_"+comment_id).text(data);
+					$("#comment_like_button_"+comment_id).removeClass("fa-thumbs-up").addClass("fa-thumbs-o-up");
+					document.getElementById("comment_like_button_"+comment_id).removeAttribute("onclick");
+					$("#comment_like_button_"+comment_id).click(function(){
+						comment_like('comment', comment_id);
+					})
+				},
+				dataType: "json"
+			});
+       	}
+
+      	function comment_like(type, comment_id) {
+      		var count = $("#comment_like_count_"+comment_id).text();
+      		$("#comment_like_count_"+comment_id).text(parseInt(count)+1)
+      		$("#comment_like_button_"+comment_id).removeClass("fa-thumbs-o-up").addClass("fa-thumbs-up");
+      		document.getElementById("comment_like_button_"+comment_id).removeAttribute("onclick");
+      		$.ajax({
+				type: "POST",
+				url: "/movie/like_comment/",
+				data: {"comment_id":comment_id,"comment_type":type},
+				success: function(data){
+					$("#comment_like_count_"+comment_id).text(data);
+				},
+				dataType: "json"
+			});
+      	}
+
       	function like_video() {
       		$.ajax({
 				type: "POST",
@@ -62,7 +95,7 @@
 				url: "/movie/comment/",
 				data: {"user":"{{request.user.id}}", "content":content, "movie":"{{video_obj.id}}"},
 				success: function(data){
-					var html = "<div class=\"messageBox\" id=\"speakBox\"><div class=\"messageBox1\"><div class=\"messageBox1Con\"><div class=\"messageBox1Img\"><img src=\"{% static "img/person-icon.png"%}\" width=\"40\" /></div><div class=\"messageCon\"><div class=\"messageConTitle\"><h2>"+data.user.username+"</h2></div><span class=\"timeBox\">"+data.date+"</span><p class=\"messageTxt\">"+data.content+"</p><div class=\"likeBox\"><span class=\"likeBtn\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i><span class=\"likeQua\">"+data.like+"</span></span><span class=\"likeBtn\"><i class=\"fa fa-commenting-o reply2\" aria-hidden=\"true\"></i><span class=\"likeQua\">0</span></span></div></div></div><ul class=\"reply1\" id=\"reply_"+data.id+"\">"
+					var html = "<div class=\"messageBox\" id=\"speakBox_"+data.id+"\"><div class=\"messageBox1\"><div class=\"messageBox1Con\"><div class=\"messageBox1Img\"><img src=\"{% static "img/person-icon.png"%}\" width=\"40\" /></div><div class=\"messageCon\"><div class=\"messageConTitle\"><h2>"+data.user.username+"</h2></div><span class=\"timeBox\">"+data.date+"</span><p class=\"messageTxt\">"+data.content+"</p><div class=\"likeBox\"><span class=\"likeBtn\"><i id=\"comment_like_button_"+data.id+"\" onclick=\"return comment_like('comment','"+data.id+"');\" class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i><span id=\"comment_like_count_"+data.id+"\" class=\"likeQua\">"+data.like+"</span></span><span class=\"likeBtn\"><i class=\"fa fa-commenting-o reply2\" aria-hidden=\"true\"></i><span class=\"likeQua\">0</span></span></div></div></div><ul class=\"reply1\" id=\"reply_"+data.id+"\">"
 					html += "</ul><div class=\"messageBox reply1\"><div class=\"speakBox\"><div class=\"speakBoxImg\"><img src=\"{% static "img/people1.jpg"%}\" width=\"40\" /></div><div class=\"messInputBox\"><textarea {% if not request.user.is_authenticated %}disabled{% endif %} id=\"re_comment_"+data.id+"\" class=\"signedIn\" placeholder=\"留言\"></textarea><button type=\"submit\" {% if not request.user.is_authenticated %}disabled{% endif %} onclick=\"return re_comment('"+data.id+"')\" class=\"messageBtn signedIn\">留言</button></div></div></div></div></div>"
 
 
@@ -71,6 +104,9 @@
 					$(".reply2").click(function () {
 						$(this).parents(".messageBox1").children(".reply1").css("display","block");
 					});
+					$('html, body').animate({
+				        scrollTop: $("#speakBox_"+data.id).offset().top
+				    }, 1000);
 				},
 				dataType: "json"
 			});
@@ -233,7 +269,7 @@ youtube手機版自動撥放 End-->
 			<!--<div id="player"></div>-->
 		</div>
 		<div class="videoDetBox1">
-			<a class="videoDetBox1Img01" href="#speakBox"><i class="fa fa-commenting-o" aria-hidden="true"></i>評論：<span class="talkcount">80</span></a>
+			<a class="videoDetBox1Img01" href="#comment_block"><i class="fa fa-commenting-o" aria-hidden="true"></i>評論：<span class="talkcount">80</span></a>
 			<a class="videoDetBox1Img05"><img id="youtubeImg" src="{% static "img/youtube_h.png"%}" width="30"></a>
 			<a id="video_img" class="fancybox-media float_r videoDetBox1Img06" href="https://www.honhe.com"><img id="youkuImg" src="{% static "img/youku.png"%}" width="30"></a>
 			<a class="videoDetBox1Img02" id="videoDetLikeBtn" onclick="return like_video();">
@@ -325,7 +361,7 @@ youtube手機版自動撥放 End-->
 		</div>
 		<div id="comment_block">
 		{% for comment in comments %}
-		<div class="messageBox" id="speakBox">
+		<div class="messageBox" id="speakBox_{{comment.id}}">
 			<div class="messageBox1">
 				<div class="messageBox1Con">
 					<div class="messageBox1Img"><img src="{% static "img/person-icon.png"%}" width="40" /></div>
@@ -334,8 +370,11 @@ youtube手機版自動撥放 End-->
 						<span class="timeBox">{{comment.date}}</span>
 						<p class="messageTxt">{{comment.content}}</p>
 						<div class="likeBox">
-							<span class="likeBtn"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><span class="likeQua">{{comment.like}}</span></span>
-							<span class="likeBtn"><i class="fa fa-commenting-o reply2" aria-hidden="true"></i><span class="likeQua">{{comment.movie_re_comments.all.count}}</span></span>
+							<span class="likeBtn">
+								<i id="comment_like_button_{{comment.id}}" onclick="return comment_like('comment','{{comment.id}}');" class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+								<span id="comment_like_count_{{comment.id}}" class="likeQua">{{comment.like}}</span>
+							</span>
+							<span class="likeBtn"><i name="{{comment.id}}" class="fa fa-commenting-o reply2" aria-hidden="true"></i><span class="likeQua">{{comment.movie_re_comments.all.count}}</span></span>
 						</div>
 					</div>
 				</div>
@@ -354,11 +393,11 @@ youtube手機版自動撥放 End-->
 						</li>
 					{% endfor %}
 				</ul>
-				<div class="messageBox reply1">
+				<div id="reply_position_{{comment.id}}" class="messageBox reply1">
 					<div class="speakBox">
 						<div class="speakBoxImg"><img src="{% static "img/people1.jpg"%}" width="40" /></div>
 						<div class="messInputBox">
-							<textarea {% if not request.user.is_authenticated %}disabled{% endif %} id="re_comment_{{comment.id}}" class="signedIn" placeholder="留言"></textarea>
+							<textarea {% if not request.user.is_authenticated %}disabled{% endif %} id="re_comment_{{comment.id}}" class="signedIn" placeholder="{% if not request.user.is_authenticated %}請登入後才可留言{% else %}留言{% endif %}"></textarea>
 							<button type="submit" {% if not request.user.is_authenticated %}disabled{% endif %} onclick="return re_comment('{{comment.id}}')" class="messageBtn signedIn">留言</button>
 						</div>
 					</div>
@@ -431,7 +470,7 @@ youtube手機版自動撥放 End-->
 	<div class="videoBottomBar">
 		<div class="message">
 			<div class="messageCon">
-				<input id="comment_text" type="text" class="input1" {% if not request.user.is_authenticated %}disabled{% endif %} placeholder="留言">
+				<input id="comment_text" type="text" class="input1" {% if not request.user.is_authenticated %}disabled{% endif %} placeholder="{% if not request.user.is_authenticated %}請登入後才可留言{% else %}留言{% endif %}">
 				<button {% if not request.user.is_authenticated %}disabled{% endif %} class="sendMessage" onclick="return comment();">傳送</button>
 			</div>
 		</div>

@@ -100,6 +100,31 @@ class CommentLikeView(generics.GenericAPIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class UnCommentLikeView(generics.GenericAPIView):
+    serializer_class = CommentLikeSerializer
+    permission_classes = (AllowAny, )
+
+    def post(self, request, format=None):
+        """
+        留言取消按讚
+        """
+        serializer = self.serializer_class(data=request.DATA)
+        if serializer.is_valid():
+            comment_type = serializer.data.get('comment_type')
+            comment_id = serializer.data.get('comment_id')
+            if comment_type == "comment":
+              comment = Comment.objects.get(id=comment_id)
+              comment.like -= 1
+              comment.save()
+            else:
+              comment = ReComment.objects.get(id=comment_id)
+              comment.like -= 1
+              comment.save()
+
+            return Response(comment.like, status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 class VideoLikeView(generics.GenericAPIView):
     serializer_class = VideoLikeSerializer
     permission_classes = (AllowAny, )
