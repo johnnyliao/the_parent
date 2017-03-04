@@ -102,12 +102,11 @@
 					$("#comment_block").append(html);
 					$("#comment_text").val("");
 					$(".reply2").click(function () {
-						//$(this).parents(".messageBox1").children(".reply1").css("display","block");
 						event.preventDefault();
-						 if ( $(this).parents(".messageBox1").children(".reply1").hasClass( "slideInUp" )) {
-						 		$(this).parents(".messageBox1").children(".reply1").removeClass('slideInUp').addClass("slideOutDown");
+						 if ( $(this).parents(".messageBox1").children(".reply1").hasClass( "active" )) {
+						 		$(this).parents(".messageBox1").children(".reply1").css("display","none").removeClass("active");
 						    }else{
-						    	$(this).parents(".messageBox1").children(".reply1").removeClass('slideOutDown').addClass("slideInUp").show();
+						    	$(this).parents(".messageBox1").children(".reply1").css("display","block").addClass("active");
 						    }
 					});
 					$('html, body').animate({
@@ -454,25 +453,37 @@ youtube手機版自動撥放 End-->
 		電商 End-->
 	</div>
 	<!--分享 start-->
+	<div class="shareAreaBox"></div>
 	<div class="shareArea animated">
 		<div class="shareAreaCon">
 			<ul>
+				<div>分享至</div>
 				<li>
-					<a style="margin:0px 10px;" href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent('http://nicokim.cc'))));"><img src="/static/img/fb_share.png" width="30" height="30" /></a>
+					<a style="margin:0px 10px;" href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent('http://nicokim.cc'))));"><img src="/static/img/fb_share.png" width="40" height="40" /></a>
 				</li>
 				<li>
-					<a href="http://line.naver.jp/R/msg/text/?http://nicokim.cc"><img src="/static/img/line_share.png" width="30" /></a>
+					<a href="http://line.naver.jp/R/msg/text/?http://nicokim.cc"><img src="/static/img/line_share.png" width="40" /></a>
 				</li>
 				<li>
-					<a href="whatsapp://send?text=The text to share!" data-action="share/whatsapp/share">Share via Whatsapp</a>
-				</li>
-				<li>
-
+					<a id="copyLink" href="#"><img src="/static/img/link.png" width="40" /></a>
 				</li>
 			</ul>
 		</div>
 	</div>
 	<!--分享 End-->
+	<!--其他功能 start-->
+	<div class="shareArea1 animated">
+		<div class="shareAreaCon">
+			<ul>
+				<div>其他</div>
+				<li>
+					<a style="margin:0px 10px;" href="/main"><img src="/static/img/home.png" width="40" height="40" /></a>
+				</li>
+			</ul>
+
+		</div>
+	</div>
+	<!--其他功能 End-->
 	<div class="videoBottomBar">
 		<div class="message">
 			<div class="messageCon">
@@ -532,6 +543,14 @@ youtube手機版自動撥放 End-->
 	    	$(".shareAreaBox").fadeIn(200);
 	    }
 	 });
+    /*影片內頁share start*/
+
+	$('.shareAreaBox').click(function () {
+	    $(".shareArea").removeClass('slideInUp').addClass("slideOutDown");
+	    $(".shareArea1").removeClass('slideInUp').addClass("slideOutDown");
+	 	$(".shareAreaBox").fadeOut(200);
+	 });
+	/*影片內頁share End*/
 
     </script>
   <!--淡入淡出 End-->
