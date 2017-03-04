@@ -50,7 +50,7 @@ def send_mail(request):
         except:
             mail = people.user.email
         print mail
-        if mail and mail != "a35565801@yahoo.com.tw" and mail != "hsaoyi750217@yahoo.com.tw":
+        if mail and mail != "a35565801@yahoo.com.tw" and mail != "hsaoyi750217@yahoo.com.tw" and mail != "k7i2t1ty@yahoo.com.tw" and mail != "s236587@yahoo.com.tw":
             smtp_obj = smtplib.SMTP('smtp.gmail.com', 587)
             smtp_obj.starttls()
             smtp_obj.login("candywang@supermedia.cool","ttshow321")
@@ -58,7 +58,7 @@ def send_mail(request):
             #import pdb;pdb.set_trace()
             print 3333333333
             #import pdb;pdb.set_trace()
-            html_text = "恭喜您中獎，獎品為 "+people.get_prize_display().encode('utf-8')+"<br/><br/>請點以下連結進行個人資訊填寫以利獎品寄送<br/><br/><a href=\"nicokim.cc/action/get_winning\">中獎人資訊</a><br/><br/>注意請於2017/3/9前填寫完成資料，逾期將不受理，請勿回覆本信件，謝謝。"
+            html_text = "很抱歉之前寄給各位的信中連結有很多人反應打不開，請各位直接復制以下網址後，直接在瀏覽器貼上就可以使用囉</br></br>http://nicokim.cc/action/get_winning</br></br>請於2017/3/9前填寫完成資料喔，謝謝。"
             print 4444444
             msg = MIMEText(html_text,_subtype='html',_charset='utf8')
             msg['Subject'] = '那對夫妻帳號認證'
@@ -70,9 +70,8 @@ def send_mail(request):
             print 6666666
             print "send verify email "
 
-            smtp_obj.close()
-        else:
-            print "no mail"
+        smtp_obj.close()
+
     return HttpResponse("ok")
 
 def get_winning(request):
