@@ -70,7 +70,7 @@ def send_mail(request):
             print 6666666
             print "send verify email "
 
-        smtp_obj.close()
+            smtp_obj.close()
 
     return HttpResponse("ok")
 

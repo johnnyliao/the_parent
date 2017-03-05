@@ -64,6 +64,23 @@
 			});
       	}
 
+      	function re_comment_like(type, comment_id) {
+      		var count = $("#re_comment_like_text_count_"+comment_id).text();
+      		$("#re_comment_like_text_count_"+comment_id).text(parseInt(count)+1)
+      		$("#re_comment_like_thumbs_"+comment_id).removeClass("fa-thumbs-o-up").addClass("fa-thumbs-up");
+      		document.getElementById("re_comment_like_count_"+comment_id).removeAttribute("onclick");
+      		$.ajax({
+				type: "POST",
+				url: "/movie/like_comment/",
+				data: {"comment_id":comment_id,"comment_type":type},
+				success: function(data){
+					$("#re_comment_like_text_count_"+comment_id).text(data)
+					console.log(data)
+				},
+				dataType: "json"
+			});
+      	}
+
       	function like_video() {
       		$.ajax({
 				type: "POST",
@@ -124,7 +141,7 @@
 				url: "/movie/re_comment/",
 				data: {"user":"{{request.user.id}}", "content":content, "re_comment":re_comment_id},
 				success: function(data){
-					html = "<li class=\"messageBox1Con\"><div class=\"messageBox1Img\"><img src=\"{% static "img/person-icon.png"%}\" width=\"40\" /></div><div class=\"messageCon\"><div class=\"messageConTitle\"><h2>"+data.user.username+"</h2></div><span class=\"timeBox\">"+data.date+"</span><p class=\"messageTxt\">"+data.content+"</p><div class=\"likeBox\"><span class=\"likeBtn\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i><span class=\"likeQua\">"+data.like+"</span></span></div></div></li>";
+					html = "<li class=\"messageBox1Con\"><div class=\"messageBox1Img\"><img src=\"{% static "img/person-icon.png"%}\" width=\"40\" /></div><div class=\"messageCon\"><div class=\"messageConTitle\"><h2>"+data.user.username+"</h2></div><span class=\"timeBox\">"+data.date+"</span><p class=\"messageTxt\">"+data.content+"</p><div class=\"likeBox\" id=\"re_comment_like_count_"+data.id+"\" onclick=\"return re_comment_like('re_comment','"+data.id+"');\"><span class=\"likeBtn\"><i id=\"re_comment_like_thumbs_"+data.id+"\" class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i><span class=\"likeQua\" id=\"re_comment_like_text_count_"+data.id+"\">"+data.like+"</span></span></div></div></li>";
 					$("#reply_"+re_comment_id).append(html);
 					$("#re_comment_"+re_comment_id).val("");
 				},
@@ -274,7 +291,7 @@ youtube手機版自動撥放 End-->
 			<!--<div id="player"></div>-->
 		</div>
 		<div class="videoDetBox1">
-			<a class="videoDetBox1Img01" href="#comment_block"><i class="fa fa-commenting-o" aria-hidden="true"></i>評論：<span class="talkcount">80</span></a>
+			<a class="videoDetBox1Img01" href="#comment_block"><i class="fa fa-commenting-o" aria-hidden="true"></i>評論</a>
 			<a class="videoDetBox1Img05"><img id="youtubeImg" src="{% static "img/youtube_h.png"%}" width="30"></a>
 			<a id="video_img" class="fancybox-media float_r videoDetBox1Img06" href="https://www.honhe.com"><img id="youkuImg" src="{% static "img/youku.png"%}" width="30"></a>
 			<a class="videoDetBox1Img02" id="videoDetLikeBtn" onclick="return like_video();">
@@ -379,7 +396,10 @@ youtube手機版自動撥放 End-->
 								<i id="comment_like_button_{{comment.id}}" onclick="return comment_like('comment','{{comment.id}}');" class="fa fa-thumbs-o-up" aria-hidden="true"></i>
 								<span id="comment_like_count_{{comment.id}}" class="likeQua">{{comment.like}}</span>
 							</span>
-							<span class="likeBtn"><i name="{{comment.id}}" class="fa fa-commenting-o reply2" aria-hidden="true"></i><span class="likeQua">{{comment.movie_re_comments.all.count}}</span></span>
+							<span class="likeBtn">
+								<i name="{{comment.id}}" class="fa fa-commenting-o reply2" aria-hidden="true"></i>
+								<span class="likeQua">{{comment.movie_re_comments.all.count}}</span>
+							</span>
 						</div>
 					</div>
 				</div>
@@ -391,8 +411,11 @@ youtube手機版自動撥放 End-->
 								<div class="messageConTitle"><h2>{{re_comment.user.username}}</h2><!--<span class="categoryBox">熱門</span>--></div>
 								<span class="timeBox">{{re_comment.date}}</span>
 								<p class="messageTxt">{{re_comment.content}}</p>
-								<div class="likeBox">
-									<span class="likeBtn"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><span class="likeQua">{{re_comment.like}}</span></span>
+								<div class="likeBox" id="re_comment_like_count_{{re_comment.id}}" onclick="return re_comment_like('re_comment','{{re_comment.id}}');">
+									<span class="likeBtn">
+										<i id="re_comment_like_thumbs_{{re_comment.id}}" class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+										<span class="likeQua" id="re_comment_like_text_count_{{re_comment.id}}">{{re_comment.like}}</span>
+									</span>
 								</div>
 							</div>
 						</li>
