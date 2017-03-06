@@ -52,6 +52,10 @@
        		location.assign('http://line.naver.jp/R/msg/text/?'+window.location.href);
        	}
 
+       	function show_alert_msg() {
+       		alert("請先登入後才可以留言")
+       	}
+
        	function comment_unlike(type, comment_id) {
        		$.ajax({
 				type: "POST",
@@ -132,16 +136,16 @@
       	}
 
       	function unlike_video(is_bottom) {
+      		if(is_bottom) {
+				$("#bottom_like").show()
+				$("#bottom_unlike").hide()
+			}
       		$.ajax({
 				type: "POST",
 				url: "/movie/unlike_video/",
 				data: {"video_id":"{{video_obj.id}}"},
 				success: function(data){
 					$("#like_count").text(data)
-					if(is_bottom) {
-						$("#bottom_like").show()
-						$("#bottom_unlike").hide()
-					}
 				},
 				dataType: "json"
 			});
@@ -667,6 +671,15 @@ youtube手機版自動撥放 End-->
 	          $('body').removeClass('loading');
 	        }
       	});
+      	{% if not request.user.is_authenticated %}
+      		$( ".message" ).click(function() {
+			  alert("登入後才可留言")
+			});
+
+			$( ".messInputBox" ).click(function() {
+			  alert("登入後才可留言")
+			});
+      	{% endif %}
     });
 	    // Can also be used with $(document).ready()
 
