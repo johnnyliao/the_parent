@@ -13,9 +13,18 @@ class FacebookConnectSerializer(serializers.Serializer):
     access_token = serializers.CharField()
 
 class UserInfoSerializer(serializers.ModelSerializer):
+	user_img = serializers.SerializerMethodField('get_user_img')
 
 	class Meta:
 		model = User
+
+	def get_user_img(self, user):
+		if user.socialaccount_set.all():
+			fb_id = user.socialaccount_set.all()[0].extra_data["id"]
+			pic_url = "http://graph.facebook.com/v2.8/%s/picture" % fb_id
+			return pic_url
+		else:
+			return "/static/img/person-icon.png"
 
 class UserViewLoSerializer(serializers.ModelSerializer):
 
