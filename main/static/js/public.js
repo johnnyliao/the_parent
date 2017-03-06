@@ -84,7 +84,13 @@ $(function(){
 	/*愛心onclick 換圖 End*/
 	/*留言區回覆 start*/
 	$(".reply2").click(function () {
-		$(this).parents(".messageBox1").children(".reply1").css("display","block");
+		//$(this).parents(".messageBox1").children(".reply1").css("display","block");
+		event.preventDefault();
+		if ( $(this).parents(".messageBox1").children(".reply1").hasClass( "active" )) {
+				$(this).parents(".messageBox1").children(".reply1").css("display","none").removeClass("active");
+		}else{
+			$(this).parents(".messageBox1").children(".reply1").css("display","block").addClass("active");
+		}
 	});
 	/*留言區回覆 End*/
 

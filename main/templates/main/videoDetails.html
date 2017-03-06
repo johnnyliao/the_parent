@@ -142,14 +142,14 @@
 
 					$("#comment_block").append(html);
 					$("#comment_text").val("");
-					$(".reply2").click(function () {
+					/*$(".reply2").click(function () {
 						event.preventDefault();
 						 if ( $(this).parents(".messageBox1").children(".reply1").hasClass( "active" )) {
 						 		$(this).parents(".messageBox1").children(".reply1").css("display","none").removeClass("active");
 						    }else{
 						    	$(this).parents(".messageBox1").children(".reply1").css("display","block").addClass("active");
 						    }
-					});
+					});*/
 					$('html, body').animate({
 				        scrollTop: $("#speakBox_"+data.id).offset().top
 				    }, 1000);
@@ -246,7 +246,7 @@ youtube手機版自動撥放 End-->
 
 <body>
 <div class="" none="ture">
-	<header class="header animated hideHeader" _height="none">
+	<header class="header animated hideHeader" _height="none" style="display:none;">
 		<article class="topnav">
 			<div class="cd-dropdown-wrapper">
 				<a class="cd-dropdown-trigger top" href="#0">

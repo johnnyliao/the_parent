@@ -184,7 +184,7 @@ footer{
     text-align: center;
     display: block;
     z-index: 9999;
-    height: 38px;
+    height: auto;
 }
 
 .under-nav li{
@@ -2100,7 +2100,7 @@ input[name="zipcode"]{
 .container_default .videoBottomBar .message .input1{
     display: inline-block;
     height: 30px;
-    position: absolute;
+    float: left;
     left: 15px;
     overflow: hidden;
     border-radius: 30px;
@@ -2109,7 +2109,7 @@ input[name="zipcode"]{
     color: #666;
     padding-left: 20px;
     margin-top: 6px;
-    width: 78%;
+    width: 80%;
 }
 .container_default .videoBottomBar .message .messageCon{
     position: relative;
@@ -2132,7 +2132,7 @@ input[name="zipcode"]{
     color: #515151;
     font-weight: bold;
     width: 40px;
-    float: right;
+    float: left;
 }
 .container_default .videoBottomBar .like,.container_default .videoBottomBar .share{
     display: inline-block;
@@ -2154,6 +2154,9 @@ input[name="zipcode"]{
 .container_default .box2{
     margin-bottom: 50px;
 }
+}
+@media screen and (max-width:1024px){
+
 }
 @media screen and (max-width:767px){
 .container_default {
@@ -2182,6 +2185,22 @@ input[name="zipcode"]{
 }
 .container_default .videolistBox ul li .videoListTxtBox{
     width: 75%;
+}
+.container_default .videoBottomBar .message .input1{
+    float: none;
+    position: absolute;
+    left: 15px;
+    overflow: hidden;
+    border-radius: 30px;
+    border: 1px solid #e8e8e8;
+    background-color: #fff;
+    color: #666;
+    padding-left: 20px;
+    margin-top: 6px;
+    width: 80%;
+}
+.container_default .videoBottomBar .message button {
+    float: right;
 }
 }
 @media screen and (max-width:640px){
@@ -2258,6 +2277,9 @@ input[name="zipcode"]{
 .container_default .messageBox .messInputBox{
     width: 80%;
 }
+.container_default .videoBottomBar .message button{
+    margin: 8px -5px 0px 10px;
+}
 }
 @media screen and (max-width:400px){
 .container .memberBox .sky-form .forgetPassCon .col-sm-6 section input{
@@ -2293,7 +2315,10 @@ input[name="zipcode"]{
     width:76%;
 }
 .container_default .videoBottomBar .message .input1{
-    width: 70%
+    width: 79%
+}
+.container_default .videoBox1 .videoCont li:nth-child(odd),.container_default .videoBox1 .videoCont li:nth-child(even){
+    margin-bottom: 15px;
 }
 }
 @media screen and (max-width:340px){
@@ -2302,6 +2327,9 @@ input[name="zipcode"]{
 }
 .container_default .videolistBox .videoListImgBox img{
     width: 120px !important;
+}
+.container_default .videoBottomBar .message .input1{
+    width: 74%
 }
 }
 @media screen and (max-width:320px){
