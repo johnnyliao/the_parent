@@ -470,7 +470,7 @@ youtube手機版自動撥放 End-->
 				</ul>
 				<div id="reply_position_{{comment.id}}" class="messageBox animated reply1">
 					<div class="speakBox">
-						<div class="speakBoxImg"><img src="{% static "img/people1.jpg"%}" width="40" /></div>
+						<div class="speakBoxImg"><img src="{% if request.user.is_authenticated %}{{request.user|get_user_img}}{% else%}/static/img/person-icon.png{% endif %}" width="40" /></div>
 						<div class="messInputBox">
 							<textarea {% if not request.user.is_authenticated %}disabled{% endif %} id="re_comment_{{comment.id}}" class="signedIn" placeholder="{% if not request.user.is_authenticated %}請登入後才可留言{% else %}留言{% endif %}"></textarea>
 							<button type="submit" {% if not request.user.is_authenticated %}disabled{% endif %} onclick="return re_comment('{{comment.id}}')" class="messageBtn signedIn">留言</button>
