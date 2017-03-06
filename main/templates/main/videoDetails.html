@@ -364,6 +364,10 @@ youtube手機版自動撥放 End-->
 				<ul>
 					<li>播放：<span>{{video_obj.watch_count}}</span>次</li>
 					<li>類型：<span>{{video_obj.get_movie_type_display}}</span></li>
+					<li>
+						<script src="https://apis.google.com/js/platform.js"></script>
+						<div class="g-ytsubscribe" data-channel="kyo0622ace1988" data-layout="default" data-theme="dark" data-count="hidden"></div>
+					</li><br/>
 					<li><a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><span id="like_count">{{video_obj.like}}</span></a></li>
 				</ul>
 			</div>
@@ -547,24 +551,62 @@ youtube手機版自動撥放 End-->
 				</li>
 			</ul>
 		</div>
+		<div class="otherBoxCancel"><span>取消</span></div>
 	</div>
 	<!--分享 End-->
 	<!--其他功能 start-->
 	<div class="shareArea1 animated">
 		<div class="shareAreaCon">
 			<ul>
-				<div>其他</div>
-				<li id="videoLogIn">
-					<a style="margin:0px 10px;" onclick="return user_login()" ><img src="/static/img/login.png" width="40" height="40" /></a>
-				</li>
-				<li id="videoLogout">
-					<a style="margin:0px 10px;" href="/"><img src="/static/img/logout.png" width="40" height="40" /></a>
+				<div>分享至</div>
+				<li>
+					<a style="margin:0px 10px;" onclick="return share_facebook()"><img src="/static/img/fb_share.png" width="40" height="40" /></a>
 				</li>
 				<li>
-					<a style="margin:0px 10px;" href="/"><img src="/static/img/home.png" width="40" height="40" /></a>
+					<a onclick="return share_line()"><img src="/static/img/line_share.png" width="40" /></a>
+				</li>
+				<li>
+					<a id="copyLink" onclick="return copy_link();"><img src="/static/img/link.png" width="40" /></a>
 				</li>
 			</ul>
+			<div class="fbfansBox">FB粉絲專頁/其它</div>
+			<div class="tabs fixed show-tab dark abgne_tab" fixed-tabs="#tv-tabs" ng-class="{'show-tab' : showTabs}">
 
+		  		<a href="＃" target="_self" class="tab" id="videoLogIn">
+		  			<div>
+		  				<img src="/static/img/login.png" width="40" height="40" />
+		  			</div>
+					<div>登入</div>
+				</a>
+		  		<a href="＃" target="_self" class="tab" id="videoLogout">
+		  			<div>
+		  				<img src="/static/img/logout.png" width="40" height="40" />
+		  			</div>
+					<div>登出</div>
+				</a>
+		  		<a href="＃" target="_self" class="tab">
+		  			<div><img src="/static/img/home.png" width="40" height="40" /></div>
+					<div>回首頁</div>
+				</a>
+		  		<a href="＃" target="_self" class="tab">
+		  			<div><img src="/static/img/login.png" width="40" height="40" /></div>
+					<div>那對夫妻粉專</div>
+				</a>
+				<a href="＃" target="_self" class="tab">
+		  			<div><img src="/static/img/login.png" width="40" height="40" /></div>
+					<div>Kim粉專</div>
+				</a>
+				<a href="＃" target="_self" class="tab">
+		  			<div><img src="/static/img/login.png" width="40" height="40" /></div>
+					<div>Nico粉專</div>
+				</a>
+				<a href="＃" target="_self" class="tab">
+		  			<div><img src="/static/img/login.png" width="40" height="40" /></div>
+					<div>妮妮粉專</div>
+				</a>
+
+			</div>
+			<div class="otherBoxCancel"><span>取消</span></div>
 		</div>
 	</div>
 	<!--其他功能 End-->

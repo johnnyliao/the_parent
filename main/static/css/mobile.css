@@ -171,6 +171,9 @@ footer{
     bottom: 0px;
     display: block;
 }
+footer a{
+    color: #666;
+}
 .container {
     padding-right: 15px;
     padding-left: 15px;
@@ -1518,12 +1521,13 @@ input[name="zipcode"]{
     border-top: 1px solid #e8e8e8;
     margin: 0px 15px;
     padding-top: 15px;
+    color: #666;
 }
 .container_default .introductionBox h2{
     color: #909090;
     line-height: 28px;
     font-size: 16px;
-    font-weight: 100;
+    font-weight: 400;
 }
 .container_default .videoDetBox2 .videoDetTitdel{
     display: block;
@@ -1758,8 +1762,8 @@ input[name="zipcode"]{
     text-align: center;
 }
 .container_default .flexslider3 img{
-    width: 80%;
-
+    width: 100%;
+    width: 40px;
 }
 .container_default .flexslider1 .videoTitle{
     width: 100px;
@@ -1991,7 +1995,7 @@ input[name="zipcode"]{
 }
 .shareArea{
     background: rgba(255,255,255,1);
-    height: 80px;
+    height: 115px;
     line-height: 34px;
     text-align: center;
     position: fixed;
@@ -2002,7 +2006,7 @@ input[name="zipcode"]{
 }
 .shareArea1{
     background: rgba(255,255,255,1);
-    height: 80px;
+    height: 230px;
     line-height: 34px;
     text-align: center;
     position: fixed;
@@ -2011,6 +2015,21 @@ input[name="zipcode"]{
     z-index: 99999;
     display: none;
 }
+.shareArea1 .shareAreaCon .fbfansBox{
+    margin-top: 10px;
+}
+.otherBoxCancel{
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    z-index: 9999;
+    background: #e8e8e8;
+}
+.accordionBtn1  li iframe{
+    margin-top: 10px!important;
+}
+    margin-top: 10px!important;
+}
 .container_default .shareAreaBox{
     height: 100%;
     width: 100%;
@@ -2018,6 +2037,9 @@ input[name="zipcode"]{
     top: 0px;
     background: rgba(0,0,0,0.7);
     z-index: 9999;
+    display: none;
+}
+.container_default .flex-control-nav{
     display: none;
 }
 .shareArea li{
@@ -2030,6 +2052,15 @@ input[name="zipcode"]{
 }
 .container_default .shareArea1 .shareAreaCon #videoLogout{
     display: none;
+}
+.container_default .shareArea1 .shareAreaCon .tabs{
+    height: 100px;
+    border: 0px;
+    line-height: 24px;
+    bottom: 0px;
+}
+.container_default .shareArea1 .shareAreaCon .tabs.fixed{
+    top:120px;
 }
 #fbMessenger{
     position: fixed;
@@ -2048,7 +2079,7 @@ input[name="zipcode"]{
     margin-left: -150px;
 }
 .fa-caret-down{
-    font: normal normal normal 18px/1 FontAwesome!important;
+    font: normal normal normal 20px/1 FontAwesome!important;
 }
 .dropDownList {
     display: inline-block;
@@ -2073,8 +2104,8 @@ input[name="zipcode"]{
     height: 3px;
     content: '';
     position: absolute;
-    top: 7px;
-    right: 0px;
+    top: 0px;
+    right: 7px;
 }
 .dropDownList .cd-dropdown-trigger1 span::after{
     background-color: #675653;
@@ -2082,8 +2113,8 @@ input[name="zipcode"]{
     height: 3px;
     content: '';
     position: absolute;
-    top: -7px;
-    right: 0px;
+    top: 0px;
+    right: -7px;
 }
 #headerMenu .goBack{
     display: inline-block;

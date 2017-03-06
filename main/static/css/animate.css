@@ -3216,8 +3216,8 @@
 .slideInUp {
   -webkit-animation-name: slideInUp;
   animation-name: slideInUp;
-  -webkit-animation-duration: 0.5s;
-  animation-duration:0.5s;
+  -webkit-animation-duration: 0.025s;
+  animation-duration:0.025s;
 }
 
 
@@ -3250,6 +3250,8 @@
 .slideOutDown {
   -webkit-animation-name: slideOutDown;
   animation-name: slideOutDown;
+  -webkit-animation-duration: 0.025s;
+  animation-duration:0.025s;
 }
 
 @-webkit-keyframes slideOutLeft {
