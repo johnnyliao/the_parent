@@ -36,6 +36,10 @@
        		history.go(-1);
        	}
 
+       	function user_login(type) {
+   			location.assign("/main/login/?next="+window.location.href);
+       	}
+
        	function go_to_more(type) {
    			location.assign("/main/index_video/?type="+type);
        	}
@@ -547,7 +551,7 @@ youtube手機版自動撥放 End-->
 			<ul>
 				<div>其他</div>
 				<li id="videoLogIn">
-					<a style="margin:0px 10px;" href="/main/login"><img src="/static/img/login.png" width="40" height="40" /></a>
+					<a style="margin:0px 10px;" onclick="return user_login()" ><img src="/static/img/login.png" width="40" height="40" /></a>
 				</li>
 				<li id="videoLogout">
 					<a style="margin:0px 10px;" href="/"><img src="/static/img/logout.png" width="40" height="40" /></a>

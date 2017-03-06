@@ -79,7 +79,12 @@
 					    	alert("請先進行email認證功能！");
 					    	window.location.assign('/main/register_success/');
 					    } else {
-					    	window.location.assign('/main/index/');
+					    	if(data["next"]) {
+					    		window.location.assign(data["next"]);
+					    	} else {
+					    		location.assign("/");
+					    	}
+
 					    }
 					  }
 					});

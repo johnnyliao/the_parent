@@ -97,6 +97,7 @@ class UserLoginView(generics.GenericAPIView):
         if serializer.is_valid():
             username = serializer.data.get('username')
             password = serializer.data.get('password')
+            next_url = request.GET.get("next", None)
             try:
                 User.objects.get(username=username)
                 user = authenticate(username=username, password=password)
@@ -110,7 +111,10 @@ class UserLoginView(generics.GenericAPIView):
                 return Response({"status":False, "msg":u"使用者帳號錯誤"}, status=status.HTTP_200_OK)
 
             serializer = UserInfoSerializer(request.user, context={'request': request})
-            return Response({"status":True}, status=status.HTTP_201_CREATED)
+            if next_url:
+                return Response({"status":True, "next":next_url}, status=status.HTTP_201_CREATED)
+            else:
+                return Response({"status":True, "next": False}, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
