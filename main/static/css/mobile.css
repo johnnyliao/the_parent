@@ -2028,6 +2028,9 @@ input[name="zipcode"]{
     display: inline-block;
     width: 30%;
 }
+.container_default .shareArea1 .shareAreaCon #videoLogout{
+    display: none;
+}
 #fbMessenger{
     position: fixed;
     background: rgba(0,0,0,0.7);
