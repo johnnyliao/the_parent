@@ -115,10 +115,10 @@ def videoDetails(request):
 		video_obj = Movie.objects.all().get(id=video_id)
 		video_obj.watch_count += 1
 		video_obj.save()
-		maybe_likes = Movie.objects.all().filter(movie_type=video_obj.movie_type)[:4]
-		hot_now = Movie.objects.all().filter(movie_type="hot")
-		brands = Movie.objects.all().filter(movie_type="brand")
-		comments = Comment.objects.filter(movie=video_obj)
+		maybe_likes = Movie.objects.all().exclude(id=video_obj.id).filter(movie_type=video_obj.movie_type)[:4]
+		hot_now = Movie.objects.all().filter(movie_type="hot").exclude(id=video_obj.id)
+		brands = Movie.objects.all().filter(movie_type="brand").exclude(id=video_obj.id)
+		comments = Comment.objects.filter(movie=video_obj).exclude(id=video_obj.id)
 	return render_to_response("main/videoDetails.html", locals(), context_instance=RequestContext(request))
 
 def index_home(request):
