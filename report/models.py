@@ -31,6 +31,18 @@ WEB_CHOICES = (
     ("funnyking", _(u'funnyking')),
 )
 
+class ReportUser(models.Model):
+    name = models.CharField(_(u"人名"), choices=NANE_CHOICES, max_length=10)
+    job_start = models.DateField(_(u"到職日"))
+    target = models.IntegerField(_(u"目標"))
+    week_target = models.IntegerField(_(u"週目標"))
+    month_target = models.IntegerField(_(u"月目標"))
+    fans_target = models.IntegerField(_(u"粉絲成長"))
+    supervisor = models.CharField(_(u"主管"), max_length=20)
+    email = models.EmailField(max_length=254)
+    phone = models.CharField(max_length=10)
+    kpi = models.CharField(max_length=100)
+
 class Register(models.Model):
     name = models.CharField(_(u"人名"), choices=NANE_CHOICES, max_length=10)
     inner_id = models.CharField(_(u"文章id"), max_length=20, unique=True)

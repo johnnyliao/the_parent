@@ -118,17 +118,17 @@
       	}
 
       	function like_video(is_bottom) {
-      		console.log(is_bottom)
+      		if(is_bottom) {
+				$("#bottom_like").hide()
+				$("#bottom_unlike").show()
+			}
       		$.ajax({
 				type: "POST",
 				url: "/movie/like_video/",
 				data: {"video_id":"{{video_obj.id}}"},
 				success: function(data){
 					$("#like_count").text(data);
-					if(is_bottom) {
-						$("#bottom_like").hide()
-						$("#bottom_unlike").show()
-					}
+
 
 				},
 				dataType: "json"
