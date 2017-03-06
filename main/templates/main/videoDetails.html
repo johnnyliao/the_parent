@@ -32,6 +32,10 @@
      		 $("#header").headroom();
        	});
 
+       	function go_back(){
+       		history.go(-1);
+       	}
+
        	function go_to_more(type) {
    			location.assign("/main/index_video/?type="+type);
        	}
@@ -311,7 +315,7 @@ youtube手機版自動撥放 End-->
 
 	<div class="container_default" _height="auto">
 	<div class="animated prevPage" id="headerMenu">
-  		<div class="goBack"><i class="fa fa-chevron-left tab" aria-hidden="true" style="line-height:40px;"></i></div>
+  		<div class="goBack" onclick="return go_back()"><i class="fa fa-chevron-left tab" aria-hidden="true" style="line-height:40px;"></i></div>
   		<div class="dropDownList">
 			<a class="cd-dropdown-trigger1 top" href="#0">
 				<span></span>
