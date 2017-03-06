@@ -105,25 +105,35 @@
 			});
       	}
 
-      	function like_video() {
+      	function like_video(is_bottom) {
+      		console.log(is_bottom)
       		$.ajax({
 				type: "POST",
 				url: "/movie/like_video/",
 				data: {"video_id":"{{video_obj.id}}"},
 				success: function(data){
-					$("#like_count").text(data)
+					$("#like_count").text(data);
+					if(is_bottom) {
+						$("#bottom_like").hide()
+						$("#bottom_unlike").show()
+					}
+
 				},
 				dataType: "json"
 			});
       	}
 
-      	function unlike_video() {
+      	function unlike_video(is_bottom) {
       		$.ajax({
 				type: "POST",
 				url: "/movie/unlike_video/",
 				data: {"video_id":"{{video_obj.id}}"},
 				success: function(data){
 					$("#like_count").text(data)
+					if(is_bottom) {
+						$("#bottom_like").show()
+						$("#bottom_unlike").hide()
+					}
 				},
 				dataType: "json"
 			});
@@ -318,10 +328,10 @@ youtube手機版自動撥放 End-->
 			<a class="videoDetBox1Img01" href="#comment_block"><i class="fa fa-commenting-o" aria-hidden="true"></i>評論</a>
 			<a class="videoDetBox1Img05"><img id="youtubeImg" src="{% static "img/youtube_h.png"%}" width="30"></a>
 			<a id="video_img" class="fancybox-media float_r videoDetBox1Img06" href="https://www.honhe.com"><img id="youkuImg" src="{% static "img/youku.png"%}" width="30"></a>
-			<a class="videoDetBox1Img02" id="videoDetLikeBtn" onclick="return like_video();">
+			<a class="videoDetBox1Img02" id="videoDetLikeBtn" onclick="return like_video(false);">
 				<i class="fa fa-heart-o" aria-hidden="true"></i>
 			</a>
-			<a class="videoDetBox1Img02 active" id="videoDetLikeBtn" onclick="return unlike_video();"><i class="fa fa-heart" aria-hidden="true"></i></a>
+			<a class="videoDetBox1Img02 active" id="videoDetLikeBtn" onclick="return unlike_video(false);"><i class="fa fa-heart" aria-hidden="true"></i></a>
 			<a class="videoDetBox1Img03 shareBox" id="share" href="#"><i class="fa fa-share-square-o" aria-hidden="true"></i></a>
 		</div>
 	</div>
@@ -538,8 +548,8 @@ youtube手機版自動撥放 End-->
 				<button {% if not request.user.is_authenticated %}disabled{% endif %} class="sendMessage" onclick="return comment();">傳送</button>
 			</div>
 		</div>
-		<div class="like"  onclick="return like_video();"><img src="/static/img/like.png"></div>
-		<div class="like" style="display:none;"><img src="/static/img/like_h.png"></div>
+		<div class="like" id="bottom_like"  onclick="return like_video(true);"><img src="/static/img/like.png"></div>
+		<div class="like" id="bottom_unlike" onclick="return unlike_video(true);" style="display:none;"><img src="/static/img/like_h.png"></div>
 		<div class="share shareBox"><img src="/static/img/share_b.png"></div>
 	</div>
 </div>
