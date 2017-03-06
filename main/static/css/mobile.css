@@ -2036,8 +2036,6 @@ input[name="zipcode"]{
 .accordionBtn1  li iframe{
     margin-top: 10px!important;
 }
-    margin-top: 10px!important;
-}
 .container_default .shareAreaBox{
     height: 100%;
     width: 100%;
@@ -2135,7 +2133,7 @@ input[name="zipcode"]{
 .container_default .videoBottomBar{
     position: fixed;
     bottom: 0px;
-    height: 40px;
+    height: 45px;
     width: 100%;
     background: #e8e8e8;
 }
