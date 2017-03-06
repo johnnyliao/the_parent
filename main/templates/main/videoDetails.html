@@ -339,8 +339,8 @@ youtube手機版自動撥放 End-->
 		</div>
 		<div class="videoDetBox1">
 			<a class="videoDetBox1Img01" href="#comment_block"><i class="fa fa-commenting-o" aria-hidden="true"></i>評論</a>
-			<a class="videoDetBox1Img05"><img id="youtubeImg" src="{% static "img/youtube_h.png"%}" width="30"></a>
-			<a id="video_img" class="fancybox-media float_r videoDetBox1Img06" href="https://www.honhe.com"><img id="youkuImg" src="{% static "img/youku.png"%}" width="30"></a>
+			<!--<a class="videoDetBox1Img05"><img id="youtubeImg" src="{% static "img/youtube_h.png"%}" width="30"></a>
+			<a id="video_img" class="fancybox-media float_r videoDetBox1Img06" href="https://www.honhe.com"><img id="youkuImg" src="{% static "img/youku.png"%}" width="30"></a>-->
 			<a class="videoDetBox1Img02" id="videoDetLikeBtn" onclick="return like_video(false);">
 				<i class="fa fa-heart-o" aria-hidden="true"></i>
 			</a>
@@ -392,7 +392,7 @@ youtube手機版自動撥放 End-->
 			<ul id="videoContBox">
 				{% for hot in hot_now %}
 				<li>
-					<a href="/movie/videoDetails/?video_id={{hot.id}}">
+					<a href="/main/videoDetails/?video_id={{hot.id}}">
 						<div class="videoListImgBox"><img src="{{hot.photo.url}}" width="150" /></div>
 						<div class="videoListTxtBox"><h2>{{hot.title}}</h2>
 							<div class="viewQuanBox">
@@ -414,7 +414,7 @@ youtube手機版自動撥放 End-->
 
 				{% for brand in brands %}
 				<li>
-					<a href="/movie/videoDetails/?video_id={{brand.id}}">
+					<a href="/main/videoDetails/?video_id={{brand.id}}">
 						<div class="videoListImgBox"><img src="{{brand.photo.url}}" width="150" /></div>
 						<div class="videoListTxtBox"><h2>{{brand.title}}</h2>
 							<div class="viewQuanBox">
@@ -547,7 +547,7 @@ youtube手機版自動撥放 End-->
 			<ul>
 				<div>其他</div>
 				<li id="videoLogIn">
-					<a style="margin:0px 10px;" href="/"><img src="/static/img/login.png" width="40" height="40" /></a>
+					<a style="margin:0px 10px;" href="/main/login"><img src="/static/img/login.png" width="40" height="40" /></a>
 				</li>
 				<li id="videoLogout">
 					<a style="margin:0px 10px;" href="/"><img src="/static/img/logout.png" width="40" height="40" /></a>
