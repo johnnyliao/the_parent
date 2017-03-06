@@ -150,7 +150,7 @@
 				url: "/movie/comment/",
 				data: {"user":"{{request.user.id}}", "content":content, "movie":"{{video_obj.id}}"},
 				success: function(data){
-					var html = "<div class=\"messageBox\" id=\"speakBox_"+data.id+"\"><div class=\"messageBox1\"><div class=\"messageBox1Con\"><div class=\"messageBox1Img\"><img src=\""+data.user.user_img+"\" width=\"40\" /></div><div class=\"messageCon\"><div class=\"messageConTitle\"><h2>"+data.user.username+"</h2></div><span class=\"timeBox\">"+data.date+"</span><p class=\"messageTxt\">"+data.content+"</p><div class=\"likeBox\"><span class=\"likeBtn\"><i id=\"comment_like_button_"+data.id+"\" onclick=\"return comment_like('comment','"+data.id+"');\" class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i><span id=\"comment_like_count_"+data.id+"\" class=\"likeQua\">"+data.like+"</span></span><span class=\"likeBtn\"><i class=\"fa fa-commenting-o reply2\" aria-hidden=\"true\"></i><span class=\"likeQua\">0</span></span></div></div></div><ul class=\"reply1\" id=\"reply_"+data.id+"\">"
+					var html = "<div class=\"messageBox\" id=\"speakBox_"+data.id+"\"><div class=\"messageBox1\"><div class=\"messageBox1Con\"><div class=\"messageBox1Img\"><img src=\""+data.user.user_img+"\" width=\"40\" /></div><div class=\"messageCon\"><div class=\"messageConTitle\"><h2>"+data.user.username+"</h2></div><span class=\"timeBox\">"+data.date+"</span><p class=\"messageTxt\">"+data.content+"</p><div class=\"likeBox\"><span class=\"likeBtn\"><i id=\"comment_like_button_"+data.id+"\" onclick=\"return comment_like('comment','"+data.id+"');\" class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i><span id=\"comment_like_count_"+data.id+"\" class=\"likeQua\">"+data.like+"</span></span><span class=\"likeBtn\"><i class=\"fa fa-commenting-o reply2 reply3\" aria-hidden=\"true\"></i><span class=\"likeQua\">0</span></span></div></div></div><ul class=\"reply1\" id=\"reply_"+data.id+"\">"
 					html += "</ul><div class=\"messageBox reply1\"><div class=\"speakBox\"><div class=\"speakBoxImg\"><img src=\""+data.user.user_img+"\" width=\"40\" /></div><div class=\"messInputBox\"><textarea {% if not request.user.is_authenticated %}disabled{% endif %} id=\"re_comment_"+data.id+"\" class=\"signedIn\" placeholder=\"留言\"></textarea><button type=\"submit\" {% if not request.user.is_authenticated %}disabled{% endif %} onclick=\"return re_comment('"+data.id+"')\" class=\"messageBtn signedIn\">留言</button></div></div></div></div></div>"
 
 
@@ -167,6 +167,15 @@
 					$('html, body').animate({
 				        scrollTop: $("#speakBox_"+data.id).offset().top
 				    }, 1000);
+
+				    $(".reply3").click(function () {
+						event.preventDefault();
+						if ( $(this).parents(".messageBox1").children(".reply1").hasClass( "active" )) {
+								$(this).parents(".messageBox1").children(".reply1").css("display","none").removeClass("active");
+						}else{
+							$(this).parents(".messageBox1").children(".reply1").css("display","block").addClass("active");
+						}
+					});
 				},
 				dataType: "json"
 			});
