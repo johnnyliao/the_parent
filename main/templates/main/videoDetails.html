@@ -32,6 +32,18 @@
      		 $("#header").headroom();
        	});
 
+       	function go_to_more(type) {
+   			location.assign("/main/index_video/?type="+type);
+       	}
+
+       	function share_facebook() {
+       		location.assign('https://www.facebook.com/share.php?u='+window.location.href);
+       	}
+
+       	function share_line() {
+       		location.assign('http://line.naver.jp/R/msg/text/?'+window.location.href);
+       	}
+
        	function comment_unlike(type, comment_id) {
        		$.ajax({
 				type: "POST",
@@ -49,6 +61,17 @@
 			});
        	}
 
+       	function copy_link() {
+       		var clip_area = document.createElement('textarea');
+			  	clip_area.textContent = window.location.href;
+
+				document.body.appendChild(clip_area);
+				clip_area.select();
+
+				document.execCommand('copy');
+  				clip_area.remove();
+  				alert("連結以複製")
+       	}
       	function comment_like(type, comment_id) {
       		var count = $("#comment_like_count_"+comment_id).text();
       		$("#comment_like_count_"+comment_id).text(parseInt(count)+1)
@@ -320,12 +343,12 @@ youtube手機版自動撥放 End-->
 		<div class="videolistBox">
 			<div class="videolistTitleBox">
 				<div class="videolistBoxTitle"><h1>你可能會喜歡</h1></div>
-				<div class="videolistBoxMore" id="more1">更多 > </div>
+				<div class="videolistBoxMore" id="more1" onclick="return go_to_more('{{video_obj.movie_type}}');">更多 > </div>
 			</div>
 			<ul id="videoContBox">
 				{% for item in maybe_likes %}
 				<li>
-					<a href="/movie/videoDetails/?video_id={{item.id}}">
+					<a href="/main/videoDetails/?video_id={{item.id}}">
 						<div class="videoListImgBox"><img src="{{item.photo.url}}" width="150" /></div>
 						<div class="videoListTxtBox"><h2>{{item.title}}</h2>
 							<div class="viewQuanBox">
@@ -341,7 +364,7 @@ youtube手機版自動撥放 End-->
 		<div class="videolistBox">
 			<div class="videolistTitleBox">
 				<div class="videolistBoxTitle"><h1>即時熱門</h1></div>
-				<div class="videolistBoxMore" id="more1">更多 > </div>
+				<div class="videolistBoxMore" id="more1" onclick="return go_to_more('hot');">更多 > </div>
 			</div>
 			<ul id="videoContBox">
 				{% for hot in hot_now %}
@@ -362,7 +385,7 @@ youtube手機版自動撥放 End-->
 		<div class="videolistBox">
 			<div class="videolistTitleBox">
 				<div class="videolistBoxTitle"><h1>合作品牌</h1></div>
-				<div class="videolistBoxMore" id="more1">更多 > </div>
+				<div class="videolistBoxMore" id="more1" onclick="return go_to_more('brand');">更多 > </div>
 			</div>
 			<ul id="videoContBox">
 
@@ -378,7 +401,7 @@ youtube手機版自動撥放 End-->
 						</div>
 					</a>
 				</li>
-				{% endfor %}e
+				{% endfor %}
 
 			</ul>
 		</div>
@@ -483,13 +506,13 @@ youtube手機版自動撥放 End-->
 			<ul>
 				<div>分享至</div>
 				<li>
-					<a style="margin:0px 10px;" href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent('http://nicokim.cc'))));"><img src="/static/img/fb_share.png" width="40" height="40" /></a>
+					<a style="margin:0px 10px;" onclick="return share_facebook()"><img src="/static/img/fb_share.png" width="40" height="40" /></a>
 				</li>
 				<li>
-					<a href="http://line.naver.jp/R/msg/text/?http://nicokim.cc"><img src="/static/img/line_share.png" width="40" /></a>
+					<a onclick="return share_line()"><img src="/static/img/line_share.png" width="40" /></a>
 				</li>
 				<li>
-					<a id="copyLink" href="#"><img src="/static/img/link.png" width="40" /></a>
+					<a id="copyLink" onclick="return copy_link();"><img src="/static/img/link.png" width="40" /></a>
 				</li>
 			</ul>
 		</div>
@@ -501,7 +524,7 @@ youtube手機版自動撥放 End-->
 			<ul>
 				<div>其他</div>
 				<li>
-					<a style="margin:0px 10px;" href="/main"><img src="/static/img/home.png" width="40" height="40" /></a>
+					<a style="margin:0px 10px;" href="/"><img src="/static/img/home.png" width="40" height="40" /></a>
 				</li>
 			</ul>
 
@@ -515,7 +538,7 @@ youtube手機版自動撥放 End-->
 				<button {% if not request.user.is_authenticated %}disabled{% endif %} class="sendMessage" onclick="return comment();">傳送</button>
 			</div>
 		</div>
-		<div class="like"><img src="/static/img/like.png"></div>
+		<div class="like"  onclick="return like_video();"><img src="/static/img/like.png"></div>
 		<div class="like" style="display:none;"><img src="/static/img/like_h.png"></div>
 		<div class="share shareBox"><img src="/static/img/share_b.png"></div>
 	</div>

@@ -73,8 +73,15 @@ def home(request):
 	nicokimred_lists = WinningUser.objects.filter(prize="nicokimred")
 	phone_lists = WinningUser.objects.filter(prize="phone")
 
+	movie_type =  request.GET.get("type", "new")
+	if movie_type:
+		videos = Movie.objects.all().filter(movie_type=movie_type).order_by("-date")
+	else:
+		videos = Movie.objects.all().filter(movie_type="new")
 
-	return render_to_response("main/action.html", locals(), context_instance=RequestContext(request))
+	return render_to_response("main/index_video.html", locals(), context_instance=RequestContext(request))
+
+	#return render_to_response("main/action.html", locals(), context_instance=RequestContext(request))
 
 def login(request):
 	is_mobile = check_user_agent(request)

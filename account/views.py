@@ -41,7 +41,7 @@ from django.template import RequestContext
 from datetime import datetime, timedelta
 from django.db.models import Q
 from main.views import login as login_view
-from main.views import home as home_view
+from main.views import index_video as home_view
 from main.views import member
 import pytz
 
