@@ -229,6 +229,11 @@
 	<link rel="stylesheet" type="text/css" href="{% static "css/animate.css"%}">
 <!--動畫效果 End-->
 
+<!--滑動效果 start-->
+	<script src="{% static "js/jquery.bxslider.min.js"%}"></script>
+	<link rel="stylesheet" type="text/css" href="{% static "css/jquery.bxslider.css" rel="stylesheet"%}" media="screen" />
+<!--滑動效果 End-->
+
 <!--youtube手機版自動撥放 start
 <script>
       // 2. This code loads the IFrame Player API code asynchronously.
@@ -553,11 +558,21 @@ youtube手機版自動撥放 End-->
 		</div>
 		<div class="otherBoxCancel"><span>取消</span></div>
 	</div>
+
 	<!--分享 End-->
 	<!--其他功能 start-->
 	<div class="shareArea1 animated">
+
 		<div class="shareAreaCon">
-			<ul>
+			<div class="slider1">
+				<div class="slide"><img src="/static/img/fb_share.png" width="40"></div>
+				<div class="slide"><img src="/static/img/fb_share.png" width="40"></div>
+				<div class="slide"><img src="/static/img/fb_share.png" width="40"></div>
+				<div class="slide"><img src="/static/img/fb_share.png" width="40"></div>
+				<div class="slide"><img src="/static/img/fb_share.png" width="40"></div>
+				<div class="slide"><img src="/static/img/fb_share.png" width="40"></div>
+			</div>
+			<!--<ul>
 				<div>分享至</div>
 				<li>
 					<a style="margin:0px 10px;" onclick="return share_facebook()"><img src="/static/img/fb_share.png" width="40" height="40" /></a>
@@ -568,8 +583,8 @@ youtube手機版自動撥放 End-->
 				<li>
 					<a id="copyLink" onclick="return copy_link();"><img src="/static/img/link.png" width="40" /></a>
 				</li>
-			</ul>
-			<div class="fbfansBox">FB粉絲專頁/其它</div>
+			</ul>-->
+			<!--<div class="fbfansBox">FB粉絲專頁/其它</div>
 			<div class="tabs fixed show-tab dark abgne_tab" fixed-tabs="#tv-tabs" ng-class="{'show-tab' : showTabs}">
 
 		  		<a href="＃" target="_self" class="tab" id="videoLogIn">
@@ -605,11 +620,28 @@ youtube手機版自動撥放 End-->
 					<div>妮妮粉專</div>
 				</a>
 
-			</div>
+			</div>-->
 			<div class="otherBoxCancel"><span>取消</span></div>
 		</div>
 	</div>
 	<!--其他功能 End-->
+	<!--登入彈窗 start-->
+	<div class="loginBox animated">
+		<div class="loginBg"></div>
+		<div class="logindialogBox">
+			<div class="loginTitle"><h1>登入</h1><a class="closeBtn"><i class="fa fa-times-circle-o fa-2x" aria-hidden="true"></i></a></div>
+			<div class="inputBox1 animated">
+				<div class="userNameBox"><input type="text" placeholder="請輸入帳號" class="name form-control" /></div>
+				<div class="passwordBox"><input type="password" placeholder="請輸入密碼" class="password form-control" /></div>
+				<div class="loginBtnBox"><button type="button">登入</button></div>
+				<div class="border-wings"><span>or</span></div>
+				<div class="col-lg-6 margin-bottom-10">
+					<button type="button" class="facebookLogin" id="facebook_login"><i class="fa fa-facebook"></i> Facebook Log In</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--登入彈窗 End-->
 	<div class="videoBottomBar">
 		<div class="message">
 			<div class="messageCon">
@@ -720,17 +752,29 @@ youtube手機版自動撥放 End-->
       	});
       	{% if not request.user.is_authenticated %}
       		$( ".message" ).click(function() {
-			  var confirm =  window.confirm("登入後才可留言");
+			  /*var confirm =  window.confirm("登入後才可留言");
 			  if(confirm) {
 			  	location.assign("/main/login")
-			  }
+			  }*/
+				$(".loginBox").addClass("active");
+				$(".loginBg").fadeIn(100);
 			});
 
 			$( ".messInputBox" ).click(function() {
-			  var confirm =  window.confirm("登入後才可留言");
+			  /*var confirm =  window.confirm("登入後才可留言");
 			  if(confirm) {
 			  	location.assign("/main/login")
-			  }
+			  }*/
+			  $(".loginBox").addClass("active");
+			  $(".loginBg").fadeIn(100);
+			});
+			$( ".loginBg" ).click(function() {
+			  $(".loginBox").removeClass("active");
+			  $(".loginBg").fadeOut(100);
+			});
+			$( ".closeBtn" ).click(function() {
+			  $(".loginBox").removeClass("active");
+			  $(".loginBg").fadeOut(100);
 			});
       	{% endif %}
     });
@@ -750,6 +794,20 @@ youtube手機版自動撥放 End-->
 	});
   	</script>
   	<!--下方輪播 End-->
+
+  	<!--share輪播 start-->
+  	<script type="text/javascript">
+		$(document).ready(function(){
+		  $('.slider1').bxSlider({
+		    slideWidth: 40,
+		    minSlides: 3,
+		    maxSlides: 3,
+		    slideMargin: 50
+		  });
+		});
+	</script>
+  	<!--share輪播 End-->
+
   	<!--取得影片高度 start
   	<script type="text/javascript">
   	$(function () {
