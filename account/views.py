@@ -61,7 +61,7 @@ class ReportLoginView(generics.GenericAPIView):
 
     def post(self, request, format=None):
         """
-        建立 網站 報表系統
+        登入 網站 報表系統
         """
         serializer = self.serializer_class(data=request.DATA)
         if serializer.is_valid():
@@ -80,7 +80,7 @@ class ReportLoginView(generics.GenericAPIView):
                 return Response({"status":False, "msg":u"使用者帳號錯誤"}, status=status.HTTP_200_OK)
 
             serializer = UserInfoSerializer(request.user, context={'request': request})
-            return Response({"status":True}, status=status.HTTP_201_CREATED)
+            return Response({"status":True, "user":serializer.data}, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

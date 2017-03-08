@@ -36,6 +36,10 @@
        		history.go(-1);
        	}
 
+       	function login_facebook() {
+       		location.assign("/account/facebook/login?next="+window.location.href);
+       	}
+
        	function user_login(type) {
    			location.assign("/main/login/?next="+window.location.href);
        	}
@@ -46,6 +50,24 @@
 
        	function share_facebook() {
        		location.assign('https://www.facebook.com/share.php?u='+window.location.href);
+       	}
+
+       	function user_login() {
+       		var username = $("#username").val();
+       		var password = $("#password").val();
+       		$.ajax({
+				type: "POST",
+				url: "/account/user_login/",
+				data: {"username":username,"password":password},
+				success: function(data){
+					if(data.status) {
+						location.reload();
+					} else {
+						alert(data.msg);
+					}
+				},
+				dataType: "json"
+			});
        	}
 
        	function share_line() {
@@ -631,12 +653,12 @@ youtube手機版自動撥放 End-->
 		<div class="logindialogBox">
 			<div class="loginTitle"><h1>登入</h1><a class="closeBtn"><i class="fa fa-times-circle-o fa-2x" aria-hidden="true"></i></a></div>
 			<div class="inputBox1 animated">
-				<div class="userNameBox"><input type="text" placeholder="請輸入帳號" class="name form-control" /></div>
-				<div class="passwordBox"><input type="password" placeholder="請輸入密碼" class="password form-control" /></div>
-				<div class="loginBtnBox"><button type="button">登入</button></div>
+				<div class="userNameBox"><input id="username" type="text" placeholder="請輸入帳號" class="name form-control" /></div>
+				<div class="passwordBox"><input type="password" id="password" placeholder="請輸入密碼" class="password form-control" /></div>
+				<div class="loginBtnBox"><button type="button" onclick="return user_login();">登入</button></div>
 				<div class="border-wings"><span>or</span></div>
 				<div class="col-lg-6 margin-bottom-10">
-					<button type="button" class="facebookLogin" id="facebook_login"><i class="fa fa-facebook"></i> Facebook Log In</button>
+					<button type="button" class="facebookLogin" id="facebook_login" onclick="return login_facebook()"><i class="fa fa-facebook"></i> Facebook Log In</button>
 				</div>
 			</div>
 		</div>

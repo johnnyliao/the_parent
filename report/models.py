@@ -32,16 +32,16 @@ WEB_CHOICES = (
 )
 
 class ReportUser(models.Model):
-    name = models.CharField(_(u"人名"), choices=NANE_CHOICES, max_length=10)
-    job_start = models.DateField(_(u"到職日"))
-    target = models.IntegerField(_(u"目標"))
-    week_target = models.IntegerField(_(u"週目標"))
-    month_target = models.IntegerField(_(u"月目標"))
-    fans_target = models.IntegerField(_(u"粉絲成長"))
-    supervisor = models.CharField(_(u"主管"), max_length=20)
-    email = models.EmailField(max_length=254)
-    phone = models.CharField(max_length=10)
-    kpi = models.CharField(max_length=100)
+    name = models.CharField(_(u"人名"), choices=NANE_CHOICES, max_length=10, null=True, blank=True)
+    job_start = models.DateField(_(u"到職日"), null=True, blank=True)
+    target = models.IntegerField(_(u"目標"), null=True, blank=True)
+    week_target = models.IntegerField(_(u"週目標"), null=True, blank=True)
+    month_target = models.IntegerField(_(u"月目標"), null=True, blank=True)
+    fans_target = models.IntegerField(_(u"粉絲成長"), null=True, blank=True)
+    supervisor = models.CharField(_(u"主管"), max_length=20, null=True, blank=True)
+    email = models.EmailField(max_length=254, null=True, blank=True)
+    phone = models.CharField(max_length=10, null=True, blank=True)
+    kpi = models.CharField(max_length=100, null=True, blank=True)
 
 class Register(models.Model):
     name = models.CharField(_(u"人名"), choices=NANE_CHOICES, max_length=10)
@@ -49,7 +49,7 @@ class Register(models.Model):
     base_count = models.IntegerField(_(u"基準點擊數"))
     date = models.DateTimeField(_(u"日期"), auto_now=True)
     web_type = models.CharField(_(u"網站"), max_length=20, choices=WEB_CHOICES, default="ttshow")
-
+    title = models.CharField(_(u"文章標題"), max_length=100, unique=True, null=True, blank=True)
     class Meta:
         verbose_name = _(u"增加文章")
         verbose_name_plural = _(u"增加文章列表")

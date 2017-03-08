@@ -1,7 +1,7 @@
 #-*- encoding: utf-8 -*-
 
 from django.utils.translation import ugettext_lazy as _
-from report.models import Register, DayInnerCount
+from report.models import Register, DayInnerCount, ReportUser
 
 from rest_framework import serializers
 
@@ -14,6 +14,12 @@ class addRegisterSerializer(serializers.Serializer):
 	name = serializers.CharField()
 	inner_id = serializers.CharField()
 	web_type = serializers.CharField()
+
+class ReportUserDataSerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = ReportUser
+
 
 class DayInnerCountSerializer(serializers.ModelSerializer):
 	date = serializers.SerializerMethodField('convert_date')

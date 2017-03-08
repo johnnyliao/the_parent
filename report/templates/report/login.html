@@ -140,7 +140,8 @@ body {
                 function(data){
                     console.log(data)
                     if(data["status"] == true) {
-                        location.assign("/report/report")
+                        console.log(data.user.username)
+                        location.assign("/report/report");
                     } else {
                         alert(data["msg"])
                     }

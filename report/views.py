@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly, IsAuthenticated
 import requests
-from report.serializers import addRegisterSerializer, DayInnerCountSerializer
+from report.serializers import addRegisterSerializer, DayInnerCountSerializer, ReportUserDataSerializer
 from rest_framework import generics, status
 import json, requests, urllib, urllib2, re, base64, os, datetime
 import urlparse, time, cookielib, hashlib, time
@@ -110,7 +110,7 @@ def get_new_hit_count(register_list, name):
 				continue
 		else:
 			try:
-				web = requests.get("http://fun.ttshow.tw/?p=" + str(inner_id))
+				web = requests.get("http://fun.ttshow.tw/?p=" + str(item.inner_id))
 				soup = BeautifulSoup(web.text, "lxml")
 				count = soup.findAll("p", { "class" : "bawpvc-ajax-counter" })[0].text
 				day_count = DayInnerCount(name=name, hit_count=count, register=item)
@@ -157,10 +157,30 @@ def get_group_up(every_day, base_count):
 
 
 def group_report(request):
-	name = request.GET.get("name", "TIA")
+
+	if not request.user.is_authenticated():
+		return redirect("report.views.login")
+	else:
+		if request.user.username == "annie@supermedia.cool" or request.user.username == "amy@supermedia.cool" or request.user.username == "tia@supermedia.cool" or request.user.username == "connie@supermedia.cool" or request.user.username == "richard@supermedia.cool" or request.user.username == "service@supermedia.cool":
+			pass
+		else:
+			return redirect("report.views.login")
+
+	if request.user.username == "service@supermedia.cool":
+		select = True
+		name = request.GET.get("name", "TIA")
+		#report_user = ReportUser.objects.get(name=name)
+	else:
+		name = request.user.nickname
+		select = False
+
+	try:
+		report_user = ReportUser.objects.get(name=name)
+	except:
+		pass
 
 	#inner_id_list = Register.objects.all().filter(name=name)
-	inner_id_list = DayInnerCount.objects.all().filter(register__name=name)
+	#inner_id_list = DayInnerCount.objects.all().filter(register__name=name)
 
 	"""
 	amy_inner_id = Register.objects.all().filter(name="AMY")
@@ -173,7 +193,19 @@ def group_report(request):
 	return render_to_response("report/group_report.html", locals(), context_instance=RequestContext(request))
 
 def get_report(request):
-	name = request.GET.get("name", "TIA")
+	if not request.user.is_authenticated():
+		return redirect("report.views.login")
+	else:
+		if request.user.username == "annie@supermedia.cool" or request.user.username == "amy@supermedia.cool" or request.user.username == "tia@supermedia.cool" or request.user.username == "connie@supermedia.cool" or request.user.username == "richard@supermedia.cool" or request.user.username == "service@supermedia.cool":
+			pass
+		else:
+			return HttpResponse("")
+
+	if request.user.username == "service@supermedia.cool":
+		name = request.GET.get("name", "TIA")
+	else:
+		name = request.user.nickname
+
 	start_date = request.GET.get("start", datetime.date.today())
 	end_date = request.GET.get("end", datetime.date.today())
 	start_date = parser.parse(start_date)
@@ -197,3 +229,54 @@ def return_each_data(inner_id_list, name):
 	result[name] = date_result
 
 	return result
+
+class UserDataSaveView(generics.GenericAPIView):
+	serializer_class = ReportUserDataSerializer
+	permission_classes = (AllowAny, )
+
+	def post(self, request, format=None):
+		"""
+		儲存使用者資料
+		"""
+		try:
+			report = ReportUser.objects.get(name=request.POST.get("name"))
+			serializer = self.serializer_class(report, data=request.DATA)
+		except:
+			serializer = self.serializer_class(data=request.DATA)
+
+		if serializer.is_valid():
+
+			#serializer = self.serializer_class(data=report)
+			#serializer = self.serializer_class(report, data=request.DATA)
+			serializer.save()
+			return Response(serializer.data)
+		else:
+			return Response(serializer.errors)
+
+def GetInnerTitle(request):
+	ttshow_inners = Register.objects.all().filter(web_type="ttshow")
+	for inner in ttshow_inners:
+		db = MySQLdb.connect(host="188.166.233.109", user="foyoko_remote", passwd="Xc7YMW4tXRcEbUch", db="ttshow", charset="utf8")
+		cursor = db.cursor()
+		sql = "SELECT `title` FROM page WHERE `page_id` = " + inner.inner_id
+		cursor.execute(sql)
+		try:
+			title = cursor.fetchall()[0][0]
+			#import pdb;pdb.set_trace()
+			inner.title = title
+
+			inner.save()
+			print "inner save"
+		except:
+			continue
+
+	funnyking_inners = Register.objects.all().filter(web_type="funnyking")
+	for funny in funnyking_inners:
+		web = requests.get("http://fun.ttshow.tw/?p=" + str(funny.inner_id))
+		soup = BeautifulSoup(web.text, "lxml")
+		#import pdb;pdb.set_trace()
+		title = soup.findAll("h1", { "class" : "entry-title" })[0].text
+		funny.title = title
+		funny.save()
+
+	return HttpResponse("ok")

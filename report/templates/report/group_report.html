@@ -15,7 +15,7 @@
     <script src="{% static "js/headroom.js"%}"></script>
     <script src="{% static "js/main.js"%}"></script>
     <script src="{% static "js/jquery.menu-aim.js"%}"></script>
-    <script src="{% static "js/bootstrap.js" %}"></script>
+
 <!--匯入css -->
     <link rel="shortcut icon" href="images/favicon.ico"/>
 <!--header隱藏css js-->
@@ -23,17 +23,69 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.3/headroom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.3/jQuery.headroom.js"></script>
-    <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
-    <link rel="stylesheet" href="{% static "css/bootstrap-responsive.css" %}">
-    <script src="{% static "js/bootstrap-extras.js" %}"></script>
-    <style type="text/css">
+    <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    }
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
     </style>
+    <style type="text/css">
+        .col-md-3 {
+            width: 25%;
+            height: 30px;
+        }
+    </style>
+
     <script type="text/javascript">
         $("document").ready(function(){
 
         });
+
+        function save() {
+            var job_start = $("#job_start").val()
+            var target = $("#target").val()
+            var month_target = $("#month_target").val()
+            var week_target = $("#week_target").val()
+            var fans_target = $("#fans_target").val()
+            var name = $("#name").val()
+            var supervisor = $("#supervisor").val()
+            var email = $("#email").val()
+            var phone = $("#phone").val()
+            var kpi = $("#kpi").val()
+            $.post("/report/save_user_data/", {
+                "job_start":job_start,
+                "target":target,
+                "month_target":month_target,
+                "week_target":week_target,
+                "fans_target":fans_target,
+                "name":name,
+                "supervisor":supervisor,
+                "email":email,
+                "phone":phone,
+                "kpi":kpi,
+            },
+            function(data){
+                var total = 0;
+                $("#report_table").empty();
+                html = "<tr><td>日期</td><td>成長數</td></tr>";
+                $("#report_table").append(html);
+                json_data = JSON.parse(data);
+                for(item in json_data) {
+                    var group = json_data[item].group;
+                    if(group < 0) {
+                        group = 0
+                    }
+                    total += group;
+                    html = "<tr><td>"+json_data[item].date+"</td><td>"+group+"</td></tr>"
+                    $("#report_table").append(html)
+                }
+                $("#total").text(total)
+            });
+        }
 
         function search() {
             console.log("click")
@@ -65,9 +117,100 @@
 </head>
 
 <body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                姓名
+            </div>
+
+            <div class="col-md-3">
+                <input id="name" type="text" value="{{name}}" />
+            </div>
+
+            <div class="col-md-3">
+                到職日
+            </div>
+
+            <div class="col-md-3">
+                <input type="date" id="job_start" value="{{report_user.job_start|date:"Y-m-d"}}" />
+            </div>
+
+            <div class="col-md-3">
+                目標
+            </div>
+
+            <div class="col-md-3">
+                <input type="text" id="target" value="{{report_user.target}}" />
+            </div>
+
+            <div class="col-md-3">
+                週目標
+            </div>
+
+            <div class="col-md-3">
+                <input type="text" id="week_target" value="{{report_user.week_target}}" />
+            </div>
+
+            <div class="col-md-3">
+                月目標
+            </div>
+
+            <div class="col-md-3">
+                <input type="text" id="month_target" value="{{report_user.month_target}}" />
+            </div>
+
+            <div class="col-md-3">
+                粉絲成長
+            </div>
+
+            <div class="col-md-3">
+                <input type="text" id="fans_target" value="{{report_user.fans_target}}" />
+            </div>
+
+            <div class="col-md-3">
+                主管
+            </div>
+
+            <div class="col-md-3">
+                <input type="text" id="supervisor" value="{{report_user.supervisor}}" />
+            </div>
+
+            <div class="col-md-3">
+                email
+            </div>
+
+            <div class="col-md-3">
+                <input type="text" id="email" value="{{report_user.email}}" />
+            </div>
+
+            <div class="col-md-3">
+                電話
+            </div>
+
+            <div class="col-md-3">
+                <input type="text" id="phone" value="{{report_user.phone}}" />
+            </div>
+
+            <div class="col-md-3">
+                kpi
+            </div>
+
+            <div class="col-md-3">
+                <input type="text" id="kpi" value="{{report_user.kpi}}" />
+            </div>
+
+            <div class="col-md-12">
+                <button class="btn btn-primary" onclick="save()">儲存</button>
+            </div>
+            <!-- now that we have used up all the 12 coloumbs in this row , lets go create a new "row class" , Alas in the same container -->
+        </div>  <!-- end of row -->
+
+    </div>
+
     <div><span><h3>{{name}}</h3></span></div>
     <div>起始日期<input type="date" id="start" /></div>
     <div>結束日期<input type="date" id="end" /></div>
+    {% if select = True %}
     <div>人名<select id="name">
                 <option value="TIA">TIA</option>
                 <option value="AMY">AMY</option>
@@ -78,6 +221,7 @@
                 <option value="RICHARD">RICHARD</option>
             </select>
     </div>
+    {% endif %}
     <div><button class="btn btn-primary" onclick="search()">查詢</button></div>
 
     <table class="table" id="report_table">
