@@ -87,9 +87,11 @@ $(function(){
 		//$(this).parents(".messageBox1").children(".reply1").css("display","block");
 		event.preventDefault();
 		if ( $(this).parents(".messageBox1").children(".reply1").hasClass( "active" )) {
-				$(this).parents(".messageBox1").children(".reply1").css("display","none").removeClass("active");
+			$(this).parents(".messageBox1").children(".reply1").css("display","none").removeClass("active");
+			$(this).attr("src","/static/img/more_1.png");
 		}else{
 			$(this).parents(".messageBox1").children(".reply1").css("display","block").addClass("active");
+			$(this).attr("src","/static/img/more_2.png");
 		}
 	});
 	/*留言區回覆 End*/
@@ -200,11 +202,4 @@ $(function(){
 	 });
 	影片內頁往上下滑動 顯示隱藏 header footer End*/
 
-	/*登入彈窗 start*/
-
-
-    $('.messInputBox').on('click', function () {
-
-    });
-	/*登入彈窗 End*/
 });

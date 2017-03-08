@@ -1571,12 +1571,14 @@ input[name="zipcode"]{
     margin-right: 5px;
     margin-top: 15px;
 }
+.container_default .vedioViewBox #like_count{
+    margin-left: 5px;
+}
 .container_default .videolistBox{
     margin:15px 15px;
 }
 .container_default .videolistBox .videolistTitleBox{
     position: relative;
-    border-top: 1px solid #e8e8e8;
     padding-top: 15px;
     padding-bottom: 15px;
 }
@@ -1711,7 +1713,7 @@ input[name="zipcode"]{
     float: right;
 }
 .container_default .messageBox1 .messageBox1Con .messageCon .likeBox .likeQua{
-    vertical-align: super;
+    vertical-align: middle;
 }
 .container_default .messageBox1 .messageBox1Con .messageCon .likeBox .messageBtn{
     border: 1px solid #ca526a;
@@ -2002,13 +2004,12 @@ input[name="zipcode"]{
     text-align: center;
     position: fixed;
     width: 100%;
-    bottom: 0px;
+    bottom: -130px;
     z-index: 99999;
-    display: none;
 }
 .shareArea1{
     background: rgba(255,255,255,1);
-    height: 240px;
+    height: 525px;
     line-height: 34px;
     text-align: center;
     position: fixed;
@@ -2042,7 +2043,7 @@ input[name="zipcode"]{
     width: 100%;
     position: absolute;
     top: 0px;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.8);
     z-index: 9999;
     display: none;
 }
@@ -2055,7 +2056,31 @@ input[name="zipcode"]{
 }
 .shareArea1 li{
     display: inline-block;
-    width: 30%;
+    width: 20%;
+}
+.shareArea1 li:nth-child(1){
+    width: 100%;
+    height: 45px;
+    margin-top: 10px;
+}
+.container_default .shareArea1 .shareAreaCon .shareTitle h1{
+    color: #666;
+    display: inline-block;
+}
+.container_default .shareArea1 .shareAreaCon .shareTitle a{
+    display: inline-block;
+    vertical-align: top;
+    float: right;
+    position: absolute;
+    right: 5px;
+    top: -2px;
+}
+}
+.container_default .shareArea1 .shareAreaCon .shareTitle a img{
+    width: 20px;
+}
+.container_default .shareArea1 .shareAreaCon .shareTitle .fa-times{
+    color: #fff;
 }
 .container_default .shareArea1 .shareAreaCon #videoLogout{
     display: none;
@@ -2072,6 +2097,10 @@ input[name="zipcode"]{
 .container_default .shareArea1 .shareAreaCon ul{
     border-bottom: 1px solid #e8e8e8;
     padding: 0px 10px 10px 10px;
+}
+.container_default .shareArea1 .shareAreaCon .relatedLinks{
+    border-bottom: 0px;
+    border-top: 1px solid #e8e8e8;
 }
 .container_default .loginBox{
     display: none;
@@ -2107,10 +2136,9 @@ input[name="zipcode"]{
     color: #666;
 }
 .container_default .loginBox .logindialogBox .loginTitle .closeBtn{
-    display: inline-block;
     position: absolute;
+    top:5px;
     right: 5px;
-    top: 5px;
 }
 .container_default .loginBox .logindialogBox .loginTitle .closeBtn .fa-2x{
     font-size: 1.5em;
@@ -2232,6 +2260,7 @@ input[name="zipcode"]{
 .container_default .videoBottomBar .message{
     display: inline-block;
     width: 80%;
+    margin-top: 3px;
 }
 .container_default .videoBottomBar .message .input1{
     display: inline-block;
@@ -2275,7 +2304,7 @@ input[name="zipcode"]{
     width: 30px;
     float: right;
     margin-right: 5px;
-    margin-top: 4px;
+    margin-top: 8px;
 }
 .container_default .videoBottomBar .like img,.container_default .videoBottomBar .share img{
     width: 100%;
@@ -2284,11 +2313,23 @@ input[name="zipcode"]{
     display: inline-block;
     width: 30px;
     float: right;
-    margin-top: 4px;
+    margin-top: 8px;
     margin-right: 9px;
 }
 .container_default .box2{
     margin-bottom: 50px;
+}
+.panel{
+    margin-top: 20px;
+}
+.panel .itemBox01{
+    display: inline-block;
+}
+.container_default .shareArea1 .shareAreaCon .slick-dots{
+    border:0px;
+}
+.fbPagePlugin{
+    margin-top: 15px;
 }
 }
 @media screen and (max-width:1024px){

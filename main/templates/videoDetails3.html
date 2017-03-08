@@ -36,10 +36,6 @@
        		history.go(-1);
        	}
 
-       	function login_facebook() {
-       		location.assign("/account/facebook/login?next="+window.location.href);
-       	}
-
        	function user_login(type) {
    			location.assign("/main/login/?next="+window.location.href);
        	}
@@ -50,24 +46,6 @@
 
        	function share_facebook() {
        		location.assign('https://www.facebook.com/share.php?u='+window.location.href);
-       	}
-
-       	function user_login() {
-       		var username = $("#username").val();
-       		var password = $("#password").val();
-       		$.ajax({
-				type: "POST",
-				url: "/account/user_login/",
-				data: {"username":username,"password":password},
-				success: function(data){
-					if(data.status) {
-						location.reload();
-					} else {
-						alert(data.msg);
-					}
-				},
-				dataType: "json"
-			});
        	}
 
        	function share_line() {
@@ -393,10 +371,6 @@ youtube手機版自動撥放 End-->
 				<ul>
 					<li>播放：<span>{{video_obj.watch_count}}</span>次</li>
 					<li>類型：<span>{{video_obj.get_movie_type_display}}</span></li>
-					<li>
-						<script src="https://apis.google.com/js/platform.js"></script>
-						<div class="g-ytsubscribe" data-channel="kyo0622ace1988" data-layout="default" data-theme="dark" data-count="hidden"></div>
-					</li><br/>
 					<li><a href="#"><img src="{% static "img/like_2.png"%}" width="25"/><span id="like_count">{{video_obj.like}}</span></a></li>
 				</ul>
 			</div>
@@ -486,6 +460,7 @@ youtube手機版自動撥放 End-->
 							</span>
 							<span class="likeBtn">
 								<img name="{{comment.id}}" src="/static/img/more_1.png" width="25" class="reply2" />
+								<!--<i name="{{comment.id}}" class="fa fa-commenting-o reply2" aria-hidden="true"></i>-->
 								<span class="likeQua">{{comment.movie_re_comments.all.count}}</span>
 							</span>
 						</div>
@@ -502,6 +477,7 @@ youtube手機版自動撥放 End-->
 								<div class="likeBox" id="re_comment_like_count_{{re_comment.id}}" onclick="return re_comment_like('re_comment','{{re_comment.id}}');">
 									<span class="likeBtn">
 										<img id="re_comment_like_thumbs_{{re_comment.id}}" src="{% static "img/like_1.png"%}" width="25" />
+										<!--<i id="re_comment_like_thumbs_{{re_comment.id}}" class="fa fa-thumbs-o-up" aria-hidden="true"></i>-->
 										<span class="likeQua" id="re_comment_like_text_count_{{re_comment.id}}">{{re_comment.like}}</span>
 									</span>
 								</div>
@@ -680,12 +656,12 @@ youtube手機版自動撥放 End-->
 		<div class="logindialogBox">
 			<div class="loginTitle"><h1>登入</h1><a class="closeBtn"><i class="fa fa-times-circle-o fa-2x" aria-hidden="true"></i></a></div>
 			<div class="inputBox1 animated">
-				<div class="userNameBox"><input id="username" type="text" placeholder="請輸入帳號" class="name form-control" /></div>
-				<div class="passwordBox"><input type="password" id="password" placeholder="請輸入密碼" class="password form-control" /></div>
-				<div class="loginBtnBox"><button type="button" onclick="return user_login();">登入</button></div>
+				<div class="userNameBox"><input type="text" placeholder="請輸入帳號" class="name form-control" /></div>
+				<div class="passwordBox"><input type="password" placeholder="請輸入密碼" class="password form-control" /></div>
+				<div class="loginBtnBox"><button type="button">登入</button></div>
 				<div class="border-wings"><span>or</span></div>
 				<div class="col-lg-6 margin-bottom-10">
-					<button type="button" class="facebookLogin" id="facebook_login" onclick="return login_facebook()"><i class="fa fa-facebook"></i> Facebook Log In</button>
+					<button type="button" class="facebookLogin" id="facebook_login"><i class="fa fa-facebook"></i> Facebook Log In</button>
 				</div>
 			</div>
 		</div>
@@ -739,7 +715,7 @@ youtube手機版自動撥放 End-->
 	 		$(".shareAreaBox").fadeOut(200);
 	    }
 	 });
-  $(".dropDownList").click(function () {
+   $(".dropDownList").click(function () {
 
    	event.preventDefault();
 	 if ( $(".shareArea1").hasClass( "slideInUp" )) {
@@ -850,14 +826,15 @@ youtube手機版自動撥放 End-->
 
   	<!--share輪播 start-->
   	<script type="text/javascript">
-		$(document).ready(function(){
-		  $('.slider1').bxSlider({
-		    slideWidth: 40,
-		    minSlides: 3,
-		    maxSlides: 3,
-		    slideMargin: 50
-		  });
-		});
+	 var slickOpts = {
+		        dots: true,
+		        infinite: true,
+		        speed: 500,
+		        autoplay: false,
+
+		    };
+    var nowWdth=$(window).width();
+    $(".slick-slide").css("width",nowWdth);
 	</script>
   	<!--share輪播 End-->
 

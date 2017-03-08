@@ -36,14 +36,6 @@
        		history.go(-1);
        	}
 
-       	function login_facebook() {
-       		location.assign("/account/facebook/login?next="+window.location.href);
-       	}
-
-       	function user_login(type) {
-   			location.assign("/main/login/?next="+window.location.href);
-       	}
-
        	function go_to_more(type) {
    			location.assign("/main/index_video/?type="+type);
        	}
@@ -52,30 +44,8 @@
        		location.assign('https://www.facebook.com/share.php?u='+window.location.href);
        	}
 
-       	function user_login() {
-       		var username = $("#username").val();
-       		var password = $("#password").val();
-       		$.ajax({
-				type: "POST",
-				url: "/account/user_login/",
-				data: {"username":username,"password":password},
-				success: function(data){
-					if(data.status) {
-						location.reload();
-					} else {
-						alert(data.msg);
-					}
-				},
-				dataType: "json"
-			});
-       	}
-
        	function share_line() {
        		location.assign('http://line.naver.jp/R/msg/text/?'+window.location.href);
-       	}
-
-       	function show_alert_msg() {
-       		alert("請先登入後才可以留言")
        	}
 
        	function comment_unlike(type, comment_id) {
@@ -104,7 +74,7 @@
 
 				document.execCommand('copy');
   				clip_area.remove();
-  				alert("連結已複製")
+  				alert("連結以複製")
        	}
       	function comment_like(type, comment_id) {
       		var count = $("#comment_like_count_"+comment_id).text();
@@ -140,17 +110,17 @@
       	}
 
       	function like_video(is_bottom) {
-      		if(is_bottom) {
-				$("#bottom_like").hide()
-				$("#bottom_unlike").show()
-			}
+      		console.log(is_bottom)
       		$.ajax({
 				type: "POST",
 				url: "/movie/like_video/",
 				data: {"video_id":"{{video_obj.id}}"},
 				success: function(data){
 					$("#like_count").text(data);
-
+					if(is_bottom) {
+						$("#bottom_like").hide()
+						$("#bottom_unlike").show()
+					}
 
 				},
 				dataType: "json"
@@ -158,16 +128,16 @@
       	}
 
       	function unlike_video(is_bottom) {
-      		if(is_bottom) {
-				$("#bottom_like").show()
-				$("#bottom_unlike").hide()
-			}
       		$.ajax({
 				type: "POST",
 				url: "/movie/unlike_video/",
 				data: {"video_id":"{{video_obj.id}}"},
 				success: function(data){
 					$("#like_count").text(data)
+					if(is_bottom) {
+						$("#bottom_like").show()
+						$("#bottom_unlike").hide()
+					}
 				},
 				dataType: "json"
 			});
@@ -180,7 +150,7 @@
 				url: "/movie/comment/",
 				data: {"user":"{{request.user.id}}", "content":content, "movie":"{{video_obj.id}}"},
 				success: function(data){
-					var html = "<div class=\"messageBox\" id=\"speakBox_"+data.id+"\"><div class=\"messageBox1\"><div class=\"messageBox1Con\"><div class=\"messageBox1Img\"><img src=\""+data.user.user_img+"\" width=\"40\" /></div><div class=\"messageCon\"><div class=\"messageConTitle\"><h2>"+data.user.username+"</h2></div><span class=\"timeBox\">"+data.date+"</span><p class=\"messageTxt\">"+data.content+"</p><div class=\"likeBox\"><span class=\"likeBtn\"><img id=\"comment_like_button_"+data.id+"\" onclick=\"return comment_like('comment','"+data.id+"');\" src=\"/static/img/like_1.png\" width=\"25\" /><span id=\"comment_like_count_"+data.id+"\" class=\"likeQua\">"+data.like+"</span></span><span class=\"likeBtn\"><img src=\"/static/img/more_2.png\" width=\"25\" class=\"reply2\" /><span class=\"likeQua\">0</span></span></div></div></div><ul class=\"reply1\" id=\"reply_"+data.id+"\">"
+					var html = "<div class=\"messageBox\" id=\"speakBox_"+data.id+"\"><div class=\"messageBox1\"><div class=\"messageBox1Con\"><div class=\"messageBox1Img\"><img src=\""+data.user.user_img+"\" width=\"40\" /></div><div class=\"messageCon\"><div class=\"messageConTitle\"><h2>"+data.user.username+"</h2></div><span class=\"timeBox\">"+data.date+"</span><p class=\"messageTxt\">"+data.content+"</p><div class=\"likeBox\"><span class=\"likeBtn\"><i id=\"comment_like_button_"+data.id+"\" onclick=\"return comment_like('comment','"+data.id+"');\" class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i><span id=\"comment_like_count_"+data.id+"\" class=\"likeQua\">"+data.like+"</span></span><span class=\"likeBtn\"><i class=\"fa fa-commenting-o reply2 reply3\" aria-hidden=\"true\"></i><span class=\"likeQua\">0</span></span></div></div></div><ul class=\"reply1\" id=\"reply_"+data.id+"\">"
 					html += "</ul><div class=\"messageBox reply1\"><div class=\"speakBox\"><div class=\"speakBoxImg\"><img src=\""+data.user.user_img+"\" width=\"40\" /></div><div class=\"messInputBox\"><textarea {% if not request.user.is_authenticated %}disabled{% endif %} id=\"re_comment_"+data.id+"\" class=\"signedIn\" placeholder=\"留言\"></textarea><button type=\"submit\" {% if not request.user.is_authenticated %}disabled{% endif %} onclick=\"return re_comment('"+data.id+"')\" class=\"messageBtn signedIn\">留言</button></div></div></div></div></div>"
 
 
@@ -218,7 +188,7 @@
 				url: "/movie/re_comment/",
 				data: {"user":"{{request.user.id}}", "content":content, "re_comment":re_comment_id},
 				success: function(data){
-					html = "<li class=\"messageBox1Con\"><div class=\"messageBox1Img\"><img src=\""+data.user.user_img+"\" width=\"40\" /></div><div class=\"messageCon\"><div class=\"messageConTitle\"><h2>"+data.user.username+"</h2></div><span class=\"timeBox\">"+data.date+"</span><p class=\"messageTxt\">"+data.content+"</p><div class=\"likeBox\" id=\"re_comment_like_count_"+data.id+"\" onclick=\"return re_comment_like('re_comment','"+data.id+"');\"><span class=\"likeBtn\"><img id=\"re_comment_like_thumbs_"+data.id+"\"  src=\"/static/img/like_1.png\" width=\"25\" /><span class=\"likeQua\" id=\"re_comment_like_text_count_"+data.id+"\">"+data.like+"</span></span></div></div></li>";
+					html = "<li class=\"messageBox1Con\"><div class=\"messageBox1Img\"><img src=\""+data.user.user_img+"\" width=\"40\" /></div><div class=\"messageCon\"><div class=\"messageConTitle\"><h2>"+data.user.username+"</h2></div><span class=\"timeBox\">"+data.date+"</span><p class=\"messageTxt\">"+data.content+"</p><div class=\"likeBox\" id=\"re_comment_like_count_"+data.id+"\" onclick=\"return re_comment_like('re_comment','"+data.id+"');\"><span class=\"likeBtn\"><i id=\"re_comment_like_thumbs_"+data.id+"\" class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i><span class=\"likeQua\" id=\"re_comment_like_text_count_"+data.id+"\">"+data.like+"</span></span></div></div></li>";
 					$("#reply_"+re_comment_id).append(html);
 					$("#re_comment_"+re_comment_id).val("");
 				},
@@ -250,13 +220,6 @@
 <!--動畫效果 start-->
 	<link rel="stylesheet" type="text/css" href="{% static "css/animate.css"%}">
 <!--動畫效果 End-->
-
-<!--滑動效果 start-->
-	<script src="{% static "js/slick.js"%}"></script>
-	<script src="{% static "js/slick.min.js"%}"></script>
-	<link rel="stylesheet" type="text/css" href="{% static "css/slick.css" rel="stylesheet"%}" media="screen" />
-	<link rel="stylesheet" type="text/css" href="{% static "css/slick-theme.css" rel="stylesheet"%}" media="screen" />
-<!--滑動效果 End-->
 
 <!--youtube手機版自動撥放 start
 <script>
@@ -375,14 +338,14 @@ youtube手機版自動撥放 End-->
 			<!--<div id="player"></div>-->
 		</div>
 		<div class="videoDetBox1">
-			<a class="videoDetBox1Img01" href="#comment_block"><img src="{% static "img/comment_1.png"%}" width="25" /></a>
-			<!--<a class="videoDetBox1Img05"><img id="youtubeImg" src="{% static "img/youtube_h.png"%}" width="30"></a>
-			<a id="video_img" class="fancybox-media float_r videoDetBox1Img06" href="https://www.honhe.com"><img id="youkuImg" src="{% static "img/youku.png"%}" width="30"></a>-->
+			<a class="videoDetBox1Img01" href="#comment_block"><i class="fa fa-commenting-o" aria-hidden="true"></i>評論</a>
+			<a class="videoDetBox1Img05"><img id="youtubeImg" src="{% static "img/youtube_h.png"%}" width="30"></a>
+			<a id="video_img" class="fancybox-media float_r videoDetBox1Img06" href="https://www.honhe.com"><img id="youkuImg" src="{% static "img/youku.png"%}" width="30"></a>
 			<a class="videoDetBox1Img02" id="videoDetLikeBtn" onclick="return like_video(false);">
-				<img src="{% static "img/like_2.png"%}" width="25" />
+				<i class="fa fa-heart-o" aria-hidden="true"></i>
 			</a>
-			<a class="videoDetBox1Img02 active" id="videoDetLikeBtn" onclick="return unlike_video(false);"><img src="{% static "img/like_1.png"%}" width="25" /></a>
-			<a class="videoDetBox1Img03 shareBox" id="share" href="#"><img src="{% static "img/forward.png"%}" width="25" /></a>
+			<a class="videoDetBox1Img02 active" id="videoDetLikeBtn" onclick="return unlike_video(false);"><i class="fa fa-heart" aria-hidden="true"></i></a>
+			<a class="videoDetBox1Img03 shareBox" id="share" href="#"><i class="fa fa-share-square-o" aria-hidden="true"></i></a>
 		</div>
 	</div>
 	<div class="box2">
@@ -397,7 +360,7 @@ youtube手機版自動撥放 End-->
 						<script src="https://apis.google.com/js/platform.js"></script>
 						<div class="g-ytsubscribe" data-channel="kyo0622ace1988" data-layout="default" data-theme="dark" data-count="hidden"></div>
 					</li><br/>
-					<li><a href="#"><img src="{% static "img/like_2.png"%}" width="25"/><span id="like_count">{{video_obj.like}}</span></a></li>
+					<li><a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><span id="like_count">{{video_obj.like}}</span></a></li>
 				</ul>
 			</div>
 		</div>
@@ -433,7 +396,7 @@ youtube手機版自動撥放 End-->
 			<ul id="videoContBox">
 				{% for hot in hot_now %}
 				<li>
-					<a href="/main/videoDetails/?video_id={{hot.id}}">
+					<a href="/movie/videoDetails/?video_id={{hot.id}}">
 						<div class="videoListImgBox"><img src="{{hot.photo.url}}" width="150" /></div>
 						<div class="videoListTxtBox"><h2>{{hot.title}}</h2>
 							<div class="viewQuanBox">
@@ -455,7 +418,7 @@ youtube手機版自動撥放 End-->
 
 				{% for brand in brands %}
 				<li>
-					<a href="/main/videoDetails/?video_id={{brand.id}}">
+					<a href="/movie/videoDetails/?video_id={{brand.id}}">
 						<div class="videoListImgBox"><img src="{{brand.photo.url}}" width="150" /></div>
 						<div class="videoListTxtBox"><h2>{{brand.title}}</h2>
 							<div class="viewQuanBox">
@@ -481,11 +444,11 @@ youtube手機版自動撥放 End-->
 						<p class="messageTxt">{{comment.content}}</p>
 						<div class="likeBox">
 							<span class="likeBtn">
-								<img id="comment_like_button_{{comment.id}}" onclick="return comment_like('comment','{{comment.id}}');"  src="{% static "img/like_1.png"%}" width="25" />
+								<i id="comment_like_button_{{comment.id}}" onclick="return comment_like('comment','{{comment.id}}');" class="fa fa-thumbs-o-up" aria-hidden="true"></i>
 								<span id="comment_like_count_{{comment.id}}" class="likeQua">{{comment.like}}</span>
 							</span>
 							<span class="likeBtn">
-								<img name="{{comment.id}}" src="/static/img/more_1.png" width="25" class="reply2" />
+								<i name="{{comment.id}}" class="fa fa-commenting-o reply2" aria-hidden="true"></i>
 								<span class="likeQua">{{comment.movie_re_comments.all.count}}</span>
 							</span>
 						</div>
@@ -501,7 +464,7 @@ youtube手機版自動撥放 End-->
 								<p class="messageTxt">{{re_comment.content}}</p>
 								<div class="likeBox" id="re_comment_like_count_{{re_comment.id}}" onclick="return re_comment_like('re_comment','{{re_comment.id}}');">
 									<span class="likeBtn">
-										<img id="re_comment_like_thumbs_{{re_comment.id}}" src="{% static "img/like_1.png"%}" width="25" />
+										<i id="re_comment_like_thumbs_{{re_comment.id}}" class="fa fa-thumbs-o-up" aria-hidden="true"></i>
 										<span class="likeQua" id="re_comment_like_text_count_{{re_comment.id}}">{{re_comment.like}}</span>
 									</span>
 								</div>
@@ -565,15 +528,15 @@ youtube手機版自動撥放 End-->
 	</div>
 	<!--分享 start-->
 	<div class="shareAreaBox"></div>
-	<div class="shareArea">
+	<div class="shareArea animated">
 		<div class="shareAreaCon">
 			<ul>
 				<div>分享至</div>
 				<li>
-					<a style="margin:0px 10px;" onclick="return share_facebook()"><img src="/static/img/facebook.png" width="40" height="40" /></a>
+					<a style="margin:0px 10px;" onclick="return share_facebook()"><img src="/static/img/fb_share.png" width="40" height="40" /></a>
 				</li>
 				<li>
-					<a onclick="return share_line()"><img src="/static/img/line.png" width="40" /></a>
+					<a onclick="return share_line()"><img src="/static/img/line_share.png" width="40" /></a>
 				</li>
 				<li>
 					<a id="copyLink" onclick="return copy_link();"><img src="/static/img/link.png" width="40" /></a>
@@ -582,58 +545,23 @@ youtube手機版自動撥放 End-->
 		</div>
 		<div class="otherBoxCancel"><span>取消</span></div>
 	</div>
-
 	<!--分享 End-->
 	<!--其他功能 start-->
 	<div class="shareArea1 animated">
-
 		<div class="shareAreaCon">
 			<ul>
-				<li><div class="shareTitle"><h1>分享至</h1></div></li>
+				<div>分享至</div>
 				<li>
-					<a style="margin:0px 10px;" onclick="return share_facebook()"><img src="/static/img/facebook.png" width="40" height="40" /></a>
+					<a style="margin:0px 10px;" onclick="return share_facebook()"><img src="/static/img/fb_share.png" width="40" height="40" /></a>
 				</li>
 				<li>
-					<a onclick="return share_line()"><img src="/static/img/line.png" width="40" /></a>
-				</li>
-				<li>
-					<a id="copyLink" onclick="return copy_link();"><img src="/static/img/link.png" width="40" /></a>
-				</li>
-				<li>
-					<a><img src="/static/img/home.png" width="40" /></a>
-				</li>
-			</ul>
-			<div class="fbPagePlugin">
-				<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FKim%25E4%25BA%25AC%25E7%2587%2581-1717090055218199%2F&tabs=small_header&width=300&height=70&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=1705033186453307" width="300" height="70" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-				<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FNico%25E5%2593%2581%25E7%25AD%25A0-195295667610836%2F&tabs=small_header&width=300&height=70&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=1705033186453307" width="300" height="70" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-				<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fnimonicokim%2F&tabs=small_header&width=300&height=70&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=1705033186453307" width="300" height="70" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-
-			</div>
-			<ul class="relatedLinks">
-				<li><div class="shareTitle"><h1>相關連結</h1></li>
-				<li>
-					<a style="margin:0px 10px;" onclick="return share_facebook()"><img src="/static/img/facebook.png" width="40" height="40" /></a>
-				</li>
-				<li>
-					<a onclick="return share_line()"><img src="/static/img/line.png" width="40" /></a>
+					<a onclick="return share_line()"><img src="/static/img/line_share.png" width="40" /></a>
 				</li>
 				<li>
 					<a id="copyLink" onclick="return copy_link();"><img src="/static/img/link.png" width="40" /></a>
 				</li>
-				<li>
-					<a><img src="/static/img/home.png" width="40" /></a>
-				</li>
 			</ul>
-			<!--<div class="single-item">
-			  <div class="panel">
-			  		<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FKim%25E4%25BA%25AC%25E7%2587%2581-1717090055218199%2F&tabs&width=300&height=70&small_header=false&adapt_container_width=false&hide_cover=false&show_facepile=false&appId=1705033186453307" width="300" height="70" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-			  </div>
-			   <div class="panel">
-			  		<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FNico%25E5%2593%2581%25E7%25AD%25A0-195295667610836%2F&tabs&width=300&height=70&small_header=false&adapt_container_width=false&hide_cover=false&show_facepile=false&appId=1705033186453307" width="300" height="70" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-			  </div>
-			</div>-->
-
-			<!--<div class="fbfansBox">FB粉絲專頁/其它</div>
+			<div class="fbfansBox">FB粉絲專頁/其它</div>
 			<div class="tabs fixed show-tab dark abgne_tab" fixed-tabs="#tv-tabs" ng-class="{'show-tab' : showTabs}">
 
 		  		<a href="＃" target="_self" class="tab" id="videoLogIn">
@@ -669,28 +597,11 @@ youtube手機版自動撥放 End-->
 					<div>妮妮粉專</div>
 				</a>
 
-			</div>-->
+			</div>
 			<div class="otherBoxCancel"><span>取消</span></div>
 		</div>
 	</div>
 	<!--其他功能 End-->
-	<!--登入彈窗 start-->
-	<div class="loginBox animated">
-		<div class="loginBg"></div>
-		<div class="logindialogBox">
-			<div class="loginTitle"><h1>登入</h1><a class="closeBtn"><i class="fa fa-times-circle-o fa-2x" aria-hidden="true"></i></a></div>
-			<div class="inputBox1 animated">
-				<div class="userNameBox"><input id="username" type="text" placeholder="請輸入帳號" class="name form-control" /></div>
-				<div class="passwordBox"><input type="password" id="password" placeholder="請輸入密碼" class="password form-control" /></div>
-				<div class="loginBtnBox"><button type="button" onclick="return user_login();">登入</button></div>
-				<div class="border-wings"><span>or</span></div>
-				<div class="col-lg-6 margin-bottom-10">
-					<button type="button" class="facebookLogin" id="facebook_login" onclick="return login_facebook()"><i class="fa fa-facebook"></i> Facebook Log In</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--登入彈窗 End-->
 	<div class="videoBottomBar">
 		<div class="message">
 			<div class="messageCon">
@@ -698,9 +609,9 @@ youtube手機版自動撥放 End-->
 				<button {% if not request.user.is_authenticated %}disabled{% endif %} class="sendMessage" onclick="return comment();">傳送</button>
 			</div>
 		</div>
-		<div class="like" id="bottom_like"  onclick="return like_video(true);"><img src="/static/img/like_2.png"></div>
-		<div class="like" id="bottom_unlike" onclick="return unlike_video(true);" style="display:none;"><img src="/static/img/like_1.png"></div>
-		<div class="share shareBox"><img src="/static/img/forward.png"></div>
+		<div class="like" id="bottom_like"  onclick="return like_video(true);"><img src="/static/img/like.png"></div>
+		<div class="like" id="bottom_unlike" onclick="return unlike_video(true);" style="display:none;"><img src="/static/img/like_h.png"></div>
+		<div class="share shareBox"><img src="/static/img/share_b.png"></div>
 	</div>
 </div>
 	<script src="{% static "js/jquery.menu-aim.js"%}"></script>
@@ -731,15 +642,15 @@ youtube手機版自動撥放 End-->
    $(".shareBox").click(function () {
 
    	event.preventDefault();
-	 if ( $(".shareArea").is(":visible")) {
-	 		$(".shareArea").stop().animate({'bottom':'0px'},'fast');
-	 		$(".shareAreaBox").fadeIn(200);
-	    }else{
-	    	$(".shareArea").stop().animate({'bottom':'-130px'},'fast');
+	 if ( $(".shareArea").hasClass( "slideInUp" )) {
+	 		$(".shareArea").removeClass('slideInUp').addClass("slideOutDown");
 	 		$(".shareAreaBox").fadeOut(200);
+	    }else{
+	    	$(".shareArea").removeClass('slideOutDown').addClass("slideInUp").show();
+	    	$(".shareAreaBox").fadeIn(200);
 	    }
 	 });
-  $(".dropDownList").click(function () {
+   $(".dropDownList").click(function () {
 
    	event.preventDefault();
 	 if ( $(".shareArea1").hasClass( "slideInUp" )) {
@@ -748,21 +659,17 @@ youtube手機版自動撥放 End-->
 	    }else{
 	    	$(".shareArea1").removeClass('slideOutDown').addClass("slideInUp").show();
 	    	$(".shareAreaBox").fadeIn(200);
-	    // Init the slick
-	    $('.single-item').slick(slickOpts);
-	    var slickEnabled = true;
-	    	$(".shareAreaBox").fadeIn(200);
 	    }
 	 });
     /*影片內頁share start*/
 
 	$('.shareAreaBox').click(function () {
-	    $(".shareArea").stop().animate({'bottom':'-130px'},'fast');
+	    $(".shareArea").removeClass('slideInUp').addClass("slideOutDown");
 	    $(".shareArea1").removeClass('slideInUp').addClass("slideOutDown");
 	 	$(".shareAreaBox").fadeOut(200);
 	 });
 	$('.otherBoxCancel').click(function () {
-	    $(".shareArea").stop().animate({'bottom':'-130px'},'fast');
+	    $(".shareArea").removeClass('slideInUp').addClass("slideOutDown");
 	    $(".shareArea1").removeClass('slideInUp').addClass("slideOutDown");
 	 	$(".shareAreaBox").fadeOut(200);
 	 });
@@ -803,33 +710,6 @@ youtube手機版自動撥放 End-->
 	          $('body').removeClass('loading');
 	        }
       	});
-      	{% if not request.user.is_authenticated %}
-      		$( ".message" ).click(function() {
-			  /*var confirm =  window.confirm("登入後才可留言");
-			  if(confirm) {
-			  	location.assign("/main/login")
-			  }*/
-				$(".loginBox").addClass("active");
-				$(".loginBg").fadeIn(100);
-			});
-
-			$( ".messInputBox" ).click(function() {
-			  /*var confirm =  window.confirm("登入後才可留言");
-			  if(confirm) {
-			  	location.assign("/main/login")
-			  }*/
-			  $(".loginBox").addClass("active");
-			  $(".loginBg").fadeIn(100);
-			});
-			$( ".loginBg" ).click(function() {
-			  $(".loginBox").removeClass("active");
-			  $(".loginBg").fadeOut(100);
-			});
-			$( ".closeBtn" ).click(function() {
-			  $(".loginBox").removeClass("active");
-			  $(".loginBg").fadeOut(100);
-			});
-      	{% endif %}
     });
 	    // Can also be used with $(document).ready()
 
@@ -837,9 +717,9 @@ youtube手機版自動撥放 End-->
 	  $('.flexslider3').flexslider({
 	    	animation: "slide",
 	        animationLoop: true,
-	        itemWidth: 150,
-	        itemMargin: 0,
-	        minItems: 3,
+	        itemWidth: 40,
+	        itemMargin: 60,
+	        minItems: 1,
 	        maxItems:5,
 	        slideDirection:"vertical",
 	        slideshowSpeed: 6000,
@@ -847,20 +727,6 @@ youtube手機版自動撥放 End-->
 	});
   	</script>
   	<!--下方輪播 End-->
-
-  	<!--share輪播 start-->
-  	<script type="text/javascript">
-		$(document).ready(function(){
-		  $('.slider1').bxSlider({
-		    slideWidth: 40,
-		    minSlides: 3,
-		    maxSlides: 3,
-		    slideMargin: 50
-		  });
-		});
-	</script>
-  	<!--share輪播 End-->
-
   	<!--取得影片高度 start
   	<script type="text/javascript">
   	$(function () {
