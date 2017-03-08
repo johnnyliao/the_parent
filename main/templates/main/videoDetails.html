@@ -8,6 +8,10 @@
 <meta name="Keywords" content="那對夫妻">
 <meta name="Description" content="那對夫妻">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta property="og:title" content="那對夫妻官網"/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="http://nicokim.cc/static/img/banner2.jpg"/>
+<meta property="og:site_name" content="那對夫妻官方網站" />
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, maximum-scale=1.0" />
 <!--匯入JSJQ -->
 	<script src="{% static "js/jquery-1.8.2.min.js"%}"></script>
@@ -255,9 +259,13 @@
 				url: "/movie/re_comment/",
 				data: {"user":"{{request.user.id}}", "content":content, "re_comment":re_comment_id},
 				success: function(data){
-					html = "<li class=\"messageBox1Con\"><div class=\"messageBox1Img\"><img src=\""+data.user.user_img+"\" width=\"40\" /></div><div class=\"messageCon\"><div class=\"messageConTitle\"><h2>"+data.user.username+"</h2></div><span class=\"timeBox\">"+data.date+"</span><p class=\"messageTxt\">"+data.content+"</p><div class=\"likeBox\" id=\"re_comment_like_count_"+data.id+"\" onclick=\"return re_comment_like('re_comment','"+data.id+"');\"><span class=\"likeBtn\"><img id=\"re_comment_like_thumbs_"+data.id+"\"  src=\"/static/img/like_1.png\" width=\"25\" /><span class=\"likeQua\" id=\"re_comment_like_text_count_"+data.id+"\">"+data.like+"</span></span></div></div></li>";
+					html = "<li class=\"messageBox1Con\"><div class=\"messageBox1Img\"><img src=\""+data.user.user_img+"\" width=\"40\" /></div><div class=\"messageCon\"><div class=\"messageConTitle\"><h2>"+data.user.username+"</h2></div><span class=\"timeBox\">"+data.date+"</span><p class=\"messageTxt\">"+data.content+"</p><div class=\"likeBox\" id=\"re_comment_like_count_"+data.id+"\" onclick=\"return re_comment_like('re_comment','"+data.id+"');\"><span class=\"likeBtn\"><img class=\"re_comment_like\" id=\"re_comment_like_thumbs_"+data.id+"\"  src=\"/static/img/like_1.png\" width=\"25\" /><span class=\"likeQua\" id=\"re_comment_like_text_count_"+data.id+"\">"+data.like+"</span></span></div></div></li>";
 					$("#reply_"+re_comment_id).append(html);
 					$("#re_comment_"+re_comment_id).val("");
+					$(".re_comment_like").click(function () {
+						$(this).attr("src","/static/img/like_2.png");
+						event.preventDefault();
+					});
 				},
 				dataType: "json"
 			});
@@ -416,9 +424,9 @@ youtube手機版自動撥放 End-->
 			<!--<a class="videoDetBox1Img05"><img id="youtubeImg" src="{% static "img/youtube_h.png"%}" width="30"></a>
 			<a id="video_img" class="fancybox-media float_r videoDetBox1Img06" href="https://www.honhe.com"><img id="youkuImg" src="{% static "img/youku.png"%}" width="30"></a>-->
 			<a class="videoDetBox1Img02" id="videoDetLikeBtn" onclick="return like_video(false);">
-				<img src="{% static "img/like_2.png"%}" width="25" />
+				<img src="{% static "img/like_1.png"%}" width="25" />
 			</a>
-			<a class="videoDetBox1Img02 active" id="videoDetLikeBtn" onclick="return unlike_video(false);"><img src="{% static "img/like_1.png"%}" width="25" /></a>
+			<a class="videoDetBox1Img02 active" id="videoDetLikeBtn" onclick="return unlike_video(false);"><img src="{% static "img/like_2.png"%}" width="25" /></a>
 			<a class="videoDetBox1Img03 shareBox" id="share" href="#"><img src="{% static "img/forward.png"%}" width="25" /></a>
 		</div>
 	</div>
@@ -430,10 +438,6 @@ youtube手機版自動撥放 End-->
 				<ul>
 					<li>播放：<span>{{video_obj.watch_count}}</span>次</li>
 					<li>類型：<span>{{video_obj.get_movie_type_display}}</span></li>
-					<li>
-						<script src="https://apis.google.com/js/platform.js"></script>
-						<div class="g-ytsubscribe" data-channel="kyo0622ace1988" data-layout="default" data-theme="dark" data-count="hidden"></div>
-					</li><br/>
 					<li><a href="#"><img src="{% static "img/like_2.png"%}" width="25"/><span id="like_count">{{video_obj.like}}</span></a></li>
 				</ul>
 			</div>
@@ -518,11 +522,11 @@ youtube手機版自動撥放 End-->
 						<p class="messageTxt">{{comment.content}}</p>
 						<div class="likeBox">
 							<span class="likeBtn">
-								<img id="comment_like_button_{{comment.id}}" onclick="return comment_like('comment','{{comment.id}}');"  src="{% static "img/like_1.png"%}" width="25" />
+								<img class="comment_like_button" id="comment_like_button_{{comment.id}}" onclick="return comment_like('comment','{{comment.id}}');"  src="{% static "img/like_1.png"%}" width="25" />
 								<span id="comment_like_count_{{comment.id}}" class="likeQua">{{comment.like}}</span>
 							</span>
 							<span class="likeBtn">
-								<img name="{{comment.id}}" src="/static/img/more_1.png" width="25" class="reply2" />
+								<img class="re_comment reply2" name="{{comment.id}}" src="/static/img/more_1.png" width="25"/>
 								<span class="likeQua">{{comment.movie_re_comments.all.count}}</span>
 							</span>
 						</div>
@@ -538,7 +542,7 @@ youtube手機版自動撥放 End-->
 								<p class="messageTxt">{{re_comment.content}}</p>
 								<div class="likeBox" id="re_comment_like_count_{{re_comment.id}}" onclick="return re_comment_like('re_comment','{{re_comment.id}}');">
 									<span class="likeBtn">
-										<img id="re_comment_like_thumbs_{{re_comment.id}}" src="{% static "img/like_1.png"%}" width="25" />
+										<img class="re_comment_like" id="re_comment_like_thumbs_{{re_comment.id}}" src="{% static "img/like_1.png"%}" width="25" />
 										<span class="likeQua" id="re_comment_like_text_count_{{re_comment.id}}">{{re_comment.like}}</span>
 									</span>
 								</div>
@@ -641,6 +645,7 @@ youtube手機版自動撥放 End-->
 				</li>
 			</ul>
 			<div class="fbPagePlugin">
+				<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F1006nk%2F%3Ffref%3Dts&tabs=small_header&width=300&height=70&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=1705033186453307" width="300" height="70" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
 				<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FKim%25E4%25BA%25AC%25E7%2587%2581-1717090055218199%2F&tabs=small_header&width=300&height=70&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=1705033186453307" width="300" height="70" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
 				<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FNico%25E5%2593%2581%25E7%25AD%25A0-195295667610836%2F&tabs=small_header&width=300&height=70&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=1705033186453307" width="300" height="70" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
 				<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fnimonicokim%2F&tabs=small_header&width=300&height=70&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=1705033186453307" width="300" height="70" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
@@ -649,16 +654,13 @@ youtube手機版自動撥放 End-->
 			<ul class="relatedLinks">
 				<li><div class="shareTitle"><h1>相關連結</h1></li>
 				<li>
-					<a style="margin:0px 10px;" onclick="return share_facebook()"><img src="/static/img/facebook.png" width="40" height="40" /></a>
+					<a href="https://www.youtube.com/user/kyo0622ace1988" target="_blank"><img src="/static/img/youtube1.png" width="40" height="40" /></a>
 				</li>
 				<li>
-					<a onclick="return share_line()"><img src="/static/img/line.png" width="40" /></a>
+					<a href="http://bit.ly/NicoKim-Meipai" target="_blank"><img src="/static/img/meipai.png" width="40" /></a>
 				</li>
 				<li>
-					<a id="copyLink" onclick="return copy_link();"><img src="/static/img/link.png" width="40" /></a>
-				</li>
-				<li>
-					<a><img src="/static/img/home.png" width="40" /></a>
+					<a href="http://bit.ly/NicoKim-IG" target="_blank"><img src="/static/img/instagram.png" width="40" /></a>
 				</li>
 			</ul>
 			<!--<div class="single-item">
@@ -735,8 +737,8 @@ youtube手機版自動撥放 End-->
 				<button {% if not request.user.is_authenticated %}disabled{% endif %} class="sendMessage" onclick="return comment();">傳送</button>
 			</div>
 		</div>
-		<div class="like" id="bottom_like"  onclick="return like_video(true);"><img src="/static/img/like_2.png"></div>
-		<div class="like" id="bottom_unlike" onclick="return unlike_video(true);" style="display:none;"><img src="/static/img/like_1.png"></div>
+		<div class="like" id="bottom_like"  onclick="return like_video(true);"><img src="/static/img/like_1.png"></div>
+		<div class="like" id="bottom_unlike" onclick="return unlike_video(true);" style="display:none;"><img src="/static/img/like_2.png"></div>
 		<div class="share shareBox"><img src="/static/img/forward.png"></div>
 	</div>
 </div>
@@ -885,18 +887,6 @@ youtube手機版自動撥放 End-->
   	</script>
   	<!--下方輪播 End-->
 
-  	<!--share輪播 start-->
-  	<script type="text/javascript">
-		$(document).ready(function(){
-		  $('.slider1').bxSlider({
-		    slideWidth: 40,
-		    minSlides: 3,
-		    maxSlides: 3,
-		    slideMargin: 50
-		  });
-		});
-	</script>
-  	<!--share輪播 End-->
 
   	<!--取得影片高度 start
   	<script type="text/javascript">

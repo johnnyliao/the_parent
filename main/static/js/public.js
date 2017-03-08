@@ -95,6 +95,16 @@ $(function(){
 		}
 	});
 	/*留言區回覆 End*/
+	/*留言愛心onclick 換圖 start*/
+	 $(".likeBtn").click(function () {
+		$(this).find(".comment_like_button").attr("src","/static/img/like_2.png");
+		event.preventDefault();
+	});
+	$(".re_comment_like").click(function () {
+		$(this).attr("src","/static/img/like_2.png");
+		event.preventDefault();
+	});
+	/*留言愛心onclick 換圖 End*/
 
 	/*影片內頁分享 start*/
 	$("#messenger").click(function () {

@@ -1573,6 +1573,7 @@ input[name="zipcode"]{
 }
 .container_default .vedioViewBox #like_count{
     margin-left: 5px;
+    color:#666;
 }
 .container_default .videolistBox{
     margin:15px 15px;
@@ -2009,7 +2010,7 @@ input[name="zipcode"]{
 }
 .shareArea1{
     background: rgba(255,255,255,1);
-    height: 525px;
+    height: 600px;
     line-height: 34px;
     text-align: center;
     position: fixed;
