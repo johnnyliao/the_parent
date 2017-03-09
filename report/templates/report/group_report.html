@@ -204,24 +204,26 @@
 
     </div>
 
-    <div><span><h3>{{name}}</h3></span></div>
-    <div>起始日期<input type="date" id="start" /></div>
-    <div>結束日期<input type="date" id="end" /></div>
-    {% if select = True %}
-    <div>人名<select id="name">
-                <option value="TIA">TIA</option>
-                <option value="AMY">AMY</option>
-                <option value="ANNIE">ANNIE</option>
-                <option value="Connie">Connie</option>
-                <option value="ZOEY">ZOEY</option>
-                <option value="MANDY">MANDY</option>
-                <option value="RICHARD">RICHARD</option>
-            </select>
+    <div class="container">
+        <div><span><h3>{{name}}</h3></span></div>
+        <div>起始日期<input type="date" id="start" /></div>
+        <div>結束日期<input type="date" id="end" /></div>
+        {% if select = True %}
+        <div>人名<select id="name">
+                    <option value="TIA">TIA</option>
+                    <option value="AMY">AMY</option>
+                    <option value="ANNIE">ANNIE</option>
+                    <option value="Connie">Connie</option>
+                    <option value="ZOEY">ZOEY</option>
+                    <option value="MANDY">MANDY</option>
+                    <option value="RICHARD">RICHARD</option>
+                </select>
+        </div>
     </div>
     {% endif %}
     <div><button class="btn btn-primary" onclick="search()">查詢</button></div>
 
-    <div class="container"><h2>Example tab 2 (using standard nav-tabs)</h2></div>
+    <div class="container"><h2>資料</h2></div>
 
 <div id="exTab2" class="container">
     <ul class="nav nav-tabs">
