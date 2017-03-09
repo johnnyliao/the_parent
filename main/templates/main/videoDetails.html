@@ -791,13 +791,17 @@ youtube手機版自動撥放 End-->
 	}
    $(".shareBox").click(function () {
 
-   	event.preventDefault();
-	 if ( $(".shareArea").is(":visible")) {
-	 		$(".shareArea").stop().animate({'bottom':'0px'},'fast');
-	 		$(".shareAreaBox").fadeIn(100);
-	    }else{
-	    	$(".shareArea").stop().animate({'bottom':'-130px'},'fast');
+	event.preventDefault();
+	if ( $(".shareArea1").hasClass( "slideInUp" )) {
+	 		$(".shareArea1").removeClass('slideInUp').addClass("slideOutDown");
 	 		$(".shareAreaBox").fadeOut(100);
+	    }else{
+	    	$(".shareArea1").removeClass('slideOutDown').addClass("slideInUp").show();
+	    	$(".shareAreaBox").fadeIn(100);
+	    // Init the slick
+	    $('.single-item').slick(slickOpts);
+	    var slickEnabled = true;
+	    	$(".shareAreaBox").fadeIn(100);
 	    }
 	 });
   $(".dropDownList").click(function () {
