@@ -23,8 +23,17 @@ class ReportUserDataSerializer(serializers.ModelSerializer):
 
 class DayInnerCountSerializer(serializers.ModelSerializer):
 	date = serializers.SerializerMethodField('convert_date')
+	title = serializers.SerializerMethodField('get_title')
+	web_type = serializers.SerializerMethodField('get_type')
+
 	class Meta:
 		model = DayInnerCount
 
 	def convert_date(self, obj):
 		return obj.date.strftime("%Y-%m-%d")
+
+	def get_title(self, obj):
+		return obj.register.title
+
+	def get_type(self, obj):
+		return obj.register.web_type

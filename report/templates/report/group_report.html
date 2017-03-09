@@ -69,21 +69,7 @@
                 "kpi":kpi,
             },
             function(data){
-                var total = 0;
-                $("#report_table").empty();
-                html = "<tr><td>日期</td><td>成長數</td></tr>";
-                $("#report_table").append(html);
-                json_data = JSON.parse(data);
-                for(item in json_data) {
-                    var group = json_data[item].group;
-                    if(group < 0) {
-                        group = 0
-                    }
-                    total += group;
-                    html = "<tr><td>"+json_data[item].date+"</td><td>"+group+"</td></tr>"
-                    $("#report_table").append(html)
-                }
-                $("#total").text(total)
+
             });
         }
 
@@ -95,20 +81,31 @@
             $.get("/report/get_report?start="+start+"&end="+end+"&name="+name,
             function(data){
                 var total = 0;
+                var fun_total = 0;
                 $("#report_table").empty();
-                html = "<tr><td>日期</td><td>成長數</td></tr>";
+                $("#fun_report_table").empty();
+                html = "<tr><td>日期</td><td>成長數</td><td>標題</td></tr>";
                 $("#report_table").append(html);
+                $("#fun_report_table").append(html);
                 json_data = JSON.parse(data);
                 for(item in json_data) {
                     var group = json_data[item].group;
                     if(group < 0) {
                         group = 0
                     }
-                    total += group;
-                    html = "<tr><td>"+json_data[item].date+"</td><td>"+group+"</td></tr>"
-                    $("#report_table").append(html)
+                    if(json_data[item].web_type == "ttshow") {
+                        total += group;
+                        html = "<tr><td>"+json_data[item].date+"</td><td>"+group+"</td><td>"+json_data[item].title+"</td></tr>"
+                        $("#report_table").append(html)
+                    } else {
+                        fun_total += group;
+                        html = "<tr><td>"+json_data[item].date+"</td><td>"+group+"</td><td>"+json_data[item].title+"</td></tr>"
+                        $("#fun_report_table").append(html)
+                    }
+
                 }
                 $("#total").text(total)
+                $("#fun_total").text(fun_total)
             });
         }
 
@@ -224,12 +221,45 @@
     {% endif %}
     <div><button class="btn btn-primary" onclick="search()">查詢</button></div>
 
-    <table class="table" id="report_table">
-        <tr>
-            <td>日期</td>
-            <td>成長數</td>
-        </tr>
+    <div class="container"><h2>Example tab 2 (using standard nav-tabs)</h2></div>
 
-    </table>
-    <div>加總<span id="total"></span></div>
+<div id="exTab2" class="container">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a  href="#ttshow" data-toggle="tab">ttshow</a>
+        </li>
+        <li>
+            <a href="#funnyking" data-toggle="tab">funnyking</a>
+        </li>
+    </ul>
+
+    <div class="tab-content ">
+        <div class="tab-pane active" id="ttshow">
+            <table class="table" id="report_table">
+                <tr>
+                    <td>日期</td>
+                    <td>成長數</td>
+                    <td>標題</td>
+                </tr>
+
+            </table>
+            <div>加總<span id="total"></span></div>
+        </div>
+
+        <div class="tab-pane" id="funnyking">
+            <table class="table" id="fun_report_table">
+                <tr>
+                    <td>日期</td>
+                    <td>成長數</td>
+                    <td>標題</td>
+                </tr>
+
+            </table>
+            <div>加總<span id="fun_total"></span></div>
+        </div>
+
+    </div>
+</div>
+
+
 </body>

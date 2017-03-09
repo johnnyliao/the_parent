@@ -211,7 +211,7 @@
 					<span id=\"comment_like_count_"+data.id+"\" class=\"likeQua\">"+data.like+"</span>\
 					</span>\
 					<span class=\"likeBtn\">\
-					<img src=\"/static/img/more_1.png\" width=\"25\" class=\"reply2\" />\
+					<img src=\"/static/img/more_1.png\" width=\"25\" class=\"reply3\" />\
 					<span class=\"likeQua\">0</span>\
 					</span>\
 					</span>\
@@ -223,8 +223,8 @@
 					<div class=\"messageBox reply1\">\
 					<div class=\"speakBox\">\
 					<div class=\"speakBoxImg\">\
-					<img src=\""+data.user.user_img+"\" width=\"40\" /><\
-					/div>\
+					<img src=\""+data.user.user_img+"\" width=\"40\" />\
+					</div>\
 					<div class=\"messInputBox\">\
 					<textarea {% if not request.user.is_authenticated %}disabled{% endif %} id=\"re_comment_"+data.id+"\" class=\"signedIn\" placeholder=\"留言\">\
 					</textarea>\
@@ -238,14 +238,7 @@
 
 					$("#comment_block").append(html);
 					$("#comment_text").val("");
-					$(".reply2").click(function () {
-						event.preventDefault();
-						 if ( $(this).parents(".messageBox1").children(".reply1").hasClass( "active" )) {
-						 		$(this).parents(".messageBox1").children(".reply1").css("display","none").removeClass("active");
-						    }else{
-						    	$(this).parents(".messageBox1").children(".reply1").css("display","block").addClass("active");
-						    }
-					});
+
 					$('html, body').animate({
 				        scrollTop: $("#speakBox_"+data.id).offset().top
 				    }, 1000);
