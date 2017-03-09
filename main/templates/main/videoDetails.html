@@ -142,7 +142,15 @@
       	function like_video(is_bottom) {
       		if(is_bottom) {
 				$("#bottom_like").hide()
+				$("#videoDetLikeBtn").hide()
 				$("#bottom_unlike").show()
+				$("#videoDetUnLikeBtn").show()
+
+			} else {
+				$("#bottom_like").hide()
+				$("#bottom_unlike").show()
+				$("#videoDetLikeBtn").hide()
+				$("#videoDetUnLikeBtn").show()
 			}
       		$.ajax({
 				type: "POST",
@@ -161,6 +169,13 @@
       		if(is_bottom) {
 				$("#bottom_like").show()
 				$("#bottom_unlike").hide()
+				$("#videoDetLikeBtn").show()
+				$("#videoDetUnLikeBtn").hide()
+			} else {
+				$("#bottom_like").show()
+				$("#bottom_unlike").hide()
+				$("#videoDetLikeBtn").show()
+				$("#videoDetUnLikeBtn").hide()
 			}
       		$.ajax({
 				type: "POST",
@@ -418,7 +433,7 @@ youtube手機版自動撥放 End-->
 			<a class="videoDetBox1Img02" id="videoDetLikeBtn" onclick="return like_video(false);">
 				<img src="{% static "img/like_2.png"%}" width="25" />
 			</a>
-			<a class="videoDetBox1Img02 active" id="videoDetLikeBtn" onclick="return unlike_video(false);"><img src="{% static "img/like_1.png"%}" width="25" /></a>
+			<a class="videoDetBox1Img02 active" id="videoDetUnLikeBtn" onclick="return unlike_video(false);"><img src="{% static "img/like_1.png"%}" width="25" /></a>
 			<a class="videoDetBox1Img03 shareBox" id="share" href="#"><img src="{% static "img/forward.png"%}" width="25" /></a>
 		</div>
 	</div>
