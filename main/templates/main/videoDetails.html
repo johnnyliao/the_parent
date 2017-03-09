@@ -8,6 +8,10 @@
 <meta name="Keywords" content="那對夫妻">
 <meta name="Description" content="那對夫妻">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta property="og:title" content="那對夫妻官網"/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="http://nicokim.cc/static/img/banner2.jpg"/>
+<meta property="og:site_name" content="那對夫妻官方網站" />
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, maximum-scale=1.0" />
 <!--匯入JSJQ -->
 	<script src="{% static "js/jquery-1.8.2.min.js"%}"></script>
@@ -207,11 +211,11 @@
 					</span>\
 					<p class=\"messageTxt\">"+data.content+"</p>\
 					<div class=\"likeBox\"><span class=\"likeBtn\">\
-					<img id=\"comment_like_button_"+data.id+"\" onclick=\"return comment_like('comment','"+data.id+"');\" src=\"/static/img/like_1.png\" width=\"25\" />\
+					<img id=\"comment_like_button_"+data.id+"\" onclick=\"return comment_like('comment','"+data.id+"');\" src=\"/static/img/like_2.png\" width=\"25\" />\
 					<span id=\"comment_like_count_"+data.id+"\" class=\"likeQua\">"+data.like+"</span>\
 					</span>\
 					<span class=\"likeBtn\">\
-					<img src=\"/static/img/more_1.png\" width=\"25\" class=\"reply3\" />\
+					<img src=\"/static/img/more_2.png\" width=\"25\" class=\"reply3\" />\
 					<span class=\"likeQua\">0</span>\
 					</span>\
 					</span>\
@@ -223,7 +227,7 @@
 					<div class=\"messageBox reply1\">\
 					<div class=\"speakBox\">\
 					<div class=\"speakBoxImg\">\
-					<img src=\""+data.user.user_img+"\" width=\"40\" />\
+					<img class=\"comment_like\" src=\""+data.user.user_img+"\" width=\"40\" />\
 					</div>\
 					<div class=\"messInputBox\">\
 					<textarea {% if not request.user.is_authenticated %}disabled{% endif %} id=\"re_comment_"+data.id+"\" class=\"signedIn\" placeholder=\"留言\">\
@@ -247,9 +251,15 @@
 						event.preventDefault();
 						if ( $(this).parents(".messageBox1").children(".reply1").hasClass( "active" )) {
 								$(this).parents(".messageBox1").children(".reply1").css("display","none").removeClass("active");
+								$(this).attr("src","/static/img/more_1.png");
 						}else{
 							$(this).parents(".messageBox1").children(".reply1").css("display","block").addClass("active");
+							$(this).attr("src","/static/img/more_2.png");
 						}
+					});
+					$(".comment_like").click(function () {
+						$(this).attr("src","/static/img/like_1.png");
+						event.preventDefault();
 					});
 				},
 				dataType: "json"
@@ -263,9 +273,13 @@
 				url: "/movie/re_comment/",
 				data: {"user":"{{request.user.id}}", "content":content, "re_comment":re_comment_id},
 				success: function(data){
-					html = "<li class=\"messageBox1Con\"><div class=\"messageBox1Img\"><img src=\""+data.user.user_img+"\" width=\"40\" /></div><div class=\"messageCon\"><div class=\"messageConTitle\"><h2>"+data.user.username+"</h2></div><span class=\"timeBox\">"+data.date+"</span><p class=\"messageTxt\">"+data.content+"</p><div class=\"likeBox\" id=\"re_comment_like_count_"+data.id+"\" onclick=\"return re_comment_like('re_comment','"+data.id+"');\"><span class=\"likeBtn\"><img id=\"re_comment_like_thumbs_"+data.id+"\"  src=\"/static/img/like_1.png\" width=\"25\" /><span class=\"likeQua\" id=\"re_comment_like_text_count_"+data.id+"\">"+data.like+"</span></span></div></div></li>";
+					html = "<li class=\"messageBox1Con\"><div class=\"messageBox1Img\"><img src=\""+data.user.user_img+"\" width=\"40\" /></div><div class=\"messageCon\"><div class=\"messageConTitle\"><h2>"+data.user.username+"</h2></div><span class=\"timeBox\">"+data.date+"</span><p class=\"messageTxt\">"+data.content+"</p><div class=\"likeBox\" id=\"re_comment_like_count_"+data.id+"\" onclick=\"return re_comment_like('re_comment','"+data.id+"');\"><span class=\"likeBtn\"><img class=\"re_comment_like\" id=\"re_comment_like_thumbs_"+data.id+"\"  src=\"/static/img/like_2.png\" width=\"25\" /><span class=\"likeQua\" id=\"re_comment_like_text_count_"+data.id+"\">"+data.like+"</span></span></div></div></li>";
 					$("#reply_"+re_comment_id).append(html);
 					$("#re_comment_"+re_comment_id).val("");
+					$(".re_comment_like").click(function () {
+						$(this).attr("src","/static/img/like_1.png");
+						event.preventDefault();
+					});
 				},
 				dataType: "json"
 			});
@@ -438,10 +452,6 @@ youtube手機版自動撥放 End-->
 				<ul>
 					<li>播放：<span>{{video_obj.watch_count}}</span>次</li>
 					<li>類型：<span>{{video_obj.get_movie_type_display}}</span></li>
-					<li>
-						<script src="https://apis.google.com/js/platform.js"></script>
-						<div class="g-ytsubscribe" data-channel="kyo0622ace1988" data-layout="default" data-theme="dark" data-count="hidden"></div>
-					</li><br/>
 					<li><a href="#"><img src="{% static "img/like_2.png"%}" width="25"/><span id="like_count">{{video_obj.like}}</span></a></li>
 				</ul>
 			</div>
@@ -526,11 +536,11 @@ youtube手機版自動撥放 End-->
 						<p class="messageTxt">{{comment.content}}</p>
 						<div class="likeBox">
 							<span class="likeBtn">
-								<img id="comment_like_button_{{comment.id}}" onclick="return comment_like('comment','{{comment.id}}');"  src="{% static "img/like_1.png"%}" width="25" />
+								<img class="comment_like" id="comment_like_button_{{comment.id}}" onclick="return comment_like('comment','{{comment.id}}');"  src="{% static "img/like_2.png"%}" width="25" />
 								<span id="comment_like_count_{{comment.id}}" class="likeQua">{{comment.like}}</span>
 							</span>
 							<span class="likeBtn">
-								<img name="{{comment.id}}" src="/static/img/more_1.png" width="25" class="reply2" />
+								<img name="{{comment.id}}" src="/static/img/more_2.png" width="25" class="reply2" />
 								<span class="likeQua">{{comment.movie_re_comments.all.count}}</span>
 							</span>
 						</div>
@@ -546,7 +556,7 @@ youtube手機版自動撥放 End-->
 								<p class="messageTxt">{{re_comment.content}}</p>
 								<div class="likeBox" id="re_comment_like_count_{{re_comment.id}}" onclick="return re_comment_like('re_comment','{{re_comment.id}}');">
 									<span class="likeBtn">
-										<img id="re_comment_like_thumbs_{{re_comment.id}}" src="{% static "img/like_1.png"%}" width="25" />
+										<img class="re_comment_like" id="re_comment_like_thumbs_{{re_comment.id}}" src="{% static "img/like_2.png"%}" width="25" />
 										<span class="likeQua" id="re_comment_like_text_count_{{re_comment.id}}">{{re_comment.like}}</span>
 									</span>
 								</div>

@@ -94,6 +94,14 @@ $(function(){
 			$(this).attr("src","/static/img/more_2.png");
 		}
 	});
+	$(".comment_like").click(function () {
+		$(this).attr("src","/static/img/like_1.png");
+		event.preventDefault();
+	});
+	$(".re_comment_like").click(function () {
+		$(this).attr("src","/static/img/like_1.png");
+		event.preventDefault();
+	});
 	/*留言區回覆 End*/
 
 	/*影片內頁分享 start*/
