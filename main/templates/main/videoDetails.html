@@ -433,16 +433,14 @@ youtube手機版自動撥放 End-->
 			</iframe>
 			<!--<div id="player"></div>-->
 		</div>
-		<div class="videoDetBox1">
+		<!--<div class="videoDetBox1">
 			<a class="videoDetBox1Img01" href="#comment_block"><img src="{% static "img/comment_1.png"%}" width="25" /></a>
-			<!--<a class="videoDetBox1Img05"><img id="youtubeImg" src="{% static "img/youtube_h.png"%}" width="30"></a>
-			<a id="video_img" class="fancybox-media float_r videoDetBox1Img06" href="https://www.honhe.com"><img id="youkuImg" src="{% static "img/youku.png"%}" width="30"></a>-->
 			<a class="videoDetBox1Img02" id="videoDetLikeBtn" onclick="return like_video(false);">
 				<img src="{% static "img/like_2.png"%}" width="25" />
 			</a>
 			<a class="videoDetBox1Img02 active" id="videoDetUnLikeBtn" onclick="return unlike_video(false);"><img src="{% static "img/like_1.png"%}" width="25" /></a>
 			<a class="videoDetBox1Img03 shareBox" id="share" href="#"><img src="{% static "img/forward.png"%}" width="25" /></a>
-		</div>
+		</div>-->
 	</div>
 	<div class="box2">
 		<div class="videoDetBox2">
@@ -462,7 +460,7 @@ youtube手機版自動撥放 End-->
 		<div class="videolistBox">
 			<div class="videolistTitleBox">
 				<div class="videolistBoxTitle"><h1>你可能會喜歡</h1></div>
-				<div class="videolistBoxMore" id="more1" onclick="return go_to_more('{{video_obj.movie_type}}');">更多 > </div>
+				<div class="videolistBoxMore" onclick="return go_to_more('{{video_obj.movie_type}}');">更多 > </div>
 			</div>
 			<ul id="videoContBox">
 				{% for item in maybe_likes %}
@@ -480,10 +478,10 @@ youtube手機版自動撥放 End-->
 				{% endfor %}
 			</ul>
 		</div>
-		<div class="videolistBox">
+		<div class="videolistBox topLine">
 			<div class="videolistTitleBox">
 				<div class="videolistBoxTitle"><h1>即時熱門</h1></div>
-				<div class="videolistBoxMore" id="more1" onclick="return go_to_more('hot');">更多 > </div>
+				<div class="videolistBoxMore" onclick="return go_to_more('hot');">更多 > </div>
 			</div>
 			<ul id="videoContBox">
 				{% for hot in hot_now %}
@@ -501,10 +499,10 @@ youtube手機版自動撥放 End-->
 				{% endfor %}
 			</ul>
 		</div>
-		<div class="videolistBox">
+		<div class="videolistBox topLine">
 			<div class="videolistTitleBox">
 				<div class="videolistBoxTitle"><h1>合作品牌</h1></div>
-				<div class="videolistBoxMore" id="more1" onclick="return go_to_more('brand');">更多 > </div>
+				<div class="videolistBoxMore" onclick="return go_to_more('brand');">更多 > </div>
 			</div>
 			<ul id="videoContBox">
 
@@ -623,15 +621,15 @@ youtube手機版自動撥放 End-->
 	<div class="shareArea">
 		<div class="shareAreaCon">
 			<ul>
-				<div>分享至</div>
+				<div class="shareTitle"><h1>分享至</h1></div>
 				<li>
-					<a style="margin:0px 10px;" onclick="return share_facebook()"><img src="/static/img/facebook.png" width="40" height="40" /></a>
+					<a style="margin:0px 10px;" onclick="return share_facebook()"><img src="/static/img/facebook_color.png" width="40" height="40" /></a>
 				</li>
 				<li>
-					<a onclick="return share_line()"><img src="/static/img/line.png" width="40" /></a>
+					<a onclick="return share_line()"><img src="/static/img/line_color.png" width="40" /></a>
 				</li>
 				<li>
-					<a id="copyLink" onclick="return copy_link();"><img src="/static/img/link.png" width="40" /></a>
+					<a id="copyLink" onclick="return copy_link();"><img src="/static/img/link_color.png" width="40" /></a>
 				</li>
 			</ul>
 		</div>
@@ -644,41 +642,51 @@ youtube手機版自動撥放 End-->
 
 		<div class="shareAreaCon">
 			<ul>
-				<li><div class="shareTitle"><h1>分享至</h1></div></li>
-				<li>
-					<a style="margin:0px 10px;" onclick="return share_facebook()"><img src="/static/img/facebook.png" width="40" height="40" /></a>
+				<li><div class="shareTitle"><h1>分享/相關社群</h1><a class="closeBtn"><img src="/static/img/close.png" width="40" /></a></div></li>
+				<li style="margin-bottom:15px;">
+					<a style="margin:0px 10px;" onclick="return share_facebook()"><img src="/static/img/facebook_color.png" width="40" height="40" /></a>
+					<span>Facebook</span>
 				</li>
 				<li>
-					<a onclick="return share_line()"><img src="/static/img/line.png" width="40" /></a>
+					<a onclick="return share_line()"><img src="/static/img/line_color.png" width="40" /></a>
+					<span>Line</span>
 				</li>
 				<li>
-					<a id="copyLink" onclick="return copy_link();"><img src="/static/img/link.png" width="40" /></a>
+					<a id="copyLink" onclick="return copy_link();"><img src="/static/img/link_color.png" width="40" /></a>
+					<span>複製連結</span>
 				</li>
 				<li>
 					<a><img src="/static/img/home.png" width="40" /></a>
+					<span>回首頁</span>
+				</li>
+				<li>
+					<a href="https://www.youtube.com/user/kyo0622ace1988" target="_blank"><img src="/static/img/youtube_color.png" width="40" height="40" /></a>
+					<span>Youtube</span>
+				</li>
+				<li>
+					<a href="http://bit.ly/nikokimline" target="_blank"><img src="/static/img/line@_color.png" width="40" /></a>
+					<span>Line@</span>
+				</li>
+				<li>
+					<a href="http://bit.ly/NicoKim-Meipai" target="_blank"><img src="/static/img/meipai_color.png" width="40" /></a>
+					<span>美拍</span>
+				</li>
+				<li>
+					<a href="http://bit.ly/NicoKim-IG" target="_blank"><img src="/static/img/instagram_color.png" width="40" /></a>
+					<span>Instagram</span>
+				</li>
+				<li>
+					<a href="http://bit.ly/NicoKim-Weibo" target="_blank"><img src="/static/img/sina.png" width="40" /></a>
+					<span>新浪微博</span>
 				</li>
 			</ul>
 			<div class="fbPagePlugin">
+				<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F1006nk%2F%3Ffref%3Dts&tabs=small_header&width=300&height=70&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=1705033186453307" width="300" height="70" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
 				<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FKim%25E4%25BA%25AC%25E7%2587%2581-1717090055218199%2F&tabs=small_header&width=300&height=70&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=1705033186453307" width="300" height="70" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
 				<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FNico%25E5%2593%2581%25E7%25AD%25A0-195295667610836%2F&tabs=small_header&width=300&height=70&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=1705033186453307" width="300" height="70" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
 				<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fnimonicokim%2F&tabs=small_header&width=300&height=70&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=1705033186453307" width="300" height="70" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
 
 			</div>
-			<ul class="relatedLinks">
-				<li><div class="shareTitle"><h1>相關連結</h1></li>
-				<li>
-					<a style="margin:0px 10px;" onclick="return share_facebook()"><img src="/static/img/facebook.png" width="40" height="40" /></a>
-				</li>
-				<li>
-					<a onclick="return share_line()"><img src="/static/img/line.png" width="40" /></a>
-				</li>
-				<li>
-					<a id="copyLink" onclick="return copy_link();"><img src="/static/img/link.png" width="40" /></a>
-				</li>
-				<li>
-					<a><img src="/static/img/home.png" width="40" /></a>
-				</li>
-			</ul>
 			<!--<div class="single-item">
 			  <div class="panel">
 			  		<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FKim%25E4%25BA%25AC%25E7%2587%2581-1717090055218199%2F&tabs&width=300&height=70&small_header=false&adapt_container_width=false&hide_cover=false&show_facepile=false&appId=1705033186453307" width="300" height="70" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
@@ -788,10 +796,10 @@ youtube手機版自動撥放 End-->
    	event.preventDefault();
 	 if ( $(".shareArea").is(":visible")) {
 	 		$(".shareArea").stop().animate({'bottom':'0px'},'fast');
-	 		$(".shareAreaBox").fadeIn(200);
+	 		$(".shareAreaBox").fadeIn(100);
 	    }else{
 	    	$(".shareArea").stop().animate({'bottom':'-130px'},'fast');
-	 		$(".shareAreaBox").fadeOut(200);
+	 		$(".shareAreaBox").fadeOut(100);
 	    }
 	 });
   $(".dropDownList").click(function () {
@@ -799,14 +807,14 @@ youtube手機版自動撥放 End-->
    	event.preventDefault();
 	 if ( $(".shareArea1").hasClass( "slideInUp" )) {
 	 		$(".shareArea1").removeClass('slideInUp').addClass("slideOutDown");
-	 		$(".shareAreaBox").fadeOut(200);
+	 		$(".shareAreaBox").fadeOut(100);
 	    }else{
 	    	$(".shareArea1").removeClass('slideOutDown').addClass("slideInUp").show();
-	    	$(".shareAreaBox").fadeIn(200);
+	    	$(".shareAreaBox").fadeIn(100);
 	    // Init the slick
 	    $('.single-item').slick(slickOpts);
 	    var slickEnabled = true;
-	    	$(".shareAreaBox").fadeIn(200);
+	    	$(".shareAreaBox").fadeIn(100);
 	    }
 	 });
     /*影片內頁share start*/
@@ -814,12 +822,17 @@ youtube手機版自動撥放 End-->
 	$('.shareAreaBox').click(function () {
 	    $(".shareArea").stop().animate({'bottom':'-130px'},'fast');
 	    $(".shareArea1").removeClass('slideInUp').addClass("slideOutDown");
-	 	$(".shareAreaBox").fadeOut(200);
+	 	$(".shareAreaBox").fadeOut(100);
 	 });
 	$('.otherBoxCancel').click(function () {
 	    $(".shareArea").stop().animate({'bottom':'-130px'},'fast');
 	    $(".shareArea1").removeClass('slideInUp').addClass("slideOutDown");
-	 	$(".shareAreaBox").fadeOut(200);
+	 	$(".shareAreaBox").fadeOut(100);
+	 });
+	$('.closeBtn').click(function () {
+	    $(".shareArea").stop().animate({'bottom':'-130px'},'fast');
+	    $(".shareArea1").removeClass('slideInUp').addClass("slideOutDown");
+	 	$(".shareAreaBox").fadeOut(100);
 	 });
 	/*影片內頁share End*/
 
