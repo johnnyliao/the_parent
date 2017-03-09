@@ -230,8 +230,7 @@
 					<img class=\"comment_like\" src=\""+data.user.user_img+"\" width=\"40\" />\
 					</div>\
 					<div class=\"messInputBox\">\
-					<textarea {% if not request.user.is_authenticated %}disabled{% endif %} id=\"re_comment_"+data.id+"\" class=\"signedIn\" placeholder=\"留言\">\
-					</textarea>\
+					<input {% if not request.user.is_authenticated %}disabled{% endif %} id=\"re_comment_"+data.id+"\" class=\"signedIn\" placeholder=\"留言\" />\
 					<button type=\"submit\" {% if not request.user.is_authenticated %}disabled{% endif %} onclick=\"return re_comment('"+data.id+"')\" class=\"messageBtn signedIn\">留言</button>\
 					</div>\
 					</div>\
@@ -251,10 +250,8 @@
 						event.preventDefault();
 						if ( $(this).parents(".messageBox1").children(".reply1").hasClass( "active" )) {
 								$(this).parents(".messageBox1").children(".reply1").css("display","none").removeClass("active");
-								$(this).attr("src","/static/img/more_1.png");
 						}else{
 							$(this).parents(".messageBox1").children(".reply1").css("display","block").addClass("active");
-							$(this).attr("src","/static/img/more_2.png");
 						}
 					});
 					$(".comment_like").click(function () {
@@ -566,7 +563,7 @@ youtube手機版自動撥放 End-->
 					<div class="speakBox">
 						<div class="speakBoxImg"><img src="{% if request.user.is_authenticated %}{{request.user|get_user_img}}{% else%}/static/img/person-icon.png{% endif %}" width="40" /></div>
 						<div class="messInputBox">
-							<textarea {% if not request.user.is_authenticated %}disabled{% endif %} id="re_comment_{{comment.id}}" class="signedIn" placeholder="{% if not request.user.is_authenticated %}請登入後才可留言{% else %}留言{% endif %}"></textarea>
+							<input {% if not request.user.is_authenticated %}disabled{% endif %} id="re_comment_{{comment.id}}" class="signedIn" placeholder="{% if not request.user.is_authenticated %}請登入後才可留言{% else %}留言{% endif %}" />
 							<button type="submit" {% if not request.user.is_authenticated %}disabled{% endif %} onclick="return re_comment('{{comment.id}}')" class="messageBtn signedIn">留言</button>
 						</div>
 					</div>
@@ -642,8 +639,8 @@ youtube手機版自動撥放 End-->
 
 		<div class="shareAreaCon">
 			<ul>
-				<li><div class="shareTitle"><h1>分享/相關社群</h1><a class="closeBtn"><img src="/static/img/close.png" width="40" /></a></div></li>
-				<li style="margin-bottom:15px;">
+				<li><div class="shareTitle"><h1>分享至</h1><a class="closeBtn"><img src="/static/img/close.png" width="40" /></a></div></li>
+				<li>
 					<a style="margin:0px 10px;" onclick="return share_facebook()"><img src="/static/img/facebook_color.png" width="40" height="40" /></a>
 					<span>Facebook</span>
 				</li>
@@ -659,6 +656,7 @@ youtube手機版自動撥放 End-->
 					<a><img src="/static/img/home.png" width="40" /></a>
 					<span>回首頁</span>
 				</li>
+				<li><div class="shareTitle"><h1>相關社群</h1></div></li>
 				<li>
 					<a href="https://www.youtube.com/user/kyo0622ace1988" target="_blank"><img src="/static/img/youtube_color.png" width="40" height="40" /></a>
 					<span>Youtube</span>
@@ -733,7 +731,7 @@ youtube手機版自動撥放 End-->
 				</a>
 
 			</div>-->
-			<div class="otherBoxCancel"><span>取消</span></div>
+			<!--<div class="otherBoxCancel"><span>取消</span></div>-->
 		</div>
 	</div>
 	<!--其他功能 End-->
@@ -763,7 +761,7 @@ youtube手機版自動撥放 End-->
 		</div>
 		<div class="like" id="bottom_like"  onclick="return like_video(true);"><img src="/static/img/like_2.png"></div>
 		<div class="like" id="bottom_unlike" onclick="return unlike_video(true);" style="display:none;"><img src="/static/img/like_1.png"></div>
-		<div class="share shareBox"><img src="/static/img/forward.png"></div>
+		<div class="share shareBox"><img src="/static/img/forward_color.png"></div>
 	</div>
 </div>
 	<script src="{% static "js/jquery.menu-aim.js"%}"></script>

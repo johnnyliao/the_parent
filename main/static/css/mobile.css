@@ -1,5 +1,7 @@
 ﻿@charset "utf-8";
-
+input {
+  -webkit-appearance: none;
+}
 /* 載入 */
 @media screen and (max-width:1920px){
 header, .header[_height="none"]{
@@ -1378,8 +1380,8 @@ input[name="zipcode"]{
 }
 .container_default .videoBox1 .videoCont{
     position: relative;
-    padding-right: .8rem;
-    padding-left: .6rem;
+    padding-right: .6rem;
+    padding-left: .8rem;
 }
 .container_default .videoBox1 .videoCont li{
     width: 49%;
@@ -1636,6 +1638,7 @@ input[name="zipcode"]{
 }
 .container_default .messageBox .speakBox{
     margin-top: 10px;
+    padding-bottom: 10px;
 }
 .container_default .messageBox .speakBoxImg{
     display: inline-block;
@@ -1646,7 +1649,8 @@ input[name="zipcode"]{
 .container_default .messageBox .messInputBox{
     width: 90%;
     display: inline-block;
-    vertical-align: top;
+    vertical-align: middle;
+    position: relative;
 }
 .container_default .messageBox textarea{
     width: 100%;
@@ -1658,7 +1662,12 @@ input[name="zipcode"]{
     padding: 5px;
 }
 .container_default .messageBox .signedIn{
-    display: block;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 12px;
+    border: 1px solid #e8e8e8;
+    padding: 5px;
+    width: 80%;
 }
 .container_default .messageBox .notLoggedIn{
     display: none;
@@ -1666,11 +1675,12 @@ input[name="zipcode"]{
 .container_default .messageBox .messInputBox .messageBtn{
     border: 1px solid #ca526a;
     padding: 5px;
-    margin: 5px 0px;
     float: right;
     border-radius: 4px;
     color: #FFF;
     background: #df8396;
+    display: inline-block;
+    width: 45px;
 }
 .container_default .messageBox .messInputBox .messageBtn:disabled{
     background: #e8e8e8;
@@ -2073,6 +2083,14 @@ input[name="zipcode"]{
     border-bottom: 1px solid #5f5f5f;
     margin-bottom: 10px;
 }
+.shareArea1 li:nth-child(6){
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    border-bottom: 1px solid #5f5f5f;
+    margin-bottom: 10px;
+    border-top: 1px solid #5f5f5f;
+}
 .container_default .shareArea .shareAreaCon .shareTitle h1{
     color: #d6d6d6;
     display: inline-block;
@@ -2390,8 +2408,9 @@ input[name="zipcode"]{
     background-color: #fff;
     color: #666;
     padding-left: 20px;
-    margin-top: 6px;
+    margin-top: 4px;
     width: 80%;
+    height: 32px;
 }
 .container_default .videoBottomBar .message button {
     float: right;
@@ -2485,7 +2504,7 @@ input[name="zipcode"]{
     width: 80%;
 }
 .container_default .videoBottomBar .message button{
-    margin: 8px -5px 0px 10px;
+    margin: 6px -5px 0px 10px;
 }
 }
 @media screen and (max-width:400px){
@@ -2497,6 +2516,10 @@ input[name="zipcode"]{
 }
 .sky-form .forgetPassCon .changeBtn{
     width:60px;
+}
+.container_default .videoBox1 .videoCont{
+    padding-right: .8rem;
+    padding-left: .8rem;
 }
 .container_default .videoBox1 .videoCont li{
     width: 100%;

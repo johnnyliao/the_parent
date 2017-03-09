@@ -88,10 +88,8 @@ $(function(){
 		event.preventDefault();
 		if ( $(this).parents(".messageBox1").children(".reply1").hasClass( "active" )) {
 			$(this).parents(".messageBox1").children(".reply1").css("display","none").removeClass("active");
-			$(this).attr("src","/static/img/more_1.png");
 		}else{
 			$(this).parents(".messageBox1").children(".reply1").css("display","block").addClass("active");
-			$(this).attr("src","/static/img/more_2.png");
 		}
 	});
 	$(".comment_like").click(function () {
