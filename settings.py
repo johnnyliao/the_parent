@@ -468,4 +468,4 @@ SOCIALACCOUNT_PROVIDERS = {
 
 FACEBOOK_EXTENDED_PERMISSIONS = ['publish_actions']
 
-LOGIN_URL = '/main/index_video/'
+LOGIN_URL = '/'
