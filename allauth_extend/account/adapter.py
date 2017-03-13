@@ -135,51 +135,8 @@ class NicokimAccountAdapter(DefaultAccountAdapter):
         url = reverse('socialaccount_connections')
         return url
 
-     def populate_user(self,
-                      request,
-                      sociallogin,
-                      data):
-        """
-        Hook that can be used to further populate the user instance.
-
-        For convenience, we populate several common fields.
-
-        Note that the user instance being populated represents a
-        suggested User instance that represents the social user that is
-        in the process of being logged in.
-
-        The User instance need not be completely valid and conflict
-        free. For example, verifying whether or not the username
-        already exists, is not a responsibility.
-        """
-        print "\n\n"
-        print "populate_user"
-        username = data.get('username')
-        first_name = data.get('first_name')
-        last_name = data.get('last_name')
-        email = data.get('email')
-        name = data.get('name')
-        user = sociallogin.user
-        user_username(user, username or '')
-        user_email(user, valid_email_or_none(email) or '')
-        name_parts = (name or '').partition(' ')
-        user_field(user, 'first_name', first_name or name_parts[0])
-        user_field(user, 'last_name', last_name or name_parts[2])
-        return user
-
     def pre_social_login(self, request, sociallogin):
-        """
-        Invoked just after a user successfully authenticates via a
-        social provider, but before the login is actually processed
-        (and before the pre_social_login signal is emitted).
 
-        You can use this hook to intervene, e.g. abort the login by
-        raising an ImmediateHttpResponse
-
-        Why both an adapter hook and the signal? Intervening in
-        e.g. the flow from within a signal handler is bad -- multiple
-        handlers may be active and are executed in undetermined order.
-        """
         print "\n\n"
         print "pre_social_login"
         pass
