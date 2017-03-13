@@ -250,7 +250,7 @@ INSTALLED_APPS = (
     # "mezzanine.forms",
     # "mezzanine.galleries",
     # "mezzanine.mobile",
-
+    "allauth_extend",
     #'haystack',
     #"geoposition",
     "toolkit",
@@ -465,6 +465,7 @@ SOCIALACCOUNT_PROVIDERS = {
     ],
     }
 }
+ACCOUNT_ADAPTER = 'allauth_extend.account.adapter.NicokimAccountAdapter'
 
 FACEBOOK_EXTENDED_PERMISSIONS = ['publish_actions']
 
