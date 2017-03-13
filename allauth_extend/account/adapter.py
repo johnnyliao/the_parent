@@ -72,37 +72,11 @@ class NicokimAccountAdapter(DefaultAccountAdapter):
         """
         print "\n\n"
         print "is_open_for_signup"
-        return get_account_adapter().is_open_for_signup(request)
 
     def is_auto_signup_allowed(self, request, sociallogin):
         print "\n\n\n"
         print "is_auto_signup_allowed"
         # If email is specified, check for duplicate and if so, no auto signup.
-        auto_signup = app_settings.AUTO_SIGNUP
-        if auto_signup:
-            email = user_email(sociallogin.user)
-            # Let's check if auto_signup is really possible...
-            if email:
-                if account_settings.UNIQUE_EMAIL:
-                    if email_address_exists(email):
-                        # Oops, another user already has this address.
-                        # We cannot simply connect this social account
-                        # to the existing user. Reason is that the
-                        # email adress may not be verified, meaning,
-                        # the user may be a hacker that has added your
-                        # email address to their account in the hope
-                        # that you fall in their trap.  We cannot
-                        # check on 'email_address.verified' either,
-                        # because 'email_address' is not guaranteed to
-                        # be verified.
-                        auto_signup = False
-                        # FIXME: We redirect to signup form -- user will
-                        # see email address conflict only after posting
-                        # whereas we detected it here already.
-            elif app_settings.EMAIL_REQUIRED:
-                # Nope, email is required and we don't have it yet...
-                auto_signup = False
-        return auto_signup
 
     def validate_disconnect(self, account, accounts):
         """
@@ -111,18 +85,6 @@ class NicokimAccountAdapter(DefaultAccountAdapter):
         """
         print "\n\n"
         print "validate_disconnect"
-        if len(accounts) == 1:
-            # No usable password would render the local account unusable
-            if not account.user.has_usable_password():
-                raise ValidationError(_("Your account has no password set"
-                                        " up."))
-            # No email address, no password reset
-            if app_settings.EMAIL_VERIFICATION \
-                    == EmailVerificationMethod.MANDATORY:
-                if EmailAddress.objects.filter(user=account.user,
-                                               verified=True).count() == 0:
-                    raise ValidationError(_("Your account has no verified"
-                                            " e-mail address."))
 
     def get_connect_redirect_url(self, request, socialaccount):
         """
