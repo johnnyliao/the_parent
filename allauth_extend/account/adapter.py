@@ -32,3 +32,33 @@ class NicokimAccountAdapter(DefaultAccountAdapter):
         print form.cleaned_data
 
         return super(NicokimAccountAdapter, self).save_user(request, user, form, commit)
+
+    def authentication_error(self,
+                             request,
+                             provider_id,
+                             error=None,
+                             exception=None,
+                             extra_context=None):
+        """
+        Invoked when there is an error in the authentication cycle. In this
+        case, pre_social_login will not be reached.
+
+        You can use this hook to intervene, e.g. redirect to an
+        educational flow by raising an ImmediateHttpResponse.
+        """
+        print "request"
+        print request
+        print "\n\n"
+        print
+        "provider_id"
+        print provider_id
+        print "\n\n"
+        print "error"
+        print error
+        print "\n\n"
+        print "exception"
+        print exception
+        print "\n\n"
+        print "extra_context"
+        print extra_context
+        pass
