@@ -254,7 +254,8 @@ class UserDataSaveView(generics.GenericAPIView):
 			return Response(serializer.errors)
 
 def GetInnerTitle(request):
-	ttshow_inners = Register.objects.all().filter(web_type="ttshow")
+
+	ttshow_inners = Register.objects.all().filter(web_type="ttshow", id=428)
 	for inner in ttshow_inners:
 		db = MySQLdb.connect(host="188.166.233.109", user="foyoko_remote", passwd="Xc7YMW4tXRcEbUch", db="ttshow", charset="utf8")
 		cursor = db.cursor()
@@ -270,13 +271,5 @@ def GetInnerTitle(request):
 		except:
 			continue
 
-	funnyking_inners = Register.objects.all().filter(web_type="funnyking")
-	for funny in funnyking_inners:
-		web = requests.get("http://fun.ttshow.tw/?p=" + str(funny.inner_id))
-		soup = BeautifulSoup(web.text, "lxml")
-		#import pdb;pdb.set_trace()
-		title = soup.findAll("h1", { "class" : "entry-title" })[0].text
-		funny.title = title
-		funny.save()
 
 	return HttpResponse("ok")
