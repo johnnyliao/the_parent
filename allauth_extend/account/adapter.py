@@ -23,10 +23,12 @@ class NicokimAccountAdapter(DefaultAccountAdapter):
             user = request.user
         else:
             user = get_user_model()()
+        print "new user"
         print user
         return user
 
     def save_user(self, request, user, form, commit=True):
+        print "save user"
         print form.cleaned_data
 
         return super(NicokimAccountAdapter, self).save_user(request, user, form, commit)
