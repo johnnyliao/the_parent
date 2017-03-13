@@ -225,7 +225,7 @@
 }
 @media only screen and (max-width: 1920px){
 .cd-dropdown-wrapper{
-	display: inline-block;
+	display: block;
 	position: relative;
 	margin: 0px 0 0 5%;
 	-webkit-font-smoothing: antialiased;

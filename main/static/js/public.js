@@ -65,6 +65,14 @@ $(function(){
 		});
 	});
 	/*goTop End*/
+	/*活動頁 下拉選單start*/
+	$( ".dropdownIcon" ).click(function() {
+	   $( ".logoinMenu" ).slideToggle( "fast", function() {
+	     // Animation complete.
+	   });
+	 });
+	/*活動頁 下拉選單 End*/
+
 	/*loading icon start*/
 	$(".defineBtn").click(function () {
 		$('#loading').fadeIn("fast");

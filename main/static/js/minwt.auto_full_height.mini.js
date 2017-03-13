@@ -21,8 +21,10 @@ $(window).load(function () {
     });
 
     function fullHeight() {
-        var a = c.height() - delHeight - delBodyMargin - autoDivBorder - none;
+        var a = c.height() - delHeight - delBodyMargin - autoDivBorder - none+100;
         if (a > autoDivHeight) {
+            b.height(a)
+        }else{
             b.height(a)
         }
     }
