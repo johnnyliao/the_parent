@@ -290,6 +290,13 @@ def change_password(request):
 		social_account = "no"
 
 	return render_to_response("main/changePassword.html", locals(), context_instance=RequestContext(request))
+def order_record(request):
+	is_mobile = check_user_agent(request)
+	return render_to_response("main/orderRecord.html", locals(), context_instance=RequestContext(request))
+
+def view_record(request):
+	is_mobile = check_user_agent(request)
+	return render_to_response("main/viewRecord.html", locals(), context_instance=RequestContext(request))
 
 @login_required
 def register_success(request):

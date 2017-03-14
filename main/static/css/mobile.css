@@ -2390,6 +2390,78 @@ input[name="zipcode"]{
 .fbPagePlugin{
     margin-top: 15px;
 }
+.container .orderRecordBox{
+    border: 1px solid #e8e8e8;
+    padding: 15px;
+}
+.container .orderRecordBox h1{
+    text-align: center;
+    font-size: 20px;
+    line-height: 40px;
+    border-bottom: 1px solid #e8e8e8;
+}
+.container .orderRecordBox .orRecContBox .orRecCont li{
+    border-bottom: 1px solid #e8e8e8;
+    padding: 15px;
+    position: relative;
+}
+.container .orderRecordBox .orRecContBox .orRecCont li:last-child{
+    border-bottom:0px;
+}
+.container .orderRecordBox .orRecContBox .orRecCont .orRecContImg{
+    display: inline-block;
+    vertical-align: top;
+    width: 30%;
+    margin-right: 5px;
+}
+.container .orderRecordBox .orRecContBox .orRecCont .orRecContImg img{
+
+}
+.container .orderRecordBox .orRecContBox .orRecCont .productItem1{
+    display: inline-block;
+    width: 65%;
+}
+.container .orderRecordBox .orRecContBox .orRecCont .productItem1 h3{
+    color: #f55791;
+    display: -webkit-box;
+    overflow:hidden;
+    text-overflow : ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.container .orderRecordBox .orRecContBox .orRecCont .productItem1 .quantityPrice{
+    margin-top: 60px;
+}
+.container .orderRecordBox .orRecContBox .orRecCont .productItem1 .quantityPrice .priceBox{
+    display: inline-block;
+    vertical-align: top;
+    color: #f55791;
+}
+.container .orderRecordBox .orRecContBox .orRecCont .productItem1 .quantityPrice .priceBox .price{
+
+}
+.container .orderRecordBox .orRecContBox .orRecCont .productItem1 .quantityPrice .quantityBox{
+    display: inline-block;
+    float: right;
+}
+.container .orderRecordBox .orRecContBox .orRecCont .productItem1 .quantityPrice .putInCart{
+    display: inline-block;
+    float: right;
+    color: #fff;
+    padding: 5px;
+    font-size: 12px;
+    border-radius: 4px;
+    background: #ec7b88;
+}
+.container .orderRecordBox .orRecContBox .clearView{
+    text-align: center;
+    display: block;
+    border-radius: 4px;
+    background: #e8e8e8;
+    padding: 5px;
+    color: #969696;
+    font-size: 14px;
+}
 }
 @media screen and (max-width:1024px){
 
@@ -2570,6 +2642,12 @@ input[name="zipcode"]{
 }
 .container_default .videoBox1 .videoCont li:nth-child(odd),.container_default .videoBox1 .videoCont li:nth-child(even){
     margin-bottom: 15px;
+}
+.container .orderRecordBox .orRecContBox .orRecCont .orRecContImg{
+    width: 40%;
+}
+.container .orderRecordBox .orRecContBox .orRecCont .productItem1{
+    width: 55%;
 }
 }
 @media screen and (max-width:340px){

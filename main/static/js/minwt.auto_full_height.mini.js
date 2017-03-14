@@ -24,8 +24,6 @@ $(window).load(function () {
         var a = c.height() - delHeight - delBodyMargin - autoDivBorder - none+100;
         if (a > autoDivHeight) {
             b.height(a)
-        }else{
-            b.height(a)
         }
     }
     c.resize(function () {
