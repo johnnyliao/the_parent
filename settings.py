@@ -93,7 +93,7 @@ ADMIN_THUMB_SIZE = "100x100"
 USE_SOUTH = True
 
 
-LOGIN_REDIRECT_URL = "/main/action"
+LOGIN_REDIRECT_URL = "/"
 ########################
 # MAIN DJANGO SETTINGS #
 ########################
@@ -468,4 +468,4 @@ SOCIALACCOUNT_PROVIDERS = {
 
 FACEBOOK_EXTENDED_PERMISSIONS = ['publish_actions']
 
-LOGIN_URL = '/main/action'
+LOGIN_URL = '/'

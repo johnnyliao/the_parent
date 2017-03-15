@@ -21,7 +21,7 @@ urlpatterns = patterns("",
     url(r'^admin/salmonella/', include('salmonella.urls')),
     url(r'^docs/', include('rest_framework_swagger.urls')),
     url(r"^api-auth/", include("rest_framework.urls", namespace="rest_framework")),
-    url("^$", "main.views.action", name="home"),
+    url("^$", "main.views.index_video", name="home"),
 )
 
 if (settings.DEBUG):
