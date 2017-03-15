@@ -2561,7 +2561,6 @@ input[name="zipcode"]{
 .container .messageDetCon h1{
     color: #666;
     line-height: 30px;
-    height: 30px;
 }
 .container .messageDetCon .messageDetail{
     color: #969696;
@@ -2832,6 +2831,11 @@ input[name="zipcode"]{
 }
 .container .videoViewListBox ul li .videoListTxtBox h2{
     font-size: 14px;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 .container .videoViewListBox ul li .videoListTxtBox .viewQuanBox{
     bottom: 4px;
@@ -2855,6 +2859,9 @@ input[name="zipcode"]{
 }
 .container .videoViewListBox {
     margin: 15px 0px;
+}
+.container .orderRecordBox .messageBox .cardFlagBox ul li{
+    width: 48.2%;
 }
 }
 @media screen and (max-width:320px){
