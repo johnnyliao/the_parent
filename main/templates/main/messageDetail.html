@@ -1,0 +1,142 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>roduct Details | Unify - Responsive Website Template</title>
+<meta name="Keywords" content="那對夫妻">
+<meta name="Description" content="那對夫妻">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, maximum-scale=1.0" />
+<!--匯入JSJQ -->
+	<script src="{% static "js/jquery-1.8.2.min.js"%}"></script>
+    <script src="{% static "js/jquery.min.js"%}"></script>
+    <script src="{% static "js/main.js"%}"></script>
+    <script src="{% static "js/modernizr.js"%}"></script>
+    <script src="{% static "js/headroom.js"%}"></script>
+    <script src="{% static "js/jquery.menu-aim.js"%}"></script>
+<!--匯入css -->
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css"%}">
+<!--header隱藏css js-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.3/headroom.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.3/jQuery.headroom.js"></script>
+    <style type="text/css">
+		.headroom {position: fixed;top: 0;left: 0;right: 0;transition: all .2s ease-in-out;}
+		.headroom--unpinned {top: -100px;transform: translateY(-100%);}
+		.headroom--pinned {transform: translateY(0%);z-index: 1;}
+    }
+	</style>
+<!--header隱藏css js End-->
+<!--彈窗使用css js start-->
+	<link rel="stylesheet" href="{% static "css/jquery.sweet-modal.min.css"%}" />
+	<script src="{% static "js/jquery.sweet-modal.min.js"%}"></script>
+<!--彈窗使用css js End-->
+<!--撐開頁面使用 start-->
+	<script src="{% static "js/minwt.auto_full_height.mini.js"%}"></script>
+<!--撐開頁面使用 End-->
+</head>
+
+<body>
+<div class="" none="ture">
+	<header class="header" _height="none" style="display:none;">
+		<article class="topnav">
+			<div class="cd-dropdown-wrapper">
+				<a class="cd-dropdown-trigger top" href="#0">
+					<span></span>
+				</a>
+			</div>
+			<div class="logo">
+				<a href="/main/index">
+					<img class="top_logo" src="{% static "img/thecouple_webpage_logo.png"%}">
+				</a>
+			</div>
+		</article>
+	</header>
+	<!--nav start-->
+	<div class="cd-dropdown-wrapper">
+		<!--<a class="cd-dropdown-trigger" href="#0">Dropdown</a>-->
+		<nav class="cd-dropdown">
+			<h2>那對夫妻</h2>
+			<a href="#0" class="cd-close">Close</a>
+			<ul class="cd-dropdown-content">
+				<li>
+					<form class="cd-search" method="get">
+						<input type="search" placeholder="Search..." class="searchlnput_text">
+						<input class="searchlnput_bnt" name="" type="submit" value="">
+					</form>
+				</li>
+				{% if request.user.is_authenticated %}
+					<li>
+						<a href="/account/user_logout/">登出</a>
+					</li>
+				{% else%}
+					<li>
+						<a href="/main/login/">登入</a>
+					</li>
+				{% endif %}
+				<li>
+					<a href="/main/register/">註冊</a>
+				</li>
+				<li class="has-children">
+					<a href="#">會員專區</a>
+					<ul class="cd-secondary-dropdown is-hidden">
+						<li class="go-back"><a href="#0">Menu</a></li>
+						<li>
+							<a href="/main/member/">會員資料</a>
+						</li>
+						<li>
+							<a href="/main/change_password/">修改密碼</a>
+						</li>
+					</ul> <!-- .cd-secondary-dropdown -->
+				</li> <!-- .has-children -->
+			</ul> <!-- .cd-dropdown-content -->
+		</nav> <!-- .cd-dropdown -->
+	</div> <!-- .cd-dropdown-wrapper -->
+	<!--nav End-->
+
+	<div class="container messageDetile1" _height="auto">
+		<div class="animated prevPage messageDetailBox" id="headerMenu">
+	  		<div class="goBack"><i class="fa fa-chevron-left tab" aria-hidden="true" style="line-height:40px;"></i></div>
+		</div>
+		<div class="messageDetCon">
+			<h1>信件標題信件標題信件標題信件標題信件標題</h1>
+			<div class="messageDetail">
+				<p>後股時還心、半有思使基引特或投叫上們民，非們則院樣說少心我那……院易條會就竟車元中去期想於覺全告未學質企間藝四生受。
+
+來學而草修比通口的水王實東物見國多的滿然來的。精物今他在如遠特術馬。留直放斯開。於建？
+
+痛國把。來麼那見懷色此無，但為卻麗建你人表題車們太這更作受今一證古車會四康品告出值小吃後行認能教由進國是命變當冷失八一的比，這來日國，開這生；各軍更個易男了風生公舉學推其發北皮：聞來腳展區失、反便遊自，臺景學是我清現環小流公發一金的終起案；雖次化體白間、企以不媽望天。女展馬雖便部畫嚴同苦，就但神民一人法支人我班無走；角力情我呢走灣生界愛面我年共人間告電，臺靈不手性，馬城等開機自候起山以分，旅位在平它算足：面不點產發？是利無動答的設、該法前著象老是子素即也見仍父引？是成月明意我長遠要以。安果益候回一人坐聯面不期，論以節女作，說意吃當企在……修電響們上張本接時會跑年樹了意麼二此寫行車個動熱傳壓灣望機話素女裡去國？
+				</p>
+			</div>
+		</div>
+	</div>
+	<!--<div class="under-nav">
+	    <a href="#" class="inner-nav  icon-basket"></a>
+	    <a aria-hidden="true" href="#" class="inner-nav icon-social-youtube"></a><a href="#" aria-hidden="true" class="inner-nav icon-feed"></a>
+	    <a href="#" aria-hidden="true" class="inner-nav icon-list"></a>
+	</div>-->
+	<footer _height="none">
+		<ul>
+			<li>超人氣娛樂股份有限公司</li>
+			<li>02-7709-5168</li>
+			<li><a href="mailto:service@supermedia.cool">service@supermedia.cool</a></li>
+			<li>copyright©那對夫妻nicokim.cc版權所有</li>
+		</ul>
+	</footer>
+	<!--信息已讀未讀切換  start-->
+	<script type="text/javascript">
+
+	$(".cardFlagItem1").click(function () {
+		$(this).addClass("active").siblings().removeClass("active");
+		$(".unread").fadeOut(100);
+		$(".readed").fadeIn(100);
+	});
+	$(".cardFlagItem2").click(function () {
+		$(this).addClass("active").siblings().removeClass("active");
+		$(".unread").fadeIn(100);
+		$(".readed").fadeOut(100);
+	});
+
+	</script>
+	<!--信息已讀未讀切換  End-->
+</body>

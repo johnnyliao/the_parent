@@ -1,0 +1,191 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>roduct Details | Unify - Responsive Website Template</title>
+<meta name="Keywords" content="那對夫妻">
+<meta name="Description" content="那對夫妻">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, maximum-scale=1.0" />
+<!--匯入JSJQ -->
+	<script src="{% static "js/jquery-1.8.2.min.js"%}"></script>
+    <script src="{% static "js/jquery.min.js"%}"></script>
+    <script src="{% static "js/main.js"%}"></script>
+    <script src="{% static "js/modernizr.js"%}"></script>
+    <script src="{% static "js/headroom.js"%}"></script>
+    <script src="{% static "js/jquery.menu-aim.js"%}"></script>
+<!--匯入css -->
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css"%}">
+<!--header隱藏css js-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.3/headroom.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.3/jQuery.headroom.js"></script>
+    <style type="text/css">
+		.headroom {position: fixed;top: 0;left: 0;right: 0;transition: all .2s ease-in-out;}
+		.headroom--unpinned {top: -100px;transform: translateY(-100%);}
+		.headroom--pinned {transform: translateY(0%);z-index: 1;}
+    }
+	</style>
+<!--header隱藏css js End-->
+<!--彈窗使用css js start-->
+	<link rel="stylesheet" href="{% static "css/jquery.sweet-modal.min.css"%}" />
+	<script src="{% static "js/jquery.sweet-modal.min.js"%}"></script>
+<!--彈窗使用css js End-->
+<!--撐開頁面使用 start-->
+	<script src="{% static "js/minwt.auto_full_height.mini.js"%}"></script>
+<!--撐開頁面使用 End-->
+</head>
+
+<body>
+<div class="" none="ture">
+	<header class="header" _height="none">
+		<article class="topnav">
+			<div class="cd-dropdown-wrapper">
+				<a class="cd-dropdown-trigger top" href="#0">
+					<span></span>
+				</a>
+			</div>
+			<div class="logo">
+				<a href="/main/index">
+					<img class="top_logo" src="{% static "img/thecouple_webpage_logo.png"%}">
+				</a>
+			</div>
+		</article>
+	</header>
+	<!--nav start-->
+	<div class="cd-dropdown-wrapper">
+		<!--<a class="cd-dropdown-trigger" href="#0">Dropdown</a>-->
+		<nav class="cd-dropdown">
+			<h2>那對夫妻</h2>
+			<a href="#0" class="cd-close">Close</a>
+			<ul class="cd-dropdown-content">
+				<li>
+					<form class="cd-search" method="get">
+						<input type="search" placeholder="Search..." class="searchlnput_text">
+						<input class="searchlnput_bnt" name="" type="submit" value="">
+					</form>
+				</li>
+				{% if request.user.is_authenticated %}
+					<li>
+						<a href="/account/user_logout/">登出</a>
+					</li>
+				{% else%}
+					<li>
+						<a href="/main/login/">登入</a>
+					</li>
+				{% endif %}
+				<li>
+					<a href="/main/register/">註冊</a>
+				</li>
+				<li class="has-children">
+					<a href="#">會員專區</a>
+					<ul class="cd-secondary-dropdown is-hidden">
+						<li class="go-back"><a href="#0">Menu</a></li>
+						<li>
+							<a href="/main/member/">會員資料</a>
+						</li>
+						<li>
+							<a href="/main/change_password/">修改密碼</a>
+						</li>
+					</ul> <!-- .cd-secondary-dropdown -->
+				</li> <!-- .has-children -->
+			</ul> <!-- .cd-dropdown-content -->
+		</nav> <!-- .cd-dropdown -->
+	</div> <!-- .cd-dropdown-wrapper -->
+	<!--nav End-->
+
+	<div class="container" _height="auto">
+		<div class="orderRecordBox">
+			<h1>信息通知區</h1>
+			<div class="messageBox">
+				<div class="cardFlagBox">
+					<ul class="cardFlagCont">
+						<li class="cardFlagItem2  active">未讀(<a class="count">2</a>)</li>
+						<li class="cardFlagItem1">已讀(<a class="count">2</a>)</li>
+					</ul>
+				</div>
+				<ul class="messageBoxCont unread">
+					<li>
+						<div class="messagItem">
+							<div class="messageTitle">
+								<h3>這是測試信件未讀</h3>
+							</div>
+							<div class="messageDetails">
+								<p>明點質報輕影三……且是德，四華去視變弟，燈了和你三，更裝兒日年的真晚候記表計供全電基少有表馬車性部是程少維明積，不係病長學雄過居動人全人技支子排然手子有最國？性黨數知它了</p>
+							</div>
+							<div class="messageDateBox"><span>2017/06/20 17:30</span></div>
+						</div>
+						<div class="trash"><a><i class="fa fa-trash-o" aria-hidden="true"></i>刪除</a></div>
+					</li>
+					<li>
+						<div class="messagItem">
+							<div class="messageTitle">
+								<h3>這是測試信件</h3>
+							</div>
+							<div class="messageDetails">
+								<p>明點質報輕影三……且是德，四華去視變弟，燈了和你三，更裝兒日年的真晚候記表計供全電基少有表馬車性部是程少維明積，不係病長學雄過居動人全人技支子排然手子有最國？性黨數知它了</p>
+							</div>
+							<div class="messageDateBox"><span>2017/06/20 17:30</span></div>
+						</div>
+						<div class="trash"><a><i class="fa fa-trash-o" aria-hidden="true"></i>刪除</a></div>
+					</li>
+				</ul>
+				<ul class="messageBoxCont readed">
+					<li>
+						<div class="messagItem">
+							<div class="messageTitle">
+								<h3>這是測試信件已讀</h3>
+							</div>
+							<div class="messageDetails">
+								<p>明點質報輕影三……且是德，四華去視變弟，燈了和你三，更裝兒日年的真晚候記表計供全電基少有表馬車性部是程少維明積，不係病長學雄過居動人全人技支子排然手子有最國？性黨數知它了</p>
+							</div>
+							<div class="messageDateBox"><span>2017/06/20 17:30</span></div>
+						</div>
+						<div class="trash"><a><i class="fa fa-trash-o" aria-hidden="true"></i>刪除</a></div>
+					</li>
+					<li>
+						<div class="messagItem">
+							<div class="messageTitle">
+								<h3>這是測試信件</h3>
+							</div>
+							<div class="messageDetails">
+								<p>明點質報輕影三……且是德，四華去視變弟，燈了和你三，更裝兒日年的真晚候記表計供全電基少有表馬車性部是程少維明積，不係病長學雄過居動人全人技支子排然手子有最國？性黨數知它了</p>
+							</div>
+							<div class="messageDateBox"><span>2017/06/20 17:30</span></div>
+						</div>
+						<div class="trash"><a><i class="fa fa-trash-o" aria-hidden="true"></i>刪除</a></div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!--<div class="under-nav">
+	    <a href="#" class="inner-nav  icon-basket"></a>
+	    <a aria-hidden="true" href="#" class="inner-nav icon-social-youtube"></a><a href="#" aria-hidden="true" class="inner-nav icon-feed"></a>
+	    <a href="#" aria-hidden="true" class="inner-nav icon-list"></a>
+	</div>-->
+	<footer _height="none">
+		<ul>
+			<li>超人氣娛樂股份有限公司</li>
+			<li>02-7709-5168</li>
+			<li><a href="mailto:service@supermedia.cool">service@supermedia.cool</a></li>
+			<li>copyright©那對夫妻nicokim.cc版權所有</li>
+		</ul>
+	</footer>
+	<!--信息已讀未讀切換  start-->
+	<script type="text/javascript">
+
+	$(".cardFlagItem1").click(function () {
+		$(this).addClass("active").siblings().removeClass("active");
+		$(".unread").fadeOut(100);
+		$(".readed").fadeIn(100);
+	});
+	$(".cardFlagItem2").click(function () {
+		$(this).addClass("active").siblings().removeClass("active");
+		$(".unread").fadeIn(100);
+		$(".readed").fadeOut(100);
+	});
+
+	</script>
+	<!--信息已讀未讀切換  End-->
+</body>

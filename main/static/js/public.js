@@ -216,4 +216,6 @@ $(function(){
 	 });
 	影片內頁往上下滑動 顯示隱藏 header footer End*/
 
+
+
 });

@@ -2022,6 +2022,7 @@ input[name="zipcode"]{
     width: 100%;
     bottom: -130px;
     z-index: 99999;
+    overflow-y:scroll;
 }
 .shareArea1{
     background:#272725;
@@ -2033,6 +2034,7 @@ input[name="zipcode"]{
     bottom: 0px;
     z-index: 99999;
     display: none;
+    overflow-y:scroll;
 }
 .shareArea1 .shareAreaCon .fbfansBox{
     margin-top: 0px;
@@ -2462,6 +2464,167 @@ input[name="zipcode"]{
     color: #969696;
     font-size: 14px;
 }
+.container .orderRecordBox .messageBox .messageBoxCont li{
+    padding: 15px;
+    border-bottom: 1px solid #e8e8e8;
+    width: 100%;
+}
+.container .orderRecordBox .messageBox .messageBoxCont .messagItem{
+    display: inline-block;
+    vertical-align: middle;
+}
+.container .orderRecordBox .messageBox .messageBoxCont .messagItem .messageTitle h3{
+    color: #666;
+    line-height: 36px;
+    font-size: 20px;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    vertical-align: -webkit-baseline-middle;
+    margin-right: 10px;
+    width: 90%;
+}
+.container .orderRecordBox .messageBox .messageBoxCont .messagItem .messageTitle .cardFlag{
+    background: #dd7c8e;
+    right: 0;
+    color: #fff;
+    padding: .4em .4em .4em .4em;
+    font-size: 13px;
+    line-height: 1;
+    box-sizing: border-box;
+    border-radius: 4px;
+    display: inline-block;
+}
+.container .orderRecordBox .messageBox .messageBoxCont .messagItem .messageDetails p{
+    font-size: 16px;
+    color: #969696;
+    line-height: 30px;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.container .orderRecordBox .messageBox .messageBoxCont .messagItem .messageDateBox span{
+    font-size: 14px;
+    color: #b3b3b3;
+    line-height: 30px;
+}
+.container .orderRecordBox .messageBox .messageBoxCont .trash{
+    display: inline-block;
+    width: 55px;
+    background: #e8e8e8;
+    padding: 5px;
+    border-radius: 4px;
+    color: #969696;
+    font-size: 14px;
+    text-align: center;
+}
+.container .orderRecordBox .messageBox .messageBoxCont .trash .fa-trash-o{
+    margin-right: 5px;
+}
+.container .orderRecordBox .messageBox .cardFlagBox ul{
+    border-bottom: 1px solid #e8e8e8;
+    margin-top: 10px;
+    height: 40px;
+}
+.container .orderRecordBox .messageBox .cardFlagBox ul li{
+    width: 49.2%;
+    display: inline-block;
+    text-align: center;
+    padding: 5px;
+    color: #666;
+    height: 40px;
+}
+.container .orderRecordBox .messageBox .cardFlagBox ul li.active{
+    width: 49.2%;
+    display: inline-block;
+    text-align: center;
+    padding: 5px;
+    border-bottom: 3px solid #d9818e;
+    color: #d9818e;
+    height: 40px;
+}
+.readed{
+    display: none;
+}
+.messageDetile1{
+    margin-top: 60px;
+}
+.container .messageDetailBox{
+    display: inline-block;
+    border-top: 0px;
+    margin-left: -15px;
+}
+.container .messageDetCon h1{
+    color: #666;
+    line-height: 30px;
+    height: 30px;
+}
+.container .messageDetCon .messageDetail{
+    color: #969696;
+    line-height: 30px;
+}
+.container .videoViewListBox{
+    margin:15px 15px;
+}
+.container .videoViewListBox .videolistTitleBox{
+    position: relative;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.container .videoViewListBox .videolistTitleBox .videoViewListBoxTitle{
+    display: inline-block;
+    width: 90%;
+    vertical-align: top;
+}
+.container .videoViewListBox .videolistTitleBox .videoViewListBoxTitle h1{
+    color: #666;
+}
+.container .videoViewListBox .videolistTitleBox .videoViewListBoxMore{
+    display: inline-block;
+    position: absolute;
+    color: #666;
+    font-size: 14px;
+    right: 0px;
+}
+.container .videoViewListBox ul li{
+    position: relative;
+    border-bottom: 1px solid #e8e8e8;
+    padding: 5px 0px;
+}
+.container .videoViewListBox ul li:last-of-type{
+    border-bottom:0px;
+}
+.container .videoViewListBox ul li .videoListImgBox{
+    display: inline-block;
+}
+.container .videoViewListBox ul li .videoListTxtBox{
+    display: inline-block;
+    vertical-align: top;
+    width: 79%;
+    margin-bottom: 15px;
+    color: #666;
+    margin-left: 5px;
+    margin: 0px 0px 15px 5px;
+}
+.container .videoViewListBox ul li .videoListTxtBox h2{
+    line-height: 24px;
+}
+.container .videoViewListBox ul li .videoListTxtBox .viewQuanBox{
+    position: absolute;
+    bottom: 15px;
+    font-size: 14px;
+}
+.container .videoViewListBox ul li .videoListTxtBox{
+    width: 75%;
+}
+.container .videoViewListBox ul li .videoListTxtBox{
+    width: 60%;
+    font-size: 16px;
+}
 }
 @media screen and (max-width:1024px){
 
@@ -2492,6 +2655,9 @@ input[name="zipcode"]{
     margin-top:0px;
 }
 .container_default .videolistBox ul li .videoListTxtBox{
+    width: 75%;
+}
+.container_default .videoViewListBox ul li .videoListTxtBox{
     width: 75%;
 }
 .container_default .videoBottomBar .message .input1{
@@ -2525,7 +2691,11 @@ input[name="zipcode"]{
 .container_cart .cartConBox .invoiceBox #love_code_div a{
     right: 12%;
 }
-.container_default .videolistBox ul li .videoListTxtBox{
+.container .videolistBox ul li .videoListTxtBox{
+    width: 60%;
+    font-size: 16px;
+}
+.container .videoViewListBox ul li .videoListTxtBox{
     width: 60%;
     font-size: 16px;
 }
@@ -2593,6 +2763,10 @@ input[name="zipcode"]{
     width: 55%;
     font-size: 16px;
 }
+.container .videoViewListBox ul li .videoListTxtBox{
+    width: 49%;
+    font-size: 16px;
+}
 .container_default .messageBox .messInputBox{
     width: 80%;
 }
@@ -2627,11 +2801,18 @@ input[name="zipcode"]{
 .container_default .videolistBox ul li .videoListTxtBox{
     font-size: 14px;
 }
+.container .videoViewListBox ul li .videoListTxtBox{
+    font-size: 14px;
+}
 .container_default .messageBox1 .messageBox1Con .messageCon{
 
 }
 .container_default .videolistBox ul li .videoListTxtBox{
     width: 50%;
+    font-size: 16px;
+}
+.container .videoViewListBox ul li .videoListTxtBox{
+    width: 45%;
     font-size: 16px;
 }
 .container_default .videoBottomBar .message{
@@ -2649,6 +2830,12 @@ input[name="zipcode"]{
 .container .orderRecordBox .orRecContBox .orRecCont .productItem1{
     width: 55%;
 }
+.container .videoViewListBox ul li .videoListTxtBox h2{
+    font-size: 14px;
+}
+.container .videoViewListBox ul li .videoListTxtBox .viewQuanBox{
+    bottom: 4px;
+}
 }
 @media screen and (max-width:340px){
 .container_default .videolistBox ul li .videoListTxtBox{
@@ -2657,8 +2844,17 @@ input[name="zipcode"]{
 .container_default .videolistBox .videoListImgBox img{
     width: 120px !important;
 }
+.container .videoViewListBox ul li .videoListTxtBox{
+    width: 40%;
+}
+.container .videoViewListBox .videoListImgBox img{
+    width: 120px !important;
+}
 .container_default .videoBottomBar .message .input1{
     width: 74%
+}
+.container .videoViewListBox {
+    margin: 15px 0px;
 }
 }
 @media screen and (max-width:320px){
