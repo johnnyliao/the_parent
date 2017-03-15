@@ -298,6 +298,18 @@ def view_record(request):
 	is_mobile = check_user_agent(request)
 	return render_to_response("main/viewRecord.html", locals(), context_instance=RequestContext(request))
 
+def message_list(request):
+	is_mobile = check_user_agent(request)
+	return render_to_response("main/messageList.html", locals(), context_instance=RequestContext(request))
+
+def message_detail(request):
+	is_mobile = check_user_agent(request)
+	return render_to_response("main/messageDetail.html", locals(), context_instance=RequestContext(request))
+
+def video_viewRecord(request):
+	is_mobile = check_user_agent(request)
+	return render_to_response("main/videoViewRecord.html", locals(), context_instance=RequestContext(request))
+
 @login_required
 def register_success(request):
 	is_mobile = check_user_agent(request)
