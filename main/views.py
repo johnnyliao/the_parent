@@ -149,7 +149,6 @@ def action(request):
 	nicokimred_lists = WinningUser.objects.filter(prize="nicokimred")
 	phone_lists = WinningUser.objects.filter(prize="phone")
 
-
 	return render_to_response("main/action.html", locals(), context_instance=RequestContext(request))
 
 def register(request):
