@@ -79,6 +79,11 @@ class User(AbstractUser):
 		except:
 			return False
 
+	def get_full_name(self):
+		order = (self.last_name, self.first_name)
+		return "%s %s" % order
+
+
 	def __unicode__(self):
 		return self.get_full_name()
 
