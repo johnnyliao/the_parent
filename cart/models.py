@@ -141,6 +141,7 @@ class ProductInfo(models.Model):
     ship_day = models.CharField(_(u"出貨天數"), max_length=30)
     other = models.CharField(_(u"其它"), max_length=30)
     brand = models.ForeignKey(Brand, related_name='product_brand')
+    photo = models.ImageField(_(u"商品縮圖"), upload_to='cart/item_pre_photo')
 
     class Meta:
         verbose_name = _(u"商品資訊")
