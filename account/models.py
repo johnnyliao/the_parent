@@ -80,7 +80,7 @@ class User(AbstractUser):
 			return False
 
 	def __unicode__(self):
-		return self.username
+    return self.user.get_full_name()
 
 class UserVerify(models.Model):
 	user = models.OneToOneField(User, related_name='verify')
