@@ -379,15 +379,17 @@ def complete_login(request, login, app, token):
 
 class UserVerifyCheckView(APIView):
     #serializer_class = PasswordResetSerializer
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (AllowAny, )
 
     def get(self, request, format=None):
         """
         確認使用者email認證狀態
 
         """
-
-        return Response(request.user.is_verified())
+        if request.user.is_authenticated():
+            return Response(request.user.is_verified())
+        else:
+            return Response(False)
 
 def UserVerifyView(request):
     #serializer_class = PasswordResetSerializer
