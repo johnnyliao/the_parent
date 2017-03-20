@@ -8,7 +8,7 @@ from rest_framework.renderers import JSONRenderer
 
 
 import urllib, urllib2, json, simplejson
-
+from django.http import HttpResponse, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils import timezone
 from django.middleware.csrf import get_token
@@ -227,9 +227,8 @@ def cart_check(request):
 
 def now_cart(request):
 	is_mobile = check_user_agent(request)
-
 	if not request.user.is_authenticated():
-		return redirect(main_login)
+		return HttpResponseRedirect('/main/login')
 
 	product_id = request.GET.get("product_id")
 	cart_items = request.user.user_cart_item.all().filter(is_checked=False)
