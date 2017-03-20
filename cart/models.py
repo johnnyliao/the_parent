@@ -67,7 +67,8 @@ class UserInvoice(models.Model):
     customer_addr = models.CharField(_(u"客戶地址"), max_length=100, null=True, blank=True)
     customer_phone = models.CharField(_(u"客戶手機號碼"), max_length=20, null=True, blank=True)
     customer_email = models.CharField(_(u"客戶電子信箱"), max_length=80, null=True, blank=True)
-    user = models.OneToOneField("account.User",  related_name='user_invoice')
+    user = models.ForeignKey("account.User",  related_name='user_invoice')
+
     class Meta:
         verbose_name = _(u"使用者發票資訊")
         verbose_name_plural = _(u"使用者發票列表")
