@@ -149,6 +149,7 @@ header .topnav .goBack{
 }
 .header{
     z-index: 999;
+     width: 100%;
 }
 html, body, .container{
     position: relative;
