@@ -74,7 +74,7 @@
 		</article>
 		<div class="tabs fixed show-tab dark" fixed-tabs="#tv-tabs" ng-class="{'show-tab' : showTabs}">
 			{% for brand in brand_index.brand.all %}
-	  		<a href="/main/indexshop/?brand_id={{brand.id}}" target="_self" class="tab {% if brand_id1 == brand.id %}active"{% else %}"{% endif %}>{{brand.brand_name}}"></a>
+	  			<a href="/main/indexshop/?brand_id={{brand.id}}" target="_self" class="tab {% if brand_id1 == brand.id %}active"{% else %}"{% endif %}>{{brand.brand_name}}"</a>
 	  		{% endfor %}
 		</div>
 	</header>
@@ -138,7 +138,8 @@
 	        <div id="amazingslider-1" style="display:block;position:relative;margin:0 auto;">
 	            <ul class="amazingslider-slides" style="display:none;">
 	            	{% for banner in brand_obj.banner.all %}
-	                <li><img src="{{banner.banner.url}}" alt="{{banner.name}}"  title="{{banner.name}}" />
+	                <li>
+	                	<img src="{{banner.banner.url}}" alt="{{banner.name}}"  title="{{banner.name}}" />
 	                </li>
 	                {% endfor %}
 	                {% for movie in brand_obj.movie.all %}
