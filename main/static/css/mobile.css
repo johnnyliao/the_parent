@@ -4,6 +4,9 @@
 }
 /* 載入 */
 @media screen and (max-width:1920px){
+.form-control{
+  -webkit-appearance: none;
+}
 header, .header[_height="none"]{
     display: block;
 }
