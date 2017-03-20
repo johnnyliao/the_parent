@@ -56,7 +56,7 @@
 	<script src="{% static "js/minwt.auto_full_height.mini.js"%}"></script>
 <!--撐開頁面使用 End-->
 </head>
-
+{% if not is_mobile %}
 <body>
 <div class="" none="ture">
 	<header class="header" _height="none">
@@ -427,3 +427,46 @@
 
 	</script>
 </body>
+{% else %}
+<body>
+	<div class="pWrap">
+		<header class="pHeader">
+			<div class="pTopBox">
+				<div class="pTopBox1">
+					<div class="pTop1Box1">
+						<ul class="pTop1Cont">
+							<li>關於我們</li>
+							<li>購物商城</li>
+							<li>影音專區</li>
+						</ul>
+					</div>
+					<div class="pLoginBox"><a href="/main/login/">登入</a>/<a href="/main/register/">註冊</a></div>
+					<div class="pLogoutBox">
+						<ul class="pNavLogoutBox">
+							<li><a href="/main/member/"><img src="{% static "img/person-icon.png"%}" width="40"><span><i class="fa fa-caret-down" aria-hidden="true"></i></span></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="pLogoSearchBox">
+				<div class="pLogoBox">
+					<img src="{% static "img/thecouple_webpage_logo.png"%}" width="150">
+				</div>
+				<div class="pSearchBox">
+					<div class="psearchCon"><input class="pSearchBar" type="text" /><div class="pSearchIcon"><i class="fa fa-search" aria-hidden="true"></i></div></div>
+					<div class="pHotTxtBox">
+						<span class="pHotTxtTitle">熱門</span>
+						<ul class="pHotTxtItem">
+							<li>可愛</li>
+							<li>惡搞</li>
+							<li>妮妮</li>
+							<li>砸派機</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</header>
+</div>
+</body>
+
+{% endif %}

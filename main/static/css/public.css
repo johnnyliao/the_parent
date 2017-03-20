@@ -19,3 +19,115 @@ header, .header[_height="none"]{
 footer[_height="none"]{
     display: none;
 }
+
+.pHeader{
+	position: relative;
+    top: inherit;
+    z-index: inherit;
+    height: auto;
+    display: block;
+}
+.pHeader .pTopBox{
+    background: #e18293;
+    height: 60px;
+}
+.pHeader .pTopBox .pTopBox1{
+	padding: 0 10px;
+    color: #FFF;
+    width: 1024px;
+    margin: 0 auto;
+}
+.pHeader .pTopBox .pTopBox1 .pTop1Box1{
+	display: inline-block;
+}
+}
+.pHeader .pTopBox .pTopBox1 .pTop1Box1 .pTop1Cont{
+	font-size: 14px;
+}
+.pHeader .pTopBox .pTopBox1 .pTop1Box1 .pTop1Cont li{
+	display: inline-block;
+    width: 90px;
+    line-height: 60px;
+}
+.pHeader .pTopBox .pTopBox1 .pTop1Box1 .pLoginBox{
+    display: block;
+    float: right;
+    line-height: 60px;
+}
+.pHeader .pTopBox .pTopBox1 .pTop1Box1 .pLoginBox a{
+	color: #FFF;
+}
+.pHeader .pTopBox .pTopBox1 .pTop1Box1 .pLogoutBox{
+	display: inline-block;
+    float: right;
+    line-height: 60px
+}
+.pHeader .pTopBox .pTopBox1 .pTop1Box1 .pLogoutBox .pNavLogoutBox span{
+	margin-left: 5px;
+}
+.pHeader .pTopBox .pTopBox1 .pTop1Box1 .pLogoutBox .pNavLogoutBox .fa-caret-down{
+	color: rgb(255, 255, 255);
+}
+.pHeader .pLogoSearchBox{
+	width: 1024px;
+    margin: 0 auto;
+    position: relative;
+}
+.pHeader .pLogoSearchBox .pLogoBox{
+	display: inline-block;
+    vertical-align: top;
+    margin-top: 25px;
+}
+.pHeader .pLogoSearchBox .pLogoBox img{
+	width: 120px;
+}
+.pHeader .pLogoSearchBox .pSearchBox{
+	display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 25px;
+}
+.pHeader .pLogoSearchBox .pSearchBox .psearchCon{
+	width: 250px;
+}
+.pHeader .pLogoSearchBox .pSearchBox .psearchCon .pSearchBar{
+	width: 100%;
+    font-size: 14px;
+    padding: 5px;
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+    display: inline-block;
+}
+.pHeader .pLogoSearchBox .pSearchBox .psearchCon .pSearchBar .pSearchIcon{
+	position: absolute;
+    right: 8px;
+    top: 2px;
+}
+.pHeader .pLogoSearchBox .pSearchBox .psearchCon .fa-search{
+    color: #cccccc;
+}
+.pHeader .pLogoSearchBox .pSearchBox .pHotTxtBox{
+	margin-top: 10px;
+}
+.pHeader .pLogoSearchBox .pSearchBox .pHotTxtBox span{
+	font-size: 12px;
+    color: #7b7b7b;
+    display: inline-block;
+    vertical-align: top;
+}
+.pHeader .pLogoSearchBox .pSearchBox .pHotTxtBox .pHotTxtTitle{
+	font-size: 12px;
+    color: #7b7b7b;
+    display: inline-block;
+    vertical-align: top;
+}
+.pHeader .pLogoSearchBox .pSearchBox .pHotTxtBox .pHotTxtItem{
+    font-size: 12px;
+    color: #c7c7c7;
+    display: inline-block;
+    vertical-align: top;
+}
+.pHeader .pLogoSearchBox .pSearchBox .pHotTxtBox .pHotTxtItem li{
+	display: inline-block;
+    margin-right: 5px;
+}

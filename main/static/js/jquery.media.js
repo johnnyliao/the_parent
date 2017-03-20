@@ -66,7 +66,7 @@
 
 			if (type) {
 
-				obj.href = 'http://player.youku.com/embed/XMTg4MjUxMjAwOA==';
+				obj.href = 'http://v.youku.com/v_show/id_XMjUwMzAzOTcwNA==.html?from=s1.8-1-1.2&spm=a2h0k.8191407.0.0';
 				//obj.href = url;
 				obj.type = type;
 
