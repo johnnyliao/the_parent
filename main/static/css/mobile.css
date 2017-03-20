@@ -156,6 +156,9 @@ html, body, .container{
     width: 100%;
     min-height: 100%;
 }
+footer[_height="none"]{
+    display: block;
+}
 footer{
     background: #cccccc;
     color: #666;
