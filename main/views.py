@@ -315,8 +315,9 @@ def video_viewRecord(request):
 	is_mobile = check_user_agent(request)
 	return render_to_response("main/videoViewRecord.html", locals(), context_instance=RequestContext(request))
 
-@login_required
 def register_success(request):
+	if not request.user.is_authenticated():
+		return redirect(login)
 	is_mobile = check_user_agent(request)
 	user = request.user
 	socail_result = request.GET.get("socail", None)
