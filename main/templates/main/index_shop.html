@@ -74,7 +74,7 @@
 		</article>
 		<div class="tabs fixed show-tab dark" fixed-tabs="#tv-tabs" ng-class="{'show-tab' : showTabs}">
 			{% for brand in brand_index.brand.all %}
-	  			<a href="/main/indexshop/?brand_id={{brand.id}}" target="_self" class="tab {% if brand_id1 == brand.id %}active"{% else %}"{% endif %}">{{brand.brand_name}}</a>
+	  			<a href="/main/indexshop/?brand_id={{brand.id}}" target="_self" class="tab {% if brand_id1 == brand.id %}active"{% else %}"{% endif %}>{{brand.brand_name}}</a>
 	  		{% endfor %}
 		</div>
 	</header>
