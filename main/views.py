@@ -323,7 +323,7 @@ def register_success(request):
 	if socail_result:
 		return render_to_response("main/regSuccess.html", locals(), context_instance=RequestContext(request))
 
-	is_social_account = False
+	social_account = False
 	if is_social_account(request.user):
 		social_account = True
 		if not is_verified(request.user):
