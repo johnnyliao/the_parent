@@ -2211,7 +2211,7 @@ input[name="zipcode"]{
     font-size: 16px;
 }
 .container_default .loginBox .logindialogBox .inputBox1 .loginBtnBox{
-    padding-top: 15px;
+    /*padding-top: 15px;*/
 }
 .container_default .loginBox .logindialogBox .inputBox1 .loginBtnBox button{
     background: #E18293;
@@ -2247,6 +2247,16 @@ input[name="zipcode"]{
     color: #FFFFFF;
     font-weight: bold;
     font-size: 1.2rem;
+}
+.container_default .loginBox .logindialogBox .inputBox1 .forRegBox{
+    margin-top: 15px;
+    color: #FFF;
+}
+.container_default .loginBox .logindialogBox .inputBox1 .forRegBox .forgetBox1{
+    margin-right: 5px;
+}
+.container_default .loginBox .logindialogBox .inputBox1 .forRegBox .register1{
+   margin-left: 5px;
 }
 #fbMessenger{
     position: fixed;
