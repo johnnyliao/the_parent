@@ -22,7 +22,8 @@ def get_user_img(in_data):
 
 @register.filter
 def split_videos(in_data):
-	total = in_data.count()
+	total = in_data.count() - 1
+	in_data = in_data.exclude(id=in_data[0].id)
 	result = []
 	start = 0
 	range_num = 5
