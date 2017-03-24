@@ -19,3 +19,15 @@ def get_user_img(in_data):
 		return pic_url
 	else:
 		return "/static/img/person-icon.png"
+
+@register.filter
+def split_videos(in_data):
+	total = in_data.count()
+	result = []
+	start = 0
+	range_num = 5
+	while start < total:
+		result.append(in_data[start:start+range_num])
+		start = start + range_num
+
+	return result

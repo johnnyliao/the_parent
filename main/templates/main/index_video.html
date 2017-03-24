@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load main_tags %}
 <!doctype html>
 <html>
 <head>
@@ -28,8 +29,28 @@
     }
 	</style>
 	<script type="text/javascript">
+	var start_show = 2;
       	$("document").ready(function(){
+
      		 $("#header").headroom();
+     		 $(window).scroll(function(){
+				  // Returns height of browser viewport
+				  var window_height = $( window ).height();
+
+				  var window_scrollTop = $(window).scrollTop();
+
+				  // Returns height of HTML document
+				  var document_height = $( document ).height();
+
+				  console.log(window_height + window_scrollTop);
+				  console.log(document_height);
+
+				   if(window_height + window_scrollTop > document_height){
+				   		$("#video_"+start_show).show()
+				   		start_show += 1;
+				   }
+
+			});
        	 });
     </script>
 
@@ -152,8 +173,10 @@
 	</div>
 	<div class="videoBox1">
 		<ul class="videoCont" id="box" >
-			{% for item in videos %}
-				{% if not forloop.first %}
+
+			{% for video_split in videos|split_videos %}
+				<div id="video_{{forloop.counter}}" {% if not forloop.first %}style="display:none"{% endif%}>
+				{% for item in video_split %}
 					<li class="box">
 						<a href="/main/videoDetails?type={{movie_type}}&video_id={{item.id}}">
 							<div class="videoContImg">
@@ -168,8 +191,10 @@
 							</div>
 						</a>
 					</li>
-				{% endif %}
 			{% endfor %}
+				</div>
+			{% endfor %}
+
 		</ul>
 	</div>
     <!--分頁 start

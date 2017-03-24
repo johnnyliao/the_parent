@@ -103,8 +103,7 @@ def index_video(request):
 	if movie_type:
 		videos = Movie.objects.all().filter(movie_type=movie_type).order_by("-date")
 	else:
-		videos = Movie.objects.all().filter(movie_type="new")
-
+		videos = Movie.objects.all().filter(movie_type="new").order_by("-date")
 	return render_to_response("main/index_video.html", locals(), context_instance=RequestContext(request))
 
 def videoDetails(request):
