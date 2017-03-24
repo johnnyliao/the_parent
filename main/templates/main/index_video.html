@@ -45,7 +45,9 @@
 				  console.log(window_height + window_scrollTop);
 				  console.log(document_height);
 
-				   if(window_height + window_scrollTop > document_height){
+				   if(window_height + window_scrollTop + 30> document_height){
+				   		var result = start_show-1;
+				   		$("#message_"+result.toString()).hide(100)
 				   		$("#video_"+start_show).show(500)
 				   		start_show += 1;
 				   }
@@ -192,7 +194,10 @@
 						</a>
 					</li>
 			{% endfor %}
+				{% if not forloop.last %}
+				<div id="message_{{forloop.counter}}">往下滑動顯示更多</div>
 				</div>
+				{% endif %}
 			{% endfor %}
 
 		</ul>
