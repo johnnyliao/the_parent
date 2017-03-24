@@ -5,8 +5,9 @@ import settings
 class NicokimAccountAdapter(DefaultAccountAdapter):
 
     def get_login_redirect_url(self, request):
-        if request.GET['next']:
-            return request.GET['next']
+        #import pdb;pdb.set_trace()
+        if request.META.get('HTTP_REFERER'):
+            return request.META.get('HTTP_REFERER')
         else:
             url = settings.LOGIN_REDIRECT_URL
         return resolve_url(url)
