@@ -465,6 +465,7 @@ SOCIALACCOUNT_PROVIDERS = {
     ],
     }
 }
+ACCOUNT_ADAPTER = 'allauth_extend.account.adapter.NicokimAccountAdapter'
 
 FACEBOOK_EXTENDED_PERMISSIONS = ['publish_actions']
 

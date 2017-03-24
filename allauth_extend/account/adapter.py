@@ -5,9 +5,9 @@ import settings
 class NicokimAccountAdapter(DefaultAccountAdapter):
 
     def get_login_redirect_url(self, request):
+        if request.GET['next']:
+            return request.GET['next']
         else:
             url = settings.LOGIN_REDIRECT_URL
-            print "settings url"
-            print url
         return resolve_url(url)
 
