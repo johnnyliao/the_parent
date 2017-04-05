@@ -74,7 +74,7 @@
 		</article>
 		<div class="tabs fixed show-tab dark" fixed-tabs="#tv-tabs" ng-class="{'show-tab' : showTabs}">
 			{% for brand in brand_index.brand.all %}
-	  			<a href="/main/indexshop/?brand_id={{brand.id}}" target="_self" class="tab {% if brand_id1 == brand.id %}active"{% else %}"{% endif %}>{{brand.brand_name}}</a>
+	  			<a href="/main/indexshop/?brand_id={{brand.id}}" target="_self" class="tab {% if brand_id1 == brand.id %}active"{% else %}"{% endif %}>{{brand.brand_name}}"></a>
 	  		{% endfor %}
 		</div>
 	</header>
@@ -235,12 +235,7 @@
 
 	</div>
 	<footer _height="none">
-		<ul>
-			<li>超人氣娛樂股份有限公司</li>
-			<li>02-7709-5168</li>
-			<li><a href="mailto:service@supermedia.cool">service@supermedia.cool</a></li>
-			<li>copyright©那對夫妻nicokim.cc版權所有</li>
-		</ul>
+		<script src="{% static "js/mFooter.js"%}"></script>
 	</footer>
 	<script src="{% static "js/jquery.menu-aim.js"%}"></script>
 	<script src="{% static "js/jquery.paginate.js"%}"></script>

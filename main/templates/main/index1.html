@@ -45,6 +45,11 @@
     <script src="{% static "js/initslider-2.js"%}"></script>
 <!-- 輪播效果 End -->
 
+<!--輪播效果PC start-->
+	<link rel="stylesheet" type="text/css" href="{% static "js/amazingslider-3.css"%}">
+    <script src="{% static "js/initslider-3.js"%}"></script>
+<!--輪播效果PC End-->
+
 <!--分頁使用 start-->
 	<link rel="stylesheet" href="{% static "css/jquery.paginate.css"%}" />
 	<style>
@@ -55,7 +60,19 @@
 <!--撐開頁面使用 start-->
 	<script src="{% static "js/minwt.auto_full_height.mini.js"%}"></script>
 <!--撐開頁面使用 End-->
+
+<!--FB.Line分享 start-->
+	<script type="text/javascript">
+		function share_facebook() {
+			location.assign('https://www.facebook.com/share.php?u='+window.location.href);
+	   	}
+	   	function share_line() {
+       		location.assign('http://line.naver.jp/R/msg/text/?'+window.location.href);
+       	}
+	</script>
+<!--FB.Line分享 End-->
 </head>
+{% if not is_mobile %}
 <body>
 <div class="" none="ture">
 	<header class="header" _height="none">
@@ -368,12 +385,7 @@
 	    </ul>
 	</div>
 	<footer _height="none">
-		<ul>
-			<li>超人氣娛樂股份有限公司</li>
-			<li>02-7709-5168</li>
-			<li><a href="mailto:service@supermedia.cool">service@supermedia.cool</a></li>
-			<li>copyright©那對夫妻nicokim.cc版權所有</li>
-		</ul>
+		<script src="{% static "js/mFooter.js"%}"></script>
 	</footer>
 	<div style="height:40px;"></div>
 	<!--分頁功能
@@ -426,3 +438,214 @@
 
 	</script>
 </body>
+{% else %}
+<body>
+	<div class="pWrap">
+		<header class="pHeader">
+			<script src="{% static "js/pHeader.js"%}"></script>
+		</header>
+		<nav class="pNavBox">
+			<script src="{% static "js/pNav.js"%}"></script>
+		</nav>
+		<article>
+			<div class="sliderBox">
+				<!-- Insert to your webpage where you want to display the slider -->
+			    <div id="amazingslider-wrapper-3" style="display:block;position:relative;max-width:1024px;margin:0px auto 56px;">
+			        <div id="amazingslider-3" style="display:block;position:relative;margin:0 auto;">
+			            <ul class="amazingslider-slides" style="display:none;">
+			                <li><img src="{% static "img/0011.png"%}" alt="001"  title="001" data-texteffect="None" />
+			                </li>
+			                <li><img src="{% static "img/rJNqOQk8lcs.jpg"%}" />
+			                <video preload="none" src="https://www.youtube.com/embed/rJNqOQk8lcs?v=rJNqOQk8lcs" ></video>
+			                </li>
+			                <li><img src="{% static "img/SaQp7IW7MDA.jpg"%}" />
+			                <video preload="none" src="https://www.youtube.com/embed/SaQp7IW7MDA?v=SaQp7IW7MDA" ></video>
+			                </li>
+			                <li><img src="{% static "img/0011.png"%}" alt="001"  title="001" />
+			                </li>
+			                <li><img src="{% static "img/0011.png"%}" alt="001"  title="001" />
+			                </li>
+			            </ul>
+			            <ul class="amazingslider-thumbnails" style="display:none;">
+			                <li><img src="{% static "img/001-tn1.png"%}" alt="001" title="001" /></li>
+			                <li><img src="{% static "img/rJNqOQk8lcs-tn.jpg"%}" /></li>
+			                <li><img src="{% static "img/SaQp7IW7MDA-tn.jpg"%}" /></li>
+			                <li><img src="{% static "img/001-tn1.png"%}" alt="001" title="001" /></li>
+			                <li><img src="{% static "img/001-tn1.png"%}" alt="001" title="001" /></li>
+			            </ul>
+			        <div class="amazingslider-engine"><a href="http://amazingslider.com" title="Responsive JavaScript Image Slider">Responsive JavaScript Image Slider</a></div>
+			        </div>
+			    </div>
+			    <!-- End of body section HTML codes -->
+			</div>
+			<div class="videoLR">
+				<div class="pVideoLeft">
+					<div class="pVideoPub">
+						<div class="pVideoPubBox">
+							<h2 class="pVideoPubTit"><span class="pBoxPink"></span>最新發表</h2>
+						</div>
+						<div class="pVideoPubCon">
+							<ul class="pVideoPubDet">
+								<li class="pVideoPubItem">
+									<div class="pVideoPubImg"><img src="{% static "img/001.png"%}" width="330" /></div>
+									<span class="pVideoPubSubtitle">最近爸爸不敢去公園</span>
+								</li>
+								<li class="pVideoPubItem">
+									<div class="pVideoPubImg"><img src="{% static "img/002.png"%}" width="330" /></div>
+									<span class="pVideoPubSubtitle">在意爸爸情緒的妮妮</span>
+								</li>
+								<li class="pVideoPubItem">
+									<div class="pVideoPubImg"><img src="{% static "img/003.png"%}" width="330" /></div>
+									<span class="pVideoPubSubtitle">下個暴風雪</span>
+								</li>
+								<li class="pVideoPubItem">
+									<div class="pVideoPubImg"><img src="{% static "img/004.png"%}" width="330" /></div>
+									<span class="pVideoPubSubtitle">豪華郵輪之旅</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="pVideoHot">
+						<div class="pVideoHotBox">
+							<h2 class="pVideoHotTit"><span class="pBoxPink"></span>即時熱門</h2>
+						</div>
+						<div class="pVideoHotCon">
+							<ul class="pVideoHotDet">
+								<li class="pVideoHotItem">
+									<div class="pVideoHotImg"><img src="{% static "img/001.png"%}" width="710" /></div>
+									<span class="pVideoHotSubtitle">最近爸爸不敢去公園</span>
+								</li>
+								<li class="pVideoHotItem mr10">
+									<div class="pVideoPubImg"><img src="{% static "img/002.png"%}" width="215" /></div>
+									<span class="pVideoHotSubtitle">在意爸爸情緒的妮妮</span>
+								</li>
+								<li class="pVideoHotItem mr10">
+									<div class="pVideoPubImg"><img src="{% static "img/003.png"%}" width="215" /></div>
+									<span class="pVideoHotSubtitle">下個暴風雪</span>
+								</li>
+								<li class="pVideoHotItem">
+									<div class="pVideoPubImg"><img src="{% static "img/004.png"%}" width="215" /></div>
+									<span class="pVideoHotSubtitle">豪華郵輪之旅</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="pVideoHot">
+						<div class="pVideoHotBox">
+							<h2 class="pVideoHotTit"><span class="pBoxPink"></span>品牌合作</h2>
+						</div>
+						<div class="pVideoHotCon">
+							<ul class="pVideoHotDet">
+								<li class="pVideoHotItem">
+									<div class="pVideoHotImg"><img src="{% static "img/001.png"%}" width="710" /></div>
+									<span class="pVideoHotSubtitle">最近爸爸不敢去公園</span>
+								</li>
+								<li class="pVideoHotItem mr10">
+									<div class="pVideoPubImg"><img src="{% static "img/002.png"%}" width="215" /></div>
+									<span class="pVideoHotSubtitle">在意爸爸情緒的妮妮</span>
+								</li>
+								<li class="pVideoHotItem mr10">
+									<div class="pVideoPubImg"><img src="{% static "img/003.png"%}" width="215" /></div>
+									<span class="pVideoHotSubtitle">下個暴風雪</span>
+								</li>
+								<li class="pVideoHotItem">
+									<div class="pVideoPubImg"><img src="{% static "img/004.png"%}" width="215" /></div>
+									<span class="pVideoHotSubtitle">豪華郵輪之旅</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<!--right start-->
+				<div class="pRelatedRight">
+					<div class="iconLinks">
+						<div class="iconLinksBox">
+							<div class="iconLinksTit"><h2><i class="fa fa-link" aria-hidden="true"></i>相關社群</h2></div>
+						</div>
+						<div class="iconLinksCon">
+							<ul>
+								<li><a href="http://bit.ly/NicoKim" target="_blank"><img src="{% static "img/fb_share.png"%}"></a></li>
+								<li><a href="http://bit.ly/2jdtTPs" target="_blank"><img src="{% static "img/youtube.png"%}"></a></li>
+								<li><a href="http://goo.gl/LvaEid" target="_blank"><img src="{% static "img/IG.png"%}"></a></li>
+								<li><a href="http://bit.ly/nikokimline"><img src="{% static "img/line1.png"%}"></a></li>
+								<li><a href="http://www.meipai.com/user/46678953" target="_blank"><img src="{% static "img/vedio.png"%}"></a></li>
+								<li><a href="http://weibo.com/u/5525600359" target="_blank"><img src="{% static "img/weibo.png"%}"></a></li>
+							</ul>
+							<div style="margin-bottom:15px;">
+							<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F1006nk%2F&tabs&width=300&height=130&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=1705033186453307" width="300" height="130" style="border:none;overflow:hidden;margin-bottom:10px;" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+							<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FKim%25E4%25BA%25AC%25E7%2587%2581-1717090055218199%2F&tabs&width=300&height=130&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=1705033186453307" width="300" height="130" style="border:none;overflow:hidden;margin-bottom:10px;" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+							<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FNico%25E5%2593%2581%25E7%25AD%25A0-195295667610836%2F&tabs&width=300&height=130&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=1705033186453307" width="300" height="130" style="border:none;overflow:hidden;margin-bottom:10px;" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+							<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fnimonicokim%2F&tabs&width=300&height=130&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=1705033186453307" width="300" height="130" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+						</div>
+						</div>
+					</div>
+					<div class="musicPlatform">
+						<div class="musicPlatformBox">
+							<div class="musicPlatformTit"><h2><i class="fa fa-link" aria-hidden="true"></i>數位平台</h2></div>
+						</div>
+						<div class="musicPlatformCon">
+							<ul>
+								<li class="musicPlatformItem"><a href="http://bit.ly/Nini-KKbox" target="_blank">KKbox</a></li> |
+								<li class="musicPlatformItem"><a href="https://itun.es/tw/DzFVhb" target="_blank">iTunes</a></li> |
+								<li class="musicPlatformItem"><a href="http://bit.ly/Nini-Indievox" target="_blank">Indievox</a></li> |
+								<li class="musicPlatformItem"><a href="http://bit.ly/Nini-Omusic" target="_blank">Omusic</a></li> |
+								<li class="musicPlatformItem"><a href="http://bit.ly/Nini-hmv" target="_blank">hmv</a></li> |
+								<li class="musicPlatformItem"><a href="http://bit.ly/Nini-myMusic" target="_blank">myMusix</a></li> |
+								<li class="musicPlatformItem"><a href="http://bit.ly/Nini-Spotify" target="_blank">Spotify</a></li> |
+								<li class="musicPlatformItem"><a href="http://bit.ly/Nini-Xiami" target="_blank">虾米音乐</a></li> |
+								<li class="musicPlatformItem"><a href="http://bit.ly/Nini-163music" target="_blank">网易云音乐</a></li> |
+								<li class="musicPlatformItem"><a href="http://bit.ly/Nini-Baidu" target="_blank">百度音乐</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="musicPlatform">
+						<div class="musicPlatformBox">
+							<div class="musicPlatformTit"><h2><i class="fa fa-link" aria-hidden="true"></i>來電答鈴</h2></div>
+						</div>
+						<div class="musicPlatformCon">
+							<ul>
+								<li class="musicPlatformItem"><a href="http://bit.ly/Nini-FET" target="_blank">遠傳</a></li> |
+								<li class="musicPlatformItem"><a href="http://colorring.qma.com/crbt/pages/mb/main.jsp" target="_blank">亞太</a></li> |
+								<li class="musicPlatformItem"><a href="http://bit.ly/Nini-emome" target="_blank">中華</a></li> |
+								<li class="musicPlatformItem"><a href="http://bit.ly/Nini-Taiwanmobile" target="_blank">台灣大哥大</a></li> |
+								<li class="musicPlatformItem"><a href="http://bit.ly/Nini-Tstar" target="_blank">台灣之星</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="bookPlatform">
+						<div class="bookPlatformBox">
+							<div class="bookPlatformTit"><h2><i class="fa fa-link" aria-hidden="true"></i>書本購買</h2></div>
+						</div>
+						<div class="bookPlatformCon">
+							<ul>
+								<li class="bookPlatformItem"><a href="http://bit.ly/LoveisAllTheseTinyLittleThings-paperback-books" target="_blank">博客來</a></li> |
+								<li class="bookPlatformItem"><a href="http://bit.ly/LoveisAllTheseTinyLittleThing-paperback-KingStone" target="_blank">金石堂</a></li> |
+								<li class="bookPlatformItem"><a href="http://bit.ly/LoveisAllTheseTinyLittleThings-paperback-eslite" target="_blank">誠品</a></li> |
+								<li class="bookPlatformItem"><a href="http://bit.ly/LoveisAllTheseTinyLittleThings-paperback-TAZZE" target="_blank">讀冊生活</a></li> |
+								<li class="bookPlatformItem"><a href="http://bit.ly/LoveisAllTheseTinyLittleThings-paperback-suncolor" target="_blank">三采文化</a></li> |
+								<li class="bookPlatformItem"><a href="http://www.suncolor.com.tw/Event/201701the-couple/index.html" target="_blank">新書專屬區</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div style="clear:both;"></div>
+		</article>
+		<div class="pFloatLeftSahre">
+			<div class="pLeftShareBox">
+				<ul>
+					<li><a onclick="return share_facebook()"><img src="/static/img/facebook_color.png" width="40" height="40" /></a></li>
+					<li><a onclick="return share_line()"><img src="/static/img/line_color.png" width="40" /></a></li>
+				</ul>
+			</div>
+		</div>
+
+		<footer class="pFooter">
+			<script src="{% static "js/pFooter.js"%}"></script>
+		</footer>
+	</div>
+
+</body>
+
+{% endif %}

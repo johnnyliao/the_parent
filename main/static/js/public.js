@@ -216,6 +216,19 @@ $(function(){
 	 });
 	影片內頁往上下滑動 顯示隱藏 header footer End*/
 
+	/*信息已讀未讀切換  start*/
 
+	$(".cardFlagItem1").click(function () {
+		$(this).addClass("active").siblings().removeClass("active");
+		$(".unread").fadeOut(100);
+		$(".readed").fadeIn(100);
+	});
+	$(".cardFlagItem2").click(function () {
+		$(this).addClass("active").siblings().removeClass("active");
+		$(".unread").fadeIn(100);
+		$(".readed").fadeOut(100);
+	});
+
+	/*信息已讀未讀切換  End*/
 
 });

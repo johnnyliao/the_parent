@@ -129,24 +129,13 @@
 	</script>
 <!--地址欄位使用 End-->
 </head>
-
+{% if not is_mobile %}
 <body>
 <div id="loading">
   	<img id="loading-image" src="{% static "img/page-loader.gif"%}" alt="Loading..." />
 </div>
 	<header class="header">
-		<article class="topnav">
-			<div class="cd-dropdown-wrapper">
-				<a class="cd-dropdown-trigger top" href="#0">
-					<span></span>
-				</a>
-			</div>
-			<div class="logo">
-				<a href="/main/index">
-					<img class="top_logo" src="{% static "img/thecouple_webpage_logo.png"%}">
-				</a>
-			</div>
-		</article>
+		<script src="{% static "js/mHeader.js"%}"></script>
 	</header>
 	<!--nav start-->
 	<div class="cd-dropdown-wrapper">
@@ -300,11 +289,200 @@
 		</div>
 	</div>
 	<footer _height="none">
-		<ul>
-			<li>超人氣娛樂股份有限公司</li>
-			<li>02-7709-5168</li>
-			<li><a href="mailto:service@supermedia.cool">service@supermedia.cool</a></li>
-			<li>copyright©那對夫妻nicokim.cc版權所有</li>
-		</ul>
+		<script src="{% static "js/mFooter.js"%}"></script>
 	</footer>
 </body>
+{% else %}
+<body>
+	<div id="loading">
+  		<img id="loading-image" src="/static/img/page-loader.gif" alt="Loading...">
+	</div>
+	<div class="pWrap">
+		<header class="pHeader">
+			<div class="pTopBox">
+				<div class="pTopBox1">
+					<div class="pTop1Box1">
+						<ul class="pTop1Cont">
+							<li><i class="fa fa-info-circle" aria-hidden="true"></i>關於我們</li>
+							<li><i class="fa fa-shopping-bag" aria-hidden="true"></i>購物商城</li>
+							<li><i class="fa fa-video-camera" aria-hidden="true"></i>影音專區</li>
+						</ul>
+					</div>
+					<div class="pLoginBox"><span class="logInBtn"><a href="/main/login/">登入</a></span>/<span class="logOutBtn"><a href="/main/register/">註冊</a></span></div>
+					<div class="pLogoutBox">
+						<ul class="pNavLogoutBox">
+							<li><a href="/main/member/"><img src="{% static "img/person-icon.png"%}" width="40"></a><span class="logOutBtn"><i class="fa fa-caret-down" aria-hidden="true"></i></span></li>
+						</ul>
+						<div class="pLogOutList">
+							<ul class="drop-down-menu">
+						        <li><a href="#">會員專區</a></li>
+						        <li><a href="#">修改密碼</a></li>
+						        <li><a href="#">登出</a></li>
+						    </ul>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="pLogoSearchBox">
+				<div class="pLogoBox">
+					<img src="{% static "img/thecouple_webpage_logo.png"%}" width="150">
+				</div>
+				<div class="pSearchBox">
+					<div class="psearchCon"><input class="pSearchBar" type="text" /><div class="pSearchIcon"><i class="fa fa-search" aria-hidden="true"></i></div></div>
+					<div class="pHotTxtBox">
+						<span class="pHotTxtTitle">熱門</span>
+						<ul class="pHotTxtItem">
+							<li>可愛</li>
+							<li>惡搞</li>
+							<li>妮妮</li>
+							<li>砸派機</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</header>
+		<nav class="pNavBox">
+			<div class="pNavCon">
+				<ul class="pNavConDet">
+					<li class="active">最新發表</li>
+					<li>即時熱門</li>
+					<li>品牌合作</li>
+					<li>即興惡搞</li>
+					<li>無地放閃</li>
+					<li>親子家庭</li>
+					<li>生活影片</li>
+					<li>親子教育</li>
+					<li>趣味搞笑</li>
+					<li>娛樂趣味</li>
+				</ul>
+			</div>
+		</nav>
+		<article>
+			<div class="breadCrumbs">
+				<a class="home" href="/"><i class="fa fa-home" aria-hidden="true" style="color:#e18293;"></i></a>
+				<strong>&gt;</strong>
+				<span class="current">註冊</span>
+			</div>
+			<div class="pMemberBox">
+				<div class="memberBannerBox">
+					<div class="memberBannerCon">
+						<img src="{% static "img/0206.jpg"%}">
+					</div>
+				</div>
+				<div class="pLoginBox">
+					<div id="sky-form4" class="log-reg-block sky-form" novalidate="novalidate">
+						<h2>會員註冊</h2>
+						<div class="login-input reg-input">
+							<div class="row">
+								<div class="col-sm-6">
+									<section>
+										<span class="inputW">帳號</span><label class="input">
+											<input type="email" id="email" placeholder="請輸入Email" class="form-control">
+										</label>
+									</section>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-6">
+									<section>
+										<span class="inputW">密碼</span><label class="input">
+											<input type="password" id="password" placeholder="請輸入密碼6~12位數" class="form-control">
+										</label>
+									</section>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-6">
+									<section>
+										<span class="inputW">姓名</span>
+										<label class="input">
+											<input type="text" id="nickname" placeholder="請輸入姓名" class="form-control">
+										</label>
+									</section>
+								</div>
+							</div>
+							<label class="select margin-bottom-15">
+								<span class="inputW">性別</span>
+								<select id="sex" class="form-control">
+									<option value="0" selected="" disabled="">請選擇性別</option>
+									<option value="man">男性</option>
+									<option value="women">女性</option>
+								</select>
+							</label>
+							<div class="row margin-bottom-10">
+								<div class="col-xs-3">
+									<span class="inputW">生日</span>
+									<input type="date" id="birthday" placeholder="請輸入生日" class="form-control brithday">
+								</div>
+							</div>
+							<!--<div class="row">
+								<div class="col-sm-6">
+									<section>
+										<label class="input">
+											<span class="inputW">電話</span><input type="text" name="phone" placeholder="請輸入電話" class="form-control">
+										</label>
+									</section>
+								</div>
+							</div>-->
+							<div class="row">
+								<div class="col-sm-6">
+									<section>
+										<label class="input">
+											<span class="inputW">手機</span>
+											<input type="text" id="phone_number" placeholder="請輸入手機" class="form-control" maxlength="10">
+										</label>
+									</section>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-6">
+									<section>
+										<label class="input">
+											<span class="inputW">年齡</span>
+											<input type="number" id="year" placeholder="請輸入年齡" class="form-control">
+										</label>
+									</section>
+								</div>
+							</div>
+							<div class="address">
+								<section>
+									<span class="inputW">地址</span>
+									<div class="addressBox">
+										<div id="twzipcode"></div>
+										<input type="text" id="address" placeholder="請輸入地址" class="addressText form-control" />
+									</div>
+								</section>
+							</div>
+						</div>
+
+						<div class="ruleBox">
+							<label class="checkbox margin-bottom-10">
+								<input type="checkbox" name="checkbox" id="checkbox" class="ruleCheckbox">
+								<div class="ruleText">我同意那對夫妻<a href="#" id="html-content">客戶服務條款</a>與<a href="#" id="html-privacy">客戶隱私權政策</a></div>
+							</label>
+						</div>
+						<div class="pSubmitBox">
+							<button class="clearBtn" id="clean">清空</button>
+							<button class="submitBtn" id="send">送出</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</article>
+		<div class="pFloatLeftSahre">
+			<div class="pLeftShareBox">
+				<ul>
+					<li><a onclick="return share_facebook()"><img src="/static/img/facebook_color.png" width="40" height="40" /></a></li>
+					<li><a onclick="return share_line()"><img src="/static/img/line_color.png" width="40" /></a></li>
+				</ul>
+			</div>
+		</div>
+
+		<footer class="pFooter">
+			<script src="{% static "js/pFooter.js"%}"></script>
+		</footer>
+	</div>
+
+</body>
+{% endif %}

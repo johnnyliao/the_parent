@@ -1,0 +1,12 @@
+document.writeln("<article class=\'topnav\'>");
+document.writeln("	<div class=\'cd-dropdown-wrapper\'>");
+document.writeln("		<a class=\'cd-dropdown-trigger top\' href=\'#0\'>");
+document.writeln("			<span></span>");
+document.writeln("		</a>");
+document.writeln("	</div>");
+document.writeln("	<div class=\'logo\'>");
+document.writeln("		<a href=\'/main/index\'>");
+document.writeln("			<img class=\'top_logo\' src=\"/static/img/thecouple_webpage_logo.png\">");
+document.writeln("		</a>");
+document.writeln("	</div>");
+document.writeln("</article>");
