@@ -317,15 +317,6 @@ footer[_height="none"]{
 .pRelatedRight .iconLinksCon li img{
     width: 40px;
 }
-.pFloatLeftSahre{
-    position: fixed;
-    left: 10px;
-    top: 50%;
-    margin-top: -90px;
-}
-.pFloatLeftSahre li:nth-child(1){
-    margin-bottom: 10px;
-}
 .musicPlatform .musicPlatformBox{
     height: 40px;
     border-bottom: 2px solid #e8e8e8;
@@ -1117,3 +1108,86 @@ ul.drop-down-menu ul {
     color: #d9818e;
     height: 40px;
 }
+.pMemberBox .pMemberDateBox .pMessageDateBox{
+    width: 300px;
+    margin: 0 auto;
+}
+.pMemberBox .pMemberDateBox .pMessageDateBox .pMessageTit a{
+    display: inline-block;
+    width: 5%;
+}
+.pMemberBox .pMemberDateBox .pMessageDateBox .pMessageTit .fa-chevron-left{
+    line-height:40px;
+    margin-right:5px;
+    color:#666;
+}
+.pMemberBox .pMemberDateBox .pMessageDateBox .pMessageTit h2{
+    line-height: 40px;
+    color: #666;
+    display: inline-block;
+    width: 93%;
+    vertical-align: top;
+}
+.pMemberBox .pMemberDateBox .pMessageDateBox .pMessageCont{
+    line-height: 30px;
+}
+.pContainer_default{
+    width: 1024px;
+    margin: 0 auto;
+}
+.tvBox{
+    background: #000;
+    height: 415px;
+}
+.tv .video{
+    float: left;
+    width: 710px;
+    height: 399px;
+    background: #FFF;
+    margin: 0px
+}
+.pContainer_default .pMovieArea{
+    margin: 30px 0px;
+}
+.pContainer_default .pMovieArea .pMovieTitBox{
+    line-height: 30px;
+    border-bottom: 2px solid #ccc;
+}
+.pContainer_default .pMovieArea .pMovieTitBox h2{
+    color: #e18293;
+    display: inline-block;
+}
+.pContainer_default .pMovieArea .pMovieTitBox h2 .pinkBox{
+    background: #e18293;
+    width: 5px;
+    height: 15px;
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: sub;
+}
+.pContainer_default .pMovieArea .pMovieTitBox .pMore{
+    display: inline-block;
+    float: right;
+    color: #666;
+    font-size: 12px;
+}
+.pContainer_default .pMovieArea .pMovieCont ul li{
+    position: relative;
+    display: inline-block;
+    margin: 15px 11px 0px 0px
+}
+.pContainer_default .pMovieArea .pMovieCont ul li .pGrayBg{
+    position: absolute;
+    left: 0px;
+    display: block;
+    background: rgba(0,0,0,0.6);
+    width: 330px;
+    color: #FFF;
+    line-height: 30px;
+    padding: 5px;
+    bottom: 0px;
+}
+.pContainer_default .pMovieArea .pMovieCont ul li:nth-child(3n){
+    margin-right: 0px;
+}
+

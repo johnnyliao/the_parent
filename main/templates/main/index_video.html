@@ -15,7 +15,7 @@
     <script src="{% static "js/public.js"%}"></script>
     <script src="{% static "js/main.js"%}"></script>
     <script src="{% static "js/modernizr.js"%}"></script>
-    <script src="{% static "js/headroom.js"%}"></script>
+    <script src="{% static "js/headroom.js"%}"></script>-->
     <script src="{% static "js/jquery.menu-aim.js"%}"></script>
 <!--匯入css -->
     <link rel="stylesheet" type="text/css" href="{% static "css/style.css"%}">
@@ -28,7 +28,7 @@
 		.headroom--pinned {transform: translateY(0%);z-index: 1;}
     }
 	</style>
-	<script type="text/javascript">
+	<!--<script type="text/javascript">
 	var start_show = 2;
       	$("document").ready(function(){
 
@@ -54,9 +54,11 @@
 
 			});
        	 });
-    </script>
+    </script>-->
 
 <!--header隱藏css js End-->
+
+
 
 <!--header類別滑動效果 start-->
 	<link rel="stylesheet" type="text/css" href="{% static "css/categorySlide.css"%}">
@@ -80,22 +82,12 @@
 
 <!--撐開頁面使用 End-->
 </head>
-{% if is_mobile %}
+{% if not is_mobile %}
 <body>
+<link rel="stylesheet" type="text/css" href="{% static "css/mobile.css"%}">
 <div class="" none="ture">
 	<header class="header" _height="none" style="height:100px;">
-		<article class="topnav">
-			<div class="cd-dropdown-wrapper">
-				<a class="cd-dropdown-trigger top" href="#0">
-					<span></span>
-				</a>
-			</div>
-			<div class="logo">
-				<a href="/">
-					<img class="top_logo" src="{% static "img/thecouple_webpage_logo.png"%}">
-				</a>
-			</div>
-		</article>
+		<script src="{% static "js/mHeader.js"%}"></script>
 		<div class="tabs fixed show-tab dark abgne_tab" fixed-tabs="#tv-tabs" ng-class="{'show-tab' : showTabs}">
 	  		<a href="/main/index_video?type=new" id="new" target="_self" class="tab {% if movie_type == 'new'%}active{% endif %}">最新發表</a>
 	  		<a href="/main/index_video?type=hot" id="hot" target="_self" class="tab {% if movie_type == 'hot'%}active{% endif %}">熱門即時</a>
@@ -307,35 +299,139 @@
 	更多影片start-->
 </body>
 {% else %}
+<!--youtube start-->
+
 <body>
-<div class="headerTopBox">
-	<div class="headerTopCont">
-		<div class="logInBox">
-			<div class="loginBox">
-				<div>
-					<img src="{% static "img/person-icon.png"%}" />
-					<sapn class="dropdownIcon"></sapn>
+	<div class="pWrap">
+		<header class="pHeader">
+			<script src="{% static "js/pHeader.js"%}"></script>
+		</header>
+		<nav class="pNavBox">
+			<script src="{% static "js/pNav.js"%}"></script>
+		</nav>
+		<article>
+			<div class="pContainer_default">
+				<div class="tvBox">
+					<div class="tv">
+						<div class="video"></div>
+						<ul class="playList">
+							 <li><a href="http://www.youtube.com/watch?v=htCW5fcyLUU">暮光之城第三集 蝕預告片</a></li>
+							 <li><a href="http://www.youtube.com/watch?v=GeS0gAIg1Io">《暮光之城：新月》預告片</a></li>
+							 <li><a href="http://www.youtube.com/watch?v=wngwJ-GEJVg">【暮光之城】中文版預告片</a></li>
+							 <li><a href="http://www.youtube.com/watch?v=4VTT3v9TBIo">【暮光之城2:新月】中文版前導預告【雅各篇】</a></li>
+							 <li><a href="http://www.youtube.com/watch?v=bwd7BbFWYw0">暮光之城2新月最終版預告</a></li>
+							 <li><a href="http://www.youtube.com/watch?v=_kerQfD1LuA">暮光之城新月MTV 預告片New Moon Trailer</a></li>
+							 <li><a href="http://www.youtube.com/watch?v=fDhRS8Gd1bA">暮光之城2新月The Twilight Saga: New Moon預告</a></li>
+							 <li><a href="http://www.youtube.com/watch?v=LwfZl1t-dQI">暮光之城MV - Time Will Tell</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="pMovieArea">
+					<div class="pMovieTitBox"><h2><span class="pinkBox"></span>最新發表</h2><a class="pMore"> · · ＭＯＲＥ</a></div>
+					<div class="pMovieCont">
+						<ul>
+							<li><a href="#"><img src="{% static "img/0410_1.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_2.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_3.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_4.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_1.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_2.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="pMovieArea">
+					<div class="pMovieTitBox"><h2><span class="pinkBox"></span>即時熱門</h2><a class="pMore"> · · ＭＯＲＥ</a></div>
+					<div class="pMovieCont">
+						<ul>
+							<li><a href="#"><img src="{% static "img/0410_1.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_2.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_3.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_4.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_1.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_2.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="pMovieArea">
+					<div class="pMovieTitBox"><h2><span class="pinkBox"></span>品牌熱門</h2><a class="pMore"> · · ＭＯＲＥ</a></div>
+					<div class="pMovieCont">
+						<ul>
+							<li><a href="#"><img src="{% static "img/0410_1.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_2.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_3.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_4.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_1.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_2.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
-			<div class="logoinMenu">
-				<ul>
-					<li><span class="fbUserName">Jamie Lin</span></li>
-					<li><span class="">會員資料</span></li>
-					<li><span class="">修改密碼</span></li>
-					<li><span class="">歷史訂購</span></li>
-					<li><span class="">購物清單</span></li>
-					<li><span class="">商品瀏覽紀錄</span></li>
-					<li><span class="">影片瀏覽紀錄</span></li>
-					<li><span class="">信息通知區</span></li>
-					<li><a href="/account/user_logout">登出</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="logOutBox">
-			<span class="logInBtn">登入</span> / <span class="registerBtn">註冊</span>
-		</div>
+		</article>
+
+		<footer class="pFooter">
+			<script src="{% static "js/pFooter.js"%}"></script>
+		</footer>
 	</div>
-</div>
 
 </body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	var thumbSize = 'large',		// 設定要取得的縮圖是大圖還是小圖
+										// 大圖寬高為 480X360；小圖寬高為 120X90
+			imgWidth = '120',			// 限制圖片的寬
+			imgHeight = '90',			// 限制圖片的高
+			swfWidth = '480',			// 指定 YouTube 影片的寬
+			swfHeight = '360',			// 指定 YouTube 影片的高
+			autoPlay = '&autoplay=0',	// 是否載入 YouTube 影片後自動播放；若不要自動播放則設成 0
+			fullScreen = '&fs=1';		// 是否允許播放 YouTube 影片時能全螢幕播放
+
+		$('.playlist>li>a').each(function(){
+			// 取得要連結轉換的網址及訊息內容
+			var _this =  $(this),
+				_url = _this.attr('href'),
+				_info = _this.text(),
+				_type = (thumbSize == 'large') ? 0 : 2;
+
+			// 取得 vid
+			var vid = _url.match('[\\?&]v=([^&#]*)')[1];
+
+			// 取得縮圖
+			var thumbUrl = "http://img.youtube.com/vi/"+vid+"/" + _type + ".jpg";
+
+			// 把目前超連結的內容轉換成圖片並加入 click 事件
+			_this.html('<img src="'+thumbUrl+'" alt="'+_info+'" title="'+_info+'" width="'+imgWidth+'" height="'+imgHeight+'" />').click(function(){
+				return false;
+			}).focus(function(){
+				this.blur();
+			}).children('img').click(function(){
+				// 當點擊到圖片時就轉換成 YouTube 影片
+				var swf  = '<object width="'+swfWidth+'" height="'+swfHeight+'">';
+				swf += '<param name="movie" value="http://www.youtube.com/v/'+vid+autoPlay+fullScreen+'"></param>';
+				swf += '<param name="wmode" value="transparent"></param>';
+				swf += (fullScreen == '&fs=1') ? '<param name="allowfullscreen" value="true"></param>' : '';
+
+				swf += '<embed type="application/x-shockwave-flash" src="http://www.youtube.com/v/'+vid+autoPlay+fullScreen+'" ';
+				swf += (fullScreen == '&fs=1') ? 'allowfullscreen="true" ' : '';
+				swf += 'wmode="transparent" width="'+swfWidth+'" height="'+swfHeight+'"></embed>';
+
+				swf += '</object/>';
+
+				$('.video').html(swf);
+
+				return false;
+			});
+		});
+
+		// 先載入第一個影片
+		$('.playlist>li>a').eq(0).children('img').click();
+
+		// 變更影片播放為自動播放
+		autoPlay = '&autoplay=1';
+
+});
+</script>
+<!--youtube End-->
 {% endif %}

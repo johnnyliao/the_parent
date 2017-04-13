@@ -38,6 +38,7 @@
 
 {% if not is_mobile %}
 <body>
+<link rel="stylesheet" type="text/css" href="{% static "css/mobile.css"%}">
 <div class="" none="ture">
 	<header class="header" _height="none">
 		<script src="{% static "js/mHeader.js"%}"></script>
@@ -154,67 +155,13 @@
 <body>
 	<div class="pWrap">
 		<header class="pHeader">
-			<div class="pTopBox">
-				<div class="pTopBox1">
-					<div class="pTop1Box1">
-						<ul class="pTop1Cont">
-							<li><i class="fa fa-info-circle" aria-hidden="true"></i>關於我們</li>
-							<li><i class="fa fa-shopping-bag" aria-hidden="true"></i>購物商城</li>
-							<li><i class="fa fa-video-camera" aria-hidden="true"></i>影音專區</li>
-						</ul>
-					</div>
-					<div class="pLoginBox"><span class="logInBtn"><a href="/main/login/">登入</a></span>/<span class="logOutBtn"><a href="/main/register/">註冊</a></span></div>
-					<div class="pLogoutBox">
-						<ul class="pNavLogoutBox">
-							<li><a href="/main/member/"><img src="{% static "img/person-icon.png"%}" width="40"></a><span class="logOutBtn"><i class="fa fa-caret-down" aria-hidden="true"></i></span></li>
-						</ul>
-						<div class="pLogOutList">
-							<ul class="drop-down-menu">
-						        <li><a href="#">會員專區</a></li>
-						        <li><a href="#">修改密碼</a></li>
-						        <li><a href="#">登出</a></li>
-						    </ul>
-						</div>
-					</div>
-
-				</div>
-			</div>
-			<div class="pLogoSearchBox">
-				<div class="pLogoBox">
-					<img src="{% static "img/thecouple_webpage_logo.png"%}" width="150">
-				</div>
-				<div class="pSearchBox">
-					<div class="psearchCon"><input class="pSearchBar" type="text" /><div class="pSearchIcon"><i class="fa fa-search" aria-hidden="true"></i></div></div>
-					<div class="pHotTxtBox">
-						<span class="pHotTxtTitle">熱門</span>
-						<ul class="pHotTxtItem">
-							<li>可愛</li>
-							<li>惡搞</li>
-							<li>妮妮</li>
-							<li>砸派機</li>
-						</ul>
-					</div>
-				</div>
-			</div>
+			<script src="{% static "js/pHeaderMem.js"%}"></script>
 		</header>
 		<nav class="pNavBox">
-			<div class="pNavCon">
-				<ul class="pNavConDet">
-					<li class="active">最新發表</li>
-					<li>即時熱門</li>
-					<li>品牌合作</li>
-					<li>即興惡搞</li>
-					<li>無地放閃</li>
-					<li>親子家庭</li>
-					<li>生活影片</li>
-					<li>親子教育</li>
-					<li>趣味搞笑</li>
-					<li>娛樂趣味</li>
-				</ul>
-			</div>
+			<!--<script src="{% static "js/pNav.js"%}"></script>-->
 		</nav>
 		<article>
-			<div class="breadCrumbs">
+			<div class="breadCrumbs" style="margin-top:65px;">
 				<a class="home" href="/"><i class="fa fa-home" aria-hidden="true" style="color:#e18293;"></i></a>
 				<strong>&gt;</strong>
 				<span class="current">會員中心</span>
@@ -284,14 +231,6 @@
 				</div>
 			</div>
 		</article>
-		<div class="pFloatLeftSahre">
-			<div class="pLeftShareBox">
-				<ul>
-					<li><a onclick="return share_facebook()"><img src="/static/img/facebook_color.png" width="40" height="40" /></a></li>
-					<li><a onclick="return share_line()"><img src="/static/img/line_color.png" width="40" /></a></li>
-				</ul>
-			</div>
-		</div>
 
 		<footer class="pFooter">
 			<script src="{% static "js/pFooter.js"%}"></script>

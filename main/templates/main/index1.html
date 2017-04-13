@@ -74,6 +74,7 @@
 </head>
 {% if not is_mobile %}
 <body>
+<link rel="stylesheet" type="text/css" href="{% static "css/mobile.css"%}">
 <div class="" none="ture">
 	<header class="header" _height="none">
 		<article class="topnav">
@@ -506,31 +507,59 @@
 						</div>
 					</div>
 					<div class="pVideoHot">
-						<div class="pVideoHotBox">
-							<h2 class="pVideoHotTit"><span class="pBoxPink"></span>即時熱門</h2>
+						<div class="pVideoPub">
+							<div class="pVideoPubBox">
+								<h2 class="pVideoPubTit"><span class="pBoxPink"></span>即時熱門</h2>
+							</div>
+							<div class="pVideoPubCon">
+								<ul class="pVideoPubDet">
+									<li class="pVideoPubItem">
+										<div class="pVideoPubImg"><img src="{% static "img/001.png"%}" width="330" /></div>
+										<span class="pVideoPubSubtitle">最近爸爸不敢去公園</span>
+									</li>
+									<li class="pVideoPubItem">
+										<div class="pVideoPubImg"><img src="{% static "img/002.png"%}" width="330" /></div>
+										<span class="pVideoPubSubtitle">在意爸爸情緒的妮妮</span>
+									</li>
+									<li class="pVideoPubItem">
+										<div class="pVideoPubImg"><img src="{% static "img/003.png"%}" width="330" /></div>
+										<span class="pVideoPubSubtitle">下個暴風雪</span>
+									</li>
+									<li class="pVideoPubItem">
+										<div class="pVideoPubImg"><img src="{% static "img/004.png"%}" width="330" /></div>
+										<span class="pVideoPubSubtitle">豪華郵輪之旅</span>
+									</li>
+								</ul>
+							</div>
 						</div>
-						<div class="pVideoHotCon">
-							<ul class="pVideoHotDet">
-								<li class="pVideoHotItem">
-									<div class="pVideoHotImg"><img src="{% static "img/001.png"%}" width="710" /></div>
-									<span class="pVideoHotSubtitle">最近爸爸不敢去公園</span>
-								</li>
-								<li class="pVideoHotItem mr10">
-									<div class="pVideoPubImg"><img src="{% static "img/002.png"%}" width="215" /></div>
-									<span class="pVideoHotSubtitle">在意爸爸情緒的妮妮</span>
-								</li>
-								<li class="pVideoHotItem mr10">
-									<div class="pVideoPubImg"><img src="{% static "img/003.png"%}" width="215" /></div>
-									<span class="pVideoHotSubtitle">下個暴風雪</span>
-								</li>
-								<li class="pVideoHotItem">
-									<div class="pVideoPubImg"><img src="{% static "img/004.png"%}" width="215" /></div>
-									<span class="pVideoHotSubtitle">豪華郵輪之旅</span>
-								</li>
-							</ul>
+						<div class="pVideoPub">
+							<div class="pVideoPubBox">
+								<h2 class="pVideoPubTit"><span class="pBoxPink"></span>品牌合作</h2>
+							</div>
+							<div class="pVideoPubCon">
+								<ul class="pVideoPubDet">
+									<li class="pVideoPubItem">
+										<div class="pVideoPubImg"><img src="{% static "img/001.png"%}" width="330" /></div>
+										<span class="pVideoPubSubtitle">最近爸爸不敢去公園</span>
+									</li>
+									<li class="pVideoPubItem">
+										<div class="pVideoPubImg"><img src="{% static "img/002.png"%}" width="330" /></div>
+										<span class="pVideoPubSubtitle">在意爸爸情緒的妮妮</span>
+									</li>
+									<li class="pVideoPubItem">
+										<div class="pVideoPubImg"><img src="{% static "img/003.png"%}" width="330" /></div>
+										<span class="pVideoPubSubtitle">下個暴風雪</span>
+									</li>
+									<li class="pVideoPubItem">
+										<div class="pVideoPubImg"><img src="{% static "img/004.png"%}" width="330" /></div>
+										<span class="pVideoPubSubtitle">豪華郵輪之旅</span>
+									</li>
+								</ul>
+							</div>
 						</div>
 					</div>
-					<div class="pVideoHot">
+				</div>
+					<!--<div class="pVideoHot">
 						<div class="pVideoHotBox">
 							<h2 class="pVideoHotTit"><span class="pBoxPink"></span>品牌合作</h2>
 						</div>
@@ -554,8 +583,8 @@
 								</li>
 							</ul>
 						</div>
-					</div>
-				</div>
+					</div>-->
+
 
 				<!--right start-->
 				<div class="pRelatedRight">
@@ -628,18 +657,20 @@
 							</ul>
 						</div>
 					</div>
+					<div class="bookPlatform">
+						<div class="bookPlatformBox">
+							<div class="bookPlatformTit"><h2><i class="fa fa-link" aria-hidden="true"></i>與我合作</h2></div>
+						</div>
+						<div class="bookPlatformCon">
+							<ul>
+								<li class="bookPlatformItem"><a href="#">與我合作</a></li>
+							</ul>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div style="clear:both;"></div>
 		</article>
-		<div class="pFloatLeftSahre">
-			<div class="pLeftShareBox">
-				<ul>
-					<li><a onclick="return share_facebook()"><img src="/static/img/facebook_color.png" width="40" height="40" /></a></li>
-					<li><a onclick="return share_line()"><img src="/static/img/line_color.png" width="40" /></a></li>
-				</ul>
-			</div>
-		</div>
 
 		<footer class="pFooter">
 			<script src="{% static "js/pFooter.js"%}"></script>

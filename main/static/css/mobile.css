@@ -4,6 +4,7 @@
 .form-control{
   -webkit-appearance: none;
 }
+
 header, .header[_height="none"]{
     display: block;
 }

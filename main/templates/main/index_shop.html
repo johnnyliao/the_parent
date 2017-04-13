@@ -58,20 +58,10 @@
 </head>
 
 <body>
+<link rel="stylesheet" type="text/css" href="{% static "css/mobile.css"%}">
 <div class="" none="ture">
 	<header class="header" _height="none">
-		<article class="topnav">
-			<div class="cd-dropdown-wrapper">
-				<a class="cd-dropdown-trigger top" href="#0">
-					<span></span>
-				</a>
-			</div>
-			<div class="logo">
-				<a href="/main/index">
-					<img class="top_logo" src="{% static "img/thecouple_webpage_logo.png"%}">
-				</a>
-			</div>
-		</article>
+		<script src="{% static "js/mHeader.js"%}"></script>
 		<div class="tabs fixed show-tab dark" fixed-tabs="#tv-tabs" ng-class="{'show-tab' : showTabs}">
 			{% for brand in brand_index.brand.all %}
 	  			<a href="/main/indexshop/?brand_id={{brand.id}}" target="_self" class="tab {% if brand_id1 == brand.id %}active"{% else %}"{% endif %}>{{brand.brand_name}}"></a>

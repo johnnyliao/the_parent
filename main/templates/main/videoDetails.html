@@ -359,8 +359,9 @@
     </script>
 youtube手機版自動撥放 End-->
 </head>
-
+{% if not is_mobile %}
 <body>
+<link rel="stylesheet" type="text/css" href="{% static "css/mobile.css"%}">
 <div class="" none="ture">
 	<header class="header animated hideHeader" _height="none" style="display:none;">
 		<script src="{% static "js/mHeader.js"%}"></script>
@@ -1018,3 +1019,82 @@ youtube手機版自動撥放 End-->
 
 	<!--往下滑隱藏header End-->
 </body>
+{% else %}
+<!--youtube start-->
+
+<body>
+	<div class="pWrap">
+		<header class="pHeader">
+			<script src="{% static "js/pHeader.js"%}"></script>
+		</header>
+		<nav class="pNavBox">
+			<script src="{% static "js/pNav.js"%}"></script>
+		</nav>
+		<article>
+			<div class="pContainer_default">
+				<div class="tvBox">
+					<div class="tv">
+						<div class="video"></div>
+						<ul class="playList">
+							 <li><a href="http://www.youtube.com/watch?v=htCW5fcyLUU">暮光之城第三集 蝕預告片</a></li>
+							 <li><a href="http://www.youtube.com/watch?v=GeS0gAIg1Io">《暮光之城：新月》預告片</a></li>
+							 <li><a href="http://www.youtube.com/watch?v=wngwJ-GEJVg">【暮光之城】中文版預告片</a></li>
+							 <li><a href="http://www.youtube.com/watch?v=4VTT3v9TBIo">【暮光之城2:新月】中文版前導預告【雅各篇】</a></li>
+							 <li><a href="http://www.youtube.com/watch?v=bwd7BbFWYw0">暮光之城2新月最終版預告</a></li>
+							 <li><a href="http://www.youtube.com/watch?v=_kerQfD1LuA">暮光之城新月MTV 預告片New Moon Trailer</a></li>
+							 <li><a href="http://www.youtube.com/watch?v=fDhRS8Gd1bA">暮光之城2新月The Twilight Saga: New Moon預告</a></li>
+							 <li><a href="http://www.youtube.com/watch?v=LwfZl1t-dQI">暮光之城MV - Time Will Tell</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="pMovieArea">
+					<div class="pMovieTitBox"><h2><span class="pinkBox"></span>最新發表</h2><a class="pMore"> · · ＭＯＲＥ</a></div>
+					<div class="pMovieCont">
+						<ul>
+							<li><a href="#"><img src="{% static "img/0410_1.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_2.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_3.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_4.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_1.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_2.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="pMovieArea">
+					<div class="pMovieTitBox"><h2><span class="pinkBox"></span>即時熱門</h2><a class="pMore"> · · ＭＯＲＥ</a></div>
+					<div class="pMovieCont">
+						<ul>
+							<li><a href="#"><img src="{% static "img/0410_1.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_2.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_3.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_4.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_1.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_2.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="pMovieArea">
+					<div class="pMovieTitBox"><h2><span class="pinkBox"></span>品牌熱門</h2><a class="pMore"> · · ＭＯＲＥ</a></div>
+					<div class="pMovieCont">
+						<ul>
+							<li><a href="#"><img src="{% static "img/0410_1.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_2.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_3.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_4.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_1.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li><a href="#"><img src="{% static "img/0410_2.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</article>
+
+		<footer class="pFooter">
+			<script src="{% static "js/pFooter.js"%}"></script>
+		</footer>
+	</div>
+
+</body>
+{% endif %}

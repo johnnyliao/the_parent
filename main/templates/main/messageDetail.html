@@ -35,8 +35,9 @@
 	<script src="{% static "js/minwt.auto_full_height.mini.js"%}"></script>
 <!--撐開頁面使用 End-->
 </head>
-
+{% if not is_mobile %}
 <body>
+<link rel="stylesheet" type="text/css" href="{% static "css/mobile.css"%}">
 <div class="" none="ture">
 	<header class="header" _height="none" style="display:none;">
 		<script src="{% static "js/mHeader.js"%}"></script>
@@ -136,3 +137,55 @@
 	</script>
 	<!--信息已讀未讀切換  End-->
 </body>
+{% else %}
+<body>
+	<div class="pWrap">
+		<header class="pHeader">
+			<script src="{% static "js/pHeaderMem.js"%}"></script>
+		</header>
+		<nav class="pNavBox">
+			<!--<script src="{% static "js/pNav.js"%}"></script>-->
+		</nav>
+		<article>
+			<div class="breadCrumbs" style="margin-top:65px;">
+				<a class="home" href="/"><i class="fa fa-home" aria-hidden="true" style="color:#e18293;"></i></a>
+				<strong>&gt;</strong>
+				<span class="current">會員中心</span>
+			</div>
+			<div class="pMemberBox">
+				<div class="pMemberTitBox">
+					<h1 class="pMemberTitCon">會員中心</h1>
+				</div>
+				<div class="pMemberTab">
+					<ul>
+						<li><a href="#">基本資料</a></li><span class="separateLine">|</span>
+						<li><a href="#">歷史紀錄</a></li><span class="separateLine">|</span>
+						<li><a href="#">商品瀏覽紀錄</a></li><span class="separateLine">|</span>
+						<li><a href="#">影片瀏覽紀錄</a></li><span class="separateLine">|</span>
+						<li class="active"><a href="#">訊息通知</a></li>
+					</ul>
+				</div>
+				<div class="pMemberDateBox">
+					<div class="pMemberDateTit">
+						<h2>訊息通知</h2>
+					</div>
+					<div class="pMessageDateBox">
+						<div class="pMessageTit">
+							<a href="#"><i class="fa fa-chevron-left tab" aria-hidden="true"></i></a>
+							<h2>站內信息通知站內信息通知站內信息通知</h2>
+						</div>
+						<div class="pMessageCont">
+							<p>得男進女旅次，爭為那念年那，岸美賣們出代愛義，背了經參沒內開價使笑作久一演安麼許文大所，定單包下則個？北的子裡我看具東一時子際課，次亞上它對，或覺細，消記社服高洲北問為醫一得兒了得樣好進……方營回、我的高要，求候不家大術樹兩跟難的能樂次或能美，清體子香景嚴決上接……考童可理然工去以你意況全灣參覺使片不白水排洋球這國發我路小、海導不為在西散建人？獨而正運意一痛難不地事食再新教卻力；中中什們，真說開所議為也票個子中統以人來興放麼分聲起前報路……多四完</p>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</article>
+
+	<footer>
+		<script src="{% static "js/pFooter.js"%}"></script>
+	</footer>
+	</div>
+</body>
+{% endif %}
