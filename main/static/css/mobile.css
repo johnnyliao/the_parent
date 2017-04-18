@@ -159,6 +159,7 @@ footer{
     bottom: 0px;
     display: block;
     min-height: 100px;
+    height: 100px;
 }
 footer a{
     color: #666;
@@ -1821,7 +1822,7 @@ input[name="zipcode"]{
 }
 /*首頁*/
 .container_default #amazingslider-wrapper-1{
-    margin-top: 96px!important;
+    margin-top: 118px!important;
 }
 .container_default .amazingslider-nav-container-1{
     display: none;
