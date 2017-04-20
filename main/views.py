@@ -98,7 +98,9 @@ def winners(request):
 	return render_to_response("main/winners.html", locals(), context_instance=RequestContext(request))
 
 def index_video(request):
-	is_mobile = True
+	#is_mobile = True
+	#20170417 Wilson Edit
+	is_mobile = check_user_agent(request)
 	movie_type =  request.GET.get("type", "new")
 	if movie_type:
 		videos = Movie.objects.all().filter(movie_type=movie_type).order_by("-date")
@@ -107,7 +109,9 @@ def index_video(request):
 	return render_to_response("main/index_video.html", locals(), context_instance=RequestContext(request))
 
 def videoDetails(request):
-	is_mobile = True
+	#is_mobile = True
+	#20170417 Wilson Edit
+	is_mobile = check_user_agent(request)
 	#movie_type =  request.GET.get("type", "new")
 	video_id =  request.GET.get("video_id", None)
 	if video_id:

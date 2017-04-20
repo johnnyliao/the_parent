@@ -2,11 +2,14 @@
 /* 載入 */
 
 body{
-    font-family: "Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3",FontAwesome,sans-serif,Microsoft JhengHei;
+    font-family: "Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3",FontAwesome,sans-serif,Microsoft JhengHei !important;
     height: 100%;
     width: 100%;
     overflow: auto;
     font-size: 14px;
+}
+input,button{
+    font-family: "Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3",FontAwesome,sans-serif,Microsoft JhengHei !important;
 }
 header, .header[_height="none"]{
     display: none;
@@ -1190,4 +1193,145 @@ ul.drop-down-menu ul {
 .pContainer_default .pMovieArea .pMovieCont ul li:nth-child(3n){
     margin-right: 0px;
 }
+.videoDetBox{
+    margin-top: 85px;
+}
+.pContainer_default .pVideoDetLeft{
+    width: 710px;
+}
+.pContainer_default .pVideoDetLeft .pVideoDetTitBox{
+    margin-top: 15px;
+    background: #f6f6f6;
+    padding: 5px;
+    padding-left: 10px;
+}
+.pContainer_default .pVideoDetLeft .pVideoDetTitBox .pVideoDetTit{
+    line-height: 40px;
+}
+.pContainer_default .pVideoDetLeft .pVideoDetTitBox .pVideoDetTit h2{
+    color: #f95472;
+    font-size: 16px;
+}
+.pContainer_default .pVideoDetLeft .pVideoDetTitBox .pViewBox{
+    color: #969696;
+    line-height: 30px;
+}
+.pContainer_default .pVideoDetLeft .pVideoDetTitBox .pViewBox .pViewTimes{
+    color: #444444;
+}
+.pContainer_default .pVideoDetLeft .pVideoDetTitBox .pTypeBox{
+    color: #969696;
+    line-height: 30px;
+}
+.pContainer_default .pVideoDetLeft .pVideoDetTitBox .pTypeBox .pType{
+    color: #444444;
+}
+.pContainer_default .pVideoDetLeft .pVideoDetTitBox .pDetailsBox{
+    color: #969696;
+    line-height: 30px;
+}
+.pContainer_default .pVideoDetLeft .pVideoDetTitBox .pDetailsBox .pDetails{
+    color: #444444;
+}
+.pContainer_default .pVideoDetLeft .pLeaveMessage{
+    margin-top: 30px;
+    background: #f6f6f6;
+    padding: 5px;
+}
+.pContainer_default .pVideoDetLeft .pLeaveMessage .pLeaveMessageTit h2{
+    line-height: 40px;
+    display: inline-block;
+    font-size: 16px;
+    padding-left: 5px;
+}
+.pContainer_default .pVideoDetLeft .pLeaveMessage .pLeaveMessageTit .pMessageCount{
 
+}
+.pContainer_default .pVideoDetLeft .pLeaveMessage .pLeaveMessageBox{
+    border-bottom: 1px solid #cccccc;
+    padding-bottom: 10px;
+}
+.pContainer_default .pVideoDetLeft .pLeaveMessage .pLeaveMessageBox .pLeaveMessageCont .pLeaveMessageInp{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    line-height: 40px;
+    width: 690px;
+    margin-left: 5px;
+    padding-left: 5px;
+}
+.pContainer_default .pVideoDetLeft .pLeaveMessage .pLeaveMessageBox .pMessageSub{
+    margin-top: 15px;
+    float: right;
+    margin-right: 5px;
+    display: block;
+    color: #fff;
+    border: 1px solid #cccccc;
+    padding: 5px;
+    border-radius: 4px;
+    background: #e18293;
+    font-size: 14px;
+}
+.pContainer_default .pVideoDetLeft .pLeaveMessage::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+.pContainer_default .pVideoDetLeft .pLeaveMessage ul li{
+    margin-top: 15px;
+    padding-left: 15px;
+    margin-left: 40px;
+}
+.pContainer_default .pVideoDetLeft .pLeaveMessage ul li:nth-child(1){
+    margin-top: 15px;
+    padding-left: 15px;
+    margin-left: 0px;
+}
+.pContainer_default .pVideoDetLeft .pLeaveMessage ul .pLMessageBoxImg{
+    display: inline-block;
+}
+.pContainer_default .pVideoDetLeft .pLeaveMessage ul .pLMBox1{
+    display: inline-block;
+    vertical-align: top;
+    line-height: 26px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #cccccc;
+}
+.pContainer_default .pVideoDetLeft .pLeaveMessage ul .pLMBox1 .pLMessageBoxName{
+    margin-right: 10px;
+    font-size: 14px;
+}
+.pContainer_default .pVideoDetLeft .pLeaveMessage ul .pLMBox1 .pDateTimeBox{
+    color: #969696;
+    font-size: 14px;
+}
+.pContainer_default .pVideoDetLeft .pLeaveMessage ul .pLMBox1 .pDepictBox{
+    font-size: 14px;
+    color: #666666;
+    width: 640px;
+}
+.pContainer_default .pVideoDetLeft .pLeaveMessage ul .pReplyImgBox{
+    display: inline-block;
+}
+.pContainer_default .pVideoDetLeft .pLeaveMessage ul .pReplyBox{
+    display: inline-block;
+}
+.pContainer_default .pVideoDetLeft .pLeaveMessage ul .pReplyBox .pReplyCont{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    line-height: 40px;
+    width: 590px;
+    margin-left: 5px;
+    padding-left: 5px;
+}
+.pContainer_default .pVideoDetLeft .pLeaveMessage ul .pReplyBtn{
+    margin-top: 15px;
+    float: right;
+    margin-right: 7px;
+    display: block;
+    color: #fff;
+    border: 1px solid #cccccc;
+    padding: 5px;
+    border-radius: 4px;
+    background: #e18293;
+    font-size: 14px;
+}

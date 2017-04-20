@@ -1025,13 +1025,10 @@ youtube手機版自動撥放 End-->
 <body>
 	<div class="pWrap">
 		<header class="pHeader">
-			<script src="{% static "js/pHeader.js"%}"></script>
+			<script src="{% static "js/pHeaderMem.js"%}"></script>
 		</header>
-		<nav class="pNavBox">
-			<script src="{% static "js/pNav.js"%}"></script>
-		</nav>
 		<article>
-			<div class="pContainer_default">
+			<div class="pContainer_default videoDetBox">
 				<div class="tvBox">
 					<div class="tv">
 						<div class="video"></div>
@@ -1047,44 +1044,55 @@ youtube手機版自動撥放 End-->
 						</ul>
 					</div>
 				</div>
-				<div class="pMovieArea">
-					<div class="pMovieTitBox"><h2><span class="pinkBox"></span>最新發表</h2><a class="pMore"> · · ＭＯＲＥ</a></div>
-					<div class="pMovieCont">
-						<ul>
-							<li><a href="#"><img src="{% static "img/0410_1.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
-							<li><a href="#"><img src="{% static "img/0410_2.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
-							<li><a href="#"><img src="{% static "img/0410_3.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
-							<li><a href="#"><img src="{% static "img/0410_4.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
-							<li><a href="#"><img src="{% static "img/0410_1.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
-							<li><a href="#"><img src="{% static "img/0410_2.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
-						</ul>
+				<div class="pVideoDetLeft">
+					<div class="pVideoDetTitBox">
+						<div class="pVideoDetTit">
+							<h2>當妮妮看到朱碧石的反應-那對夫妻</h2>
+						</div>
+						<div class="pViewBox">播放：<span class="pViewTimes">809</span><span class="pViewCount">次</span></div>
+						<div class="pTypeBox">類型：<span class="pType">最新發表</span></div>
+						<div class="pDetailsBox">詳述：<span class="pDetails">訂閱【那對夫妻】YouTube 頻道 https://goo.gl/R1Eufw</span></div>
 					</div>
-				</div>
-
-				<div class="pMovieArea">
-					<div class="pMovieTitBox"><h2><span class="pinkBox"></span>即時熱門</h2><a class="pMore"> · · ＭＯＲＥ</a></div>
-					<div class="pMovieCont">
+					<div class="pLeaveMessage">
+						<div class="pLeaveMessageTit">
+							<h2>留言‧</h2><span class="pMessageCount">20</span>
+						</div>
+						<div class="pLeaveMessageBox">
+							<div class="pLeaveMessageCont">
+								<input class="pLeaveMessageInp" type="text" placeholder="新增公開留言，請先登入後再進行留言"/>
+							</div>
+							<button class="pMessageSub" type="submit">送出</button>
+							<div style="clear:both;"></div>
+						</div>
 						<ul>
-							<li><a href="#"><img src="{% static "img/0410_1.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
-							<li><a href="#"><img src="{% static "img/0410_2.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
-							<li><a href="#"><img src="{% static "img/0410_3.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
-							<li><a href="#"><img src="{% static "img/0410_4.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
-							<li><a href="#"><img src="{% static "img/0410_1.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
-							<li><a href="#"><img src="{% static "img/0410_2.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="pMovieArea">
-					<div class="pMovieTitBox"><h2><span class="pinkBox"></span>品牌熱門</h2><a class="pMore"> · · ＭＯＲＥ</a></div>
-					<div class="pMovieCont">
-						<ul>
-							<li><a href="#"><img src="{% static "img/0410_1.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
-							<li><a href="#"><img src="{% static "img/0410_2.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
-							<li><a href="#"><img src="{% static "img/0410_3.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
-							<li><a href="#"><img src="{% static "img/0410_4.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
-							<li><a href="#"><img src="{% static "img/0410_1.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
-							<li><a href="#"><img src="{% static "img/0410_2.jpg"%}"><span class="pGrayBg">最近爸爸不太敢去公園</span></a></li>
+							<li>
+								<div class="pLMessageBox1">
+									<div class="pLMessageBoxImg"><img src="/static/img/person-icon.png" width="40"></div>
+									<div class="pLMBox1">
+										<div class="pLMessageBoxNameBox"><span class="pLMessageBoxName">Josho Lo</span><span class="pLMessageLike"><img src="/static/img/like_1.png" width="15"></span></div>
+										<div class="pDateTimeBox">三月 8,2017,8:29p.m.</div>
+										<div class="pDepictBox">小時候的妮妮天真可愛，現在漸漸長大亦開始展現自我性格的魅力，成為百萬計粉絲偶像</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="pLMessageBox1">
+									<div class="pLMessageBoxImg"><img src="/static/img/person-icon.png" width="40"></div>
+									<div class="pLMBox1">
+										<div class="pLMessageBoxNameBox"><span class="pLMessageBoxName">Josho Lo</span><span class="pLMessageLike"><img src="/static/img/like_1.png" width="15"></span></div>
+										<div class="pDateTimeBox">三月 8,2017,8:29p.m.</div>
+										<div class="pDepictBox">小時候的妮妮天真可愛，現在漸漸長大亦開始展現自我性格的魅力，成為百萬計粉絲偶像</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="pReplyImgBox"><img src="/static/img/person-icon.png" width="40"></div>
+								<div class="pReplyBox">
+									<input class="pReplyCont" type="text" placeholder="請先登入後再進行回覆"/>
+								</div>
+								<button class="pReplyBtn" type="submit">送出</button>
+								<div style="clear:both;"></div>
+							</li>
 						</ul>
 					</div>
 				</div>
