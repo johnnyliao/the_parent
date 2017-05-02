@@ -45,7 +45,9 @@ import facebook
 import base64
 from user_agents import parse
 from movie.models import Movie, Comment, ReComment
-
+def about_us(request):
+	is_mobile = check_user_agent(request)
+	return render_to_response("main/aboutUs.html", locals(), context_instance=RequestContext(request))
 def check_user_agent(request):
 	ua_string = request.META.get('HTTP_USER_AGENT', '')
 	user_agent = parse(ua_string)
@@ -157,6 +159,8 @@ def action(request):
 def register(request):
 	is_mobile = check_user_agent(request)
 	return render_to_response("main/register.html", locals(), context_instance=RequestContext(request))
+
+
 
 @login_required
 def pay_success(request):

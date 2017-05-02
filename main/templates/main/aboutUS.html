@@ -1,0 +1,260 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>roduct Details | Unify - Responsive Website Template</title>
+<meta name="Keywords" content="那對夫妻">
+<meta name="Description" content="那對夫妻">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, maximum-scale=1.0" />
+<!--匯入JSJQ -->
+	<script src="{% static "js/jquery-1.8.2.min.js"%}"></script>
+    <script src="{% static "js/jquery.min.js"%}"></script>
+    <script src="{% static "js/public.js"%}"></script>
+    <script src="{% static "js/main.js"%}"></script>
+    <script src="{% static "js/modernizr.js"%}"></script>
+    <script src="{% static "js/headroom.js"%}"></script>
+    <script src="{% static "js/jquery.menu-aim.js"%}"></script>
+<!--匯入css -->
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css"%}">
+<!--header隱藏css js-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.3/headroom.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.3/jQuery.headroom.js"></script>
+    <style type="text/css">
+		.headroom {position: fixed;top: 0;left: 0;right: 0;transition: all .2s ease-in-out;}
+		.headroom--unpinned {top: -100px;transform: translateY(-100%);}
+		.headroom--pinned {transform: translateY(0%);z-index: 1;}
+    }
+	</style>
+	<script type="text/javascript">
+      	$("document").ready(function(){
+     		 $("#header").headroom();
+       	 });
+    </script>
+<!--header隱藏css js End-->
+
+<!--header類別滑動效果 start-->
+	<link rel="stylesheet" type="text/css" href="{% static "css/categorySlide.css"%}">
+<!--header類別滑動效果 End-->
+<!-- 輪播效果 start -->
+	<script src="{% static "js/amazingslider.js"%}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "css/amazingslider-1.css"%}">
+    <script src="{% static "js/initslider-1.js"%}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "css/amazingslider-2.css"%}">
+    <script src="{% static "js/initslider-2.js"%}"></script>
+<!-- 輪播效果 End -->
+
+<!--輪播效果PC start-->
+	<link rel="stylesheet" type="text/css" href="{% static "js/amazingslider-3.css"%}">
+    <script src="{% static "js/initslider-3.js"%}"></script>
+<!--輪播效果PC End-->
+
+<!--分頁使用 start-->
+	<link rel="stylesheet" href="{% static "css/jquery.paginate.css"%}" />
+	<style>
+		.paginate { padding: 0; margin: 0; }
+		.paginate > li { list-style: none; padding: 10px 20px; border: 1px solid #ddd; margin: 10px 0; }
+	</style>
+<!--分頁 End-->
+<!--撐開頁面使用 start
+	<script src="{% static "js/minwt.auto_full_height.mini.js"%}"></script>
+撐開頁面使用 End-->
+
+<!--FB.Line分享 start-->
+	<script type="text/javascript">
+		function share_facebook() {
+			location.assign('https://www.facebook.com/share.php?u='+window.location.href);
+	   	}
+	   	function share_line() {
+       		location.assign('http://line.naver.jp/R/msg/text/?'+window.location.href);
+       	}
+	</script>
+<!--FB.Line分享 End-->
+</head>
+{% if not is_mobile %}
+<body>
+<link rel="stylesheet" type="text/css" href="{% static "css/mobile.css"%}">
+<div class="" none="ture">
+	<header class="header" _height="none">
+		<article class="topnav">
+			<div class="cd-dropdown-wrapper">
+				<a class="cd-dropdown-trigger top" href="#0">
+					<span></span>
+				</a>
+			</div>
+			<div class="logo">
+				<a href="/main/index">
+					<img class="top_logo" src="{% static "img/thecouple_webpage_logo.png"%}">
+				</a>
+			</div>
+		</article>
+		<!--<div class="tabs fixed show-tab dark abgne_tab" fixed-tabs="#tv-tabs" ng-class="{'show-tab' : showTabs}">
+	  		<a href="/main/home?type=new" id="new" target="_self" class="tab {% if movie_type == 'new'%}active{% endif %}">最新發表1</a>
+	  		<a href="/main/home?type=hot" id="hot" target="_self" class="tab {% if movie_type == 'hot'%}active{% endif %}">熱門即時</a>
+	  		<a href="/main/home?type=brand" id="brand" target="_self" class="tab {% if movie_type == 'brand'%}active{% endif %}">品牌合作</a>
+	  		<a href="/main/home?type=kuso" id="kuso" target="_self" class="tab {% if movie_type == 'kuso'%}active{% endif %}">惡搞</a>
+	  		<a href="/main/home?type=love" id="love" target="_self" class="tab {% if movie_type == 'love'%}active{% endif %}">放閃</a>
+	  		<a href="/main/home?type=family" id="family" target="_self" class="tab {% if movie_type == 'family'%}active{% endif %}">親子家庭</a>
+		</div>-->
+	</header>
+	<!--nav start-->
+	<div class="cd-dropdown-wrapper">
+		<!--<a class="cd-dropdown-trigger" href="#0">Dropdown</a>-->
+		<nav class="cd-dropdown">
+			<h2>那對夫妻</h2>
+			<a href="#0" class="cd-close">Close</a>
+			<ul class="cd-dropdown-content">
+				<li>
+					<form class="cd-search" method="get">
+						<input type="search" placeholder="Search..." class="searchlnput_text">
+						<input class="searchlnput_bnt" name="" type="submit" value="">
+					</form>
+				</li>
+				{% if request.user.is_authenticated %}
+					<li>
+						<a href="/account/user_logout/">登出</a>
+					</li>
+				{% else%}
+					<li>
+						<a href="/main/login/">登入</a>
+					</li>
+				{% endif %}
+				<li>
+					<a href="/main/register/">註冊</a>
+				</li>
+				<li class="has-children">
+					<a href="#">會員專區</a>
+					<ul class="cd-secondary-dropdown is-hidden">
+						<li class="go-back"><a href="#0">Menu</a></li>
+						<li>
+							<a href="/main/member/">會員資料</a>
+						</li>
+						<li>
+							<a href="/main/change_password/">修改密碼</a>
+						</li>
+						<li>
+							<a href="/main/order_record/">歷史訂購</a>
+						</li>
+						<li>
+							<a href="/main/view_record/">商品瀏覽紀錄</a>
+						</li>
+						<li>
+							<a href="/main/video_viewRecord/">影片瀏覽紀錄</a>
+						</li>
+						<li>
+							<a href="/main/message_list/">信息通知</a>
+						</li>
+					</ul> <!-- .cd-secondary-dropdown -->
+				</li> <!-- .has-children -->
+			</ul> <!-- .cd-dropdown-content -->
+		</nav> <!-- .cd-dropdown -->
+	</div> <!-- .cd-dropdown-wrapper -->
+	<!--nav End-->
+
+	<div class="container_default shop grayBg" _height="auto" style="padding:15px 0px;">
+		<div class="aboutConBox">
+			<img src="{% static "img/0221.jpg"%}" width="100%">
+			<p>【那對夫妻】Facebook粉絲團成立2015年，截至2017年2月粉絲人數逼近200萬 ，內容包括夫妻間（Nico品筠&Kim京燁 ）趣味對話、小朋友（妮妮）爆笑短片等，都是一些日常生活的片段。這些片段已經是台灣民眾高壓生活的療癒小確幸，自然不做作的內容，搞笑又溫馨，十足台味的三口家庭，引起廣大鄉民的喜愛，快速傳播，Facebook發布親子之間的逗趣影片，讓他們在記錄路中寫下，一年之內就衝到150萬粉絲數，2017年1月26日 那對夫妻單曲「妮妮」正式上線，2月2日 衝破KKBOX日榜冠軍，擠下Hebe田馥甄「當你」2月3日 衝破KKBOX總榜冠軍，擠下周杰倫「告白氣球」2月3當天晚上那對夫妻新書預購1500本精裝版15分鐘內秒殺，創下平均每0.6秒售出一本記錄，被媒體封為「地表最強網紅家庭」!</p>
+		</div>
+	</div>
+	<div style="clear:both;"></div>
+	<div class="under-nav" style="display: block;">
+	    <ul>
+		     <li><a href="/main/home"><img src="{% static "img/index.png"%}" width="40" /></a><p><a href="/main/home">首頁</a></p></li>
+		    <li><a href="#"><img src="{% static "img/cartIcon.png"%}" width="40" /></a><p><a href="#">夫妻嚴選</a></p></li>
+		    <li><a href="/main/index_video"><img src="{% static "img/video.png"%}"  width="40" /></a><p><a href="/main/index_video">影音專區</a></p></li>
+		    <li><a href="/main/about_us"><img src="{% static "img/aboutActive.png"%}" width="40" /></a><p><a href="/main/about_us"  class="active">關於我們</a></p></li>
+	    </ul>
+	</div>
+	<!--<footer _height="none">
+		<script src="{% static "js/mFooter.js"%}"></script>
+	</footer>-->
+	<div style="height:40px;"></div>
+	<!--分頁功能
+	<script src="js/jquery.paginate.js"></script>
+	<script>
+		//call paginate
+		$('#example').paginate({
+
+		  // how many items per page
+		  perPage:                2,
+
+		  // boolean: scroll to top of the container if a user clicks on a pagination link
+		  autoScroll:             true,
+
+		  // which elements to target
+		  scope:                  '',
+
+		  // defines where the pagination will be displayed
+		  paginatePosition:       ['bottom'],
+
+		  // Pagination selectors
+		  containerTag:           'nav',
+		  paginationTag:          'ul',
+		  itemTag:                'li',
+		  linkTag:                'a',
+
+		  // Determines whether or not the plugin makes use of hash locations
+		  useHashLocation:        true,
+
+		  // Triggered when a pagination link is clicked
+		  onPageClick:            function() {}
+
+		});
+
+	</script>
+	-->
+</div>
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-36251023-1']);
+	  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+</body>
+{% else %}
+<body>
+	<div class="pWrap">
+		<header class="pHeader">
+			<script src="{% static "js/pHeader.js"%}"></script>
+		</header>
+		<nav class="pNavBox">
+			<script src="{% static "js/pNav.js"%}"></script>
+		</nav>
+		<article>
+			<div class="breadCrumbs">
+				<a class="home" href="/"><i class="fa fa-home" aria-hidden="true" style="color:#e18293;"></i></a>
+				<strong>&gt;</strong>
+				<span class="current">關於我們</span>
+			</div>
+			<div class="pAboutBox">
+				<div class="pAboutTitBox">
+					<h1 class="pAboutTitCon">關於我們/ABOUT US</h1>
+				</div>
+
+				<div class="pAboutContBox">
+					<!--<div class="pAboutContTit">
+						<h2>基本資料</h2>
+					</div>-->
+					<img src="{% static "img/0221.jpg"%}" width="100%">
+					<p>【那對夫妻】Facebook粉絲團成立2015年，截至2017年2月粉絲人數逼近200萬 ，內容包括夫妻間（Nico品筠&Kim京燁 ）趣味對話、小朋友（妮妮）爆笑短片等，都是一些日常生活的片段。這些片段已經是台灣民眾高壓生活的療癒小確幸，自然不做作的內容，搞笑又溫馨，十足台味的三口家庭，引起廣大鄉民的喜愛，快速傳播，Facebook發布親子之間的逗趣影片，讓他們在記錄路中寫下，一年之內就衝到150萬粉絲數，2017年1月26日 那對夫妻單曲「妮妮」正式上線，2月2日 衝破KKBOX日榜冠軍，擠下Hebe田馥甄「當你」2月3日 衝破KKBOX總榜冠軍，擠下周杰倫「告白氣球」2月3當天晚上那對夫妻新書預購1500本精裝版15分鐘內秒殺，創下平均每0.6秒售出一本記錄，被媒體封為「地表最強網紅家庭」!</p>
+				</div>
+		</article>
+
+		<footer class="pFooter">
+			<script src="{% static "js/pFooter.js"%}"></script>
+		</footer>
+	</div>
+
+</body>
+
+{% endif %}

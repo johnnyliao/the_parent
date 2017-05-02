@@ -231,4 +231,91 @@ $(function(){
 
 	/*信息已讀未讀切換  End*/
 
+	/*goTop start*/
+	$("#gotop").click(function(){
+        jQuery("html,body").animate({
+            scrollTop:0
+        },1000);
+    });
+    $(window).scroll(function() {
+        if ( $(this).scrollTop() > 300){
+            $('#gotop').fadeIn("fast");
+        } else {
+            $('#gotop').stop().fadeOut("fast");
+        }
+    });
+	/*goTop End*/
+
+	/*videoList tab切換 start*/
+	$("ul.pVtvTabs > li").click(function () {
+		$(this).addClass("active").siblings().removeClass("active");
+		if($(this).hasClass('pNowHot')){
+			$(".pNowHotBox").fadeIn(100);
+			$(".puLikeBox").fadeOut(100);
+		}
+		if($(this).hasClass('puLike')){
+			$(".puLikeBox").fadeIn(100);
+			$(".pNowHotBox").fadeOut(100);
+		}
+		event.preventDefault();
+	});
+	/*videoList tab切換 End*/
+
+	/*影片內頁PC版播放區愛心切換 start*/
+	$(".pLikeBtnS").click(function() {
+			$(".pLikeBtnH").css("display","inline-block");
+			$(".pLikeBtnS").hide();
+		event.preventDefault();
+	});
+
+	$(".pLikeBtnH").click(function (){
+			$(".pLikeBtnH").hide();
+			$(".pLikeBtnS").show();
+		event.preventDefault();
+	});
+	/*影片內頁PC版播放區愛心切換 End*/
+
+    /*影片內頁PC版留言區愛心切換 start*/
+	$(".pLMessageLikeS").click(function() {
+			$(this).siblings(".pLMessageLikeH").show();
+			$(this).hide();
+		event.preventDefault();
+	});
+
+	$(".pLMessageLikeH").click(function (){
+			$(this).siblings(".pLMessageLikeS").show();
+			$(this).hide();
+		event.preventDefault();
+	});
+	/*影片內頁PC版留言區愛心切換 End*/
+
+
+	/*影片內頁share start*/
+	$(".pShareBtn").click(function (){
+		if($('.pShareBox').is(':hidden')){
+			$(".pShareBox").show();
+		}else{
+			$(".pShareBox").hide();
+		}
+		event.preventDefault();
+	});
+	/*影片內頁share End*/
+
+	/*影片內頁播放器 start*/
+	$(".pVideoLink").click(function () {
+		var date_id=$(this).attr('dateId').match(/[^/]*$/)[0];
+    	var swf='<iframe width=\"710\" height=\"399\" src=\"https://www.youtube.com/embed/'+date_id+'?autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>'
+    	$( ".tvVideo" ).html(swf);
+		event.preventDefault();
+	});
+	/*影片內頁播放器 start*/
+
+	/*影片首頁播放器 start*/
+	$(".pVideoLink1").click(function () {
+		var date_id=$(this).attr('dateId').match(/[^/]*$/)[0];
+    	var swf='<iframe width=\"710\" height=\"399\" src=\"https://www.youtube.com/embed/'+date_id+'\" frameborder=\"0\" allowfullscreen></iframe>'
+    	$( ".tvVideoIndex" ).html(swf);
+		event.preventDefault();
+	});
+	/*影片首頁播放器 start*/
 });

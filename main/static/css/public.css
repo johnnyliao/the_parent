@@ -2,7 +2,7 @@
 /* 載入 */
 
 body{
-    font-family: "Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3",FontAwesome,sans-serif,Microsoft JhengHei !important;
+    font-family: "Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3",FontAwesome,sans-serif,Microsoft JhengHei;
     height: 100%;
     width: 100%;
     overflow: auto;
@@ -23,7 +23,9 @@ header, .header[_height="none"]{
 footer[_height="none"]{
     display: none;
 }
-
+.mt20{
+    margin-top: 20px;
+}
 .pHeader{
 	position: relative;
     top: inherit;
@@ -57,6 +59,9 @@ footer[_height="none"]{
     width: 90px;
     line-height: 52px;
     margin-right: 15px;
+}
+.pHeader .pTopBox .pTopBox1 .pTop1Box1 .pTop1Cont li a{
+    color: #FFF;
 }
 .pHeader .pTopBox .pTopBox1 .pTop1Box1 .pTop1Cont li i{
     margin-right: 5px;
@@ -203,7 +208,7 @@ footer[_height="none"]{
     width: 300px;
 }
 .pVideoLeft .pVideoPub{
-    width: 710px;
+    width: 695px;
 }
 .pVideoLeft .pVideoPub .pVideoPubBox{
     height: 40px;
@@ -225,7 +230,7 @@ footer[_height="none"]{
 }
 .pVideoLeft .pVideoPub .pVideoPubCon .pVideoPubDet li:nth-child(odd){
     display: inline-block;
-    margin-right: 45px;
+    margin-right: 30px;
     vertical-align: top;
     position: relative;
     margin-bottom: 15px;
@@ -623,6 +628,7 @@ footer a{
     height: 45px;
     display: inline-block;
     width: 50px;
+    color: #FFF;
 }
 .pMemberBox .pLoginBox .log-reg-block .pSubmitBox{
     text-align: center;
@@ -692,6 +698,7 @@ footer a{
     padding: 6px;
     height: 45px;
     display: inline-block;
+    color: #FFF;
 }
 ul.drop-down-menu {
         border: #ccc 1px solid;
@@ -873,6 +880,7 @@ ul.drop-down-menu ul {
     text-decoration: none;
     height: 45px;
     padding: 10px;
+    width: 50px;
 }
 .pMemberBox .pMemberDateBox .pMemberDateTit h2{
     position: relative;
@@ -1140,7 +1148,10 @@ ul.drop-down-menu ul {
 }
 .tvBox{
     background: #000;
-    height: 415px;
+    height: 425px;
+}
+.tvBoxIndex{
+    height: 399px;
 }
 .tv .video{
     float: left;
@@ -1198,6 +1209,8 @@ ul.drop-down-menu ul {
 }
 .pContainer_default .pVideoDetLeft{
     width: 710px;
+    float: left;
+    margin-bottom: 40px;
 }
 .pContainer_default .pVideoDetLeft .pVideoDetTitBox{
     margin-top: 15px;
@@ -1232,6 +1245,20 @@ ul.drop-down-menu ul {
 }
 .pContainer_default .pVideoDetLeft .pVideoDetTitBox .pDetailsBox .pDetails{
     color: #444444;
+    width: 80%;
+    vertical-align: top;
+    display: inline-block;
+}
+.pContainer_default .pVideoDetLeft .pVideoDetTitBox .pDetailsBox .pDetails #pDetails{
+/*多行文字限制*/
+    /*display: -webkit-box;*/
+    overflow:hidden;
+    text-overflow : ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.pContainer_default .pVideoDetLeft .pVideoDetTitBox .pDetailsBox .pDetails #pDetails #pDetails1{
+    display: none;
 }
 .pContainer_default .pVideoDetLeft .pLeaveMessage{
     margin-top: 30px;
@@ -1244,11 +1271,14 @@ ul.drop-down-menu ul {
     font-size: 16px;
     padding-left: 5px;
 }
+.pContainer_default .pVideoDetLeft .pLeaveMessage ul{
+    border-top: 1px solid #cccccc;
+}
 .pContainer_default .pVideoDetLeft .pLeaveMessage .pLeaveMessageTit .pMessageCount{
 
 }
 .pContainer_default .pVideoDetLeft .pLeaveMessage .pLeaveMessageBox{
-    border-bottom: 1px solid #cccccc;
+
     padding-bottom: 10px;
 }
 .pContainer_default .pVideoDetLeft .pLeaveMessage .pLeaveMessageBox .pLeaveMessageCont .pLeaveMessageInp{
@@ -1258,6 +1288,9 @@ ul.drop-down-menu ul {
     width: 690px;
     margin-left: 5px;
     padding-left: 5px;
+    height: 55px;
+    line-height: 30px;
+    resize:none;
 }
 .pContainer_default .pVideoDetLeft .pLeaveMessage .pLeaveMessageBox .pMessageSub{
     margin-top: 15px;
@@ -1277,9 +1310,8 @@ ul.drop-down-menu ul {
     clear: both;
 }
 .pContainer_default .pVideoDetLeft .pLeaveMessage ul li{
-    margin-top: 15px;
     padding-left: 15px;
-    margin-left: 40px;
+    margin:15px 0px 10px 40px;
 }
 .pContainer_default .pVideoDetLeft .pLeaveMessage ul li:nth-child(1){
     margin-top: 15px;
@@ -1295,10 +1327,14 @@ ul.drop-down-menu ul {
     line-height: 26px;
     padding-bottom: 10px;
     border-bottom: 1px solid #cccccc;
+    width: 92%;
 }
 .pContainer_default .pVideoDetLeft .pLeaveMessage ul .pLMBox1 .pLMessageBoxName{
     margin-right: 10px;
     font-size: 14px;
+}
+.pContainer_default .pVideoDetLeft .pLeaveMessage ul .pLMBox1 .pLMessageLikeH{
+    display: none;
 }
 .pContainer_default .pVideoDetLeft .pLeaveMessage ul .pLMBox1 .pDateTimeBox{
     color: #969696;
@@ -1307,10 +1343,11 @@ ul.drop-down-menu ul {
 .pContainer_default .pVideoDetLeft .pLeaveMessage ul .pLMBox1 .pDepictBox{
     font-size: 14px;
     color: #666666;
-    width: 640px;
+    width: 600px;
 }
 .pContainer_default .pVideoDetLeft .pLeaveMessage ul .pReplyImgBox{
     display: inline-block;
+    vertical-align: top;
 }
 .pContainer_default .pVideoDetLeft .pLeaveMessage ul .pReplyBox{
     display: inline-block;
@@ -1322,6 +1359,9 @@ ul.drop-down-menu ul {
     width: 590px;
     margin-left: 5px;
     padding-left: 5px;
+    height: 45px;
+    line-height: 30px;
+    resize:none;
 }
 .pContainer_default .pVideoDetLeft .pLeaveMessage ul .pReplyBtn{
     margin-top: 15px;
@@ -1334,4 +1374,280 @@ ul.drop-down-menu ul {
     border-radius: 4px;
     background: #e18293;
     font-size: 14px;
+}
+.pContainer_default .pVideoDetRight{
+    float: left;
+    width: 299px;
+    margin:15px 0px 40px 15px;
+}
+.pContainer_default .pVideoDetRight .pOtherVideoTit h2{
+    color: #e18293;
+    font-size: 16px;
+    line-height: 6px;
+    padding-top: 15px;
+    border-bottom: 2px solid #e18293;
+}
+.pContainer_default .pVideoDetRight .pOtherVideoTit h2 .pOtherVideoTitTxt{
+    line-height: 6px;
+    display: inline-block;
+    margin-bottom: -2px;
+    border-bottom: 2px solid #fff;
+    padding-right: 3px;
+}
+.pContainer_default .pVideoDetRight .pOtherVideoCont ul{
+    margin-top: 15px;
+}
+.pContainer_default .pVideoDetRight .pOtherVideoCont li{
+    margin-bottom: 10px;
+    position: relative;
+}
+.pContainer_default .pVideoDetRight .pOtherVideoCont li .pOtherVImg{
+    display: inline-block;
+}
+.pContainer_default .pVideoDetRight .pOtherVideoCont li .pOtherVNameView{
+    display: inline-block;
+    vertical-align: top;
+    width: 70%;
+}
+.pContainer_default .pVideoDetRight .pOtherVideoCont li .pOtherVNameView .pOtherVName{
+    color: #666;
+    font-weight: 100;
+    font-size: 14px;
+    top: 0px;
+    width: 100%;
+    /*多行文字限制*/
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    line-height: 18px;
+}
+.pContainer_default .pVideoDetRight .pOtherVideoCont li .pOtherVNameView .pViewQuanBox{
+    position: absolute;
+    bottom: 0px;
+}
+.pContainer_default .pVideoDetRight .pOtherVideoCont li .pOtherVNameView .pViewQuanBox .fa-eye{
+    color: #666;
+}
+.pContainer_default .pVideoDetRight .pOtherVideoCont li .pOtherVNameView .pViewQuanBox .pViewCount{
+    color: #666;
+}
+.pContainer_default .pVideoDetRight .pCommunityBox ul{
+    margin-top: 15px;
+    text-align: center;
+}
+.pContainer_default .pVideoDetRight .pCommunityBox ul li{
+    display: inline-block;
+    margin: 0px 5px 10px 5px;
+}
+#gotop {
+    display: none;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    padding: 10px 15px;
+    font-size: 20px;
+    background:rgb(242, 172, 175);
+    color: white;
+    cursor: pointer;
+    border-radius: 20px;
+}
+.pContainer_default .tvBox .tvLeft .tvBottomBox{
+    padding-left: 10px;
+}
+.pContainer_default .tvBox .tvLeft .tvBottomBox .pLikeBtn{
+    display: inline-block;
+}
+.pContainer_default .tvBox .tvLeft .tvBottomBox .pLikeBtnH{
+    display: none;
+}
+.pContainer_default .tvBox .tvLeft .tvBottomBox .pShareBtn{
+    display: inline-block;
+    margin-left: 5px;
+}
+.pContainer_default .tvBox .tvLeft .tvBottomBox .pShareBox{
+    position: absolute;
+    top: 35px;
+    left: -24px;
+    display: none;
+}
+.pContainer_default .tvBox .tvLeft .tvBottomBox .pShare{
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+}
+.pContainer_default .tvBox .tvLeft{
+    float: left;
+}
+.pContainer_default .tvBox .tvRight{
+    float: left;
+    width: 300px;
+}
+.pContainer_default .tvBox .tvRight .pVtvTabsBox ul li{
+    display: inline-block;
+    vertical-align: top;
+    height: 40px;
+    line-height: 40px;
+    width: 149px;
+    color: #3c3c3c;
+    text-align: center;
+    border-bottom: 2px solid #3c3c3c;
+}
+
+.pContainer_default .tvBox .tvRight .pVtvTabsBox ul li:nth-child(1){
+    margin-right: -4px;
+}
+.pContainer_default .tvBox .tvRight .pVtvTabsBox ul li.active{
+    color: #e18293;
+    border-bottom: 2px solid #e18293;
+}
+#style-1::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #232323;
+}
+
+#style-1::-webkit-scrollbar{
+    width: 5px;
+    background-color: #232323;
+}
+
+#style-1::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+#style-1{
+    float: left;
+    height: 355px;
+    overflow-y: scroll;
+    margin-bottom: 25px;
+    width: 300px;
+    margin-top: 15px;
+}
+.pContainer_default .tvBox .tvRight .force-overflow ul{
+    padding-bottom: 15px;
+    padding-left: 5px;
+}
+.pContainer_default .tvBox .tvRight .force-overflow ul li{
+    position: relative;
+    margin-bottom: 15px;
+}
+.pContainer_default .tvBox .tvRight .force-overflow ul li a{
+    display: block;
+}
+.pContainer_default .tvBox .tvRight .force-overflow .pVideoImg{
+    display: inline-block;
+}
+.pContainer_default .tvBox .tvRight .force-overflow .pVideoView{
+    display: inline-block;
+    color: #d6d6d6;
+    margin-left: 5px;
+}
+.pContainer_default .tvBox .tvRight .force-overflow .pVideoView h2{
+    position: absolute;
+    top: 0px;
+    font-size: 14px;
+    font-weight: 100;
+}
+.pContainer_default .tvBox .tvRight .force-overflow .pVideoView .pViewQuanBox{
+    position: absolute;
+    bottom: 0px;
+    font-size: 12px;
+}
+.pContainer_default .tvBox .tvRight .puLikeBox{
+    display: inline-block;
+}
+.pContainer_default .tvBox .tvRight .puLikeBox{
+    display: none;
+}
+.mwt_border {
+    width: 70px;
+    height: 37px;
+    text-align: center;
+    background: #fff;
+    position: relative;
+    border: solid 1px #a3a3a3;
+    margin: 0px auto;
+    padding-top: 4px;
+    border-radius: 5px;
+}
+
+/*箭头上*/
+.mwt_border .arrow_t_int {
+    width : 0px ;
+    height : 0px ;
+    border-width : 10px ;
+    border-style : solid ;
+    border-color : transparent  transparent #a3a3a3  transparent  ;
+    position : absolute ;
+    top : -19.5px ;
+    left : 27px ;
+}
+/*箭头上-边框*/
+.mwt_border .arrow_t_out {
+    width : 0px ;
+    height : 0px ;
+    border-width : 10px ;
+    border-style : solid ;
+    border-color : transparent  transparent #fff  transparent  ;
+    position : absolute ;
+    top : -18px ;
+    left : 27px ;
+    margin-top:-0.5px;
+}
+.pAboutBox{
+    width: 1024px;
+    margin: 0 auto;
+}
+.pAboutBox .pAboutTitBox{
+    border-bottom: 2px solid #e18293;
+    padding-bottom: 5px;
+}
+.pAboutBox .pAboutTitBox .pAboutTitCon{
+    font-size: 22px;
+    color: #e18293;
+    text-align: center;
+}
+.pAboutBox .pAboutContBox{
+    border: 1px solid #e8e8e8;
+    padding: 10px;
+    margin: 10px;
+    color: #666;
+    font-weight: 100;
+    line-height: 30px;
+    font-size: 14px;
+}
+.pAboutBox .pAboutContBox .pAboutContTit{
+    text-align: center;
+    font-size: 16px;
+    padding-bottom: 15px;
+}
+.pAboutBox .pAboutContBox .pAboutContTit h2{
+    position: relative;
+}
+
+.pAboutBox .pAboutContBox .pAboutContTit h2:before{
+    color: #687074;
+    font-size: 14px;
+    padding: 0 10px;
+    position: relative;
+    margin-bottom: 15px;
+    display: inline-block;
+    text-transform: uppercase;
+}
+.pAboutBox .pAboutContBox .pAboutContTit h2:before, .pAboutBox .pAboutContBox .pAboutContTit h2:after{
+    top: 9px;
+    height: 1px;
+    width: 20px;
+    content: " ";
+    background: #ccc;
+    position: absolute;
+}
+.pAboutBox .pAboutContBox .pAboutContTit h2:before{
+    left: 44%;
+}
+.pAboutBox .pAboutContBox .pAboutContTit h2:after{
+    right: 44%;
 }

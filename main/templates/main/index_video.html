@@ -15,7 +15,7 @@
     <script src="{% static "js/public.js"%}"></script>
     <script src="{% static "js/main.js"%}"></script>
     <script src="{% static "js/modernizr.js"%}"></script>
-    <script src="{% static "js/headroom.js"%}"></script>-->
+    <script src="{% static "js/headroom.js"%}"></script>
     <script src="{% static "js/jquery.menu-aim.js"%}"></script>
 <!--匯入css -->
     <link rel="stylesheet" type="text/css" href="{% static "css/style.css"%}">
@@ -82,7 +82,7 @@
 
 <!--撐開頁面使用 End-->
 </head>
-{% if is_mobile %}
+{% if not is_mobile %}
 <body>
 <link rel="stylesheet" type="text/css" href="{% static "css/mobile.css"%}">
 <div class="" none="ture">
@@ -201,12 +201,12 @@
     <!--分頁 End-->
 
 	</div>
-	<div class="under-nav">
+	<div class="under-nav" style="display: block;">
 	    <ul>
-		     <li><a href="#"><img src="{% static "img/index.png"%}" width="40" /></a><p>首頁</p></li>
-		    <li><a href="#"><img src="{% static "img/cartIcon.png"%}" width="40" /></a><p>夫妻嚴選</p></li>
-		    <li><a href="/main/index_video"><img src="{% static "img/videoActive.png"%}"  width="40" /></a><p class="active">影音專區</p></li>
-		    <li><a href="#"><img src="{% static "img/aboutIcon.png"%}" width="40" /></a><p>關於我們</p></li>
+		     <li><a href="/main/home"><img src="{% static "img/index.png"%}" width="40" /></a><p><a href="/main/home">首頁</a></p></li>
+		    <li><a href="#"><img src="{% static "img/cartIcon.png"%}" width="40" /></a><p><a href="#">夫妻嚴選</a></p></li>
+		    <li><a href="/main/index_video"><img src="{% static "img/videoActive.png"%}"  width="40" /></a><p><a href="/main/index_video" class="active">影音專區</a></p></li>
+		    <li><a href="/main/about_us"><img src="{% static "img/aboutIcon.png"%}" width="40" /></a><p><a href="/main/about_us">關於我們</a></p></li>
 	    </ul>
 	</div>
 	<footer _height="none">
@@ -311,20 +311,140 @@
 		</nav>
 		<article>
 			<div class="pContainer_default">
-				<div class="tvBox">
+				<div class="tvBox tvBoxIndex">
 					<div class="tv">
-						<div class="video"></div>
-						<ul class="playList">
-							 <li><a href="http://www.youtube.com/watch?v=htCW5fcyLUU">暮光之城第三集 蝕預告片</a></li>
-							 <li><a href="http://www.youtube.com/watch?v=GeS0gAIg1Io">《暮光之城：新月》預告片</a></li>
-							 <li><a href="http://www.youtube.com/watch?v=wngwJ-GEJVg">【暮光之城】中文版預告片</a></li>
-							 <li><a href="http://www.youtube.com/watch?v=4VTT3v9TBIo">【暮光之城2:新月】中文版前導預告【雅各篇】</a></li>
-							 <li><a href="http://www.youtube.com/watch?v=bwd7BbFWYw0">暮光之城2新月最終版預告</a></li>
-							 <li><a href="http://www.youtube.com/watch?v=_kerQfD1LuA">暮光之城新月MTV 預告片New Moon Trailer</a></li>
-							 <li><a href="http://www.youtube.com/watch?v=fDhRS8Gd1bA">暮光之城2新月The Twilight Saga: New Moon預告</a></li>
-							 <li><a href="http://www.youtube.com/watch?v=LwfZl1t-dQI">暮光之城MV - Time Will Tell</a></li>
-						</ul>
+					<div class="tvBox tvBoxIndex">
+						<div class="tvLeft">
+							<div class="tvVideoIndex"><iframe width="710" height="399" src="https://www.youtube.com/embed/Hwtgt99BCAY" frameborder="0" allowfullscreen></iframe></div>
+						</div>
+						<div class="tvRight">
+							<div class="pVtvTabsBox">
+								<ul class="pVtvTabs">
+									<li class="pNowHot active">即時新聞</li>
+									<li class="puLike">你可能會喜歡</li>
+								</ul>
+							</div>
+							<!--即時熱門 start-->
+							<div class="pNowHotBox pVideoListCon">
+								<div class="scrollbar" id="style-1" style="height:330px;">
+									<div class="force-overflow">
+										<ul>
+											<li>
+												<a class="pVideoLink1" dateId="https://www.youtube.com/embed/UvNBwbOFwrw">
+													<div class="pVideoImg"><img src="/static/img/0410_1.jpg" width="130"></div>
+													<div class="pVideoView">
+														<h2 class="pVideoVName">妮妮吃麵超萌</h2>
+														<div class="pViewQuanBox">
+															<i class="fa fa-eye" aria-hidden="true"></i>
+															<span class="pViewCount">12</span>
+														</div>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a class="pVideoLink1" dateId="https://www.youtube.com/embed/Hwtgt99BCAY">
+													<div class="pVideoImg"><img src="/static/img/0410_2.jpg" width="130"></div>
+													<div class="pVideoView">
+														<h2 class="pVideoVName">妮妮吃麵超萌</h2>
+														<div class="pViewQuanBox">
+															<i class="fa fa-eye" aria-hidden="true"></i>
+															<span class="pViewCount">12</span>
+														</div>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a class="pVideoLink1" dateId="https://www.youtube.com/embed/EsvbFj9-zmw">
+													<div class="pVideoImg"><img src="/static/img/0410_3.jpg" width="130"></div>
+													<div class="pVideoView">
+														<h2 class="pVideoVName">妮妮吃麵超萌</h2>
+														<div class="pViewQuanBox">
+															<i class="fa fa-eye" aria-hidden="true"></i>
+															<span class="pViewCount">12</span>
+														</div>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a class="pVideoLink1" dateId="https://www.youtube.com/embed/eO71P7ZzX_E">
+													<div class="pVideoImg"><img src="/static/img/0410_4.jpg" width="130"></div>
+													<div class="pVideoView">
+														<h2 class="pVideoVName">妮妮吃麵超萌</h2>
+														<div class="pViewQuanBox">
+															<i class="fa fa-eye" aria-hidden="true"></i>
+															<span class="pViewCount">12</span>
+														</div>
+													</div>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<!--即時熱門 End-->
+
+							<!--你可能會喜歡 start-->
+							<div class="puLikeBox pVideoListCon">
+								<div class="scrollbar" id="style-1" style="height:330px;">
+									<div class="force-overflow">
+										<ul>
+											<li>
+												<a class="pVideoLink1" dateId="https://www.youtube.com/embed/UvNBwbOFwrw">
+													<div class="pVideoImg"><img src="/static/img/0410_1.jpg" width="130"></div>
+													<div class="pVideoView">
+														<h2 class="pVideoVName">妮妮吃麵超萌</h2>
+														<div class="pViewQuanBox">
+															<i class="fa fa-eye" aria-hidden="true"></i>
+															<span class="pViewCount">12</span>
+														</div>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a class="pVideoLink1" dateId="https://www.youtube.com/embed/Hwtgt99BCAY">
+													<div class="pVideoImg"><img src="/static/img/0410_2.jpg" width="130"></div>
+													<div class="pVideoView">
+														<h2 class="pVideoVName">妮妮吃麵超萌</h2>
+														<div class="pViewQuanBox">
+															<i class="fa fa-eye" aria-hidden="true"></i>
+															<span class="pViewCount">12</span>
+														</div>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a class="pVideoLink1" dateId="https://www.youtube.com/embed/EsvbFj9-zmw">
+													<div class="pVideoImg"><img src="/static/img/0410_3.jpg" width="130"></div>
+													<div class="pVideoView">
+														<h2 class="pVideoVName">妮妮吃麵超萌</h2>
+														<div class="pViewQuanBox">
+															<i class="fa fa-eye" aria-hidden="true"></i>
+															<span class="pViewCount">12</span>
+														</div>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a class="pVideoLink1" dateId="https://www.youtube.com/embed/eO71P7ZzX_E">
+													<div class="pVideoImg"><img src="/static/img/0410_4.jpg" width="130"></div>
+													<div class="pVideoView">
+														<h2 class="pVideoVName">妮妮吃麵超萌</h2>
+														<div class="pViewQuanBox">
+															<i class="fa fa-eye" aria-hidden="true"></i>
+															<span class="pViewCount">12</span>
+														</div>
+													</div>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<!--你可能會喜歡 End-->
+						</div>
+
 					</div>
+				</div>
 				</div>
 				<div class="pMovieArea">
 					<div class="pMovieTitBox"><h2><span class="pinkBox"></span>最新發表</h2><a class="pMore"> · · ＭＯＲＥ</a></div>

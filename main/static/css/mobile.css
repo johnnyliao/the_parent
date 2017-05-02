@@ -5,6 +5,13 @@
   -webkit-appearance: none;
 }
 
+body{
+    font-family: "Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3",FontAwesome,sans-serif;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    font-size: 14px;
+}
 header, .header[_height="none"]{
     display: block;
 }
@@ -178,6 +185,7 @@ footer a{
     display: block;
     z-index: 9999;
     height: auto;
+    padding-bottom: 5px;
 }
 
 .under-nav li{
@@ -192,8 +200,18 @@ footer a{
     color: #e18293;
 }
 .under-nav a{
-    color: #e18293;
+    color: #565759;
     width: 25%;
+    display: inline-block;
+}
+.under-nav p a{
+    color: #565759;
+    width: 60%;
+    display: inline-block;
+}
+.under-nav p a.active{
+    color: #e18293;
+    width: 60%;
     display: inline-block;
 }
 .under-nav .hide{
@@ -334,6 +352,7 @@ input[name="zipcode"]{
     font-size: 14px;
     padding: 6px;
     height:45px;
+    color: #FFF;
 }
 .container .memberBox .sky-form .col-sm-6 section input[name="captcha"]{
     width:20%;
@@ -522,6 +541,7 @@ input[name="zipcode"]{
     padding: 6px;
     height: 45px;
     display: inline-block;
+    color: #FFF;
 }
 .container .memberBox .sky-form .forgetPassCon .col-sm-6 section input{
     width:80%;
@@ -2626,6 +2646,17 @@ input[name="zipcode"]{
 .container .videoViewListBox ul li .videoListTxtBox{
     width: 60%;
     font-size: 16px;
+}
+.container_default .aboutConBox{
+    border: 1px solid #e8e8e8;
+    padding: 10px;
+    margin: 10px;
+    color: #666;
+    font-weight: 100;
+    line-height: 30px;
+    font-size: 14px;
+    background: #FFF;
+    margin-top: 80px;
 }
 }
 @media screen and (max-width:1024px){

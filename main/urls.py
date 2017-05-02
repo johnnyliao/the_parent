@@ -1,6 +1,6 @@
 
 from django.conf.urls import patterns, url
-from main.views import home, login, register, member, register_success, forget_password, change_password, index, indexshop, product_detail, now_cart, cart_check, cart_final, pay_success, action, index_video, videoDetails, index_home, winners, order_record, view_record, message_list, message_detail, video_viewRecord
+from main.views import home, login, register, member, about_us, register_success, forget_password, change_password, index, indexshop, product_detail, now_cart, cart_check, cart_final, pay_success, action, index_video, videoDetails, index_home, winners, order_record, view_record, message_list, message_detail, video_viewRecord
 
 urlpatterns = patterns(".views",
 	url("^$", home),
@@ -25,6 +25,7 @@ urlpatterns = patterns(".views",
 	url('^view_record/', view_record),
 	url('^message_list/', message_list),
 	url('^message_detail/', message_detail),
+	url('^about_us/', about_us),
 	url('^video_viewRecord/', video_viewRecord),
 	url('^product_detail/(?P<pk>\d+)/$', product_detail),
 )
