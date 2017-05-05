@@ -5,7 +5,7 @@ document.writeln("			<span></span>");
 document.writeln("		</a>");
 document.writeln("	</div>");
 document.writeln("	<div class=\'logo\'>");
-document.writeln("		<a href=\'/main/index\'>");
+document.writeln("		<a href=\'/main/home\'>");
 document.writeln("			<img class=\'top_logo\' src=\"/static/img/thecouple_webpage_logo.png\">");
 document.writeln("		</a>");
 document.writeln("	</div>");

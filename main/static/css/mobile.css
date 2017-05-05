@@ -2634,6 +2634,11 @@ input[name="zipcode"]{
 }
 .container .videoViewListBox ul li .videoListTxtBox h2{
     line-height: 24px;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 .container .videoViewListBox ul li .videoListTxtBox .viewQuanBox{
     position: absolute;
