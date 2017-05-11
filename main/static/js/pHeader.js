@@ -3,7 +3,7 @@ document.writeln("				<div class=\'pTopBox1\'>");
 document.writeln("					<div class=\'pTop1Box1\'>");
 document.writeln("						<ul class=\'pTop1Cont\'>");
 document.writeln("							<li><a href=\'/main/about_us/\'><i class=\'fa fa-info-circle\' aria-hidden=\'true\'></i>關於我們</a></li>");
-document.writeln("							<li><a href=\'#\'><i class=\'fa fa-shopping-bag\' aria-hidden=\'true\'></i>購物商城</a></li>");
+document.writeln("							<li><a href=\'https://www.shopnicokim.com/\'><i class=\'fa fa-shopping-bag\' aria-hidden=\'true\'></i>購物商城</a></li>");
 document.writeln("							<li><a href=\'/main/index_video\'><i class=\'fa fa-video-camera\' aria-hidden=\'true\'></i>影音專區</a></li>");
 document.writeln("						</ul>");
 document.writeln("					</div>");

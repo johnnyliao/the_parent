@@ -48,6 +48,11 @@ from movie.models import Movie, Comment, ReComment
 def about_us(request):
 	is_mobile = check_user_agent(request)
 	return render_to_response("main/aboutUs.html", locals(), context_instance=RequestContext(request))
+
+def proposal(request):
+	is_mobile = check_user_agent(request)
+	return render_to_response("main/proposal.html", locals(), context_instance=RequestContext(request))
+
 def check_user_agent(request):
 	ua_string = request.META.get('HTTP_USER_AGENT', '')
 	user_agent = parse(ua_string)

@@ -2663,6 +2663,44 @@ input[name="zipcode"]{
     background: #FFF;
     margin-top: 80px;
 }
+.container .log-reg-block .proposal-input .requiredTxt{
+    color: rgb(196,59,29);
+    text-align: left;
+    width: 80%;
+    margin: 0 auto 15px auto;
+}
+.container .log-reg-block .proposal-input .inputW{
+    min-width: 80%;
+    margin-bottom: 5px;
+    text-align: left;
+}
+.container .log-reg-block .proposal-input .prolist{
+    width: 80%;
+    margin: 0 auto;
+    text-align: left;
+}
+.container .log-reg-block .proposal-input .input textarea{
+    width: 80%;
+    margin-left: 3%;
+    border: 1px solid #e8e8e8;
+    padding: 10px;
+}
+.container .log-reg-block .proposal-input .inputW .required{
+    color: rgb(196,59,29);
+}
+.container .log-reg-block .proposal-input .input input[type="checkbox"]{
+    width: 15px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.container .log-reg-block .proposal-input .input input[type="radio"]{
+    width: 15px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.container .log-reg-block .proposal-input .input .proposalText{
+    display: inline-block;
+}
 }
 @media screen and (max-width:1024px){
 
